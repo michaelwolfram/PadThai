@@ -1,3 +1,9 @@
+# custom:
+.idea/
+
+
+# Android:
+
 # Built application files
 *.apk
 *.ap_
