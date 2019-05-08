@@ -99,20 +99,9 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
             return 1.0f;
     }
 
-//    private int getNewPaintFlags(int currentPaintFlags) {
-//        int current_state = currentPaintFlags & Paint.STRIKE_THRU_TEXT_FLAG;
-//        int new_state = ~current_state & Paint.STRIKE_THRU_TEXT_FLAG;
-//        int all_other_flags = currentPaintFlags & ~Paint.STRIKE_THRU_TEXT_FLAG;
-//        return all_other_flags | new_state;
-//    }
-
     private void toggleAlpha(View view) {
         view.setAlpha(getNewAlpha(view.getAlpha()));
     }
-
-//    private void togglePaintFlags(TextView textView) {
-//        textView.setPaintFlags(getNewPaintFlags(textView.getPaintFlags()));
-//    }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
@@ -135,7 +124,6 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                togglePaintFlags(holder.mHeader);
                 toggleAlpha(holder.mHeader);
                 toggleAlpha(holder.mImage);
                 toggleAlpha(holder.mGramm);
