@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Pad Thai</string>
+    <string name="action_settings">Settings</string>
+    <string name="header">Pad Thai</string>
+    <string name="sub_header">Bestandteile</string>
+    <string name="todo">TODO</string>
+    <string name="component_text">TextView</string>
+    <string name="_0">0</string>
+    <string name="paste">Chili Paste</string>
+    <string name="sosse">Erdnuss Soße</string>
+    <string name="padthai">Pad Thai</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="g">g</string>
+    <string name="stk">Stk.</string>
+</resources>
