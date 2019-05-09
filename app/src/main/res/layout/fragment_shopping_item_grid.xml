@@ -31,17 +31,16 @@
 
             <TextView
                 android:id="@+id/ingredient_g_value"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:maxEms="5"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:singleLine="true"
-                android:textAlignment="viewEnd"
+                android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ingredient_g"
                 app:layout_constraintStart_toStartOf="parent
 "
                 app:layout_constraintTop_toTopOf="parent"
@@ -49,12 +48,14 @@
 
             <TextView
                 android:id="@+id/ingredient_g"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ingredient_g_value"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/g" />
 
@@ -68,29 +69,30 @@
 
             <TextView
                 android:id="@+id/ingredient_stk_value"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:maxEms="5"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:singleLine="true"
-                android:textAlignment="viewEnd"
+                android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ingredient_stk"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="m" />
 
             <TextView
                 android:id="@+id/ingredient_stk"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ingredient_stk_value"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/stk" />
 
