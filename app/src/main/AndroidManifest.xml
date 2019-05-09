@@ -24,8 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShoppingCart"
-            android:screenOrientation="portrait">
+            android:name=".ShoppingCart">
         </activity>
     </application>
 

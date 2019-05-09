@@ -29,21 +29,21 @@ public class ShoppingListContent {
 
     static {
         // Add Pad Thai items.
-        addItem(new ShoppingItem("Karotten", R.mipmap.karotten_round));
-        addItem(new ShoppingItem("Zwiebeln", R.mipmap.zwiebeln_round));
-        addItem(new ShoppingItem("Knoblauch", R.mipmap.knoblauch_round));
-        addItem(new ShoppingItem("Chili (trocken)", R.mipmap.chilischoten_round));
-        addItem(new ShoppingItem("Öl", R.mipmap.sojaoel_round));
-        addItem(new ShoppingItem("Soja Soße", R.mipmap.sojasosse_round));
-        addItem(new ShoppingItem("br. Zucker", R.mipmap.braunerzucker_round));
-        addItem(new ShoppingItem("Limettensaft", R.mipmap.limetten_round));
-        addItem(new ShoppingItem("Tomaten", R.mipmap.tomaten_round));
-        addItem(new ShoppingItem("Erdnüsse", R.mipmap.erdnuesse_round));
-        addItem(new ShoppingItem("Kokosmilch", R.mipmap.kokosmilch_round));
-        addItem(new ShoppingItem("Frühl.zwiebel", R.mipmap.fruehlingszwiebeln_round));
-        addItem(new ShoppingItem("Sprossen", R.mipmap.mungobohnensprossen_round));
-        addItem(new ShoppingItem("Reisnudeln", R.mipmap.reisnudeln_round));
-        addItem(new ShoppingItem("Tofu", R.mipmap.tofu_round));
+        addItem(new ShoppingItem("Karotten", R.mipmap.karotten_round, "g"));
+        addItem(new ShoppingItem("Zwiebeln", R.mipmap.zwiebeln_round, "g"));
+        addItem(new ShoppingItem("Knoblauch", R.mipmap.knoblauch_round, "g"));
+        addItem(new ShoppingItem("Chili (trocken)", R.mipmap.chilischoten_round, "g"));
+        addItem(new ShoppingItem("Öl", R.mipmap.sojaoel_round, "ml"));
+        addItem(new ShoppingItem("Soja Soße", R.mipmap.sojasosse_round, "ml"));
+        addItem(new ShoppingItem("br. Zucker", R.mipmap.braunerzucker_round, "g"));
+        addItem(new ShoppingItem("Limettensaft", R.mipmap.limetten_round, "ml"));
+        addItem(new ShoppingItem("Tomaten", R.mipmap.tomaten_round, "g"));
+        addItem(new ShoppingItem("Erdnüsse", R.mipmap.erdnuesse_round, "g"));
+        addItem(new ShoppingItem("Kokosmilch", R.mipmap.kokosmilch_round, "ml"));
+        addItem(new ShoppingItem("Frühl.zwiebel", R.mipmap.fruehlingszwiebeln_round, "g"));
+        addItem(new ShoppingItem("Sprossen", R.mipmap.mungobohnensprossen_round, "g"));
+        addItem(new ShoppingItem("Reisnudeln", R.mipmap.reisnudeln_round, "g"));
+        addItem(new ShoppingItem("Tofu", R.mipmap.tofu_round, "g"));
     }
 
     private static void addItem(ShoppingItem item) {
@@ -51,13 +51,10 @@ public class ShoppingListContent {
         ITEM_MAP.put(item.id, item);
     }
 
-    private static String makeDetails(int position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
-        for (int i = 0; i < position; i++) {
-            builder.append("\nMore details information here.");
+    public static void resetItems() {
+        for (ShoppingItem item : ITEMS) {
+            item.resetAlpha();
         }
-        return builder.toString();
     }
 
     /**
@@ -66,11 +63,28 @@ public class ShoppingListContent {
     public static class ShoppingItem {
         public final String id;
         public final int image_id;
-        public boolean is_in_shopping_cart = false;
+        public final String gramm_ml_text;
+        private float alpha = 1.0f;
 
-        public ShoppingItem(String id, int image_id) {
+        public ShoppingItem(String id, int image_id, String gramm_ml_text) {
             this.id = id;
             this.image_id = image_id;
+            this.gramm_ml_text = gramm_ml_text;
+        }
+
+        public float getAlpha() {
+            return alpha;
+        }
+
+        public void resetAlpha() {
+            alpha = 1.0f;
+        }
+
+        public void toggleAlpha() {
+            if (alpha == 1.0f)
+                alpha = 0.2f;
+            else
+                alpha = 1.0f;
         }
 
         @Override

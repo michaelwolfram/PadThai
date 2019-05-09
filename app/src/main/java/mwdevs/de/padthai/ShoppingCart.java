@@ -3,6 +3,7 @@ package mwdevs.de.padthai;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 
 public class ShoppingCart extends AppCompatActivity implements ShoppingListFragment.OnListFragmentInteractionListener {
@@ -43,6 +44,12 @@ public class ShoppingCart extends AppCompatActivity implements ShoppingListFragm
                 finish();
 //                NavUtils.navigateUpFromSameTask(this);
                 return true;
+//            case R.id.toggleLayoutManager:
+//                supportInvalidateOptionsMenu();
+//                //loading = false;
+//                mProductListRecyclerView.setLayoutManager(isViewWithCatalog ? new LinearLayoutManager(this) : new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+//                mProductListRecyclerView.setAdapter(mAdapter);
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

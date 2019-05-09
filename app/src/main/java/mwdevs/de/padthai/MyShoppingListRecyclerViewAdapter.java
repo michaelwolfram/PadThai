@@ -37,17 +37,19 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
     private final int m_padthai_quantity;
     private Workbook mWorkBook;
     private Sheet mSheet;
+    private boolean showListAsGrid = false;
 
     public MyShoppingListRecyclerViewAdapter(List<ShoppingItem> items,
                                              int paste_quantity, int sosse_quantity, int padthai_quantity,
                                              OnListFragmentInteractionListener listener,
-                                             AssetManager assetManager) {
+                                             AssetManager assetManager, boolean showListAsGrid) {
         mValues = items;
         mListener = listener;
         mAssetManager = assetManager;
         m_paste_quantity = paste_quantity;
         m_sosse_quantity = sosse_quantity;
         m_padthai_quantity = padthai_quantity;
+        this.showListAsGrid = showListAsGrid;
 
         mWorkBook = openExcelFileWorkBook("Pad Thai Angaben.xls");
         mSheet = mWorkBook.getSheetAt(0);
@@ -57,6 +59,10 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         setCellValue(mSheet, "B", 3, m_padthai_quantity);
 
         XSSFFormulaEvaluator.evaluateAllFormulaCells(mWorkBook);
+    }
+
+    public void setShowListAsGrid(boolean showListAsGrid) {
+        this.showListAsGrid = showListAsGrid;
     }
 
     public Workbook openExcelFileWorkBook(String file_name) {
@@ -88,19 +94,9 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_shopping_item, parent, false);
+                .inflate(showListAsGrid ? R.layout.fragment_shopping_item_grid : R.layout.fragment_shopping_item,
+                        parent, false);
         return new ViewHolder(view);
-    }
-
-    private float getNewAlpha(float currentAlpha) {
-        if (currentAlpha == 1.0f)
-            return 0.2f;
-        else
-            return 1.0f;
-    }
-
-    private void toggleAlpha(View view) {
-        view.setAlpha(getNewAlpha(view.getAlpha()));
     }
 
     @Override
@@ -108,32 +104,29 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         String ingredient_name = getStringCellValue(mSheet, "B", 7 + position);
         double ingredient_gramm = getNumericCellValue(mSheet, "J", 7 + position);
         double ingredient_stk = getNumericCellValue(mSheet, "N", 7 + position);
+
         holder.mItem = mValues.get(position);
+        holder.updateAlpha();
+
         holder.mImage.setImageResource(holder.mItem.image_id);
-        holder.mHeader.setText("" + ingredient_name);
-        holder.mGramm.setText(R.string.g);
+        if (holder.mHeader != null)
+            holder.mHeader.setText("" + ingredient_name);
+        holder.mGramm.setText(holder.mItem.gramm_ml_text);
         holder.mGrammValue.setText("" + (int) Math.round(ingredient_gramm));
         if (ingredient_stk == -1.0f) {
             holder.mStk.setText("");
-            holder.mStkValue.setText("-");
+            holder.mStkValue.setText("---");
         } else {
             holder.mStk.setText(R.string.stk);
-            holder.mStkValue.setText(String.format("%.2f", ingredient_stk));
+            holder.mStkValue.setText(String.format("%.1f", ingredient_stk));
         }
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleAlpha(holder.mHeader);
-                toggleAlpha(holder.mImage);
-                toggleAlpha(holder.mGramm);
-                toggleAlpha(holder.mGrammValue);
-                toggleAlpha(holder.mStk);
-                toggleAlpha(holder.mStkValue);
+                holder.toggleAlpha();
 
                 if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
             }
@@ -164,6 +157,22 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
             mStk = view.findViewById(R.id.ingredient_stk);
             mGrammValue = view.findViewById(R.id.ingredient_g_value);
             mStkValue = view.findViewById(R.id.ingredient_stk_value);
+        }
+
+        void updateAlpha() {
+            float alpha = mItem.getAlpha();
+            if (mHeader != null)
+                mHeader.setAlpha(alpha);
+            mImage.setAlpha(alpha);
+            mGramm.setAlpha(alpha);
+            mGrammValue.setAlpha(alpha);
+            mStk.setAlpha(alpha);
+            mStkValue.setAlpha(alpha);
+        }
+
+        void toggleAlpha() {
+            mItem.toggleAlpha();
+            updateAlpha();
         }
     }
 }
