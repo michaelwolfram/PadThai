@@ -11,6 +11,8 @@
     <string name="padthai">Pad Thai</string>
     <string name="title_activity_settings">Settings</string>
     <string name="g">g</string>
+    <string name="ml">ml</string>
     <string name="stk">Stk.</string>
+    <string name="pkg">Pkg.</string>
     <string name="toggle_view">Toggle View</string>
 </resources>

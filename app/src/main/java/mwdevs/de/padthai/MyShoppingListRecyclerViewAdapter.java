@@ -1,6 +1,7 @@
 package mwdevs.de.padthai;
 
 import android.content.res.AssetManager;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +20,8 @@ import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import java.io.InputStream;
 import java.util.List;
 
-import mwdevs.de.padthai.ShoppingListFragment.OnListFragmentInteractionListener;
 import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
+import mwdevs.de.padthai.ShoppingListFragment.OnListFragmentInteractionListener;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ShoppingItem} and makes a call to the
@@ -117,7 +118,7 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
             holder.mStk.setText("");
             holder.mStkValue.setText("---");
         } else {
-            holder.mStk.setText(R.string.stk);
+            holder.mStk.setText(holder.mItem.stk_text);
             holder.mStkValue.setText(String.format("%.1f", ingredient_stk));
         }
 
@@ -129,6 +130,14 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
                 if (null != mListener) {
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
+            }
+        });
+        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Snackbar.make(v, holder.mItem.toString(), Snackbar.LENGTH_SHORT)
+                        .show();
+                return true;
             }
         });
     }

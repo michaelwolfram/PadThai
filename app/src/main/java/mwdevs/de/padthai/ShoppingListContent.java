@@ -28,22 +28,21 @@ public class ShoppingListContent {
     private static final int COUNT = 15;
 
     static {
-        // Add Pad Thai items.
-        addItem(new ShoppingItem("Karotten", R.mipmap.karotten_round, "g"));
-        addItem(new ShoppingItem("Zwiebeln", R.mipmap.zwiebeln_round, "g"));
-        addItem(new ShoppingItem("Knoblauch", R.mipmap.knoblauch_round, "g"));
-        addItem(new ShoppingItem("Chili (trocken)", R.mipmap.chilischoten_round, "g"));
-        addItem(new ShoppingItem("Öl", R.mipmap.sojaoel_round, "ml"));
-        addItem(new ShoppingItem("Soja Soße", R.mipmap.sojasosse_round, "ml"));
-        addItem(new ShoppingItem("br. Zucker", R.mipmap.braunerzucker_round, "g"));
-        addItem(new ShoppingItem("Limettensaft", R.mipmap.limetten_round, "ml"));
-        addItem(new ShoppingItem("Tomaten", R.mipmap.tomaten_round, "g"));
-        addItem(new ShoppingItem("Erdnüsse", R.mipmap.erdnuesse_round, "g"));
-        addItem(new ShoppingItem("Kokosmilch", R.mipmap.kokosmilch_round, "ml"));
-        addItem(new ShoppingItem("Frühl.zwiebel", R.mipmap.fruehlingszwiebeln_round, "g"));
-        addItem(new ShoppingItem("Sprossen", R.mipmap.mungobohnensprossen_round, "g"));
-        addItem(new ShoppingItem("Reisnudeln", R.mipmap.reisnudeln_round, "g"));
-        addItem(new ShoppingItem("Tofu", R.mipmap.tofu_round, "g"));
+        addItem(new ShoppingItem("Karotten", R.mipmap.karotten_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem("Zwiebeln", R.mipmap.zwiebeln_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem("Knoblauch", R.mipmap.knoblauch_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem("Chili (trocken)", R.mipmap.chilischoten_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem("Öl", R.mipmap.sojaoel_round, R.string.ml, R.string.stk));
+        addItem(new ShoppingItem("Soja Soße", R.mipmap.sojasosse_round, R.string.ml, R.string.stk));
+        addItem(new ShoppingItem("br. Zucker", R.mipmap.braunerzucker_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem("Limettensaft", R.mipmap.limetten_round, R.string.ml, R.string.stk));
+        addItem(new ShoppingItem("Tomaten", R.mipmap.tomaten_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem("Erdnüsse", R.mipmap.erdnuesse_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem("Kokosmilch", R.mipmap.kokosmilch_round, R.string.ml, R.string.pkg));
+        addItem(new ShoppingItem("Frühl.zwiebel", R.mipmap.fruehlingszwiebeln_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem("Sprossen", R.mipmap.mungobohnensprossen_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem("Reisnudeln", R.mipmap.reisnudeln_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem("Tofu", R.mipmap.tofu_round, R.string.g, R.string.pkg));
     }
 
     private static void addItem(ShoppingItem item) {
@@ -63,13 +62,15 @@ public class ShoppingListContent {
     public static class ShoppingItem {
         public final String id;
         public final int image_id;
-        public final String gramm_ml_text;
+        public final int gramm_ml_text;
+        public final int stk_text;
         private float alpha = 1.0f;
 
-        public ShoppingItem(String id, int image_id, String gramm_ml_text) {
+        public ShoppingItem(String id, int image_id, int gramm_ml_text, int stk_text) {
             this.id = id;
             this.image_id = image_id;
             this.gramm_ml_text = gramm_ml_text;
+            this.stk_text = stk_text;
         }
 
         public float getAlpha() {
