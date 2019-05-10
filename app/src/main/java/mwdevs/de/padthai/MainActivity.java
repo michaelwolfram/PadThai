@@ -1,12 +1,16 @@
 package mwdevs.de.padthai;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import static java.lang.Math.max;
@@ -69,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         padthai_button_down.setOnClickListener(padthai_ocl);
         padthai_button_up.setOnClickListener(padthai_ocl);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        ImageView padThaiImage = findViewById(R.id.padThaiImage);
+        padThaiImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ShoppingListContent.resetItems();
@@ -82,5 +86,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
+                padThaiImage,
+                PropertyValuesHolder.ofFloat("scaleX", 1.05f),
+                PropertyValuesHolder.ofFloat("scaleY", 1.05f));
+        scaleDown.setDuration(1500);
+
+        scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
+        scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
+        scaleDown.setInterpolator(new FastOutSlowInInterpolator());
+        scaleDown.start();
     }
 }
