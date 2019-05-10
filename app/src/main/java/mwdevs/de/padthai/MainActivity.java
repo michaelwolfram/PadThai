@@ -4,7 +4,6 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 padThaiImage,
                 PropertyValuesHolder.ofFloat("scaleX", 1.05f),
                 PropertyValuesHolder.ofFloat("scaleY", 1.05f));
-        scaleDown.setDuration(1500);
+        scaleDown.setDuration(2000);
 
         scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
         scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
