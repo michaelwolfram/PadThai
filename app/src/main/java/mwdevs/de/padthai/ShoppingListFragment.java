@@ -25,13 +25,11 @@ import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
  */
 public class ShoppingListFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     private static final String LIST_LAYOUT = "list_layout";
     public static final String PASTE_QUANTITY = "paste_quantity";
     public static final String SOSSE_QUANTITY = "sosse_quantity";
     public static final String PADTHAI_QUANTITY = "padthai_quantity";
-    // TODO: Customize parameters
     private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
     private int paste_quantity = 0;
@@ -43,14 +41,9 @@ public class ShoppingListFragment extends Fragment {
     private MyShoppingListRecyclerViewAdapter mAdapter = null;
     private boolean showListAsGrid = false;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public ShoppingListFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static ShoppingListFragment newInstance(int columnCount) {
         ShoppingListFragment fragment = new ShoppingListFragment();
@@ -63,7 +56,6 @@ public class ShoppingListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
         if (savedInstanceState != null)
             showListAsGrid = savedInstanceState.getBoolean(LIST_LAYOUT);
     }
@@ -78,9 +70,9 @@ public class ShoppingListFragment extends Fragment {
             public void run() {
                 int minWidth = 360;
                 int width = view.getWidth();
-                showListAsGrid = width > 2 * minWidth;
+                showListAsGrid = width >= 2 * minWidth;
                 mColumnCount = width / minWidth;
-                refreshRecyclerView(showListAsGrid, mColumnCount);
+                refreshRecyclerView();
             }
         });
 
@@ -96,74 +88,12 @@ public class ShoppingListFragment extends Fragment {
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(mAdapter);
             recyclerView.setKeepScreenOn(true);
-//            recyclerView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-//                private int previousVerticalScrollOffset = 0;
-//                private int counter = 0;
-//
-//                @Override
-//                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//                    Activity activity = getActivity();
-//                    if (activity instanceof AppCompatActivity) {
-//                        AppCompatActivity appCompatActivity = (AppCompatActivity) activity;
-//                        ActionBar actionBar = appCompatActivity.getSupportActionBar();
-//                        int newVerticalScrollOffset = recyclerView.computeVerticalScrollOffset();
-//
-//                        TypedValue tv = new TypedValue();
-//                        context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
-//                        int actionBarHeight = getResources().getDimensionPixelSize(tv.resourceId);
-//
-//                        boolean diffIsBigEnough =
-//                                Math.abs(newVerticalScrollOffset - previousVerticalScrollOffset) > 4;
-//                        boolean counterIsBigEnough = counter > actionBarHeight / 3;
-//                        boolean newOffsetIsBigger =
-//                                newVerticalScrollOffset - previousVerticalScrollOffset > 0;
-//                        boolean newOffsetIsSmaller =
-//                                newVerticalScrollOffset - previousVerticalScrollOffset < 0;
-//                        boolean offsetBiggerThanActionBar = newVerticalScrollOffset > actionBarHeight;
-//
-//                        Log.e("AAAA",
-//                                diffIsBigEnough + " - " +
-//                                        counterIsBigEnough + " - " +
-//                                        newOffsetIsBigger + " - " +
-//                                        newOffsetIsSmaller + " - " +
-//                                        actionBar.isShowing() + " - " +
-//                                        newVerticalScrollOffset);
-//
-//                        if (diffIsBigEnough && newOffsetIsBigger &&
-//                                counterIsBigEnough &&
-//                                actionBar.isShowing()) {
-//                            actionBar.hide();
-//                            counter = 0;
-//                        }
-//                        if (diffIsBigEnough && newOffsetIsSmaller &&
-//                                (counterIsBigEnough || newVerticalScrollOffset == 0) &&
-//                                !actionBar.isShowing()) {
-//                            actionBar.show();
-//                            counter = 0;
-//                        }
-//                        previousVerticalScrollOffset = newVerticalScrollOffset;
-//                        counter++;
-//                    }
-//                }
-//            });
         }
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    public void refreshRecyclerView(boolean showListAsGrid) {
-        refreshRecyclerView(showListAsGrid, mColumnCount);
-    }
-
-    public void refreshRecyclerView(boolean showListAsGrid, int mColumnCount) {
-        this.showListAsGrid = showListAsGrid;
+    public void refreshRecyclerView() {
         mAdapter.setShowListAsGrid(showListAsGrid);
-        this.mColumnCount = mColumnCount;
         updateLayoutManager();
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
@@ -174,17 +104,6 @@ public class ShoppingListFragment extends Fragment {
             layoutManager = new GridLayoutManager(context, mColumnCount);
         } else {
             layoutManager = new LinearLayoutManager(context);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.toggleLayoutManager:
-                refreshRecyclerView(!showListAsGrid);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
 

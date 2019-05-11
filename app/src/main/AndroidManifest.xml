@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShoppingCart">
+            android:name=".ShoppingCart"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
