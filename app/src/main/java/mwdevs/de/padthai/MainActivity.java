@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 padThaiImage,
                 PropertyValuesHolder.ofFloat("scaleX", 1.05f),
                 PropertyValuesHolder.ofFloat("scaleY", 1.05f));
-        scaleDown.setDuration(2000);
+        scaleDown.setDuration(1500);
 
         scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
         scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
