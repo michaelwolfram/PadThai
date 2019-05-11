@@ -71,7 +71,18 @@ public class ShoppingListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_shopping_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_shopping_list, container, false);
+
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                int minWidth = 380;
+                int width=view.getWidth();
+                showListAsGrid = width > 2*minWidth;
+                mColumnCount = width / minWidth;
+                refreshRecyclerView(showListAsGrid, mColumnCount);
+            }
+        });
 
         if (view instanceof RecyclerView) {
             context = view.getContext();
@@ -80,11 +91,7 @@ public class ShoppingListFragment extends Fragment {
                 mAdapter = new MyShoppingListRecyclerViewAdapter(ShoppingListContent.ITEMS,
                         paste_quantity, sosse_quantity, padthai_quantity, mListener, assetManager, showListAsGrid);
             if (layoutManager == null)
-                if (showListAsGrid) {
-                    layoutManager = new GridLayoutManager(context, mColumnCount);
-                } else {
-                    layoutManager = new LinearLayoutManager(context);
-                }
+                updateLayoutManager();
             recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(mAdapter);
@@ -98,17 +105,31 @@ public class ShoppingListFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    public void refreshRecyclerView(boolean showListAsGrid) {
+        refreshRecyclerView(showListAsGrid, mColumnCount);
+    }
+    public void refreshRecyclerView(boolean showListAsGrid, int mColumnCount) {
+        this.showListAsGrid = showListAsGrid;
+        mAdapter.setShowListAsGrid(showListAsGrid);
+        this.mColumnCount = mColumnCount;
+        updateLayoutManager();
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    private void updateLayoutManager() {
+        if (showListAsGrid) {
+            layoutManager = new GridLayoutManager(context, mColumnCount);
+        } else {
+            layoutManager = new LinearLayoutManager(context);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.toggleLayoutManager:
-                showListAsGrid = !showListAsGrid;
-                mAdapter.setShowListAsGrid(showListAsGrid);
-                recyclerView.setLayoutManager(showListAsGrid ?
-                        new GridLayoutManager(context, mColumnCount) :
-                        new LinearLayoutManager(context));
-                recyclerView.setAdapter(mAdapter);
-                recyclerView.invalidate();
+                refreshRecyclerView(!showListAsGrid);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -149,7 +170,6 @@ public class ShoppingListFragment extends Fragment {
     }
 
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(ShoppingItem item);
     }
 }
