@@ -30,10 +30,13 @@ public class ShoppingCart extends AppCompatActivity implements ShoppingListFragm
         sosse_quantity = intent.getIntExtra(ShoppingListFragment.SOSSE_QUANTITY, 0);
         padthai_quantity = intent.getIntExtra(ShoppingListFragment.PADTHAI_QUANTITY, 0);
 
+//        supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHideOnContentScrollEnabled(true);
     }
 
     @Override

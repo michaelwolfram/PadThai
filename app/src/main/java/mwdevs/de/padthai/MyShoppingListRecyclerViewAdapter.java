@@ -100,11 +100,34 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         return new ViewHolder(view);
     }
 
+//    public int getActionBarSize(View view) {
+//        TypedArray styledAttributes = view.getContext().getTheme()
+//                .obtainStyledAttributes(new int[] { android.R.attr.actionBarSize });
+//        int actionBarSize = (int) styledAttributes.getDimension(0, 0);
+//        styledAttributes.recycle();
+//        return actionBarSize;
+//    }
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+//        if (position == 0) {
+//            TypedValue tv = new TypedValue();
+//            holder.mView.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
+//            int actionBarHeight = holder.mView.getResources().getDimensionPixelSize(tv.resourceId);
+//            holder.mView.setAlpha(0.0f);
+//            android.support.v7.widget.RecyclerView.LayoutParams params =
+//                    (android.support.v7.widget.RecyclerView.LayoutParams) holder.mView.getLayoutParams();
+//            params.height = actionBarHeight;
+//            params.width = getActionBarSize(holder.mView) * 3;
+//            holder.mView.setLayoutParams(params);
+//            return;
+//        }
+
+//        position = position - 1;
         String ingredient_name = getStringCellValue(mSheet, "B", 7 + position);
         double ingredient_gramm = getNumericCellValue(mSheet, "J", 7 + position);
         double ingredient_stk = getNumericCellValue(mSheet, "N", 7 + position);
+//        position = position + 1;
 
         holder.mItem = mValues.get(position);
         holder.updateAlpha();

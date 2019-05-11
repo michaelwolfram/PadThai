@@ -76,9 +76,9 @@ public class ShoppingListFragment extends Fragment {
         view.post(new Runnable() {
             @Override
             public void run() {
-                int minWidth = 380;
-                int width=view.getWidth();
-                showListAsGrid = width > 2*minWidth;
+                int minWidth = 360;
+                int width = view.getWidth();
+                showListAsGrid = width > 2 * minWidth;
                 mColumnCount = width / minWidth;
                 refreshRecyclerView(showListAsGrid, mColumnCount);
             }
@@ -95,6 +95,57 @@ public class ShoppingListFragment extends Fragment {
             recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(mAdapter);
+            recyclerView.setKeepScreenOn(true);
+//            recyclerView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//                private int previousVerticalScrollOffset = 0;
+//                private int counter = 0;
+//
+//                @Override
+//                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                    Activity activity = getActivity();
+//                    if (activity instanceof AppCompatActivity) {
+//                        AppCompatActivity appCompatActivity = (AppCompatActivity) activity;
+//                        ActionBar actionBar = appCompatActivity.getSupportActionBar();
+//                        int newVerticalScrollOffset = recyclerView.computeVerticalScrollOffset();
+//
+//                        TypedValue tv = new TypedValue();
+//                        context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
+//                        int actionBarHeight = getResources().getDimensionPixelSize(tv.resourceId);
+//
+//                        boolean diffIsBigEnough =
+//                                Math.abs(newVerticalScrollOffset - previousVerticalScrollOffset) > 4;
+//                        boolean counterIsBigEnough = counter > actionBarHeight / 3;
+//                        boolean newOffsetIsBigger =
+//                                newVerticalScrollOffset - previousVerticalScrollOffset > 0;
+//                        boolean newOffsetIsSmaller =
+//                                newVerticalScrollOffset - previousVerticalScrollOffset < 0;
+//                        boolean offsetBiggerThanActionBar = newVerticalScrollOffset > actionBarHeight;
+//
+//                        Log.e("AAAA",
+//                                diffIsBigEnough + " - " +
+//                                        counterIsBigEnough + " - " +
+//                                        newOffsetIsBigger + " - " +
+//                                        newOffsetIsSmaller + " - " +
+//                                        actionBar.isShowing() + " - " +
+//                                        newVerticalScrollOffset);
+//
+//                        if (diffIsBigEnough && newOffsetIsBigger &&
+//                                counterIsBigEnough &&
+//                                actionBar.isShowing()) {
+//                            actionBar.hide();
+//                            counter = 0;
+//                        }
+//                        if (diffIsBigEnough && newOffsetIsSmaller &&
+//                                (counterIsBigEnough || newVerticalScrollOffset == 0) &&
+//                                !actionBar.isShowing()) {
+//                            actionBar.show();
+//                            counter = 0;
+//                        }
+//                        previousVerticalScrollOffset = newVerticalScrollOffset;
+//                        counter++;
+//                    }
+//                }
+//            });
         }
         return view;
     }
@@ -108,6 +159,7 @@ public class ShoppingListFragment extends Fragment {
     public void refreshRecyclerView(boolean showListAsGrid) {
         refreshRecyclerView(showListAsGrid, mColumnCount);
     }
+
     public void refreshRecyclerView(boolean showListAsGrid, int mColumnCount) {
         this.showListAsGrid = showListAsGrid;
         mAdapter.setShowListAsGrid(showListAsGrid);
