@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
+    android:background="@color/colorPrimaryTransparent"
     app:layoutManager="android.support.v7.widget.LinearLayoutManager"
     tools:context=".ShoppingListFragment"
     tools:itemCount="15"

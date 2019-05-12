@@ -2,12 +2,18 @@ package mwdevs.de.padthai;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnticipateInterpolator;
+import android.view.animation.CycleInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -86,15 +92,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
+        final ObjectAnimator scaleUp = ObjectAnimator.ofPropertyValuesHolder(
                 padThaiImage,
-                PropertyValuesHolder.ofFloat("scaleX", 1.05f),
-                PropertyValuesHolder.ofFloat("scaleY", 1.05f));
-        scaleDown.setDuration(1500);
+                PropertyValuesHolder.ofFloat("scaleX", 1.08f),
+                PropertyValuesHolder.ofFloat("scaleY", 1.08f));
+        scaleUp.setDuration(400);
 
-        scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
-        scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
-        scaleDown.setInterpolator(new FastOutSlowInInterpolator());
-        scaleDown.start();
+        scaleUp.setInterpolator(new AccelerateInterpolator());
+        scaleUp.setRepeatMode(ValueAnimator.REVERSE);
+        scaleUp.setRepeatCount(1);
+        final Handler handler = new Handler();
+        Runnable animationLoop = new Runnable() {
+            @Override
+            public void run() {
+                scaleUp.start();
+                handler.postDelayed(this, 5000);
+            }
+        };
+        handler.postDelayed(animationLoop, 1000);
     }
 }
