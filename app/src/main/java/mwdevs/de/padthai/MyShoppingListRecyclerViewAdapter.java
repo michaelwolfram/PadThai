@@ -23,6 +23,22 @@ import java.util.List;
 import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
 import mwdevs.de.padthai.ShoppingListFragment.OnListFragmentInteractionListener;
 
+//class MyWorkbookTask extends AsyncTask<String, Void, Workbook> {
+//
+//    @Override
+//    protected Workbook doInBackground(String... params) {
+//        Workbook workbook = null;
+//        try {
+//            URL url = new URL(params[0]);
+//            URLConnection uc = url.openConnection();
+//            workbook = new HSSFWorkbook(uc.getInputStream());
+//        } catch (MalformedURLException e) {
+//        } catch (IOException e) {
+//        }
+//        return workbook;
+//    }
+//}
+
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ShoppingItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
@@ -53,6 +69,8 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         this.showListAsGrid = showListAsGrid;
 
         mWorkBook = openExcelFileWorkBook("Pad Thai Angaben.xls");
+//        mWorkBook = openExcelFileWorkBook("https://www.dropbox.com/s/zb0ahtftqu0ta7y/Pad%20Thai%20Angaben.xls");
+
         mSheet = mWorkBook.getSheetAt(0);
 
         setCellValue(mSheet, "B", 1, m_paste_quantity);
@@ -68,6 +86,8 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
     public Workbook openExcelFileWorkBook(String file_name) {
         try {
+//            return new MyWorkbookTask().execute(file_name).get();
+
             InputStream myInput = mAssetManager.open(file_name);
             Workbook workbook = new HSSFWorkbook(myInput);
             return workbook;
