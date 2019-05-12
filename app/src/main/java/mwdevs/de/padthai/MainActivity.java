@@ -4,16 +4,14 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnticipateInterpolator;
-import android.view.animation.CycleInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +19,9 @@ import android.widget.TextView;
 import static java.lang.Math.max;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView paste_text_quantity;
+    private TextView sosse_text_quantity;
+    private TextView padthai_text_quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         paste_button_down.setTag(-1);
         ImageButton paste_button_up = findViewById(R.id.paste_up);
         paste_button_up.setTag(+1);
-        final TextView paste_text_quantity = findViewById(R.id.paste_quantity);
+        paste_text_quantity = findViewById(R.id.paste_quantity);
         View.OnClickListener paste_ocl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         sosse_button_down.setTag(-1);
         ImageButton sosse_button_up = findViewById(R.id.sosse_up);
         sosse_button_up.setTag(+1);
-        final TextView sosse_text_quantity = findViewById(R.id.sosse_quantity);
+        sosse_text_quantity = findViewById(R.id.sosse_quantity);
         View.OnClickListener sosse_ocl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         padthai_button_down.setTag(-1);
         ImageButton padthai_button_up = findViewById(R.id.padthai_up);
         padthai_button_up.setTag(+1);
-        final TextView padthai_text_quantity = findViewById(R.id.padthai_quantity);
+        padthai_text_quantity = findViewById(R.id.padthai_quantity);
         View.OnClickListener padthai_ocl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
                 ShoppingListContent.resetItems();
 
                 Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
-                intent.putExtra(ShoppingListFragment.PASTE_QUANTITY, Integer.parseInt(paste_text_quantity.getText().toString()));
-                intent.putExtra(ShoppingListFragment.SOSSE_QUANTITY, Integer.parseInt(sosse_text_quantity.getText().toString()));
-                intent.putExtra(ShoppingListFragment.PADTHAI_QUANTITY, Integer.parseInt(padthai_text_quantity.getText().toString()));
+                intent.putExtra(ShoppingListFragment.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
+                intent.putExtra(ShoppingListFragment.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
+                intent.putExtra(ShoppingListFragment.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
                 startActivity(intent);
             }
         });
@@ -110,5 +111,29 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(animationLoop, 1000);
+    }
+
+    private int getIntFromTextView(TextView textView) {
+        return Integer.parseInt(textView.getText().toString());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        paste_text_quantity.setText("" + preferences.getInt(ShoppingListFragment.PASTE_QUANTITY, 0));
+        sosse_text_quantity.setText("" + preferences.getInt(ShoppingListFragment.SOSSE_QUANTITY, 0));
+        padthai_text_quantity.setText("" + preferences.getInt(ShoppingListFragment.PADTHAI_QUANTITY, 0));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor= preferences.edit();
+        editor.putInt(ShoppingListFragment.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
+        editor.putInt(ShoppingListFragment.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
+        editor.putInt(ShoppingListFragment.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
+        editor.commit();
     }
 }
