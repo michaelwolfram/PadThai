@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.PointTarget;
+
 public class ShoppingCart extends AppCompatActivity implements ShoppingListFragment.OnListFragmentInteractionListener {
 
     private int paste_quantity;
@@ -31,6 +35,20 @@ public class ShoppingCart extends AppCompatActivity implements ShoppingListFragm
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        new ShowcaseView.Builder(this)
+                .withMaterialShowcase()
+                .singleShot(42)
+                .setTarget(new PointTarget(300, 300))
+                .setContentTitle("ShowcaseView")
+                .setContentText("This is highlighting the Home button")
+                .hideOnTouchOutside()
+                .build();
     }
 
     @Override

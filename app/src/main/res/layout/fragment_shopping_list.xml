@@ -12,4 +12,4 @@
     app:layoutManager="android.support.v7.widget.LinearLayoutManager"
     tools:context=".ShoppingListFragment"
     tools:itemCount="15"
-    tools:listitem="@layout/fragment_shopping_item" />
+    tools:listitem="@layout/fragment_shopping_item_grid" />
