@@ -1,5 +1,6 @@
 # custom:
 .idea/
+app/release/output.json
 
 
 # Android:
