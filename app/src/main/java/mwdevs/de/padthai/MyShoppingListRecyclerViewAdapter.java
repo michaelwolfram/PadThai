@@ -21,7 +21,6 @@ import java.io.InputStream;
 import java.util.List;
 
 import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
-import mwdevs.de.padthai.ShoppingListFragment.OnListFragmentInteractionListener;
 
 //class MyWorkbookTask extends AsyncTask<String, Void, Workbook> {
 //
@@ -115,7 +114,7 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(showListAsGrid ? R.layout.fragment_shopping_item_grid : R.layout.fragment_shopping_item,
+                .inflate(showListAsGrid ? R.layout.shopping_item_grid : R.layout.shopping_item_linear,
                         parent, false);
         return new ViewHolder(view);
     }

@@ -86,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
                 ShoppingListContent.resetItems();
 
                 Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
-                intent.putExtra(ShoppingListFragment.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
-                intent.putExtra(ShoppingListFragment.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
-                intent.putExtra(ShoppingListFragment.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
+                intent.putExtra(ShoppingCart.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
+                intent.putExtra(ShoppingCart.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
+                intent.putExtra(ShoppingCart.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
                 startActivity(intent);
             }
         });
@@ -121,9 +121,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        paste_text_quantity.setText("" + preferences.getInt(ShoppingListFragment.PASTE_QUANTITY, 0));
-        sosse_text_quantity.setText("" + preferences.getInt(ShoppingListFragment.SOSSE_QUANTITY, 0));
-        padthai_text_quantity.setText("" + preferences.getInt(ShoppingListFragment.PADTHAI_QUANTITY, 0));
+        paste_text_quantity.setText("" + preferences.getInt(ShoppingCart.PASTE_QUANTITY, 0));
+        sosse_text_quantity.setText("" + preferences.getInt(ShoppingCart.SOSSE_QUANTITY, 0));
+        padthai_text_quantity.setText("" + preferences.getInt(ShoppingCart.PADTHAI_QUANTITY, 0));
     }
 
     @Override
@@ -131,9 +131,10 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor= preferences.edit();
-        editor.putInt(ShoppingListFragment.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
-        editor.putInt(ShoppingListFragment.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
-        editor.putInt(ShoppingListFragment.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
+        editor.putInt(ShoppingCart.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
+        editor.putInt(ShoppingCart.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
+        editor.putInt(ShoppingCart.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
         editor.commit();
     }
+
 }

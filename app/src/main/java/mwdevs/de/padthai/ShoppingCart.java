@@ -1,40 +1,101 @@
 package mwdevs.de.padthai;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.github.amlcurran.showcaseview.targets.PointTarget;
 
-public class ShoppingCart extends AppCompatActivity implements ShoppingListFragment.OnListFragmentInteractionListener {
+public class ShoppingCart extends AppCompatActivity implements OnListFragmentInteractionListener {
 
-    private int paste_quantity;
-    private int sosse_quantity;
-    private int padthai_quantity;
+    private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String LIST_LAYOUT = "list_layout";
+    public static final String PASTE_QUANTITY = "paste_quantity";
+    public static final String SOSSE_QUANTITY = "sosse_quantity";
+    public static final String PADTHAI_QUANTITY = "padthai_quantity";
+    private int mColumnCount = 2;
+    private int paste_quantity = 0;
+    private int sosse_quantity = 0;
+    private int padthai_quantity = 0;
+    private Context context = null;
+    private RecyclerView recyclerView = null;
+    private RecyclerView.LayoutManager layoutManager = null;
+    private MyShoppingListRecyclerViewAdapter mAdapter = null;
+    private boolean showListAsGrid = false;
 
-    public int getPaste_quantity() {
-        return paste_quantity;
-    }
-
-    public int getSosse_quantity() {
-        return sosse_quantity;
-    }
-
-    public int getPadthai_quantity() {
-        return padthai_quantity;
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(LIST_LAYOUT, showListAsGrid);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-        paste_quantity = intent.getIntExtra(ShoppingListFragment.PASTE_QUANTITY, 0);
-        sosse_quantity = intent.getIntExtra(ShoppingListFragment.SOSSE_QUANTITY, 0);
-        padthai_quantity = intent.getIntExtra(ShoppingListFragment.PADTHAI_QUANTITY, 0);
+        paste_quantity = intent.getIntExtra(PASTE_QUANTITY, 0);
+        sosse_quantity = intent.getIntExtra(SOSSE_QUANTITY, 0);
+        padthai_quantity = intent.getIntExtra(PADTHAI_QUANTITY, 0);
 
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null)
+            showListAsGrid = savedInstanceState.getBoolean(LIST_LAYOUT);
+
         setContentView(R.layout.activity_shopping_cart);
+
+//
+//
+//
+
+        final View view = findViewById(R.id.shopping_list);
+
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                int minWidth = 360;
+                int width = view.getWidth();
+                showListAsGrid = width >= 2 * minWidth;
+                mColumnCount = width / minWidth;
+                refreshRecyclerView();
+            }
+        });
+
+        if (view instanceof RecyclerView) {
+            context = view.getContext();
+            AssetManager assetManager = getAssets();
+            if (mAdapter == null)
+                mAdapter = new MyShoppingListRecyclerViewAdapter(ShoppingListContent.ITEMS,
+                        paste_quantity, sosse_quantity, padthai_quantity, this, assetManager, showListAsGrid);
+            if (layoutManager == null)
+                updateLayoutManager();
+            recyclerView = (RecyclerView) view;
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(mAdapter);
+            recyclerView.setKeepScreenOn(true);
+        }
+    }
+
+    public void refreshRecyclerView() {
+        mAdapter.setShowListAsGrid(showListAsGrid);
+        updateLayoutManager();
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    private void updateLayoutManager() {
+        if (showListAsGrid) {
+            layoutManager = new GridLayoutManager(context, mColumnCount);
+        } else {
+            layoutManager = new LinearLayoutManager(context);
+        }
     }
 
     @Override
@@ -53,5 +114,7 @@ public class ShoppingCart extends AppCompatActivity implements ShoppingListFragm
 
     @Override
     public void onListFragmentInteraction(ShoppingListContent.ShoppingItem item) {
+
     }
+
 }
