@@ -1,15 +1,12 @@
 package mwdevs.de.padthai;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.PointTarget;
@@ -21,11 +18,11 @@ public class ShoppingCart extends AppCompatActivity implements OnListFragmentInt
     public static final String PASTE_QUANTITY = "paste_quantity";
     public static final String SOSSE_QUANTITY = "sosse_quantity";
     public static final String PADTHAI_QUANTITY = "padthai_quantity";
+
     private int mColumnCount = 2;
     private int paste_quantity = 0;
     private int sosse_quantity = 0;
     private int padthai_quantity = 0;
-    private Context context = null;
     private RecyclerView recyclerView = null;
     private RecyclerView.LayoutManager layoutManager = null;
     private MyShoppingListRecyclerViewAdapter mAdapter = null;
@@ -55,32 +52,27 @@ public class ShoppingCart extends AppCompatActivity implements OnListFragmentInt
 //
 //
 
-        final View view = findViewById(R.id.shopping_list);
+        recyclerView = findViewById(R.id.shopping_list);
 
-        view.post(new Runnable() {
+        recyclerView.post(new Runnable() {
             @Override
             public void run() {
                 int minWidth = 360;
-                int width = view.getWidth();
+                int width = recyclerView.getWidth();
                 showListAsGrid = width >= 2 * minWidth;
                 mColumnCount = width / minWidth;
                 refreshRecyclerView();
             }
         });
 
-        if (view instanceof RecyclerView) {
-            context = view.getContext();
-            AssetManager assetManager = getAssets();
-            if (mAdapter == null)
-                mAdapter = new MyShoppingListRecyclerViewAdapter(ShoppingListContent.ITEMS,
-                        paste_quantity, sosse_quantity, padthai_quantity, this, assetManager, showListAsGrid);
-            if (layoutManager == null)
-                updateLayoutManager();
-            recyclerView = (RecyclerView) view;
-            recyclerView.setLayoutManager(layoutManager);
-            recyclerView.setAdapter(mAdapter);
-            recyclerView.setKeepScreenOn(true);
-        }
+        if (mAdapter == null)
+            mAdapter = new MyShoppingListRecyclerViewAdapter(ShoppingListContent.ITEMS,
+                    paste_quantity, sosse_quantity, padthai_quantity, this, getAssets(), showListAsGrid);
+        if (layoutManager == null)
+            updateLayoutManager();
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setKeepScreenOn(true);
     }
 
     public void refreshRecyclerView() {
@@ -92,9 +84,9 @@ public class ShoppingCart extends AppCompatActivity implements OnListFragmentInt
 
     private void updateLayoutManager() {
         if (showListAsGrid) {
-            layoutManager = new GridLayoutManager(context, mColumnCount);
+            layoutManager = new GridLayoutManager(this, mColumnCount);
         } else {
-            layoutManager = new LinearLayoutManager(context);
+            layoutManager = new LinearLayoutManager(this);
         }
     }
 
@@ -104,7 +96,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListFragmentInt
 
         new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
-                .singleShot(42)
+//                .singleShot(42)
                 .setTarget(new PointTarget(300, 300))
                 .setContentTitle("ShowcaseView")
                 .setContentText("This is highlighting the Home button")
