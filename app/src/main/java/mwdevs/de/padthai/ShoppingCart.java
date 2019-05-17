@@ -1,6 +1,5 @@
 package mwdevs.de.padthai;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -137,6 +135,8 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     }
 
     private void showShowcaseView(View view) {
+        recyclerView.addOnScrollListener(new RecyclerViewScrollDisabler());
+
         showcaseView = new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
                 .setStyle(R.style.PadThaiShowcaseView)
@@ -155,6 +155,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                         showcaseView.overrideButtonClick(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                recyclerView.clearOnScrollListeners();
                                 showcaseView.hide();
                             }
                         });
@@ -184,5 +185,13 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     public void onListItemLongClick(ShoppingListContent.ShoppingItem item) {
         snackbar.setText(item.toString());
         snackbar.show();
+    }
+
+    private class RecyclerViewScrollDisabler extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            recyclerView.stopScroll();
+        }
     }
 }
