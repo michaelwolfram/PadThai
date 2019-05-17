@@ -142,14 +142,14 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                 .setStyle(R.style.PadThaiShowcaseView)
 //                .singleShot(42)
                 .setTarget(new ViewTarget(view))
-                .setContentTitle("Item in shopping cart?")
-                .setContentText("\n...clicking will mark it!")
+                .setContentTitle(R.string.item_in_cart)
+                .setContentText(R.string.click_will_mark)
                 .setFadeInDurations(800)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showcaseView.setContentTitle("What's that ingredient?");
-                        showcaseView.setContentText("\n...try long-clicking!");
+                        showcaseView.setContentTitle(getString(R.string.what_that_ingredient));
+                        showcaseView.setContentText(getString(R.string.try_long_click));
                         View view2 = getItemToFocusInShowcaseView(2);
                         showcaseView.setShowcase(new ViewTarget(view2), true);
                         showcaseView.overrideButtonClick(new View.OnClickListener() {

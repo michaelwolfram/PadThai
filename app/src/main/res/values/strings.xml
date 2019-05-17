@@ -17,4 +17,8 @@
     <string name="pkg">Pkg.</string>
     <string name="got_it">Got it</string>
     <string name="toggle_view">Toggle View</string>
+    <string name="item_in_cart">Item in shopping cart?</string>
+    <string name="click_will_mark">\n...clicking will mark it!</string>
+    <string name="what_that_ingredient">What\'s that ingredient?</string>
+    <string name="try_long_click">\n...try long-clicking!</string>
 </resources>
