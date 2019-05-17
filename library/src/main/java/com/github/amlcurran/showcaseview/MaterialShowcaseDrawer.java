@@ -9,7 +9,7 @@ import android.graphics.PorterDuffXfermode;
 
 public class MaterialShowcaseDrawer implements ShowcaseDrawer {
 
-    private final float radius;
+    private float radius;
     private final Paint basicPaint;
     private final Paint eraserPaint;
     private int backgroundColor;
@@ -29,6 +29,10 @@ public class MaterialShowcaseDrawer implements ShowcaseDrawer {
         // no-op
     }
 
+    public void setRadius(float radius) {
+        this.radius = radius;
+    }
+
     @Override
     public void drawShowcase(Bitmap buffer, float x, float y, float scaleMultiplier) {
         Canvas bufferCanvas = new Canvas(buffer);
@@ -43,6 +47,11 @@ public class MaterialShowcaseDrawer implements ShowcaseDrawer {
     @Override
     public int getShowcaseHeight() {
         return (int) (radius * 2);
+    }
+
+    @Override
+    public void setShowcaseRadius(int radius) {
+        this.radius = radius;
     }
 
     @Override

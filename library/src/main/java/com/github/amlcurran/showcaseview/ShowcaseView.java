@@ -38,6 +38,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -73,7 +74,6 @@ public class ShowcaseView extends RelativeLayout
     // Showcase metrics
     private int showcaseX = -1;
     private int showcaseY = -1;
-    private int showcaseRadius = -1;
     private float scaleMultiplier = 1f;
 
     // Touch items
@@ -190,6 +190,10 @@ public class ShowcaseView extends RelativeLayout
                     }
 
                     Point targetPoint = target.getPoint();
+                    if (target instanceof ViewTarget) {
+                        int radius = ((ViewTarget) target).getRadius();
+                        showcaseDrawer.setShowcaseRadius(radius);
+                    }
                     if (targetPoint != null) {
                         hasNoTarget = false;
                         if (animate) {

@@ -53,6 +53,13 @@ public interface ShowcaseDrawer {
     int getShowcaseHeight();
 
     /**
+     * Set the radius of the showcase
+     *
+     * @param radius the radius of the showcase circle
+     */
+    void setShowcaseRadius(int radius);
+
+    /**
      * @return the radius to block touches outside of, if
      * {@link ShowcaseView.Builder#setBlocksTouches(boolean)} is set
      */

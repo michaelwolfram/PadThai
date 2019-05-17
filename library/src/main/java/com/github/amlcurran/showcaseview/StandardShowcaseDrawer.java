@@ -30,7 +30,7 @@ class StandardShowcaseDrawer implements ShowcaseDrawer {
     protected final Paint eraserPaint;
     protected final Drawable showcaseDrawable;
     private final Paint basicPaint;
-    private final float showcaseRadius;
+    private float showcaseRadius;
     protected int backgroundColour;
 
     public StandardShowcaseDrawer(Resources resources, Resources.Theme theme) {
@@ -72,6 +72,11 @@ class StandardShowcaseDrawer implements ShowcaseDrawer {
     @Override
     public int getShowcaseHeight() {
         return showcaseDrawable.getIntrinsicHeight();
+    }
+
+    @Override
+    public void setShowcaseRadius(int radius) {
+        showcaseRadius = radius;
     }
 
     @Override
