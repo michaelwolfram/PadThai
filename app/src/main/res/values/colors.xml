@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#037927</color>
-    <color name="colorPrimaryTransparent">#64037927</color>
-    <color name="colorPrimaryDark">#055335</color>
-    <color name="colorAccent">#2062d4</color>
+    <color name="colorPrimary">@color/laSalleGreen</color>
+    <color name="colorPrimaryDark">#FF055335</color>
+    <color name="colorPrimaryTransparent">#94037927</color>
+    <color name="colorPrimaryTransparentDark">#D4037927</color>
+    <color name="colorAccent">@color/metallic_sunburst</color>
+
+    <!-- https://coolors.co/037927-437c90-eeebd3-a98233-f7c548 -->
+    <color name="laSalleGreen">#037927</color>
+    <color name="metallic_sunburst">#a98233</color>
+    <color name="queenBlue">#437C90</color>
+    <color name="maximumYellowRed">#F7C548</color>
+    <color name="eggshell">#EEEBD3</color>
 </resources>

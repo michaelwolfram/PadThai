@@ -15,5 +15,6 @@
     <string name="ml">ml</string>
     <string name="stk">Stk.</string>
     <string name="pkg">Pkg.</string>
+    <string name="got_it">Got it</string>
     <string name="toggle_view">Toggle View</string>
 </resources>

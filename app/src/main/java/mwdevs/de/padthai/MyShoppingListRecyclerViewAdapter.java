@@ -1,7 +1,6 @@
 package mwdevs.de.padthai;
 
 import android.content.res.AssetManager;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,13 +39,13 @@ import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ShoppingItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
+ * specified {@link OnListInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MyShoppingListRecyclerViewAdapter.ViewHolder> {
 
     private final List<ShoppingItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final OnListInteractionListener mListener;
     private final AssetManager mAssetManager;
     private final int m_paste_quantity;
     private final int m_sosse_quantity;
@@ -57,7 +56,7 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
     public MyShoppingListRecyclerViewAdapter(List<ShoppingItem> items,
                                              int paste_quantity, int sosse_quantity, int padthai_quantity,
-                                             OnListFragmentInteractionListener listener,
+                                             OnListInteractionListener listener,
                                              AssetManager assetManager, boolean showListAsGrid) {
         mValues = items;
         mListener = listener;
@@ -170,15 +169,16 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
                 holder.toggleAlpha();
 
                 if (null != mListener) {
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListItemClick(holder.mItem);
                 }
             }
         });
         holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Snackbar.make(v, holder.mItem.toString(), Snackbar.LENGTH_SHORT)
-                        .show();
+                if (null != mListener) {
+                    mListener.onListItemLongClick(holder.mItem);
+                }
                 return true;
             }
         });
