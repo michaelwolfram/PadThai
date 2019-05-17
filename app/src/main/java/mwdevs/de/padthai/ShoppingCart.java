@@ -1,5 +1,6 @@
 package mwdevs.de.padthai;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,11 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
+
+import static java.lang.Math.max;
 
 public class ShoppingCart extends AppCompatActivity implements OnListInteractionListener {
 
@@ -31,6 +35,9 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     private MyShoppingListRecyclerViewAdapter mAdapter = null;
     private boolean showListAsGrid = false;
     private Snackbar snackbar;
+    private Runnable runnableRefreshList;
+    private Runnable runnableShowShowcaseView;
+    private ShowcaseView showcaseView;
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -47,6 +54,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         setContentView(R.layout.activity_shopping_cart);
         setupRecyclerView();
         setupSnackBar();
+        setupAndPostRunnables();
     }
 
     private void setupSnackBar() {
@@ -72,12 +80,8 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.shopping_list);
-        if (mAdapter == null)
-            mAdapter = createRecyclerViewAdapter();
-        if (layoutManager == null)
-            updateLayoutManager();
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(mAdapter);
+        mAdapter = createRecyclerViewAdapter();
+        updateLayoutManager();
         recyclerView.setKeepScreenOn(true);
         recyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -92,8 +96,6 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     public void refreshRecyclerView() {
         mAdapter.setShowListAsGrid(showListAsGrid);
         updateLayoutManager();
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(mAdapter);
     }
 
     private void updateLayoutManager() {
@@ -102,25 +104,12 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         } else {
             layoutManager = new LinearLayoutManager(this);
         }
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(mAdapter);
     }
 
-    private void showShowcaseView(View view) {
-        new ShowcaseView.Builder(this)
-                .withMaterialShowcase()
-                .setStyle(R.style.PadThaiShowcaseView)
-//                .singleShot(42)
-                .setTarget(new ViewTarget(view))
-                .setContentTitle("Have you just put the item in your shopping cart?")
-                .setContentText("...clicking will mark it!")
-                .setFadeInDurations(800)
-                .build();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        recyclerView.post(new Runnable() {
+    private void setupAndPostRunnables() {
+        runnableRefreshList = new Runnable() {
             @Override
             public void run() {
                 int minWidth = 360;
@@ -129,12 +118,12 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                 mColumnCount = width / minWidth;
                 refreshRecyclerView();
             }
-        });
+        };
 
-        Runnable runnable = new Runnable() {
+        runnableShowShowcaseView = new Runnable() {
             @Override
             public void run() {
-                View view = recyclerView.getChildAt(3);
+                View view = getItemToFocusInShowcaseView(1);
                 if (view != null) {
                     showShowcaseView(view);
                 } else {
@@ -142,7 +131,48 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                 }
             }
         };
-        recyclerView.post(runnable);
+
+        recyclerView.post(runnableRefreshList);
+        recyclerView.post(runnableShowShowcaseView);
+    }
+
+    private void showShowcaseView(View view) {
+        showcaseView = new ShowcaseView.Builder(this)
+                .withMaterialShowcase()
+                .setStyle(R.style.PadThaiShowcaseView)
+//                .singleShot(42)
+                .setTarget(new ViewTarget(view))
+                .setContentTitle("Item in shopping cart?")
+                .setContentText("\n...clicking will mark it!")
+                .setFadeInDurations(800)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showcaseView.setContentTitle("What's that ingredient?");
+                        showcaseView.setContentText("\n...try long-clicking!");
+                        View view2 = getItemToFocusInShowcaseView(2);
+                        showcaseView.setShowcase(new ViewTarget(view2), true);
+                        showcaseView.overrideButtonClick(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showcaseView.hide();
+                            }
+                        });
+                    }
+                })
+                .build();
+    }
+
+    private View getItemToFocusInShowcaseView(int rowFromBottom) {
+        int itemId = 0;
+        if (showListAsGrid) {
+            itemId = ((GridLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
+            itemId = max(0, itemId - rowFromBottom * mColumnCount + 1);
+        } else {
+            itemId = ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
+            itemId = max(0, itemId - rowFromBottom * mColumnCount + 1);
+        }
+        return recyclerView.getChildAt(itemId);
     }
 
     @Override
