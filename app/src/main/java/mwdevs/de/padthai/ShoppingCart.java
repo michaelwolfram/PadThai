@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
@@ -81,14 +80,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         mAdapter = createRecyclerViewAdapter();
         updateLayoutManager();
         recyclerView.setKeepScreenOn(true);
-        recyclerView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (snackbar.isShown())
-                    snackbar.dismiss();
-                return false;
-            }
-        });
+        recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
     }
 
     public void refreshRecyclerView() {
@@ -156,6 +148,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                             @Override
                             public void onClick(View v) {
                                 recyclerView.clearOnScrollListeners();
+                                recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
                                 showcaseView.hide();
                             }
                         });
@@ -178,7 +171,8 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
     @Override
     public void onListItemClick(ShoppingListContent.ShoppingItem item) {
-        snackbar.dismiss();
+        if (snackbar.isShown())
+            snackbar.dismiss();
     }
 
     @Override
@@ -192,6 +186,15 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
             recyclerView.stopScroll();
+        }
+    }
+
+    private class RecyclerViewDismissSnackBarOnScroll extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            if (snackbar.isShown())
+                snackbar.dismiss();
         }
     }
 }
