@@ -1,6 +1,7 @@
 package mwdevs.de.padthai;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -13,11 +14,18 @@ import android.view.View;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
+
 import static java.lang.Math.max;
 
 public class ShoppingCart extends AppCompatActivity implements OnListInteractionListener {
 
-    private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String EXCEL_FILENAME = "Pad Thai Angaben.xls";
+
     private static final String LIST_LAYOUT = "list_layout";
     public static final String PASTE_QUANTITY = "paste_quantity";
     public static final String SOSSE_QUANTITY = "sosse_quantity";
@@ -32,8 +40,6 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     private MyShoppingListRecyclerViewAdapter mAdapter = null;
     private boolean showListAsGrid = false;
     private Snackbar snackbar;
-    private Runnable runnableRefreshList;
-    private Runnable runnableShowShowcaseView;
     private ShowcaseView showcaseView;
 
     @Override
@@ -44,6 +50,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        new LoadExcelSheetTask(this).execute(EXCEL_FILENAME);
         consumeIndent();
         super.onCreate(savedInstanceState);
 
@@ -54,15 +61,6 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         setupAndPostRunnables();
     }
 
-    private void setupSnackBar() {
-        snackbar = Snackbar.make(recyclerView, R.string._0, Snackbar.LENGTH_SHORT);
-    }
-
-    private void consumeSavedInstanceState(Bundle savedInstanceState) {
-        if (savedInstanceState != null)
-            showListAsGrid = savedInstanceState.getBoolean(LIST_LAYOUT);
-    }
-
     private void consumeIndent() {
         Intent intent = getIntent();
         paste_quantity = intent.getIntExtra(PASTE_QUANTITY, 0);
@@ -70,17 +68,51 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         padthai_quantity = intent.getIntExtra(PADTHAI_QUANTITY, 0);
     }
 
-    private MyShoppingListRecyclerViewAdapter createRecyclerViewAdapter() {
-        return new MyShoppingListRecyclerViewAdapter(ShoppingListContent.ITEMS,
-                paste_quantity, sosse_quantity, padthai_quantity, this, getAssets(), showListAsGrid);
+    private void consumeSavedInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null)
+            showListAsGrid = savedInstanceState.getBoolean(LIST_LAYOUT);
     }
 
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.shopping_list);
-        mAdapter = createRecyclerViewAdapter();
-        updateLayoutManager();
         recyclerView.setKeepScreenOn(true);
         recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
+    }
+
+    private void setupSnackBar() {
+        snackbar = Snackbar.make(recyclerView, R.string._0, Snackbar.LENGTH_SHORT);
+    }
+
+    private void setupAndPostRunnables() {
+        Runnable runnableRefreshList = new Runnable() {
+            @Override
+            public void run() {
+                if (mAdapter != null) {
+                    int minWidth = 360;
+                    int width = recyclerView.getWidth();
+                    showListAsGrid = width >= 2 * minWidth;
+                    mColumnCount = width / minWidth;
+                    refreshRecyclerView();
+                } else {
+                    recyclerView.postDelayed(this, 1);
+                }
+            }
+        };
+
+        Runnable runnableShowShowcaseView = new Runnable() {
+            @Override
+            public void run() {
+                View view = getItemToFocusInShowcaseView(1);
+                if (view != null) {
+                    showShowcaseView(view);
+                } else {
+                    recyclerView.postDelayed(this, 1);
+                }
+            }
+        };
+
+        recyclerView.post(runnableRefreshList);
+        recyclerView.post(runnableShowShowcaseView);
     }
 
     public void refreshRecyclerView() {
@@ -96,34 +128,6 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         }
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-    }
-
-    private void setupAndPostRunnables() {
-        runnableRefreshList = new Runnable() {
-            @Override
-            public void run() {
-                int minWidth = 360;
-                int width = recyclerView.getWidth();
-                showListAsGrid = width >= 2 * minWidth;
-                mColumnCount = width / minWidth;
-                refreshRecyclerView();
-            }
-        };
-
-        runnableShowShowcaseView = new Runnable() {
-            @Override
-            public void run() {
-                View view = getItemToFocusInShowcaseView(1);
-                if (view != null) {
-                    showShowcaseView(view);
-                } else {
-                    recyclerView.postDelayed(this, 1);
-                }
-            }
-        };
-
-        recyclerView.post(runnableRefreshList);
-        recyclerView.post(runnableShowShowcaseView);
     }
 
     private void showShowcaseView(View view) {
@@ -162,7 +166,10 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     }
 
     private View getItemToFocusInShowcaseView(int rowFromBottom) {
-        int itemId = 0;
+        if (layoutManager == null)
+            return null;
+
+        int itemId;
         if (showListAsGrid) {
             itemId = ((GridLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
             itemId = max(0, itemId - rowFromBottom * mColumnCount + 1);
@@ -199,6 +206,39 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
             super.onScrollStateChanged(recyclerView, newState);
             if (snackbar.isShown())
                 snackbar.dismiss();
+        }
+    }
+
+    public void createRecyclerViewAdapter(Workbook mWorkbook) {
+        mAdapter = new MyShoppingListRecyclerViewAdapter(ShoppingListContent.ITEMS,
+                paste_quantity, sosse_quantity, padthai_quantity, this, mWorkbook, showListAsGrid);
+    }
+
+    private static class LoadExcelSheetTask extends AsyncTask<String, Void, Workbook> {
+        private WeakReference<ShoppingCart> activityReference;
+
+        LoadExcelSheetTask(ShoppingCart activity) {
+            activityReference = new WeakReference<>(activity);
+        }
+
+        @Override
+        protected Workbook doInBackground(String... strings) {
+            try {
+                String file_name = strings[0];
+                InputStream myInput = activityReference.get().getAssets().open(file_name);
+                return new HSSFWorkbook(myInput);
+            } catch (Exception e) {
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Workbook workbook) {
+            ShoppingCart activity = activityReference.get();
+            if (activity == null || activity.isFinishing())
+                return;
+
+            activity.createRecyclerViewAdapter(workbook);
         }
     }
 }

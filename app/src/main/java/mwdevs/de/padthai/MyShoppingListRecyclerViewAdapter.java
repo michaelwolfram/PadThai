@@ -1,22 +1,18 @@
 package mwdevs.de.padthai;
 
-import android.content.res.AssetManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 
-import java.io.InputStream;
 import java.util.List;
 
 import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
@@ -30,27 +26,25 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
     private final List<ShoppingItem> mValues;
     private final OnListInteractionListener mListener;
-    private final AssetManager mAssetManager;
     private final int m_paste_quantity;
     private final int m_sosse_quantity;
     private final int m_padthai_quantity;
+    private LayoutInflater layoutInflater = null;
     private Workbook mWorkBook;
     private Sheet mSheet;
-    private boolean showListAsGrid = false;
+    private boolean mShowListAsGrid = false;
 
     public MyShoppingListRecyclerViewAdapter(List<ShoppingItem> items,
                                              int paste_quantity, int sosse_quantity, int padthai_quantity,
-                                             OnListInteractionListener listener,
-                                             AssetManager assetManager, boolean showListAsGrid) {
+                                             OnListInteractionListener listener, Workbook workbook,
+                                             boolean showListAsGrid) {
         mValues = items;
         mListener = listener;
-        mAssetManager = assetManager;
+        mWorkBook = workbook;
         m_paste_quantity = paste_quantity;
         m_sosse_quantity = sosse_quantity;
         m_padthai_quantity = padthai_quantity;
-        this.showListAsGrid = showListAsGrid;
-
-        mWorkBook = openExcelFileWorkBook("Pad Thai Angaben.xls");
+        mShowListAsGrid = showListAsGrid;
 
         mSheet = mWorkBook.getSheetAt(0);
 
@@ -61,19 +55,8 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         XSSFFormulaEvaluator.evaluateAllFormulaCells(mWorkBook);
     }
 
-    public void setShowListAsGrid(boolean showListAsGrid) {
-        this.showListAsGrid = showListAsGrid;
-    }
-
-    public Workbook openExcelFileWorkBook(String file_name) {
-        try {
-            InputStream myInput = mAssetManager.open(file_name);
-            Workbook workbook = new HSSFWorkbook(myInput);
-            return workbook;
-        } catch (Exception e) {
-            Log.e("main", "error " + e.toString());
-        }
-        return null;
+    public void setShowListAsGrid(boolean ShowListAsGrid) {
+        mShowListAsGrid = ShowListAsGrid;
     }
 
     public double getNumericCellValue(Sheet sheet, String column, int row) {
@@ -93,14 +76,18 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(showListAsGrid ? R.layout.shopping_item_grid : R.layout.shopping_item_linear,
+        if (layoutInflater == null)
+            layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(mShowListAsGrid ?
+                        R.layout.shopping_item_grid : R.layout.shopping_item_linear,
                         parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        holder.mImage.setImageDrawable(null);
+
         String ingredient_name = getStringCellValue(mSheet, "B", 7 + position);
         double ingredient_gramm = getNumericCellValue(mSheet, "J", 7 + position);
         double ingredient_stk = getNumericCellValue(mSheet, "N", 7 + position);
