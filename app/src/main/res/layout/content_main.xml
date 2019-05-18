@@ -273,7 +273,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/pad_thai_round" />
+                    app:srcCompat="@drawable/pad_thai_512" />
 
             </android.support.constraint.ConstraintLayout>
 
