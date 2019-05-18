@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int current_quantity = Integer.parseInt(paste_text_quantity.getText().toString());
-                int new_quantity = max(0,current_quantity + Integer.parseInt(v.getTag().toString()));
-                paste_text_quantity.setText(""+new_quantity);
+                int new_quantity = max(0, current_quantity + Integer.parseInt(v.getTag().toString()));
+                paste_text_quantity.setText("" + new_quantity);
             }
         };
         paste_button_down.setOnClickListener(paste_ocl);
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int current_quantity = Integer.parseInt(sosse_text_quantity.getText().toString());
-                int new_quantity = max(0,current_quantity + Integer.parseInt(v.getTag().toString()));
-                sosse_text_quantity.setText(""+new_quantity);
+                int new_quantity = max(0, current_quantity + Integer.parseInt(v.getTag().toString()));
+                sosse_text_quantity.setText("" + new_quantity);
             }
         };
         sosse_button_down.setOnClickListener(sosse_ocl);
@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int current_quantity = Integer.parseInt(padthai_text_quantity.getText().toString());
-                int new_quantity = max(0,current_quantity + Integer.parseInt(v.getTag().toString()));
-                padthai_text_quantity.setText(""+new_quantity);
+                int new_quantity = max(0, current_quantity + Integer.parseInt(v.getTag().toString()));
+                padthai_text_quantity.setText("" + new_quantity);
             }
         };
         padthai_button_down.setOnClickListener(padthai_ocl);
@@ -157,11 +157,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor= preferences.edit();
+        SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(ShoppingCart.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
         editor.putInt(ShoppingCart.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
         editor.putInt(ShoppingCart.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
         editor.commit();
     }
-
 }
