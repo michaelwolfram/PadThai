@@ -127,12 +127,13 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     }
 
     private void showShowcaseView(View view) {
-        recyclerView.addOnScrollListener(new RecyclerViewScrollDisabler());
+        final RecyclerViewScrollDisabler recyclerViewScrollDisabler = new RecyclerViewScrollDisabler();
+        recyclerView.addOnScrollListener(recyclerViewScrollDisabler);
 
         showcaseView = new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
                 .setStyle(R.style.PadThaiShowcaseView)
-//                .singleShot(42)
+                .singleShot(22)
                 .setTarget(new ViewTarget(view))
                 .setContentTitle(R.string.item_in_cart)
                 .setContentText(R.string.click_will_mark)
@@ -147,14 +148,17 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                         showcaseView.overrideButtonClick(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                recyclerView.clearOnScrollListeners();
-                                recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
+                                recyclerView.removeOnScrollListener(recyclerViewScrollDisabler);
                                 showcaseView.hide();
                             }
                         });
                     }
                 })
                 .build();
+
+        if (!showcaseView.isShowing()) {
+            recyclerView.removeOnScrollListener(recyclerViewScrollDisabler);
+        }
     }
 
     private View getItemToFocusInShowcaseView(int rowFromBottom) {

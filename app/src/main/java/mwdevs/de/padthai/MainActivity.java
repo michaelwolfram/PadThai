@@ -16,12 +16,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
+
 import static java.lang.Math.max;
 
 public class MainActivity extends AppCompatActivity {
     private TextView paste_text_quantity;
     private TextView sosse_text_quantity;
     private TextView padthai_text_quantity;
+    private ShowcaseView showcaseView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,19 +83,7 @@ public class MainActivity extends AppCompatActivity {
         padthai_button_down.setOnClickListener(padthai_ocl);
         padthai_button_up.setOnClickListener(padthai_ocl);
 
-        ImageView padThaiImage = findViewById(R.id.padThaiImage);
-        padThaiImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ShoppingListContent.resetItems();
-
-                Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
-                intent.putExtra(ShoppingCart.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
-                intent.putExtra(ShoppingCart.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
-                intent.putExtra(ShoppingCart.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
-                startActivity(intent);
-            }
-        });
+        final ImageView padThaiImage = findViewById(R.id.padThaiImage);
 
         final ObjectAnimator scaleUp = ObjectAnimator.ofPropertyValuesHolder(
                 padThaiImage,
@@ -111,6 +103,41 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(animationLoop, 1000);
+
+        showcaseView = new ShowcaseView.Builder(this)
+                .withMaterialShowcase()
+                .setStyle(R.style.PadThaiShowcaseView)
+                .singleShot(11)
+                .setTarget(new ViewTarget(padThaiImage))
+                .setContentTitle(R.string.click_me)
+                .setContentText(R.string.then_shopping_list_shows)
+                .setFadeInDurations(800)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setPadThaiImageOnClickListener(padThaiImage);
+                        showcaseView.hide();
+                    }
+                })
+                .build();
+
+        if (!showcaseView.isShowing())
+            setPadThaiImageOnClickListener(padThaiImage);
+    }
+
+    private void setPadThaiImageOnClickListener(ImageView padThaiImage) {
+        padThaiImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShoppingListContent.resetItems();
+
+                Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
+                intent.putExtra(ShoppingCart.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
+                intent.putExtra(ShoppingCart.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
+                intent.putExtra(ShoppingCart.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
+                startActivity(intent);
+            }
+        });
     }
 
     private int getIntFromTextView(TextView textView) {

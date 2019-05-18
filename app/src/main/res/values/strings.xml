@@ -21,4 +21,6 @@
     <string name="click_will_mark">\n...clicking will mark it!</string>
     <string name="what_that_ingredient">What\'s that ingredient?</string>
     <string name="try_long_click">\n...try long-clicking!</string>
+    <string name="click_me">Click me!</string>
+    <string name="then_shopping_list_shows">\n...then the shopping list opens!</string>
 </resources>
