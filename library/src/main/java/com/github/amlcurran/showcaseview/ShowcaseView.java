@@ -139,11 +139,12 @@ public class ShowcaseView extends RelativeLayout
         setOnTouchListener(this);
 
         if (mEndButton.getParent() == null) {
-            int margin = (int) getResources().getDimension(R.dimen.button_margin);
+            int margin_l_r = (int) getResources().getDimension(R.dimen.button_margin_left_right);
+            int margin_t_b = (int) getResources().getDimension(R.dimen.button_margin_top_bottom);
             RelativeLayout.LayoutParams lps = (LayoutParams) generateDefaultLayoutParams();
             lps.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
             lps.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            lps.setMargins(margin, margin, margin, margin);
+            lps.setMargins(margin_l_r, margin_t_b, margin_l_r, margin_t_b);
             mEndButton.setLayoutParams(lps);
             mEndButton.setText(android.R.string.ok);
             if (!hasCustomClickListener) {

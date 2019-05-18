@@ -1,9 +1,11 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="button_margin">48dp</dimen>
+    <dimen name="button_margin_left_right">30dp</dimen>
+    <dimen name="button_margin_top_bottom">48dp</dimen>
 
-    <!--<dimen name="button_margin">12dp</dimen>-->
+    <!--<dimen name="button_margin_left_right">12dp</dimen>-->
+    <!--<dimen name="button_margin_top_bottom">@dimen/button_margin_left_right</dimen>-->
     <!--<dimen name="text_padding">24dp</dimen>-->
     <!--<dimen name="action_bar_offset">66dp</dimen>-->
     <!--<dimen name="showcase_radius">94dp</dimen>-->
