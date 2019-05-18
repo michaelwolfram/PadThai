@@ -24,10 +24,8 @@ public class ShoppingListContent {
     public static final Map<String, ShoppingItem> ITEM_MAP = new HashMap<String, ShoppingItem>();
 
     private static final int COUNT = 15;
-//    private static final int COUNT = 16;
 
     static {
-//        addItem(new ShoppingItem("PADDING", 0, 0, 0));
         addItem(new ShoppingItem("Karotten", R.mipmap.karotten_round, R.string.g, R.string.stk));
         addItem(new ShoppingItem("Zwiebeln", R.mipmap.zwiebeln_round, R.string.g, R.string.stk));
         addItem(new ShoppingItem("Knoblauch", R.mipmap.knoblauch_round, R.string.g, R.string.stk));

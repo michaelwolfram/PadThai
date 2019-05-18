@@ -21,22 +21,6 @@ import java.util.List;
 
 import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
 
-//class MyWorkbookTask extends AsyncTask<String, Void, Workbook> {
-//
-//    @Override
-//    protected Workbook doInBackground(String... params) {
-//        Workbook workbook = null;
-//        try {
-//            URL url = new URL(params[0]);
-//            URLConnection uc = url.openConnection();
-//            workbook = new HSSFWorkbook(uc.getInputStream());
-//        } catch (MalformedURLException e) {
-//        } catch (IOException e) {
-//        }
-//        return workbook;
-//    }
-//}
-
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ShoppingItem} and makes a call to the
  * specified {@link OnListInteractionListener}.
@@ -67,7 +51,6 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         this.showListAsGrid = showListAsGrid;
 
         mWorkBook = openExcelFileWorkBook("Pad Thai Angaben.xls");
-//        mWorkBook = openExcelFileWorkBook("https://www.dropbox.com/s/zb0ahtftqu0ta7y/Pad%20Thai%20Angaben.xls");
 
         mSheet = mWorkBook.getSheetAt(0);
 
@@ -84,8 +67,6 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
     public Workbook openExcelFileWorkBook(String file_name) {
         try {
-//            return new MyWorkbookTask().execute(file_name).get();
-
             InputStream myInput = mAssetManager.open(file_name);
             Workbook workbook = new HSSFWorkbook(myInput);
             return workbook;
@@ -118,34 +99,11 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         return new ViewHolder(view);
     }
 
-//    public int getActionBarSize(View view) {
-//        TypedArray styledAttributes = view.getContext().getTheme()
-//                .obtainStyledAttributes(new int[] { android.R.attr.actionBarSize });
-//        int actionBarSize = (int) styledAttributes.getDimension(0, 0);
-//        styledAttributes.recycle();
-//        return actionBarSize;
-//    }
-
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-//        if (position == 0) {
-//            TypedValue tv = new TypedValue();
-//            holder.mView.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
-//            int actionBarHeight = holder.mView.getResources().getDimensionPixelSize(tv.resourceId);
-//            holder.mView.setAlpha(0.0f);
-//            android.support.v7.widget.RecyclerView.LayoutParams params =
-//                    (android.support.v7.widget.RecyclerView.LayoutParams) holder.mView.getLayoutParams();
-//            params.height = actionBarHeight;
-//            params.width = getActionBarSize(holder.mView) * 3;
-//            holder.mView.setLayoutParams(params);
-//            return;
-//        }
-
-//        position = position - 1;
         String ingredient_name = getStringCellValue(mSheet, "B", 7 + position);
         double ingredient_gramm = getNumericCellValue(mSheet, "J", 7 + position);
         double ingredient_stk = getNumericCellValue(mSheet, "N", 7 + position);
-//        position = position + 1;
 
         holder.mItem = mValues.get(position);
         holder.updateAlpha();
