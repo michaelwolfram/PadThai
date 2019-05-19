@@ -37,7 +37,6 @@
         android:paddingEnd="3dp"
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="@+id/ingredient_stk"
         app:layout_constraintStart_toEndOf="@+id/ingredient_g_value"
         app:layout_constraintTop_toTopOf="@+id/ingredient_g_value"
         tools:text="@string/g" />
