@@ -24,7 +24,7 @@ import static java.lang.Math.max;
 public class MainActivity extends AppCompatActivity {
     private TextView paste_text_quantity;
     private TextView sosse_text_quantity;
-    private TextView padthai_text_quantity;
+    private TextView pad_thai_text_quantity;
     private ShowcaseView showcaseView;
 
     @Override
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int current_quantity = Integer.parseInt(paste_text_quantity.getText().toString());
                 int new_quantity = max(0, current_quantity + Integer.parseInt(v.getTag().toString()));
-                paste_text_quantity.setText("" + new_quantity);
+                paste_text_quantity.setText(getString(R.string.placeholder_d, new_quantity));
             }
         };
         paste_button_down.setOnClickListener(paste_ocl);
@@ -61,27 +61,27 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int current_quantity = Integer.parseInt(sosse_text_quantity.getText().toString());
                 int new_quantity = max(0, current_quantity + Integer.parseInt(v.getTag().toString()));
-                sosse_text_quantity.setText("" + new_quantity);
+                sosse_text_quantity.setText(getString(R.string.placeholder_d, new_quantity));
             }
         };
         sosse_button_down.setOnClickListener(sosse_ocl);
         sosse_button_up.setOnClickListener(sosse_ocl);
 
-        ImageButton padthai_button_down = findViewById(R.id.padthai_down);
-        padthai_button_down.setTag(-1);
-        ImageButton padthai_button_up = findViewById(R.id.padthai_up);
-        padthai_button_up.setTag(+1);
-        padthai_text_quantity = findViewById(R.id.padthai_quantity);
-        View.OnClickListener padthai_ocl = new View.OnClickListener() {
+        ImageButton pad_thai_button_down = findViewById(R.id.padthai_down);
+        pad_thai_button_down.setTag(-1);
+        ImageButton pad_thai_button_up = findViewById(R.id.padthai_up);
+        pad_thai_button_up.setTag(+1);
+        pad_thai_text_quantity = findViewById(R.id.padthai_quantity);
+        View.OnClickListener pad_thai_ocl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int current_quantity = Integer.parseInt(padthai_text_quantity.getText().toString());
+                int current_quantity = Integer.parseInt(pad_thai_text_quantity.getText().toString());
                 int new_quantity = max(0, current_quantity + Integer.parseInt(v.getTag().toString()));
-                padthai_text_quantity.setText("" + new_quantity);
+                pad_thai_text_quantity.setText(getString(R.string.placeholder_d, new_quantity));
             }
         };
-        padthai_button_down.setOnClickListener(padthai_ocl);
-        padthai_button_up.setOnClickListener(padthai_ocl);
+        pad_thai_button_down.setOnClickListener(pad_thai_ocl);
+        pad_thai_button_up.setOnClickListener(pad_thai_ocl);
 
         final ImageView padThaiImage = findViewById(R.id.padThaiImage);
 
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
                 intent.putExtra(ShoppingCart.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
                 intent.putExtra(ShoppingCart.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
-                intent.putExtra(ShoppingCart.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
+                intent.putExtra(ShoppingCart.PAD_THAI_QUANTITY, getIntFromTextView(pad_thai_text_quantity));
                 startActivity(intent);
             }
         });
@@ -148,9 +148,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        paste_text_quantity.setText("" + preferences.getInt(ShoppingCart.PASTE_QUANTITY, 0));
-        sosse_text_quantity.setText("" + preferences.getInt(ShoppingCart.SOSSE_QUANTITY, 0));
-        padthai_text_quantity.setText("" + preferences.getInt(ShoppingCart.PADTHAI_QUANTITY, 0));
+        int paste_quantity = preferences.getInt(ShoppingCart.PASTE_QUANTITY, 0);
+        int sosse_quantity = preferences.getInt(ShoppingCart.SOSSE_QUANTITY, 0);
+        int pad_thai_quantity = preferences.getInt(ShoppingCart.PAD_THAI_QUANTITY, 0);
+        paste_text_quantity.setText(getString(R.string.placeholder_d, paste_quantity));
+        sosse_text_quantity.setText(getString(R.string.placeholder_d, sosse_quantity));
+        pad_thai_text_quantity.setText(getString(R.string.placeholder_d, pad_thai_quantity));
     }
 
     @Override
@@ -160,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(ShoppingCart.PASTE_QUANTITY, getIntFromTextView(paste_text_quantity));
         editor.putInt(ShoppingCart.SOSSE_QUANTITY, getIntFromTextView(sosse_text_quantity));
-        editor.putInt(ShoppingCart.PADTHAI_QUANTITY, getIntFromTextView(padthai_text_quantity));
-        editor.commit();
+        editor.putInt(ShoppingCart.PAD_THAI_QUANTITY, getIntFromTextView(pad_thai_text_quantity));
+        editor.apply();
     }
 }

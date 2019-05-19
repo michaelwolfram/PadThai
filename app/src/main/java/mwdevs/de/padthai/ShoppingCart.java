@@ -29,12 +29,12 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     private static final String LIST_LAYOUT = "list_layout";
     public static final String PASTE_QUANTITY = "paste_quantity";
     public static final String SOSSE_QUANTITY = "sosse_quantity";
-    public static final String PADTHAI_QUANTITY = "padthai_quantity";
+    public static final String PAD_THAI_QUANTITY = "pad_thai_quantity";
 
     private int mColumnCount = 2;
     private int paste_quantity = 0;
     private int sosse_quantity = 0;
-    private int padthai_quantity = 0;
+    private int pad_thai_quantity = 0;
     private RecyclerView recyclerView = null;
     private RecyclerView.LayoutManager layoutManager = null;
     private MyShoppingListRecyclerViewAdapter mAdapter = null;
@@ -65,7 +65,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         Intent intent = getIntent();
         paste_quantity = intent.getIntExtra(PASTE_QUANTITY, 0);
         sosse_quantity = intent.getIntExtra(SOSSE_QUANTITY, 0);
-        padthai_quantity = intent.getIntExtra(PADTHAI_QUANTITY, 0);
+        pad_thai_quantity = intent.getIntExtra(PAD_THAI_QUANTITY, 0);
     }
 
     private void consumeSavedInstanceState(Bundle savedInstanceState) {
@@ -211,7 +211,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
     public void createRecyclerViewAdapter(Workbook mWorkbook) {
         mAdapter = new MyShoppingListRecyclerViewAdapter(ShoppingListContent.ITEMS,
-                paste_quantity, sosse_quantity, padthai_quantity, this, mWorkbook, showListAsGrid);
+                paste_quantity, sosse_quantity, pad_thai_quantity, this, mWorkbook, showListAsGrid);
     }
 
     private static class LoadExcelSheetTask extends AsyncTask<String, Void, Workbook> {

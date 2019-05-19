@@ -1,5 +1,8 @@
 package mwdevs.de.padthai;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,75 +23,71 @@ import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ShoppingItem} and makes a call to the
  * specified {@link OnListInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MyShoppingListRecyclerViewAdapter.ViewHolder> {
 
     private final List<ShoppingItem> mValues;
     private final OnListInteractionListener mListener;
-    private final int m_paste_quantity;
-    private final int m_sosse_quantity;
-    private final int m_padthai_quantity;
-    private LayoutInflater layoutInflater = null;
-    private Workbook mWorkBook;
+    private LayoutInflater mLayoutInflater = null;
+    private Context mContext = null;
     private Sheet mSheet;
-    private boolean mShowListAsGrid = false;
+    private boolean mShowListAsGrid;
 
-    public MyShoppingListRecyclerViewAdapter(List<ShoppingItem> items,
-                                             int paste_quantity, int sosse_quantity, int padthai_quantity,
-                                             OnListInteractionListener listener, Workbook workbook,
-                                             boolean showListAsGrid) {
+    MyShoppingListRecyclerViewAdapter(List<ShoppingItem> items,
+                                      int paste_quantity, int sosse_quantity, int pad_thai_quantity,
+                                      OnListInteractionListener listener, Workbook workbook,
+                                      boolean showListAsGrid) {
         mValues = items;
         mListener = listener;
-        mWorkBook = workbook;
-        m_paste_quantity = paste_quantity;
-        m_sosse_quantity = sosse_quantity;
-        m_padthai_quantity = padthai_quantity;
         mShowListAsGrid = showListAsGrid;
 
-        mSheet = mWorkBook.getSheetAt(0);
+        mSheet = workbook.getSheetAt(0);
 
-        setCellValue(mSheet, "B", 1, m_paste_quantity);
-        setCellValue(mSheet, "B", 2, m_sosse_quantity);
-        setCellValue(mSheet, "B", 3, m_padthai_quantity);
+        setCellValue(mSheet, 1, paste_quantity);
+        setCellValue(mSheet, 2, sosse_quantity);
+        setCellValue(mSheet, 3, pad_thai_quantity);
 
-        XSSFFormulaEvaluator.evaluateAllFormulaCells(mWorkBook);
+        XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
     }
 
-    public void setShowListAsGrid(boolean ShowListAsGrid) {
+    void setShowListAsGrid(boolean ShowListAsGrid) {
         mShowListAsGrid = ShowListAsGrid;
     }
 
-    public double getNumericCellValue(Sheet sheet, String column, int row) {
+    private void setCellValue(Sheet sheet, int row, double value) {
+        Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex("B"));
+        cell.setCellValue(value);
+    }
+
+    private double getNumericCellValue(Sheet sheet, String column, int row) {
         Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex(column));
         return cell.getNumericCellValue();
     }
 
-    public String getStringCellValue(Sheet sheet, String column, int row) {
-        Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex(column));
+    private String getStringCellValue(Sheet sheet, int row) {
+        Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex("B"));
         return cell.getStringCellValue();
     }
 
-    public void setCellValue(Sheet sheet, String column, int row, double value) {
-        Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex(column));
-        cell.setCellValue(value);
-    }
-
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (layoutInflater == null)
-            layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(mShowListAsGrid ?
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (mLayoutInflater == null) {
+            mLayoutInflater = LayoutInflater.from(parent.getContext());
+            mContext = mLayoutInflater.getContext();
+        }
+        View view = mLayoutInflater.inflate(mShowListAsGrid ?
                         R.layout.shopping_item_grid : R.layout.shopping_item_linear,
                         parent, false);
         return new ViewHolder(view);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.mImage.setImageDrawable(null);
 
-        String ingredient_name = getStringCellValue(mSheet, "B", 7 + position);
+        String ingredient_name = getStringCellValue(mSheet, 7 + position);
         double ingredient_gramm = getNumericCellValue(mSheet, "J", 7 + position);
         double ingredient_stk = getNumericCellValue(mSheet, "N", 7 + position);
 
@@ -97,9 +96,9 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
         holder.mImage.setImageResource(holder.mItem.image_id);
         if (holder.mHeader != null)
-            holder.mHeader.setText("" + ingredient_name);
+            holder.mHeader.setText(mContext.getString(R.string.placeholder_s, ingredient_name));
         holder.mGramm.setText(holder.mItem.gramm_ml_text);
-        holder.mGrammValue.setText("" + (int) Math.round(ingredient_gramm));
+        holder.mGrammValue.setText(mContext.getString(R.string.placeholder_d, (int) Math.round(ingredient_gramm)));
         if (ingredient_stk == -1.0f) {
             holder.mStk.setText("");
             holder.mStkValue.setText("---");
@@ -134,17 +133,17 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final ImageView mImage;
-        public final TextView mHeader;
-        public final TextView mGramm;
-        public final TextView mStk;
-        public final TextView mGrammValue;
-        public final TextView mStkValue;
-        public ShoppingItem mItem;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        final View mView;
+        final ImageView mImage;
+        final TextView mHeader;
+        final TextView mGramm;
+        final TextView mStk;
+        final TextView mGrammValue;
+        final TextView mStkValue;
+        ShoppingItem mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             mImage = view.findViewById(R.id.ingredient_image);

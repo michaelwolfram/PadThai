@@ -1,29 +1,18 @@
 package mwdevs.de.padthai;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Helper class for providing sample content for user interfaces created by
  * Android template wizards.
  * <p>
- * TODO: Replace all uses of this class before publishing your app.
  */
-public class ShoppingListContent {
+class ShoppingListContent {
 
-    /**
-     * An array of sample (dummy) items.
-     */
-    public static final List<ShoppingItem> ITEMS = new ArrayList<ShoppingItem>();
-
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
-    public static final Map<String, ShoppingItem> ITEM_MAP = new HashMap<String, ShoppingItem>();
-
-    private static final int COUNT = 15;
+    static final List<ShoppingItem> ITEMS = new ArrayList<>();
 
     static {
         addItem(new ShoppingItem("Karotten", R.mipmap.karotten_round, R.string.g, R.string.stk));
@@ -45,47 +34,44 @@ public class ShoppingListContent {
 
     private static void addItem(ShoppingItem item) {
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
     }
 
-    public static void resetItems() {
+    static void resetItems() {
         for (ShoppingItem item : ITEMS) {
             item.resetAlpha();
         }
     }
 
-    /**
-     * A dummy item representing a piece of content.
-     */
     public static class ShoppingItem {
         public final String id;
-        public final int image_id;
-        public final int gramm_ml_text;
-        public final int stk_text;
+        final int image_id;
+        final int gramm_ml_text;
+        final int stk_text;
         private float alpha = 1.0f;
 
-        public ShoppingItem(String id, int image_id, int gramm_ml_text, int stk_text) {
+        ShoppingItem(String id, int image_id, int gramm_ml_text, int stk_text) {
             this.id = id;
             this.image_id = image_id;
             this.gramm_ml_text = gramm_ml_text;
             this.stk_text = stk_text;
         }
 
-        public float getAlpha() {
+        float getAlpha() {
             return alpha;
         }
 
-        public void resetAlpha() {
+        void resetAlpha() {
             alpha = 1.0f;
         }
 
-        public void toggleAlpha() {
+        void toggleAlpha() {
             if (alpha == 1.0f)
                 alpha = 0.2f;
             else
                 alpha = 1.0f;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return id;
