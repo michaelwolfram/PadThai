@@ -1,101 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout1"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
     android:padding="8dp">
 
     <ImageView
         android:id="@+id/ingredient_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="8dp"
         android:contentDescription="@string/todo"
-        app:srcCompat="@mipmap/ic_launcher_round"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_round" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/ingredient_g_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:maxEms="5"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:singleLine="true"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
+        app:layout_constraintStart_toEndOf="@+id/ingredient_image"
+        app:layout_constraintTop_toTopOf="@+id/ingredient_image"
+        tools:text="123" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="40">
+    <TextView
+        android:id="@+id/ingredient_g"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="viewStart"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="@+id/ingredient_stk"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ingredient_g_value"
+        app:layout_constraintTop_toTopOf="@+id/ingredient_g_value"
+        tools:text="@string/g" />
 
-            <TextView
-                android:id="@+id/ingredient_g_value"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:maxEms="5"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp"
-                android:singleLine="true"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent
-"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="m" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
-            <TextView
-                android:id="@+id/ingredient_g"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ingredient_g_value"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/g" />
+    <TextView
+        android:id="@+id/ingredient_stk_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:maxEms="5"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:singleLine="true"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="@+id/ingredient_image"
+        app:layout_constraintStart_toEndOf="@+id/ingredient_image"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal"
+        tools:text="2.0" />
 
-        </android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/ingredient_stk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="viewStart"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toEndOf="@+id/ingredient_stk_value"
+        app:layout_constraintTop_toTopOf="@+id/ingredient_stk_value"
+        tools:text="@string/stk" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="60">
-
-            <TextView
-                android:id="@+id/ingredient_stk_value"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:maxEms="5"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp"
-                android:singleLine="true"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="m" />
-
-            <TextView
-                android:id="@+id/ingredient_stk"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ingredient_stk_value"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/stk" />
-
-        </android.support.constraint.ConstraintLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
