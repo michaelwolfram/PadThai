@@ -74,9 +74,11 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (mContext == null) {
+            mContext = parent.getContext();
+        }
         if (mLayoutInflater == null) {
-            mLayoutInflater = LayoutInflater.from(parent.getContext());
-            mContext = mLayoutInflater.getContext();
+            mLayoutInflater = LayoutInflater.from(mContext);
         }
         View view = mLayoutInflater.inflate(
                 mShowListAsGrid ? R.layout.shopping_item_grid : R.layout.shopping_item_linear,
