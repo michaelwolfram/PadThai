@@ -24,13 +24,11 @@ import static java.lang.Math.max;
 
 public class ShoppingCart extends AppCompatActivity implements OnListInteractionListener {
 
-    private static final String EXCEL_FILENAME = "Pad Thai Angaben.xls";
-
-    private static final String LIST_LAYOUT = "list_layout";
     public static final String PASTE_QUANTITY = "paste_quantity";
     public static final String SOSSE_QUANTITY = "sosse_quantity";
     public static final String PAD_THAI_QUANTITY = "pad_thai_quantity";
-
+    private static final String EXCEL_FILENAME = "Pad Thai Angaben.xls";
+    private static final String LIST_LAYOUT = "list_layout";
     private int mColumnCount = 2;
     private int paste_quantity = 0;
     private int sosse_quantity = 0;
@@ -50,8 +48,9 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        new LoadExcelSheetTask(this).execute(EXCEL_FILENAME);
+        loadExcelSheetInBackground();
         consumeIndent();
+
         super.onCreate(savedInstanceState);
 
         consumeSavedInstanceState(savedInstanceState);
@@ -59,6 +58,10 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         setupRecyclerView();
         setupSnackBar();
         setupAndPostRunnables();
+    }
+
+    private void loadExcelSheetInBackground() {
+        new LoadExcelSheetTask(this).execute(EXCEL_FILENAME);
     }
 
     private void consumeIndent() {
@@ -192,24 +195,8 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         snackbar.show();
     }
 
-    private class RecyclerViewScrollDisabler extends RecyclerView.OnScrollListener {
-        @Override
-        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-            recyclerView.stopScroll();
-        }
-    }
-
-    private class RecyclerViewDismissSnackBarOnScroll extends RecyclerView.OnScrollListener {
-        @Override
-        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-            if (snackbar.isShown())
-                snackbar.dismiss();
-        }
-    }
-
     public void createRecyclerViewAdapter(Workbook mWorkbook) {
+        // TODO: 19.05.19 instead of using .ITEMS make method etc to dynamically get list of items
         mAdapter = new MyShoppingListRecyclerViewAdapter(ShoppingListContent.ITEMS,
                 paste_quantity, sosse_quantity, pad_thai_quantity, this, mWorkbook, showListAsGrid);
     }
@@ -239,6 +226,23 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                 return;
 
             activity.createRecyclerViewAdapter(workbook);
+        }
+    }
+
+    private class RecyclerViewScrollDisabler extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            recyclerView.stopScroll();
+        }
+    }
+
+    private class RecyclerViewDismissSnackBarOnScroll extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            if (snackbar.isShown())
+                snackbar.dismiss();
         }
     }
 }
