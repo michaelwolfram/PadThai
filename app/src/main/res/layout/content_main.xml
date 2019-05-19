@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,277 +9,82 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <ScrollView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:singleLine="false"
+            android:text="@string/header"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sub_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:singleLine="false"
+            android:text="@string/sub_header"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+        <include
+            android:id="@+id/first_component_row"
+            layout="@layout/dish_component_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/sub_header" />
+
+        <include
+            android:id="@+id/second_component_row"
+            app:layout_constraintTop_toBottomOf="@+id/first_component_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/dish_component_row" />
+
+        <include
+            android:id="@+id/third_component_row"
+            app:layout_constraintTop_toBottomOf="@+id/second_component_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/dish_component_row" />
+
+        <ImageView
+            android:id="@+id/padThaiImage"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="@string/todo"
+            android:cropToPadding="true"
+            android:focusable="true"
+            android:padding="10dp"
+            app:layout_constraintDimensionRatio="1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@id/third_component_row"
+            app:srcCompat="@drawable/pad_thai_512" />
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:singleLine="false"
-                    android:text="@string/header"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="30sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:singleLine="false"
-                    android:text="@string/sub_header"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="30sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-            </android.support.constraint.ConstraintLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/paste_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:ems="1"
-                    android:gravity="center_vertical|end"
-                    android:text="@string/_0"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingStart="2dp"
-                    android:paddingEnd="5dp"
-                    android:text="@string/x"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:text="@string/paste"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <ImageButton
-                    android:id="@+id/paste_down"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="3dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/baseline_remove_circle_outline_24"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:tint="@color/colorPrimary" />
-
-                <ImageButton
-                    android:id="@+id/paste_up"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/baseline_add_circle_outline_24"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:tint="@color/colorPrimary" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/sosse_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:ems="1"
-                    android:gravity="center_vertical|end"
-                    android:text="@string/_0"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingStart="2dp"
-                    android:paddingEnd="5dp"
-                    android:text="@string/x"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:text="@string/sosse"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <ImageButton
-                    android:id="@+id/sosse_down"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="3dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/baseline_remove_circle_outline_24"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:tint="@color/colorPrimary" />
-
-                <ImageButton
-                    android:id="@+id/sosse_up"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/baseline_add_circle_outline_24"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:tint="@color/colorPrimary" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/padthai_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:ems="1"
-                    android:gravity="center_vertical|end"
-                    android:text="@string/_0"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingStart="2dp"
-                    android:paddingEnd="5dp"
-                    android:text="@string/x"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:text="@string/padthai"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18sp" />
-
-                <ImageButton
-                    android:id="@+id/padthai_down"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="3dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/baseline_remove_circle_outline_24"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:tint="@color/colorPrimary" />
-
-                <ImageButton
-                    android:id="@+id/padthai_up"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/baseline_add_circle_outline_24"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:tint="@color/colorPrimary" />
-            </LinearLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/padThaiImage"
-                    android:layout_width="0dp"
-                    android:layout_height="140dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:contentDescription="@string/todo"
-                    android:focusable="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/pad_thai_512" />
-
-            </android.support.constraint.ConstraintLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

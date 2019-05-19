@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    tools:showIn="@layout/content_main">
+
+    <TextView
+        android:id="@+id/dish_component_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ems="1"
+        android:gravity="center_vertical|end"
+        android:text="@string/_0"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingStart="2dp"
+        android:paddingEnd="5dp"
+        android:text="@string/x"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/dish_component_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:text="@string/dish_component_text"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/dish_component_decrease"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="3dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/todo"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:src="@drawable/baseline_remove_circle_outline_24"
+        android:tag="-1"
+        android:tint="@color/colorPrimary" />
+
+    <ImageButton
+        android:id="@+id/dish_component_increase"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/todo"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:src="@drawable/baseline_add_circle_outline_24"
+        android:tag="+1"
+        android:tint="@color/colorPrimary" />
+</LinearLayout>

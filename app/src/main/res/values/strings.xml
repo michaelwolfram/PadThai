@@ -4,7 +4,7 @@
     <string name="header">Pad Thai</string>
     <string name="sub_header">Bestandteile</string>
     <string name="todo">TODO</string>
-    <string name="component_text">TextView</string>
+    <string name="dish_component_text">Component Name</string>
     <string name="_0">0</string>
     <string name="x">x</string>
     <string name="paste">Chili Paste</string>
