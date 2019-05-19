@@ -1,5 +1,6 @@
 package mwdevs.de.padthai;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
@@ -86,12 +89,33 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         snackbar = Snackbar.make(recyclerView, R.string._0, Snackbar.LENGTH_SHORT);
     }
 
+//    public int convertDpToPixel(float dp) {
+//        return Math.round(dp * ((float) getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+//    }
+//
+//    public int convertPixelsToDp(float px) {
+//        return Math.round(px / ((float) getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+//    }
+
+    private int getViewWidthForShoppingItemGrid() {
+        LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.shopping_item_grid, null, false);
+
+        ((TextView) view.findViewById(R.id.ingredient_g_value)).setText(R.string._888);
+        ((TextView) view.findViewById(R.id.ingredient_stk_value)).setText(R.string._88dot0);
+        ((TextView) view.findViewById(R.id.ingredient_g)).setText(R.string.g);
+        ((TextView) view.findViewById(R.id.ingredient_stk)).setText(R.string.stk);
+
+        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        return view.getMeasuredWidth();
+    }
+
     private void setupAndPostRunnables() {
         Runnable runnableRefreshList = new Runnable() {
             @Override
             public void run() {
                 if (mAdapter != null) {
-                    int minWidth = 360;
+                    int minWidth = getViewWidthForShoppingItemGrid();
                     int width = recyclerView.getWidth();
                     showListAsGrid = width >= 2 * minWidth;
                     mColumnCount = width / minWidth;

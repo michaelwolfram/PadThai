@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         pad_thai_quantity_text = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_quantity);
         setupComponentRow(R.id.first_component_row, R.string.paste, paste_quantity_text);
         setupComponentRow(R.id.second_component_row, R.string.sosse, sosse_quantity_text);
-        setupComponentRow(R.id.third_component_row, R.string.padthai, pad_thai_quantity_text);
+        setupComponentRow(R.id.third_component_row, R.string.pad_thai, pad_thai_quantity_text);
     }
 
     private void setupComponentRow(int componentRowId, int component_name, final TextView quantity_view) {
