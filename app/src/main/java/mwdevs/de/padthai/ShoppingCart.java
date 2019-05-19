@@ -1,6 +1,7 @@
 package mwdevs.de.padthai;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -32,6 +32,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     public static final String PAD_THAI_QUANTITY = "pad_thai_quantity";
     private static final String EXCEL_FILENAME = "Pad Thai Angaben.xls";
     private static final String LIST_LAYOUT = "list_layout";
+    private static final String MIN_ITEM_WIDTH = "min_item_width";
     private int mColumnCount = 2;
     private int paste_quantity = 0;
     private int sosse_quantity = 0;
@@ -42,29 +43,37 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     private boolean showListAsGrid = false;
     private Snackbar snackbar;
     private ShowcaseView showcaseView;
+    private int minItemWidth;
+
+    public void setMinItemWidth(int minItemWidth) {
+        this.minItemWidth = minItemWidth > 0 ? minItemWidth : 360;
+    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(LIST_LAYOUT, showListAsGrid);
+        outState.putInt(MIN_ITEM_WIDTH, minItemWidth);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        loadExcelSheetInBackground();
+        startBackgroundTasks();
         consumeIndent();
 
         super.onCreate(savedInstanceState);
-
         consumeSavedInstanceState(savedInstanceState);
+
         setContentView(R.layout.activity_shopping_cart);
+
         setupRecyclerView();
         setupSnackBar();
         setupAndPostRunnables();
     }
 
-    private void loadExcelSheetInBackground() {
+    private void startBackgroundTasks() {
         new LoadExcelSheetTask(this).execute(EXCEL_FILENAME);
+        new CalculateMinItemWidthTask(this).execute();
     }
 
     private void consumeIndent() {
@@ -75,8 +84,10 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     }
 
     private void consumeSavedInstanceState(Bundle savedInstanceState) {
-        if (savedInstanceState != null)
+        if (savedInstanceState != null) {
             showListAsGrid = savedInstanceState.getBoolean(LIST_LAYOUT);
+            minItemWidth = savedInstanceState.getInt(MIN_ITEM_WIDTH, -1);
+        }
     }
 
     private void setupRecyclerView() {
@@ -89,36 +100,14 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         snackbar = Snackbar.make(recyclerView, R.string._0, Snackbar.LENGTH_SHORT);
     }
 
-//    public int convertDpToPixel(float dp) {
-//        return Math.round(dp * ((float) getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-//    }
-//
-//    public int convertPixelsToDp(float px) {
-//        return Math.round(px / ((float) getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
-//    }
-
-    private int getViewWidthForShoppingItemGrid() {
-        LayoutInflater inflater = getLayoutInflater();
-        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.shopping_item_grid, null, false);
-
-        ((TextView) view.findViewById(R.id.ingredient_g_value)).setText(R.string._888);
-        ((TextView) view.findViewById(R.id.ingredient_stk_value)).setText(R.string._88dot0);
-        ((TextView) view.findViewById(R.id.ingredient_g)).setText(R.string.g);
-        ((TextView) view.findViewById(R.id.ingredient_stk)).setText(R.string.stk);
-
-        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        return view.getMeasuredWidth();
-    }
-
     private void setupAndPostRunnables() {
         Runnable runnableRefreshList = new Runnable() {
             @Override
             public void run() {
-                if (mAdapter != null) {
-                    int minWidth = getViewWidthForShoppingItemGrid();
+                if (mAdapter != null && minItemWidth > 0) {
                     int width = recyclerView.getWidth();
-                    showListAsGrid = width >= 2 * minWidth;
-                    mColumnCount = width / minWidth;
+                    showListAsGrid = width >= 2 * minItemWidth;
+                    mColumnCount = width / minItemWidth;
                     refreshRecyclerView();
                 } else {
                     recyclerView.postDelayed(this, 1);
@@ -250,6 +239,41 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                 return;
 
             activity.createRecyclerViewAdapter(workbook);
+        }
+    }
+
+    private static class CalculateMinItemWidthTask extends AsyncTask<Void, Void, Integer> {
+        private WeakReference<ShoppingCart> activityReference;
+
+        CalculateMinItemWidthTask(ShoppingCart activity) {
+            activityReference = new WeakReference<>(activity);
+        }
+
+        private int getViewWidthForShoppingItemGrid(Activity activity) {
+            @SuppressLint("InflateParams") View view = activity.getLayoutInflater()
+                    .inflate(R.layout.shopping_item_grid, null, false);
+
+            ((TextView) view.findViewById(R.id.ingredient_g_value)).setText(R.string._888);
+            ((TextView) view.findViewById(R.id.ingredient_stk_value)).setText(R.string._88dot0);
+            ((TextView) view.findViewById(R.id.ingredient_g)).setText(R.string.g);
+            ((TextView) view.findViewById(R.id.ingredient_stk)).setText(R.string.stk);
+
+            view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+            return view.getMeasuredWidth();
+        }
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            return getViewWidthForShoppingItemGrid(activityReference.get());
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            ShoppingCart activity = activityReference.get();
+            if (activity == null || activity.isFinishing())
+                return;
+
+            activity.setMinItemWidth(integer);
         }
     }
 
