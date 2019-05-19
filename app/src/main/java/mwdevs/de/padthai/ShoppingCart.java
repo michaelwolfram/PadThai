@@ -40,7 +40,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     private RecyclerView recyclerView = null;
     private RecyclerView.LayoutManager layoutManager = null;
     private MyShoppingListRecyclerViewAdapter mAdapter = null;
-    private boolean showListAsGrid = false;
+    private boolean showListAsGrid;
     private Snackbar snackbar;
     private ShowcaseView showcaseView;
     private int minItemWidth;
@@ -93,6 +93,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.shopping_list);
         recyclerView.setKeepScreenOn(true);
+        recyclerView.setHasFixedSize(true);
         recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
     }
 

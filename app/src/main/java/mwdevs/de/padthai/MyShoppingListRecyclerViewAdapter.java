@@ -41,6 +41,8 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         mListener = listener;
         mShowListAsGrid = showListAsGrid;
 
+        setHasStableIds(true);
+
         mSheet = workbook.getSheetAt(0);
 
         setCellValue(mSheet, 1, paste_quantity);
