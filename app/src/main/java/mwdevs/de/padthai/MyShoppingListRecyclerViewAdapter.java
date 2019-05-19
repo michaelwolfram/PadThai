@@ -76,9 +76,9 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
             mLayoutInflater = LayoutInflater.from(parent.getContext());
             mContext = mLayoutInflater.getContext();
         }
-        View view = mLayoutInflater.inflate(mShowListAsGrid ?
-                        R.layout.shopping_item_grid : R.layout.shopping_item_linear,
-                        parent, false);
+        View view = mLayoutInflater.inflate(
+                mShowListAsGrid ? R.layout.shopping_item_grid : R.layout.shopping_item_linear,
+                parent, false);
         return new ViewHolder(view);
     }
 
