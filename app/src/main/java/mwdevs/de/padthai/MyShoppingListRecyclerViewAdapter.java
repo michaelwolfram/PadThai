@@ -11,11 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.CellReference;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 
 import java.util.List;
 
@@ -27,75 +23,38 @@ import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
  */
 public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MyShoppingListRecyclerViewAdapter.ViewHolder> {
 
-    private static final int EXCEL_SHEET_ROW_OFFSET = 7;
-    private final List<ShoppingItem> mValues;
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
     private final OnListInteractionListener mListener;
-    private final int mPaste_quantity;
-    private final int mSosse_quantity;
-    private final int mPad_thai_quantity;
+    private final WorkbookFacade mWorkbookFacade;
 
-    private Workbook mWorkbook = null;
-    private Sheet mSheet0 = null;
+    private List<ShoppingItem> mValues;
     private boolean mShowListAsGrid;
 
-    MyShoppingListRecyclerViewAdapter(List<ShoppingItem> items, Context context,
-                                      OnListInteractionListener listener,
+    MyShoppingListRecyclerViewAdapter(Context context, OnListInteractionListener listener,
                                       int paste_quantity, int sosse_quantity, int pad_thai_quantity,
                                       boolean showListAsGrid) {
-        mValues = items;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(mContext);
         mListener = listener;
-        this.mPaste_quantity = paste_quantity;
-        this.mSosse_quantity = sosse_quantity;
-        this.mPad_thai_quantity = pad_thai_quantity;
+        mWorkbookFacade = new WorkbookFacade(paste_quantity, sosse_quantity, pad_thai_quantity);
         mShowListAsGrid = showListAsGrid;
 
         setHasStableIds(true);
     }
 
-    void setWorkbook(Workbook workbook) {
+    void updateDataFromWorkbook(Workbook workbook) {
         if (workbook == null) {
-            Log.e(MyShoppingListRecyclerViewAdapter.class.getName(), "Workbook was null. Was not set internally.");
+            Log.e(MyShoppingListRecyclerViewAdapter.class.getName(), "Workbook was null. Data not updated!");
             return;
         }
-        mWorkbook = workbook;
-        extractSheetAndUpdateComponentQuantities();
-
+        mWorkbookFacade.setWorkbook(workbook);
+        mValues = mWorkbookFacade.createShoppingItems();
         notifyDataSetChanged();
-    }
-
-    private void extractSheetAndUpdateComponentQuantities() {
-        mSheet0 = mWorkbook.getSheetAt(0);
-
-        setCellValueInColumnB(mSheet0, 1, mPaste_quantity);
-        setCellValueInColumnB(mSheet0, 2, mSosse_quantity);
-        setCellValueInColumnB(mSheet0, 3, mPad_thai_quantity);
-
-        // TODO: 20.05.19 this is taking some time...think about refactoring the excel sheet such
-        //  that the content is extracted rather than working on the excel sheet from code
-        XSSFFormulaEvaluator.evaluateAllFormulaCells(mWorkbook);
     }
 
     void setShowListAsGrid(boolean ShowListAsGrid) {
         mShowListAsGrid = ShowListAsGrid;
-    }
-
-    private void setCellValueInColumnB(Sheet sheet, int row, double value) {
-        Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex("B"));
-        cell.setCellValue(value);
-    }
-
-    private double getNumericCellValue(Sheet sheet, String column, int row) {
-        Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex(column));
-        return cell.getNumericCellValue();
-    }
-
-    private String getStringCellValueInColumnB(Sheet sheet, int row) {
-        Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex("B"));
-        return cell.getStringCellValue();
     }
 
     @NonNull
@@ -110,16 +69,12 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
     @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        if (mSheet0 == null) {
+        if (mValues == null || mValues.isEmpty()) {
             holder.setEmptyView();
             return;
         }
 
-        String ingredient_name = getStringCellValueInColumnB(mSheet0, EXCEL_SHEET_ROW_OFFSET + position);
-        double ingredient_gramm = getNumericCellValue(mSheet0, "J", EXCEL_SHEET_ROW_OFFSET + position);
-        double ingredient_stk = getNumericCellValue(mSheet0, "N", EXCEL_SHEET_ROW_OFFSET + position);
-
-        holder.update(position, ingredient_name, ingredient_gramm, ingredient_stk);
+        holder.update(position);
 
         setViewListener(holder);
     }
@@ -148,6 +103,9 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
     @Override
     public int getItemCount() {
+        if (mValues == null || mValues.isEmpty()) {
+            return 0;
+        }
         return mValues.size();
     }
 
@@ -155,9 +113,9 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         final View mView;
         private final ImageView mImage;
         private final TextView mHeader;
-        private final TextView mGramm;
+        private final TextView mGram;
         private final TextView mStk;
-        private final TextView mGrammValue;
+        private final TextView mGramValue;
         private final TextView mStkValue;
         private ShoppingItem mItem;
 
@@ -166,15 +124,15 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
             mView = view;
             mImage = view.findViewById(R.id.ingredient_image);
             mHeader = view.findViewById(R.id.ingredient_name);
-            mGramm = view.findViewById(R.id.ingredient_g);
+            mGram = view.findViewById(R.id.ingredient_g);
             mStk = view.findViewById(R.id.ingredient_stk);
-            mGrammValue = view.findViewById(R.id.ingredient_g_value);
+            mGramValue = view.findViewById(R.id.ingredient_g_value);
             mStkValue = view.findViewById(R.id.ingredient_stk_value);
         }
 
-        void update(int position, String ingredient_name, double ingredient_gramm, double ingredient_stk) {
+        void update(int position) {
             updateShoppingItem(position);
-            updateView(ingredient_name, ingredient_gramm, ingredient_stk);
+            updateView();
         }
 
         private void updateShoppingItem(int position) {
@@ -186,11 +144,11 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
             updateAlpha();
         }
 
-        private void updateView(String ingredient_name, double ingredient_gramm, double ingredient_stk) {
+        private void updateView() {
             updateImage();
-            updateHeader(ingredient_name);
-            updateGramm(ingredient_gramm);
-            updateStk(ingredient_stk);
+            updateHeader();
+            updateGram();
+            updateStk();
             updateAlpha();
         }
 
@@ -198,20 +156,20 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
             mImage.setImageResource(mItem.image_id);
         }
 
-        private void updateStk(double ingredient_stk) {
-            boolean is_stk_invalid = ingredient_stk == -1.0f;
-            mStk.setText(is_stk_invalid ? R.string.empty_string : mItem.stk_text);
-            mStkValue.setText(is_stk_invalid ? "---" : mContext.getString(R.string.placeholder_dot1f, ingredient_stk));
-        }
-
-        private void updateGramm(double ingredient_gramm) {
-            mGramm.setText(mItem.gramm_ml_text);
-            mGrammValue.setText(mContext.getString(R.string.placeholder_d, (int) Math.round(ingredient_gramm)));
-        }
-
-        private void updateHeader(String ingredient_name) {
+        private void updateHeader() {
             if (mHeader != null)
-                mHeader.setText(mContext.getString(R.string.placeholder_s, ingredient_name));
+                mHeader.setText(mContext.getString(R.string.placeholder_s, mItem.id));
+        }
+
+        private void updateGram() {
+            mGram.setText(mItem.gram_ml_text);
+            mGramValue.setText(mContext.getString(R.string.placeholder_d, (int) Math.round(mItem.gram_ml)));
+        }
+
+        private void updateStk() {
+            boolean is_stk_invalid = mItem.stk == -1.0f;
+            mStk.setText(is_stk_invalid ? R.string.empty_string : mItem.stk_text);
+            mStkValue.setText(is_stk_invalid ? "---" : mContext.getString(R.string.placeholder_dot1f, mItem.stk));
         }
 
         private void updateAlpha() {
@@ -219,8 +177,8 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
             if (mHeader != null)
                 mHeader.setAlpha(alpha);
             mImage.setAlpha(alpha);
-            mGramm.setAlpha(alpha);
-            mGrammValue.setAlpha(alpha);
+            mGram.setAlpha(alpha);
+            mGramValue.setAlpha(alpha);
             mStk.setAlpha(alpha);
             mStkValue.setAlpha(alpha);
         }
@@ -229,13 +187,13 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
             mImage.setImageDrawable(null);
             if (mHeader != null)
                 setDefaultText(mHeader);
-            setDefaultText(mGramm);
-            setDefaultText(mGrammValue);
+            setDefaultText(mGram);
+            setDefaultText(mGramValue);
             setDefaultText(mStk);
             setDefaultText(mStkValue);
         }
 
-        private void setDefaultText(TextView textView) {
+        private void setDefaultText(@NonNull TextView textView) {
             textView.setText(R.string.empty_string);
         }
     }

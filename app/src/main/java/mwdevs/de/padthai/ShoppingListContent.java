@@ -2,17 +2,12 @@ package mwdevs.de.padthai;
 
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- */
 class ShoppingListContent {
 
-    static final List<ShoppingItem> ITEMS = new ArrayList<>();
+    static final Map<String, ShoppingItem> ITEM_PROPERTY_MAP = new HashMap<>();
 
     static {
         addItem(new ShoppingItem("Karotten", R.mipmap.karotten_round, R.string.g, R.string.stk));
@@ -33,11 +28,11 @@ class ShoppingListContent {
     }
 
     private static void addItem(ShoppingItem item) {
-        ITEMS.add(item);
+        ITEM_PROPERTY_MAP.put(item.id, item);
     }
 
     static void resetItems() {
-        for (ShoppingItem item : ITEMS) {
+        for (ShoppingItem item : ITEM_PROPERTY_MAP.values()) {
             item.resetAlpha();
         }
     }
@@ -45,15 +40,22 @@ class ShoppingListContent {
     public static class ShoppingItem {
         public final String id;
         final int image_id;
-        final int gramm_ml_text;
+        final int gram_ml_text;
         final int stk_text;
+        double gram_ml;
+        double stk;
         private float alpha = 1.0f;
 
-        ShoppingItem(String id, int image_id, int gramm_ml_text, int stk_text) {
+        ShoppingItem(String id, int image_id, int gram_ml_text, int stk_text) {
             this.id = id;
             this.image_id = image_id;
-            this.gramm_ml_text = gramm_ml_text;
+            this.gram_ml_text = gram_ml_text;
             this.stk_text = stk_text;
+        }
+
+        void setGramAndStk(double gram_ml, double stk) {
+            this.gram_ml = gram_ml;
+            this.stk = stk;
         }
 
         float getAlpha() {
