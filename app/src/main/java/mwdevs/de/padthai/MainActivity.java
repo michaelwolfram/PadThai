@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton button_increase = componentRow.findViewById(R.id.dish_component_increase);
         View.OnClickListener component_ocl = new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(@NonNull View v) {
                 int current_quantity = Integer.parseInt(quantity_view.getText().toString());
                 int new_quantity = max(0, current_quantity + Integer.parseInt(v.getTag().toString()));
                 quantity_view.setText(getString(R.string.placeholder_d, new_quantity));
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             setPadThaiImageOnClickListener(padThaiImage);
     }
 
-    private void setPadThaiImageOnClickListener(ImageView padThaiImage) {
+    private void setPadThaiImageOnClickListener(@NonNull ImageView padThaiImage) {
         padThaiImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private int getIntFromTextView(TextView textView) {
+    private int getIntFromTextView(@NonNull TextView textView) {
         return Integer.parseInt(textView.getText().toString());
     }
 

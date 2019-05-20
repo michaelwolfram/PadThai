@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -89,7 +90,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
     public void initRecyclerViewAdapter() {
         // TODO: 19.05.19 instead of using .ITEMS make method etc to dynamically get list of items
-        mAdapter = new MyShoppingListRecyclerViewAdapter(ShoppingListContent.ITEMS, this, this,
+        mAdapter = new MyShoppingListRecyclerViewAdapter(this, this,
                 paste_quantity, sosse_quantity, pad_thai_quantity, showListAsGrid);
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -100,6 +101,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         });
     }
 
+    @Nullable
     private View getItemToFocusInShowcaseView(int rowFromBottom) {
         if (layoutManager == null)
             return null;
@@ -213,7 +215,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     }
 
     private void updateAdapter(Workbook workbook) {
-        mAdapter.setWorkbook(workbook);
+        mAdapter.updateDataFromWorkbook(workbook);
     }
 
     private static class LoadExcelSheetTask extends AsyncTask<String, Void, Workbook> {
