@@ -43,6 +43,11 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         setHasStableIds(true);
     }
 
+    @Override
+    public long getItemId(int position) {
+        return mValues.get(position).id;
+    }
+
     void updateDataFromWorkbook(Workbook workbook) {
         if (workbook == null) {
             Log.e(MyShoppingListRecyclerViewAdapter.class.getName(), "Workbook was null. Data not updated!");
@@ -158,7 +163,7 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
         private void updateHeader() {
             if (mHeader != null)
-                mHeader.setText(mContext.getString(R.string.placeholder_s, mItem.id));
+                mHeader.setText(mContext.getString(R.string.placeholder_s, mItem.name));
         }
 
         private void updateGram() {
