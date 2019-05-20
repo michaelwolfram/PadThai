@@ -25,6 +25,6 @@
     <string name="then_shopping_list_shows">\n…then the shopping list opens!</string>
     <string name="placeholder_s">%1$s</string>
     <string name="placeholder_d">%1$d</string>
-    <string name="_888">888</string>
-    <string name="_88dot0">88.0</string>
+    <string name="placeholder_dot1f">%1$.1f</string>
+    <string name="empty_string" />
 </resources>
