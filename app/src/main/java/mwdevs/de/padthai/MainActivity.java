@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -120,15 +121,25 @@ public class MainActivity extends AppCompatActivity {
         padThaiImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShoppingListContent.resetItems();
-
-                Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
-                intent.putExtra(ShoppingCart.PASTE_QUANTITY, getIntFromTextView(paste_quantity_text));
-                intent.putExtra(ShoppingCart.SOSSE_QUANTITY, getIntFromTextView(sosse_quantity_text));
-                intent.putExtra(ShoppingCart.PAD_THAI_QUANTITY, getIntFromTextView(pad_thai_quantity_text));
-                startActivity(intent);
+                int paste_quantity = getIntFromTextView(paste_quantity_text);
+                int sosse_quantity = getIntFromTextView(sosse_quantity_text);
+                int pad_thai_quantity = getIntFromTextView(pad_thai_quantity_text);
+                if (paste_quantity > 0 || sosse_quantity > 0 || pad_thai_quantity > 0)
+                    openShoppingCart(paste_quantity, sosse_quantity, pad_thai_quantity);
+                else
+                    Snackbar.make(view, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void openShoppingCart(int paste_quantity, int sosse_quantity, int pad_thai_quantity) {
+        ShoppingListContent.resetItems();
+
+        Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
+        intent.putExtra(ShoppingCart.PASTE_QUANTITY, paste_quantity);
+        intent.putExtra(ShoppingCart.SOSSE_QUANTITY, sosse_quantity);
+        intent.putExtra(ShoppingCart.PAD_THAI_QUANTITY, pad_thai_quantity);
+        startActivity(intent);
     }
 
     private int getIntFromTextView(@NonNull TextView textView) {

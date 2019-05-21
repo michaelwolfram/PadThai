@@ -27,4 +27,5 @@
     <string name="placeholder_d">%1$d</string>
     <string name="placeholder_dot1f">%1$.1f</string>
     <string name="empty_string" />
+    <string name="no_component_selected">Nothing selected yet. What do you want to cook?</string>
 </resources>
