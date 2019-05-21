@@ -1,4 +1,4 @@
-package mwdevs.de.padthai;
+package de.mwdevs.padthai;
 
 import android.content.Intent;
 import android.os.AsyncTask;

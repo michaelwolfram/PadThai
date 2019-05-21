@@ -1,4 +1,4 @@
-package mwdevs.de.padthai;
+package de.mwdevs.padthai;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import java.util.ArrayList;
 
-import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
+import de.mwdevs.padthai.ShoppingListContent.ShoppingItem;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ShoppingItem} and makes a call to the

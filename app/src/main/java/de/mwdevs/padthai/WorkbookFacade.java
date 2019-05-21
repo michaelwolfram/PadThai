@@ -1,4 +1,4 @@
-package mwdevs.de.padthai;
+package de.mwdevs.padthai;
 
 import android.support.annotation.NonNull;
 

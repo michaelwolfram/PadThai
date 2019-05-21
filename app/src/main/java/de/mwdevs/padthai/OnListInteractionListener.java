@@ -1,4 +1,4 @@
-package mwdevs.de.padthai;
+package de.mwdevs.padthai;
 
 public interface OnListInteractionListener {
     void onListItemClick(ShoppingListContent.ShoppingItem item);
