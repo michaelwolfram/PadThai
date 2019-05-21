@@ -121,7 +121,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         Runnable runnableShowShowcaseView = new Runnable() {
             @Override
             public void run() {
-                View view = getItemToFocusInShowcaseView(1);
+                View view = getItemToFocusInShowcaseView(0);
                 if (view != null) {
                     showShowcaseView(view);
                 } else {
@@ -137,14 +137,8 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         if (layoutManager == null)
             return null;
 
-        int itemId;
-        if (showListAsGrid) {
-            itemId = ((GridLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
-            itemId = max(0, itemId - rowFromBottom * mColumnCount + 1);
-        } else {
-            itemId = ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
-            itemId = max(0, itemId - rowFromBottom * mColumnCount + 1);
-        }
+        int itemId = ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
+        itemId = max(0, itemId - rowFromBottom * mColumnCount - itemId % mColumnCount);
         return recyclerView.getChildAt(itemId);
     }
 
@@ -163,7 +157,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                     public void onClick(View v) {
                         showcaseView.setContentTitle(getString(R.string.what_that_ingredient));
                         showcaseView.setContentText(getString(R.string.try_long_click));
-                        View view2 = getItemToFocusInShowcaseView(2);
+                        View view2 = getItemToFocusInShowcaseView(1);
                         showcaseView.setShowcase(new ViewTarget(view2), true);
                         showcaseView.overrideButtonClick(new View.OnClickListener() {
                             @Override
