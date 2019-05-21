@@ -68,10 +68,9 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
         setContentView(R.layout.activity_shopping_cart);
 
+        initShowcaseViewBuilder();
         initRecyclerViewAdapter();
         initRecyclerView();
-        initShowcaseViewStuff();
-        initSnackBar();
 
         updateLayoutManagerParameters();
         updateRecyclerView();
@@ -89,16 +88,34 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     }
 
     public void initRecyclerViewAdapter() {
-        // TODO: 19.05.19 instead of using .ITEMS make method etc to dynamically get list of items
         mAdapter = new MyShoppingListRecyclerViewAdapter(this, this,
                 paste_quantity, sosse_quantity, pad_thai_quantity, showListAsGrid);
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
-                View view = getItemToFocusInShowcaseView(1);
-                showShowcaseView(view);
+                triggerShowcaseView();
             }
         });
+    }
+
+    private void triggerShowcaseView() {
+        if (showcaseViewBuilder.hasShowcaseViewShot()) {
+            // there's no need to continue building the ShowcaseView since it has been shot before
+            return;
+        }
+
+        Runnable runnableShowShowcaseView = new Runnable() {
+            @Override
+            public void run() {
+                View view = getItemToFocusInShowcaseView(1);
+                if (view != null) {
+                    showShowcaseView(view);
+                } else {
+                    recyclerView.postDelayed(this, 1);
+                }
+            }
+        };
+        recyclerView.post(runnableShowShowcaseView);
     }
 
     @Nullable
@@ -118,29 +135,12 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     }
 
     private void showShowcaseView(View view) {
+        recyclerViewScrollDisabler = new RecyclerViewScrollDisabler();
         recyclerView.addOnScrollListener(recyclerViewScrollDisabler);
 
         showcaseView = showcaseViewBuilder
-                .setTarget(new ViewTarget(view))
-                .build();
-
-        if (!showcaseView.isShowing()) {
-            recyclerView.removeOnScrollListener(recyclerViewScrollDisabler);
-        }
-    }
-
-    private void initRecyclerView() {
-        recyclerView = findViewById(R.id.shopping_list);
-        recyclerView.setKeepScreenOn(true);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
-    }
-
-    private void initShowcaseViewStuff() {
-        showcaseViewBuilder = new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
                 .setStyle(R.style.PadThaiShowcaseView)
-                .singleShot(22)
                 .setContentTitle(R.string.item_in_cart)
                 .setContentText(R.string.click_will_mark)
                 .setFadeInDurations(800)
@@ -159,8 +159,21 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                             }
                         });
                     }
-                });
-        recyclerViewScrollDisabler = new RecyclerViewScrollDisabler();
+                })
+                .setTarget(new ViewTarget(view))
+                .build();
+    }
+
+    private void initRecyclerView() {
+        recyclerView = findViewById(R.id.shopping_list);
+        recyclerView.setKeepScreenOn(true);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
+    }
+
+    private void initShowcaseViewBuilder() {
+        showcaseViewBuilder = new ShowcaseView.Builder(this)
+                .singleShot(22);
     }
 
     private void initSnackBar() {
@@ -204,12 +217,15 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
     @Override
     public void onListItemClick(ShoppingListContent.ShoppingItem item) {
-        if (snackbar.isShown())
+        if (snackbar != null && snackbar.isShown())
             snackbar.dismiss();
     }
 
     @Override
     public void onListItemLongClick(ShoppingListContent.ShoppingItem item) {
+        if (snackbar == null) {
+            initSnackBar();
+        }
         snackbar.setText(item.toString());
         snackbar.show();
     }
@@ -258,7 +274,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         @Override
         public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            if (snackbar.isShown())
+            if (snackbar != null && snackbar.isShown())
                 snackbar.dismiss();
         }
     }

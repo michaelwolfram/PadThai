@@ -597,6 +597,14 @@ public class ShowcaseView extends RelativeLayout
             return this;
         }
 
+        /**
+         * Get whether the ShowcaseView was already shot before in order to decide whether to
+         * continue building or not.
+         */
+        public boolean hasShowcaseViewShot() {
+            return showcaseView.hasShot();
+        }
+
         public Builder setShowcaseEventListener(OnShowcaseEventListener showcaseEventListener) {
             showcaseView.setOnShowcaseEventListener(showcaseEventListener);
             return this;
