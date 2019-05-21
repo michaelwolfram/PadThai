@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import mwdevs.de.padthai.ShoppingListContent.ShoppingItem;
 
@@ -28,7 +28,7 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
     private final OnListInteractionListener mListener;
     private final WorkbookFacade mWorkbookFacade;
 
-    private List<ShoppingItem> mValues;
+    private ArrayList<ShoppingItem> mValues;
     private boolean mShowListAsGrid;
 
     MyShoppingListRecyclerViewAdapter(Context context, OnListInteractionListener listener,
@@ -104,6 +104,22 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
                 return true;
             }
         });
+    }
+
+    ArrayList<ShoppingItem> getData() {
+        return mValues;
+    }
+
+    void setData(ArrayList<ShoppingItem> mValues) {
+        if (mValues == null) {
+            Log.e(MyShoppingListRecyclerViewAdapter.class.getName(), "Provided data was null. Data not updated!");
+            return;
+        }
+        this.mValues = mValues;
+    }
+
+    public boolean hasData() {
+        return getItemCount() > 0;
     }
 
     @Override

@@ -9,7 +9,6 @@ import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 
 import java.util.ArrayList;
-import java.util.List;
 
 class WorkbookFacade {
     private static final int EXCEL_SHEET_ROW_OFFSET = 7;
@@ -38,13 +37,14 @@ class WorkbookFacade {
         setCellValueInColumnB(mSheet0, 2, mSosse_quantity);
         setCellValueInColumnB(mSheet0, 3, mPad_thai_quantity);
 
-        // TODO: 20.05.19 this is taking some time...think about refactoring the excel sheet such
-        //  that the content is extracted rather than working on the excel sheet from code
+        // TODO: 20.05.19 this is taking some time...if you think about refactoring,
+        //  think about refactoring the excel sheet such that the content is extracted
+        //  rather than working on the excel sheet from code
         XSSFFormulaEvaluator.evaluateAllFormulaCells(mWorkbook);
     }
 
-    List<ShoppingListContent.ShoppingItem> createShoppingItems() {
-        List<ShoppingListContent.ShoppingItem> items = new ArrayList<>();
+    ArrayList<ShoppingListContent.ShoppingItem> createShoppingItems() {
+        ArrayList<ShoppingListContent.ShoppingItem> items = new ArrayList<>();
 
         for (int pos = 0; pos <= mSheet0.getPhysicalNumberOfRows() - EXCEL_SHEET_ROW_OFFSET; pos++) {
             String item_name = getItemName(pos);

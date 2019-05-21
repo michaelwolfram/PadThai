@@ -26,9 +26,10 @@ import static java.lang.Math.max;
 
 public class ShoppingCart extends AppCompatActivity implements OnListInteractionListener {
 
-    public static final String PASTE_QUANTITY = "paste_quantity";
-    public static final String SOSSE_QUANTITY = "sosse_quantity";
-    public static final String PAD_THAI_QUANTITY = "pad_thai_quantity";
+    public static final String PASTE_QUANTITY = "PASTE_QUANTITY";
+    public static final String SOSSE_QUANTITY = "SOSSE_QUANTITY";
+    public static final String PAD_THAI_QUANTITY = "PAD_THAI_QUANTITY";
+    public static final String CACHED_SHOPPING_LIST = "CACHED_SHOPPING_LIST";
     private static final String EXCEL_FILENAME = "Pad Thai Angaben.xls";
     /**
      * Can be calculated with e.g.:
@@ -60,24 +61,23 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     private RecyclerViewScrollDisabler recyclerViewScrollDisabler;
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (mAdapter.hasData())
+            outState.putParcelableArrayList(CACHED_SHOPPING_LIST, mAdapter.getData());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-        startBackgroundTasks();
         consumeIndent();
+        initRecyclerViewAdapter();
+        retrieveAdapterData(savedInstanceState);
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_shopping_cart);
 
         initShowcaseViewBuilder();
-        initRecyclerViewAdapter();
-        initRecyclerView();
-
-        updateLayoutManagerParameters();
-        updateRecyclerView();
-    }
-
-    private void startBackgroundTasks() {
-        new LoadExcelSheetTask(this).execute(EXCEL_FILENAME);
+        setupRecyclerView();
     }
 
     private void consumeIndent() {
@@ -96,6 +96,20 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                 triggerShowcaseView();
             }
         });
+    }
+
+    private void retrieveAdapterData(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            mAdapter.setData(savedInstanceState.<ShoppingListContent.ShoppingItem>getParcelableArrayList(CACHED_SHOPPING_LIST));
+        }
+
+        if (!mAdapter.hasData()) {
+            loadDataInBackground();
+        }
+    }
+
+    private void loadDataInBackground() {
+        new LoadExcelSheetTask(this).execute(EXCEL_FILENAME);
     }
 
     private void triggerShowcaseView() {
@@ -164,20 +178,22 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                 .build();
     }
 
-    private void initRecyclerView() {
-        recyclerView = findViewById(R.id.shopping_list);
-        recyclerView.setKeepScreenOn(true);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
-    }
-
     private void initShowcaseViewBuilder() {
         showcaseViewBuilder = new ShowcaseView.Builder(this)
                 .singleShot(22);
     }
 
-    private void initSnackBar() {
-        snackbar = Snackbar.make(recyclerView, R.string._0, Snackbar.LENGTH_SHORT);
+    private void setupRecyclerView() {
+        initRecyclerView();
+        updateLayoutManagerParameters();
+        updateRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        recyclerView = findViewById(R.id.shopping_list);
+        recyclerView.setKeepScreenOn(true);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
     }
 
     private void updateLayoutManagerParameters() {
@@ -228,6 +244,10 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         }
         snackbar.setText(item.toString());
         snackbar.show();
+    }
+
+    private void initSnackBar() {
+        snackbar = Snackbar.make(recyclerView, R.string._0, Snackbar.LENGTH_SHORT);
     }
 
     private void updateAdapter(Workbook workbook) {

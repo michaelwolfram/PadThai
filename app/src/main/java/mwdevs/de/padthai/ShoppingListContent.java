@@ -1,5 +1,7 @@
 package mwdevs.de.padthai;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import java.util.HashMap;
@@ -37,7 +39,18 @@ class ShoppingListContent {
         }
     }
 
-    public static class ShoppingItem {
+    public static class ShoppingItem implements Parcelable {
+        public static final Creator<ShoppingItem> CREATOR = new Creator<ShoppingItem>() {
+            @Override
+            public ShoppingItem createFromParcel(Parcel in) {
+                return new ShoppingItem(in);
+            }
+
+            @Override
+            public ShoppingItem[] newArray(int size) {
+                return new ShoppingItem[size];
+            }
+        };
         final int id;
         final String name;
         final int image_id;
@@ -53,6 +66,17 @@ class ShoppingListContent {
             this.image_id = image_id;
             this.gram_ml_text = gram_ml_text;
             this.stk_text = stk_text;
+        }
+
+        protected ShoppingItem(Parcel in) {
+            id = in.readInt();
+            name = in.readString();
+            image_id = in.readInt();
+            gram_ml_text = in.readInt();
+            stk_text = in.readInt();
+            gram_ml = in.readDouble();
+            stk = in.readDouble();
+            alpha = in.readFloat();
         }
 
         void setGramAndStk(double gram_ml, double stk) {
@@ -79,6 +103,23 @@ class ShoppingListContent {
         @Override
         public String toString() {
             return name;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(id);
+            dest.writeString(name);
+            dest.writeInt(image_id);
+            dest.writeInt(gram_ml_text);
+            dest.writeInt(stk_text);
+            dest.writeDouble(gram_ml);
+            dest.writeDouble(stk);
+            dest.writeFloat(alpha);
         }
     }
 }
