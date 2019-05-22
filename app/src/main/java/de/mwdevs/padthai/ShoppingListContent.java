@@ -4,13 +4,11 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-
-import java.util.HashMap;
-import java.util.Map;
+import android.util.SparseArray;
 
 class ShoppingListContent {
 
-    static final Map<String, ShoppingItem> ITEM_PROPERTY_MAP = new HashMap<>();
+    static final SparseArray<ShoppingItem> ITEM_PROPERTY_MAP = new SparseArray<>(15);
 
     static void initItemPropertyMap(Context context) {
         addItem(new ShoppingItem(1, context.getString(R.string.karotten), R.mipmap.karotten_round, R.string.g, R.string.stk));
@@ -31,11 +29,13 @@ class ShoppingListContent {
     }
 
     private static void addItem(ShoppingItem item) {
-        ITEM_PROPERTY_MAP.put(item.name, item);
+        ITEM_PROPERTY_MAP.put(item.id, item);
     }
 
     static void resetItems() {
-        for (ShoppingItem item : ITEM_PROPERTY_MAP.values()) {
+        for (int i = 0; i < ITEM_PROPERTY_MAP.size(); i++) {
+            int key = ITEM_PROPERTY_MAP.keyAt(i);
+            ShoppingItem item = ITEM_PROPERTY_MAP.get(key);
             item.resetAlpha();
         }
     }
@@ -69,7 +69,7 @@ class ShoppingListContent {
             this.stk_text = stk_text;
         }
 
-        protected ShoppingItem(Parcel in) {
+        ShoppingItem(Parcel in) {
             id = in.readInt();
             name = in.readString();
             image_id = in.readInt();

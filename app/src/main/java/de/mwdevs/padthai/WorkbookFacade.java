@@ -1,6 +1,7 @@
 package de.mwdevs.padthai;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -47,9 +48,12 @@ class WorkbookFacade {
         ArrayList<ShoppingListContent.ShoppingItem> items = new ArrayList<>();
 
         for (int pos = 0; pos <= mSheet0.getPhysicalNumberOfRows() - EXCEL_SHEET_ROW_OFFSET; pos++) {
-            String item_name = getItemName(pos);
-            ShoppingListContent.ShoppingItem item = ShoppingListContent.ITEM_PROPERTY_MAP.get(item_name);
-            assert item != null;
+            int item_id = getItemId(pos);
+            ShoppingListContent.ShoppingItem item = ShoppingListContent.ITEM_PROPERTY_MAP.get(item_id);
+            if (item == null) {
+                Log.e(WorkbookFacade.class.getName(), "item was null. It was not added! Its ID was: " + item_id);
+                continue;
+            }
             double item_gram = getItemGram(pos);
             if (item_gram == 0)  // Do not add the item to the shopping list if it's 0 gram.
                 continue;
@@ -60,8 +64,8 @@ class WorkbookFacade {
         return items;
     }
 
-    private String getItemName(int position) {
-        return getStringCellValueInColumnB(mSheet0, EXCEL_SHEET_ROW_OFFSET + position);
+    private int getItemId(int position) {
+        return (int) getNumericCellValue(mSheet0, "A", EXCEL_SHEET_ROW_OFFSET + position);
     }
 
     private double getItemGram(int position) {
@@ -75,11 +79,6 @@ class WorkbookFacade {
     private void setCellValueInColumnB(@NonNull Sheet sheet, int row, double value) {
         Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex("B"));
         cell.setCellValue(value);
-    }
-
-    private String getStringCellValueInColumnB(@NonNull Sheet sheet, int row) {
-        Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex("B"));
-        return cell.getStringCellValue();
     }
 
     private double getNumericCellValue(@NonNull Sheet sheet, String column, int row) {
