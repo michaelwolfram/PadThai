@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
@@ -59,6 +60,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     private ShowcaseView.Builder showcaseViewBuilder;
     private ShowcaseView showcaseView;
     private RecyclerViewScrollDisabler recyclerViewScrollDisabler;
+    private boolean gotAdapterDataFromSavedInstanceState;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -75,6 +77,8 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
+
+        hideProgressBarIfDataWasAlreadySet();
 
         initShowcaseViewBuilder();
         setupRecyclerView();
@@ -105,6 +109,8 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
         if (!mAdapter.hasData()) {
             loadDataInBackground();
+        } else {
+            gotAdapterDataFromSavedInstanceState = true;
         }
     }
 
@@ -112,9 +118,17 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         new LoadExcelSheetTask(this).execute(EXCEL_FILENAME);
     }
 
+    private void hideProgressBarIfDataWasAlreadySet() {
+        if (gotAdapterDataFromSavedInstanceState)
+            hideProgressBar();
+    }
+
     private void triggerShowcaseView() {
-        if (showcaseViewBuilder.hasShowcaseViewShot()) {
-            // there's no need to continue building the ShowcaseView since it has been shot before
+        boolean isShowing = showcaseView != null && showcaseView.isShowing();
+        if (showcaseViewBuilder.hasShowcaseViewShot() || isShowing) {
+            // there's no need to continue building/showing the ShowcaseView since
+            // a) it has been shot before
+            // b) it is already/still showing.
             return;
         }
 
@@ -164,6 +178,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
                             public void onClick(View v) {
                                 recyclerView.removeOnScrollListener(recyclerViewScrollDisabler);
                                 showcaseView.hide();
+                                mAdapter.resetData();
                             }
                         });
                     }
@@ -246,6 +261,14 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
     private void updateAdapter(Workbook workbook) {
         mAdapter.updateDataFromWorkbook(workbook);
+        hideProgressBar();
+    }
+
+    private void hideProgressBar() {
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        if (progressBar != null) {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     private static class LoadExcelSheetTask extends AsyncTask<String, Void, Workbook> {

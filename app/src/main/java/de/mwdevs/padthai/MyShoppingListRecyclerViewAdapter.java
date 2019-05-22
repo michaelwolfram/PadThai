@@ -118,8 +118,15 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         this.mValues = mValues;
     }
 
-    public boolean hasData() {
+    boolean hasData() {
         return getItemCount() > 0;
+    }
+
+    void resetData() {
+        for (ShoppingItem item : mValues) {
+            item.resetAlpha();
+        }
+        notifyDataSetChanged();
     }
 
     @Override
