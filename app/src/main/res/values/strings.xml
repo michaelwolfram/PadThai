@@ -1,20 +1,20 @@
 <resources>
-    <string name="app_name">Pad Thai</string>
+    <string name="app_name" translatable="false">Pad Thai</string>
     <string name="action_settings">Settings</string>
-    <string name="header">Pad Thai</string>
-    <string name="sub_header">Bestandteile</string>
-    <string name="todo">TODO</string>
+    <string name="header" translatable="false">Pad Thai</string>
+    <string name="sub_header">Components</string>
+    <string name="this_is_not_an_image_description" translatable="false">this_is_not_an_image_description</string>
     <string name="dish_component_text">Component Name</string>
-    <string name="_0">0</string>
-    <string name="x">x</string>
-    <string name="paste">Chili Paste</string>
-    <string name="sosse">Erdnuss Soße</string>
-    <string name="pad_thai">Pad Thai</string>
+    <string name="_0" translatable="false">0</string>
+    <string name="x" translatable="false">x</string>
+    <string name="paste">chili paste</string>
+    <string name="sosse">peanut sauce</string>
+    <string name="pad_thai" translatable="false">Pad Thai</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="g">g</string>
-    <string name="ml">ml</string>
-    <string name="stk">Stk.</string>
-    <string name="pkg">Pkg.</string>
+    <string name="g" translatable="false">g</string>
+    <string name="ml" translatable="false">ml</string>
+    <string name="stk">pc.</string>
+    <string name="pkg">pkg.</string>
     <string name="got_it">Got it</string>
     <string name="toggle_view">Toggle View</string>
     <string name="item_in_cart">Item in shopping cart?</string>
@@ -23,9 +23,24 @@
     <string name="try_long_click">\n…try long-clicking!</string>
     <string name="click_me">Click me!</string>
     <string name="then_shopping_list_shows">\n…then the shopping list opens!</string>
-    <string name="placeholder_s">%1$s</string>
-    <string name="placeholder_d">%1$d</string>
-    <string name="placeholder_dot1f">%1$.1f</string>
-    <string name="empty_string" />
-    <string name="no_component_selected">Nothing selected yet. What do you want to cook?</string>
+    <string name="placeholder_s" translatable="false">%1$s</string>
+    <string name="placeholder_d" translatable="false">%1$d</string>
+    <string name="placeholder_dot1f" translatable="false">%1$.1f</string>
+    <string name="empty_string" translatable="false" />
+    <string name="no_component_selected">Nothing selected. What do you want to cook?</string>
+    <string name="karotten">Carrots</string>
+    <string name="zwiebeln">Onions</string>
+    <string name="knoblauch">Garlic</string>
+    <string name="chili">Chili (dry)</string>
+    <string name="oel">Oil</string>
+    <string name="soja_sosse">Soja sauce</string>
+    <string name="zucker">br. sugar</string>
+    <string name="limettensaft">Lime juice</string>
+    <string name="tomaten">Tomatos</string>
+    <string name="erdnuesse">Peanuts</string>
+    <string name="kokosmilch">Coconut milk</string>
+    <string name="fruehlingszwiebeln">Spring onions</string>
+    <string name="sprossen">Sprouts</string>
+    <string name="reisnudeln">Rice noodles</string>
+    <string name="tofu">Tofu</string>
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Einstellungen</string>
+    <string name="click_me">Klick mich!</string>
+    <string name="click_will_mark">\n…klicken wird es markieren!</string>
+    <string name="dish_component_text">Bestandteil Name</string>
+    <string name="got_it">Alles klar</string>
+    <string name="item_in_cart">Artikel im Einkaufswagen?</string>
+    <string name="karotten">Karotten</string>
+    <string name="zwiebeln">Zwiebeln</string>
+    <string name="knoblauch">Knoblauch</string>
+    <string name="chili">Chili (trocken)</string>
+    <string name="oel">Öl</string>
+    <string name="soja_sosse">Soja Soße</string>
+    <string name="zucker">br. Zucker</string>
+    <string name="limettensaft">Limettensaft</string>
+    <string name="tomaten">Tomaten</string>
+    <string name="erdnuesse">Erdnüsse</string>
+    <string name="kokosmilch">Kokosmilch</string>
+    <string name="fruehlingszwiebeln">Frühl.zwiebel</string>
+    <string name="sprossen">Sprossen</string>
+    <string name="reisnudeln">Reisnudeln</string>
+    <string name="tofu">Tofu</string>
+    <string name="no_component_selected">Nichts ausgewählt. Was willst du kochen?</string>
+    <string name="paste">Chilipaste</string>
+    <string name="pkg">Pkg.</string>
+    <string name="sosse">Erdnusssoße</string>
+    <string name="stk">Stk.</string>
+    <string name="sub_header">Bestandteile</string>
+    <string name="then_shopping_list_shows">\n…dann öffnet sich die Einkaufsliste!</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="toggle_view">Ansicht umschalten</string>
+    <string name="try_long_click">\n…bleib drauf!</string>
+    <string name="what_that_ingredient">Was ist diese Zutat?</string>
+</resources>

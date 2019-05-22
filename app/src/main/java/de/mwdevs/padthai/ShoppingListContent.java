@@ -1,5 +1,6 @@
 package de.mwdevs.padthai;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -11,22 +12,22 @@ class ShoppingListContent {
 
     static final Map<String, ShoppingItem> ITEM_PROPERTY_MAP = new HashMap<>();
 
-    static {
-        addItem(new ShoppingItem(1, "Karotten", R.mipmap.karotten_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(2, "Zwiebeln", R.mipmap.zwiebeln_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(3, "Knoblauch", R.mipmap.knoblauch_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(4, "Chili (trocken)", R.mipmap.chilischoten_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(5, "Öl", R.mipmap.sojaoel_round, R.string.ml, R.string.pkg));
-        addItem(new ShoppingItem(6, "Soja Soße", R.mipmap.sojasosse_round, R.string.ml, R.string.pkg));
-        addItem(new ShoppingItem(7, "br. Zucker", R.mipmap.braunerzucker_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(8, "Limettensaft", R.mipmap.limetten_round, R.string.ml, R.string.stk));
-        addItem(new ShoppingItem(9, "Tomaten", R.mipmap.tomaten_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(10, "Erdnüsse", R.mipmap.erdnuesse_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(11, "Kokosmilch", R.mipmap.kokosmilch_round, R.string.ml, R.string.pkg));
-        addItem(new ShoppingItem(12, "Frühl.zwiebel", R.mipmap.fruehlingszwiebeln_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(13, "Sprossen", R.mipmap.mungobohnensprossen_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(14, "Reisnudeln", R.mipmap.reisnudeln_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(15, "Tofu", R.mipmap.tofu_round, R.string.g, R.string.pkg));
+    static void initItemPropertyMap(Context context) {
+        addItem(new ShoppingItem(1, context.getString(R.string.karotten), R.mipmap.karotten_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(2, context.getString(R.string.zwiebeln), R.mipmap.zwiebeln_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(3, context.getString(R.string.knoblauch), R.mipmap.knoblauch_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(4, context.getString(R.string.chili), R.mipmap.chilischoten_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(5, context.getString(R.string.oel), R.mipmap.sojaoel_round, R.string.ml, R.string.pkg));
+        addItem(new ShoppingItem(6, context.getString(R.string.soja_sosse), R.mipmap.sojasosse_round, R.string.ml, R.string.pkg));
+        addItem(new ShoppingItem(7, context.getString(R.string.zucker), R.mipmap.braunerzucker_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(8, context.getString(R.string.limettensaft), R.mipmap.limetten_round, R.string.ml, R.string.stk));
+        addItem(new ShoppingItem(9, context.getString(R.string.tomaten), R.mipmap.tomaten_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(10, context.getString(R.string.erdnuesse), R.mipmap.erdnuesse_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(11, context.getString(R.string.kokosmilch), R.mipmap.kokosmilch_round, R.string.ml, R.string.pkg));
+        addItem(new ShoppingItem(12, context.getString(R.string.fruehlingszwiebeln), R.mipmap.fruehlingszwiebeln_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(13, context.getString(R.string.sprossen), R.mipmap.mungobohnensprossen_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(14, context.getString(R.string.reisnudeln), R.mipmap.reisnudeln_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(15, context.getString(R.string.tofu), R.mipmap.tofu_round, R.string.g, R.string.pkg));
     }
 
     private static void addItem(ShoppingItem item) {
