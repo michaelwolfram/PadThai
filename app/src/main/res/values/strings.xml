@@ -43,4 +43,7 @@
     <string name="sprossen">Sprouts</string>
     <string name="reisnudeln">Rice noodles</string>
     <string name="tofu">Tofu</string>
+    <string name="title_activity_recipe_steps">Recipe Steps</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>
