@@ -1,4 +1,4 @@
-package de.mwdevs.padthai;
+package de.mwdevs.padthai.shopping_list;
 
 import android.content.Context;
 import android.os.Parcel;
@@ -6,11 +6,18 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.util.SparseArray;
 
-class ShoppingListContent {
+import de.mwdevs.padthai.R;
+
+public class ShoppingListContent {
 
     static final SparseArray<ShoppingItem> ITEM_PROPERTY_MAP = new SparseArray<>(15);
 
-    static void initItemPropertyMap(Context context) {
+    static boolean initialized = false;
+
+    public static void initItemPropertyMap(Context context) {
+        if (initialized)
+            return;
+
         addItem(new ShoppingItem(1, context.getString(R.string.karotten), R.mipmap.karotten_round, R.string.g, R.string.stk));
         addItem(new ShoppingItem(2, context.getString(R.string.zwiebeln), R.mipmap.zwiebeln_round, R.string.g, R.string.stk));
         addItem(new ShoppingItem(3, context.getString(R.string.knoblauch), R.mipmap.knoblauch_round, R.string.g, R.string.stk));
@@ -26,13 +33,15 @@ class ShoppingListContent {
         addItem(new ShoppingItem(13, context.getString(R.string.sprossen), R.mipmap.mungobohnensprossen_round, R.string.g, R.string.pkg));
         addItem(new ShoppingItem(14, context.getString(R.string.reisnudeln), R.mipmap.reisnudeln_round, R.string.g, R.string.pkg));
         addItem(new ShoppingItem(15, context.getString(R.string.tofu), R.mipmap.tofu_round, R.string.g, R.string.pkg));
+
+        initialized = true;
     }
 
     private static void addItem(ShoppingItem item) {
         ITEM_PROPERTY_MAP.put(item.id, item);
     }
 
-    static void resetItems() {
+    public static void resetItems() {
         for (int i = 0; i < ITEM_PROPERTY_MAP.size(); i++) {
             int key = ITEM_PROPERTY_MAP.keyAt(i);
             ShoppingItem item = ITEM_PROPERTY_MAP.get(key);

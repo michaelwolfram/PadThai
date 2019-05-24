@@ -32,4 +32,10 @@
     <string name="toggle_view">Ansicht umschalten</string>
     <string name="try_long_click">\n…bleib drauf!</string>
     <string name="what_that_ingredient">Was ist diese Zutat?</string>
+    <string name="title_activity_recipe_steps">Rezept Schritte</string>
+    <string name="tab_text_1">Schritt 1</string>
+    <string name="tab_text_2">Schritt 2 (optional)</string>
+    <string name="tab_text_3">Schritt 3 &amp; 4</string>
+    <string name="tab_text_4">Schritt 5</string>
+    <string name="put_in_the_wok">Put in the wok:</string>
 </resources>

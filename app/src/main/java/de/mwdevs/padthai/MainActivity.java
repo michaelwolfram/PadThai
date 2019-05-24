@@ -21,9 +21,14 @@ import android.widget.TextView;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
+import de.mwdevs.padthai.shopping_list.ShoppingListContent;
+
 import static java.lang.Math.max;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String PASTE_QUANTITY = "PASTE_QUANTITY";
+    public static final String SOSSE_QUANTITY = "SOSSE_QUANTITY";
+    public static final String PAD_THAI_QUANTITY = "PAD_THAI_QUANTITY";
     private TextView paste_quantity_text;
     private TextView sosse_quantity_text;
     private TextView pad_thai_quantity_text;
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setupComponentRows();
         setupImageViewWithAnimation();
         setupShowcaseViewAndImageViewOnClickListener();
+        setupRecipeStepsButton();
     }
 
     private void setupToolbar() {
@@ -137,15 +143,29 @@ public class MainActivity extends AppCompatActivity {
     private void openShoppingCart(int paste_quantity, int sosse_quantity, int pad_thai_quantity) {
         ShoppingListContent.resetItems();
 
-        Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
-        intent.putExtra(ShoppingCart.PASTE_QUANTITY, paste_quantity);
-        intent.putExtra(ShoppingCart.SOSSE_QUANTITY, sosse_quantity);
-        intent.putExtra(ShoppingCart.PAD_THAI_QUANTITY, pad_thai_quantity);
+        Intent intent = new Intent(MainActivity.this, ShoppingListActivity.class);
+        intent.putExtra(PASTE_QUANTITY, paste_quantity);
+        intent.putExtra(SOSSE_QUANTITY, sosse_quantity);
+        intent.putExtra(PAD_THAI_QUANTITY, pad_thai_quantity);
         startActivity(intent);
     }
 
     private int getIntFromTextView(@NonNull TextView textView) {
         return Integer.parseInt(textView.getText().toString());
+    }
+
+    private void setupRecipeStepsButton() {
+        TextView textView = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_name);
+        textView.setClickable(true);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pad_thai_quantity = getIntFromTextView(pad_thai_quantity_text);
+                Intent intent = new Intent(MainActivity.this, PadThaiRecipeStepsActivity.class);
+                intent.putExtra(PAD_THAI_QUANTITY, pad_thai_quantity);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -162,9 +182,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadComponentQuantities() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int paste_quantity_value = preferences.getInt(ShoppingCart.PASTE_QUANTITY, 0);
-        int sosse_quantity_value = preferences.getInt(ShoppingCart.SOSSE_QUANTITY, 0);
-        int pad_thai_quantity_value = preferences.getInt(ShoppingCart.PAD_THAI_QUANTITY, 0);
+        int paste_quantity_value = preferences.getInt(PASTE_QUANTITY, 0);
+        int sosse_quantity_value = preferences.getInt(SOSSE_QUANTITY, 0);
+        int pad_thai_quantity_value = preferences.getInt(PAD_THAI_QUANTITY, 0);
         paste_quantity_text.setText(getString(R.string.placeholder_d, paste_quantity_value));
         sosse_quantity_text.setText(getString(R.string.placeholder_d, sosse_quantity_value));
         pad_thai_quantity_text.setText(getString(R.string.placeholder_d, pad_thai_quantity_value));
@@ -173,9 +193,9 @@ public class MainActivity extends AppCompatActivity {
     private void saveComponentQuantities() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(ShoppingCart.PASTE_QUANTITY, getIntFromTextView(paste_quantity_text));
-        editor.putInt(ShoppingCart.SOSSE_QUANTITY, getIntFromTextView(sosse_quantity_text));
-        editor.putInt(ShoppingCart.PAD_THAI_QUANTITY, getIntFromTextView(pad_thai_quantity_text));
+        editor.putInt(PASTE_QUANTITY, getIntFromTextView(paste_quantity_text));
+        editor.putInt(SOSSE_QUANTITY, getIntFromTextView(sosse_quantity_text));
+        editor.putInt(PAD_THAI_QUANTITY, getIntFromTextView(pad_thai_quantity_text));
         editor.apply();
     }
 }

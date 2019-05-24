@@ -1,4 +1,4 @@
-package de.mwdevs.padthai;
+package de.mwdevs.padthai.shopping_list;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import java.util.ArrayList;
 
-import de.mwdevs.padthai.ShoppingListContent.ShoppingItem;
+import de.mwdevs.padthai.R;
+import de.mwdevs.padthai.shopping_list.ShoppingListContent.ShoppingItem;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ShoppingItem} and makes a call to the
@@ -31,9 +32,9 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
     private ArrayList<ShoppingItem> mValues;
     private boolean mShowListAsGrid;
 
-    MyShoppingListRecyclerViewAdapter(Context context, OnListInteractionListener listener,
-                                      int paste_quantity, int sosse_quantity, int pad_thai_quantity,
-                                      boolean showListAsGrid) {
+    public MyShoppingListRecyclerViewAdapter(Context context, OnListInteractionListener listener,
+                                             int paste_quantity, int sosse_quantity, int pad_thai_quantity,
+                                             boolean showListAsGrid) {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(mContext);
         mListener = listener;
@@ -48,7 +49,7 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         return mValues.get(position).id;
     }
 
-    void updateDataFromWorkbook(Workbook workbook) {
+    public void updateDataFromWorkbook(Workbook workbook) {
         if (workbook == null) {
             Log.e(MyShoppingListRecyclerViewAdapter.class.getName(), "Workbook was null. Data not updated!");
             return;
@@ -58,7 +59,7 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         notifyDataSetChanged();
     }
 
-    void setShowListAsGrid(boolean ShowListAsGrid) {
+    public void setShowListAsGrid(boolean ShowListAsGrid) {
         mShowListAsGrid = ShowListAsGrid;
     }
 
@@ -106,11 +107,11 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         });
     }
 
-    ArrayList<ShoppingItem> getData() {
+    public ArrayList<ShoppingItem> getData() {
         return mValues;
     }
 
-    void setData(ArrayList<ShoppingItem> mValues) {
+    public void setData(ArrayList<ShoppingItem> mValues) {
         if (mValues == null) {
             Log.e(MyShoppingListRecyclerViewAdapter.class.getName(), "Provided data was null. Data not updated!");
             return;
@@ -118,11 +119,11 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
         this.mValues = mValues;
     }
 
-    boolean hasData() {
+    public boolean hasData() {
         return getItemCount() > 0;
     }
 
-    void resetData() {
+    public void resetData() {
         for (ShoppingItem item : mValues) {
             item.resetAlpha();
         }

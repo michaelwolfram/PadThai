@@ -1,4 +1,4 @@
-package de.mwdevs.padthai;
+package de.mwdevs.padthai.shopping_list;
 
 import android.support.annotation.NonNull;
 import android.util.Log;

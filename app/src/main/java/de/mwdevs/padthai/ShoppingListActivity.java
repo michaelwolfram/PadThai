@@ -23,13 +23,14 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
+import de.mwdevs.padthai.shopping_list.MyShoppingListRecyclerViewAdapter;
+import de.mwdevs.padthai.shopping_list.OnListInteractionListener;
+import de.mwdevs.padthai.shopping_list.ShoppingListContent;
+
 import static java.lang.Math.max;
 
-public class ShoppingCart extends AppCompatActivity implements OnListInteractionListener {
+public class ShoppingListActivity extends AppCompatActivity implements OnListInteractionListener {
 
-    public static final String PASTE_QUANTITY = "PASTE_QUANTITY";
-    public static final String SOSSE_QUANTITY = "SOSSE_QUANTITY";
-    public static final String PAD_THAI_QUANTITY = "PAD_THAI_QUANTITY";
     public static final String CACHED_SHOPPING_LIST = "CACHED_SHOPPING_LIST";
     private static final String EXCEL_FILENAME = "Pad Thai Angaben.xls";
     /**
@@ -76,7 +77,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
         retrieveAdapterData(savedInstanceState);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping_cart);
+        setContentView(R.layout.activity_shopping_list);
 
         hideProgressBarIfDataWasAlreadySet();
 
@@ -86,9 +87,9 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
     private void consumeIndent() {
         Intent intent = getIntent();
-        paste_quantity = intent.getIntExtra(PASTE_QUANTITY, 0);
-        sosse_quantity = intent.getIntExtra(SOSSE_QUANTITY, 0);
-        pad_thai_quantity = intent.getIntExtra(PAD_THAI_QUANTITY, 0);
+        paste_quantity = intent.getIntExtra(MainActivity.PASTE_QUANTITY, 0);
+        sosse_quantity = intent.getIntExtra(MainActivity.SOSSE_QUANTITY, 0);
+        pad_thai_quantity = intent.getIntExtra(MainActivity.PAD_THAI_QUANTITY, 0);
     }
 
     public void initRecyclerViewAdapter() {
@@ -272,9 +273,9 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
     }
 
     private static class LoadExcelSheetTask extends AsyncTask<String, Void, Workbook> {
-        private WeakReference<ShoppingCart> activityReference;
+        private WeakReference<ShoppingListActivity> activityReference;
 
-        LoadExcelSheetTask(ShoppingCart activity) {
+        LoadExcelSheetTask(ShoppingListActivity activity) {
             activityReference = new WeakReference<>(activity);
         }
 
@@ -291,7 +292,7 @@ public class ShoppingCart extends AppCompatActivity implements OnListInteraction
 
         @Override
         protected void onPostExecute(Workbook workbook) {
-            ShoppingCart activity = activityReference.get();
+            ShoppingListActivity activity = activityReference.get();
             if (activity == null || activity.isFinishing())
                 return;
 
