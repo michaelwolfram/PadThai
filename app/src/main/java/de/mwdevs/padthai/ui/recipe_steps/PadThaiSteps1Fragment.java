@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import de.mwdevs.padthai.R;
@@ -51,16 +52,20 @@ public class PadThaiSteps1Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_pad_thai_steps1, container, false);
-//        adaptQuantityView(root, 42);
-//        adaptQuantityView(root, 43);
-//        adaptQuantityView(root, 44);
+        adaptQuantityView(root, R.id.step1_oil, RecipeQuantities.PadThai.Step1.el_oil, "EL", R.mipmap.sojaoel_round);
+        adaptQuantityView(root, R.id.step1_carrot, RecipeQuantities.PadThai.Step1.el_carrot, "EL", R.mipmap.karotten_round);
+        adaptQuantityView(root, R.id.step1_onion, RecipeQuantities.PadThai.Step1.el_onion, "EL", R.mipmap.zwiebeln_round);
+        adaptQuantityView(root, R.id.step1_tomato, RecipeQuantities.PadThai.Step1.el_tomato, "EL", R.mipmap.tomaten_round);
+        adaptQuantityView(root, R.id.step1_tofu, RecipeQuantities.PadThai.Step1.el_tofu, "EL", R.mipmap.sojaoel_round);
+        adaptQuantityView(root, R.id.step1_garlic, RecipeQuantities.PadThai.Step1.el_garlic, "EL", R.mipmap.knoblauch_round);
         return root;
     }
 
-    private void adaptQuantityView(View parent, int layout_id) {
-        int el = 42; // TODO: 25.05.19 read from TextView
-        ((TextView) parent.findViewById(layout_id))
-                .setText(getString(R.string.placeholder_d, el * mQuantity));
+    private void adaptQuantityView(View parent, int layout_id, float el, String el_string, int image_id) {
+        ((TextView) parent.findViewById(layout_id).findViewById(R.id.ingredient_g_value))
+                .setText(getString(R.string.placeholder_d, Math.round(el * mQuantity)));
+        ((TextView) parent.findViewById(layout_id).findViewById(R.id.ingredient_g)).setText(el_string);
+        ((ImageView) parent.findViewById(layout_id).findViewById(R.id.ingredient_image)).setImageResource(image_id);
     }
 
 }

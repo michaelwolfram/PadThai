@@ -1,5 +1,6 @@
 package de.mwdevs.padthai;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -11,17 +12,21 @@ import de.mwdevs.padthai.ui.recipe_steps.SectionsPagerAdapter;
 
 public class PadThaiRecipeStepsActivity extends AppCompatActivity {
 
+    private int pad_thai_quantity = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int quantity = 0;
         if (savedInstanceState != null) {
-            quantity = savedInstanceState.getInt(MainActivity.PAD_THAI_QUANTITY);
+            pad_thai_quantity = savedInstanceState.getInt(MainActivity.PAD_THAI_QUANTITY);
+        } else {
+            consumeIndent();
         }
 
         setContentView(R.layout.activity_recipe_steps);
-        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), quantity);
+        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this,
+                getSupportFragmentManager(), pad_thai_quantity);
         final ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
@@ -46,5 +51,10 @@ public class PadThaiRecipeStepsActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(currentItem - 1);
             }
         });
+    }
+
+    private void consumeIndent() {
+        Intent intent = getIntent();
+        pad_thai_quantity = intent.getIntExtra(MainActivity.PAD_THAI_QUANTITY, 0);
     }
 }
