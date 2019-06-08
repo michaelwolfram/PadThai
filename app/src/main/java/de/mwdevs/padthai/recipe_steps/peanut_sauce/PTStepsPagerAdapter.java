@@ -1,4 +1,4 @@
-package de.mwdevs.padthai.ui.recipe_steps;
+package de.mwdevs.padthai.recipe_steps.peanut_sauce;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 import de.mwdevs.padthai.R;
 
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class PTStepsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final ArrayList<Integer> TAB_TITLES = new ArrayList<>(Arrays.asList(
@@ -25,7 +25,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private final Context mContext;
     private final int mQuantity;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm, int quantity) {
+    public PTStepsPagerAdapter(Context context, FragmentManager fm, int quantity) {
         super(fm);
         mContext = context;
         mQuantity = quantity;
@@ -33,20 +33,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return PadThaiSteps0Fragment.newInstance(mQuantity);
-            case 1:
-                return PadThaiSteps1Fragment.newInstance(mQuantity);
-            case 2:
-                return PadThaiSteps2Fragment.newInstance(mQuantity);
-            case 3:
-                return PadThaiSteps3n4Fragment.newInstance(mQuantity);
-            case 4:
-                return PadThaiSteps5Fragment.newInstance(mQuantity);
-            default:
-                return PadThaiSteps0Fragment.newInstance(mQuantity);
-        }
+        return PTStepsFragment.newInstance(position, mQuantity);
     }
 
     @Nullable

@@ -32,7 +32,7 @@
                 android:value="de.mwdevs.padthai.MainActivity" />
         </activity>
         <activity
-            android:name=".PadThaiRecipeStepsActivity"
+            android:name=".PadThaiStepsActivity"
             android:label="@string/title_activity_recipe_steps"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

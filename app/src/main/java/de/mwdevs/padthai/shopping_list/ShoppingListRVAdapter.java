@@ -22,7 +22,7 @@ import de.mwdevs.padthai.shopping_list.ShoppingListContent.ShoppingItem;
  * {@link RecyclerView.Adapter} that can display a {@link ShoppingItem} and makes a call to the
  * specified {@link OnListInteractionListener}.
  */
-public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MyShoppingListRecyclerViewAdapter.ViewHolder> {
+public class ShoppingListRVAdapter extends RecyclerView.Adapter<ShoppingListRVAdapter.ViewHolder> {
 
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
@@ -32,9 +32,9 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
     private ArrayList<ShoppingItem> mValues;
     private boolean mShowListAsGrid;
 
-    public MyShoppingListRecyclerViewAdapter(Context context, OnListInteractionListener listener,
-                                             int paste_quantity, int sosse_quantity, int pad_thai_quantity,
-                                             boolean showListAsGrid) {
+    public ShoppingListRVAdapter(Context context, OnListInteractionListener listener,
+                                 int paste_quantity, int sosse_quantity, int pad_thai_quantity,
+                                 boolean showListAsGrid) {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(mContext);
         mListener = listener;
@@ -51,7 +51,7 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
     public void updateDataFromWorkbook(Workbook workbook) {
         if (workbook == null) {
-            Log.e(MyShoppingListRecyclerViewAdapter.class.getName(), "Workbook was null. Data not updated!");
+            Log.e(ShoppingListRVAdapter.class.getName(), "Workbook was null. Data not updated!");
             return;
         }
         mWorkbookFacade.setWorkbook(workbook);
@@ -113,7 +113,7 @@ public class MyShoppingListRecyclerViewAdapter extends RecyclerView.Adapter<MySh
 
     public void setData(ArrayList<ShoppingItem> mValues) {
         if (mValues == null) {
-            Log.e(MyShoppingListRecyclerViewAdapter.class.getName(), "Provided data was null. Data not updated!");
+            Log.e(ShoppingListRVAdapter.class.getName(), "Provided data was null. Data not updated!");
             return;
         }
         this.mValues = mValues;

@@ -8,9 +8,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import de.mwdevs.padthai.ui.recipe_steps.SectionsPagerAdapter;
+import de.mwdevs.padthai.recipe_steps.pad_thai.PTStepsPagerAdapter;
 
-public class PadThaiRecipeStepsActivity extends AppCompatActivity {
+public class PadThaiStepsActivity extends AppCompatActivity {
 
     private int pad_thai_quantity = 0;
 
@@ -25,10 +25,10 @@ public class PadThaiRecipeStepsActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_recipe_steps);
-        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this,
+        final PTStepsPagerAdapter pTStepsPagerAdapter = new PTStepsPagerAdapter(this,
                 getSupportFragmentManager(), pad_thai_quantity);
         final ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setAdapter(pTStepsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
@@ -37,7 +37,7 @@ public class PadThaiRecipeStepsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int currentItem = viewPager.getCurrentItem();
-                if (currentItem + 1 < sectionsPagerAdapter.getCount())
+                if (currentItem + 1 < pTStepsPagerAdapter.getCount())
                     viewPager.setCurrentItem(currentItem + 1);
             }
         });

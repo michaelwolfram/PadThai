@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setupComponentRows();
         setupImageViewWithAnimation();
         setupShowcaseViewAndImageViewOnClickListener();
-        setupRecipeStepsButton();
+        setupRecipeStepsButtons();
     }
 
     private void setupToolbar() {
@@ -154,14 +154,38 @@ public class MainActivity extends AppCompatActivity {
         return Integer.parseInt(textView.getText().toString());
     }
 
-    private void setupRecipeStepsButton() {
-        TextView textView = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_name);
-        textView.setClickable(true);
-        textView.setOnClickListener(new View.OnClickListener() {
+    private void setupRecipeStepsButtons() {
+        TextView textView1 = findViewById(R.id.first_component_row).findViewById(R.id.dish_component_name);
+        textView1.setClickable(true);
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int paste_quantity = getIntFromTextView(paste_quantity_text);
+                Intent intent = new Intent(MainActivity.this, PadThaiStepsActivity.class);
+                intent.putExtra(PAD_THAI_QUANTITY, paste_quantity); // TODO: 09.06.19 change string
+                startActivity(intent);
+            }
+        });
+
+        TextView textView2 = findViewById(R.id.second_component_row).findViewById(R.id.dish_component_name);
+        textView2.setClickable(true);
+        textView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int sosse_quantity = getIntFromTextView(sosse_quantity_text);
+                Intent intent = new Intent(MainActivity.this, PadThaiStepsActivity.class);
+                intent.putExtra(PAD_THAI_QUANTITY, sosse_quantity); // TODO: 09.06.19 change string
+                startActivity(intent);
+            }
+        });
+
+        TextView textView3 = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_name);
+        textView3.setClickable(true);
+        textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int pad_thai_quantity = getIntFromTextView(pad_thai_quantity_text);
-                Intent intent = new Intent(MainActivity.this, PadThaiRecipeStepsActivity.class);
+                Intent intent = new Intent(MainActivity.this, PadThaiStepsActivity.class);
                 intent.putExtra(PAD_THAI_QUANTITY, pad_thai_quantity);
                 startActivity(intent);
             }

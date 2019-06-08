@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.recipe_steps.PadThaiSteps1Fragment">
+    tools:context=".recipe_steps.pad_thai.PTStepsFragment">
 
     <TextView
         android:id="@+id/step_text1"

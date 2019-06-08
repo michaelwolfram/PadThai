@@ -23,7 +23,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
-import de.mwdevs.padthai.shopping_list.MyShoppingListRecyclerViewAdapter;
+import de.mwdevs.padthai.shopping_list.ShoppingListRVAdapter;
 import de.mwdevs.padthai.shopping_list.OnListInteractionListener;
 import de.mwdevs.padthai.shopping_list.ShoppingListContent;
 
@@ -55,7 +55,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
     private int pad_thai_quantity = 0;
     private RecyclerView recyclerView = null;
     private RecyclerView.LayoutManager layoutManager = null;
-    private MyShoppingListRecyclerViewAdapter mAdapter = null;
+    private ShoppingListRVAdapter mAdapter = null;
     private boolean showListAsGrid;
     private Snackbar snackbar;
     private ShowcaseView.Builder showcaseViewBuilder;
@@ -93,7 +93,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
     }
 
     public void initRecyclerViewAdapter() {
-        mAdapter = new MyShoppingListRecyclerViewAdapter(this, this,
+        mAdapter = new ShoppingListRVAdapter(this, this,
                 paste_quantity, sosse_quantity, pad_thai_quantity, showListAsGrid);
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
