@@ -33,9 +33,19 @@
     <string name="try_long_click">\n…bleib drauf!</string>
     <string name="what_that_ingredient">Was ist diese Zutat?</string>
     <string name="title_activity_recipe_steps">Rezept Schritte</string>
+    <string name="tab_text_0">Schritt 0</string>
     <string name="tab_text_1">Schritt 1</string>
-    <string name="tab_text_2">Schritt 2 (optional)</string>
-    <string name="tab_text_3">Schritt 3 &amp; 4</string>
-    <string name="tab_text_4">Schritt 5</string>
-    <string name="put_in_the_wok">Put in the wok:</string>
+    <string name="tab_text_2">Schritt 2 (opt.)</string>
+    <string name="tab_text_3n4">Schritt 3&#160;&amp;&#160;4</string>
+    <string name="tab_text_5">Schritt 5</string>
+    <string name="put_in_the_wok">Gebe in den Wok:</string>
+    <string name="el">EL</string>
+    <string name="heat_low">Niedrige Hitze</string>
+    <string name="tl">TL</string>
+    <string name="prepare_ingredients">Bereite vorm Kochen vor:</string>
+    <string name="soak_and_fry">1. Nudeln in kaltem Wasser einweichen\n2. Tofu frittieren</string>
+    <string name="no_egg">Vegan -> no egg! ;-)</string>
+    <string name="add">Gebe hinzu:</string>
+    <string name="mix_and_heat_up">Gut mischen &amp; hohe Hitze</string>
+    <string name="add_to_taste">Nach Belieben würzen:</string>
 </resources>
