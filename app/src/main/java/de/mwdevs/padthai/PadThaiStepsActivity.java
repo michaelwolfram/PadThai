@@ -32,8 +32,8 @@ public class PadThaiStepsActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        final FloatingActionButton fab1 = findViewById(R.id.fab);
+        fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int currentItem = viewPager.getCurrentItem();
@@ -42,13 +42,29 @@ public class PadThaiStepsActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab2 = findViewById(R.id.fab2);
+        final FloatingActionButton fab2 = findViewById(R.id.fab2);
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int currentItem = viewPager.getCurrentItem();
                 if (currentItem - 1 >= 0)
                     viewPager.setCurrentItem(currentItem - 1);
+            }
+        });
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+            }
+            @Override
+            public void onPageSelected(int i) {
+                fab2.setAlpha(i == 0 ? 0.0f : 1.0f);
+                fab2.setClickable(i != 0);
+                fab1.setAlpha(i+1 == pTStepsPagerAdapter.getCount() ? 0.0f : 1.0f);
+                fab1.setClickable(i+1 != pTStepsPagerAdapter.getCount());
+            }
+            @Override
+            public void onPageScrollStateChanged(int i) {
             }
         });
     }

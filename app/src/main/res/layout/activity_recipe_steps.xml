@@ -39,6 +39,8 @@
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
         android:rotation="180"
+        android:clickable="false"
+        android:alpha="0.0"
         app:srcCompat="@android:drawable/ic_media_play" />
 
 </android.support.design.widget.CoordinatorLayout>
