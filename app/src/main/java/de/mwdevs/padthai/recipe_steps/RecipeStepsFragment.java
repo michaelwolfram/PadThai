@@ -100,6 +100,7 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
                                    RecipeQuantityInfo info) {
         View newQuantityView = addViewToParent(gridLayout, inflater);
         setValuesInQuantityView(newQuantityView, info);
+        createOnClickListener(newQuantityView);
     }
 
     private View addViewToParent(GridLayout gridLayout, @NonNull LayoutInflater inflater) {
@@ -113,6 +114,15 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
         ((TextView) newQuantityView.findViewById(R.id.ingredient_g_value)).setText(el_string);
         ((TextView) newQuantityView.findViewById(R.id.ingredient_g)).setText(info.string_id);
         ((ImageView) newQuantityView.findViewById(R.id.ingredient_image)).setImageResource(info.image_id);
+    }
+
+    private void createOnClickListener(View newQuantityView) {
+        newQuantityView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setAlpha((3.15f - v.getAlpha()) % 2);
+            }
+        });
     }
 
     public String removeZero(float number) {

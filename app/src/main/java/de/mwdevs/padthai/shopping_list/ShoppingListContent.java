@@ -12,7 +12,7 @@ public class ShoppingListContent {
 
     static final SparseArray<ShoppingItem> ITEM_PROPERTY_MAP = new SparseArray<>(15);
 
-    static boolean initialized = false;
+    private static boolean initialized = false;
 
     public static void initItemPropertyMap(Context context) {
         if (initialized)
@@ -104,7 +104,7 @@ public class ShoppingListContent {
 
         void toggleAlpha() {
             if (alpha == 1.0f)
-                alpha = 0.2f;
+                alpha = 0.15f;
             else
                 alpha = 1.0f;
         }
