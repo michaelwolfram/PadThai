@@ -1,4 +1,4 @@
-package de.mwdevs.padthai.recipe_steps.chili_paste;
+package de.mwdevs.padthai.recipe_steps;
 
 import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
@@ -11,9 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import de.mwdevs.padthai.R;
-import de.mwdevs.padthai.recipe_steps.RecipeQuantities;
 
-class PTStepViewModel extends ViewModel {
+class PeanutSauceStepViewModel extends ViewModel {
 
     @StringRes
     private static final ArrayList<Integer> TEXT_1 = new ArrayList<>(Arrays.asList(
@@ -82,32 +81,4 @@ class PTStepViewModel extends ViewModel {
             return RECIPE_QUANTITY_INFO_LIST.get(input);
         }
     });
-
-    void setIndex(int index) {
-        mIndex.setValue(index);
-    }
-
-    LiveData<Integer> getText1() {
-        return mText1;
-    }
-
-    LiveData<Integer> getText2() {
-        return mText2;
-    }
-
-    LiveData<ArrayList<RecipeQuantityInfo>> getRecipeQuantityInfo() {
-        return mRecipeQuantityInfo;
-    }
-
-    static class RecipeQuantityInfo {
-        float el;
-        int string_id;
-        int image_id;
-
-        RecipeQuantityInfo(float el, int string_id, int image_id) {
-            this.el = el;
-            this.string_id = string_id;
-            this.image_id = image_id;
-        }
-    }
 }

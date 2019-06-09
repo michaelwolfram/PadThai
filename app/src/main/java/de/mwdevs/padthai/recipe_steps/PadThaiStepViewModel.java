@@ -1,20 +1,15 @@
-package de.mwdevs.padthai.recipe_steps.peanut_sauce;
+package de.mwdevs.padthai.recipe_steps;
 
 import android.arch.core.util.Function;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
-import android.arch.lifecycle.ViewModel;
 import android.support.annotation.StringRes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import de.mwdevs.padthai.R;
-import de.mwdevs.padthai.recipe_steps.RecipeQuantities;
 
-class PTStepViewModel extends ViewModel {
-
+public class PadThaiStepViewModel extends BaseStepViewModel {
     @StringRes
     private static final ArrayList<Integer> TEXT_1 = new ArrayList<>(Arrays.asList(
             R.string.prepare_ingredients,
@@ -63,51 +58,24 @@ class PTStepViewModel extends ViewModel {
             ))
     ));
 
-    private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
-    private LiveData<Integer> mText1 = Transformations.map(mIndex, new Function<Integer, Integer>() {
-        @Override
-        public Integer apply(Integer input) {
-            return TEXT_1.get(input);
-        }
-    });
-    private LiveData<Integer> mText2 = Transformations.map(mIndex, new Function<Integer, Integer>() {
-        @Override
-        public Integer apply(Integer input) {
-            return TEXT_2.get(input);
-        }
-    });
-    private LiveData<ArrayList<RecipeQuantityInfo>> mRecipeQuantityInfo = Transformations.map(mIndex, new Function<Integer, ArrayList<RecipeQuantityInfo>>() {
-        @Override
-        public ArrayList<RecipeQuantityInfo> apply(Integer input) {
-            return RECIPE_QUANTITY_INFO_LIST.get(input);
-        }
-    });
-
-    void setIndex(int index) {
-        mIndex.setValue(index);
-    }
-
-    LiveData<Integer> getText1() {
-        return mText1;
-    }
-
-    LiveData<Integer> getText2() {
-        return mText2;
-    }
-
-    LiveData<ArrayList<RecipeQuantityInfo>> getRecipeQuantityInfo() {
-        return mRecipeQuantityInfo;
-    }
-
-    static class RecipeQuantityInfo {
-        float el;
-        int string_id;
-        int image_id;
-
-        RecipeQuantityInfo(float el, int string_id, int image_id) {
-            this.el = el;
-            this.string_id = string_id;
-            this.image_id = image_id;
-        }
+    PadThaiStepViewModel() {
+        mText1 = Transformations.map(mIndex, new Function<Integer, Integer>() {
+            @Override
+            public Integer apply(Integer input) {
+                return TEXT_1.get(input);
+            }
+        });
+        mText2 = Transformations.map(mIndex, new Function<Integer, Integer>() {
+            @Override
+            public Integer apply(Integer input) {
+                return TEXT_2.get(input);
+            }
+        });
+        mRecipeQuantityInfo = Transformations.map(mIndex, new Function<Integer, ArrayList<RecipeQuantityInfo>>() {
+            @Override
+            public ArrayList<RecipeQuantityInfo> apply(Integer input) {
+                return RECIPE_QUANTITY_INFO_LIST.get(input);
+            }
+        });
     }
 }

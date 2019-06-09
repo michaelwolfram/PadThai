@@ -8,7 +8,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import de.mwdevs.padthai.recipe_steps.pad_thai.PTStepsPagerAdapter;
+import de.mwdevs.padthai.recipe_steps.PadThaiStepViewModel;
+import de.mwdevs.padthai.recipe_steps.RecipeStepsPagerAdapter;
 
 public class PadThaiStepsActivity extends AppCompatActivity {
 
@@ -17,16 +18,18 @@ public class PadThaiStepsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (savedInstanceState != null) {
             pad_thai_quantity = savedInstanceState.getInt(MainActivity.PAD_THAI_QUANTITY);
         } else {
             consumeIndent();
         }
+        setupViewPagerAndStuff();
+    }
 
+    private void setupViewPagerAndStuff() {
         setContentView(R.layout.activity_recipe_steps);
-        final PTStepsPagerAdapter pTStepsPagerAdapter = new PTStepsPagerAdapter(this,
-                getSupportFragmentManager(), pad_thai_quantity);
+        final RecipeStepsPagerAdapter pTStepsPagerAdapter = new RecipeStepsPagerAdapter(getSupportFragmentManager(), this,
+                pad_thai_quantity, PadThaiStepViewModel.class);
         final ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(pTStepsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
