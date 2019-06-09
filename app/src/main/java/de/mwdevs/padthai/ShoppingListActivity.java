@@ -10,8 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.Window;
 import android.widget.ProgressBar;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
@@ -23,9 +25,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
-import de.mwdevs.padthai.shopping_list.ShoppingListRVAdapter;
 import de.mwdevs.padthai.shopping_list.OnListInteractionListener;
 import de.mwdevs.padthai.shopping_list.ShoppingListContent;
+import de.mwdevs.padthai.shopping_list.ShoppingListRVAdapter;
 
 import static java.lang.Math.max;
 
@@ -72,6 +74,8 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setupActivityTransition();
+
         consumeIndent();
         initRecyclerViewAdapter();
         retrieveAdapterData(savedInstanceState);
@@ -83,6 +87,13 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
 
         initShowcaseViewBuilder();
         setupRecyclerView();
+    }
+
+    private void setupActivityTransition() {
+        Window window = getWindow();
+        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        window.setEnterTransition(new Slide());
+        window.setAllowEnterTransitionOverlap(true);
     }
 
     private void consumeIndent() {

@@ -3,6 +3,7 @@ package de.mwdevs.padthai;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(PASTE_QUANTITY, paste_quantity);
         intent.putExtra(SOSSE_QUANTITY, sosse_quantity);
         intent.putExtra(PAD_THAI_QUANTITY, pad_thai_quantity);
-        startActivity(intent);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
     private int getIntFromTextView(@NonNull TextView textView) {
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 int paste_quantity = getIntFromTextView(paste_quantity_text);
                 Intent intent = new Intent(MainActivity.this, PadThaiStepsActivity.class);
                 intent.putExtra(PAD_THAI_QUANTITY, paste_quantity); // TODO: 09.06.19 change string
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
             }
         });
 
@@ -175,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 int sosse_quantity = getIntFromTextView(sosse_quantity_text);
                 Intent intent = new Intent(MainActivity.this, PadThaiStepsActivity.class);
                 intent.putExtra(PAD_THAI_QUANTITY, sosse_quantity); // TODO: 09.06.19 change string
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
             }
         });
 
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 int pad_thai_quantity = getIntFromTextView(pad_thai_quantity_text);
                 Intent intent = new Intent(MainActivity.this, PadThaiStepsActivity.class);
                 intent.putExtra(PAD_THAI_QUANTITY, pad_thai_quantity);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
             }
         });
     }

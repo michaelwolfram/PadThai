@@ -6,7 +6,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Explode;
 import android.view.View;
+import android.view.Window;
 
 import de.mwdevs.padthai.recipe_steps.PadThaiStepViewModel;
 import de.mwdevs.padthai.recipe_steps.RecipeStepsPagerAdapter;
@@ -17,6 +19,7 @@ public class PadThaiStepsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setupActivityTransition();
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             pad_thai_quantity = savedInstanceState.getInt(MainActivity.PAD_THAI_QUANTITY);
@@ -24,6 +27,13 @@ public class PadThaiStepsActivity extends AppCompatActivity {
             consumeIndent();
         }
         setupViewPagerAndStuff();
+    }
+
+    private void setupActivityTransition() {
+        Window window = getWindow();
+        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        window.setEnterTransition(new Explode());
+        window.setAllowEnterTransitionOverlap(true);
     }
 
     private void setupViewPagerAndStuff() {
@@ -59,13 +69,15 @@ public class PadThaiStepsActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
             }
+
             @Override
             public void onPageSelected(int i) {
                 fab2.setAlpha(i == 0 ? 0.0f : 1.0f);
                 fab2.setClickable(i != 0);
-                fab1.setAlpha(i+1 == pTStepsPagerAdapter.getCount() ? 0.0f : 1.0f);
-                fab1.setClickable(i+1 != pTStepsPagerAdapter.getCount());
+                fab1.setAlpha(i + 1 == pTStepsPagerAdapter.getCount() ? 0.0f : 1.0f);
+                fab1.setClickable(i + 1 != pTStepsPagerAdapter.getCount());
             }
+
             @Override
             public void onPageScrollStateChanged(int i) {
             }
