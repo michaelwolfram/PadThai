@@ -24,7 +24,7 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
     protected static final String ARG_QUANTITY = "ARG_QUANTITY";
     protected static final String ARG_MODEL_CLASS = "ARG_MODEL_CLASS";
     private static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
-    private T baseStepViewModel;
+    private T mViewModel;
     private int mQuantity;
 
     public static <T extends BaseStepViewModel>
@@ -49,15 +49,14 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
 
         int index = getArguments().getInt(ARG_SECTION_NUMBER);
         mQuantity = getArguments().getInt(ARG_QUANTITY);
-        getViewModelFromArguments(getArguments().getSerializable(ARG_MODEL_CLASS));
+        getViewModelFromSerializable(getArguments().getSerializable(ARG_MODEL_CLASS));
 
-        baseStepViewModel.setIndex(index);
+        mViewModel.setIndex(index);
     }
 
-    private void getViewModelFromArguments(Serializable serializable) {
+    private void getViewModelFromSerializable(Serializable serializable) {
         @SuppressWarnings("unchecked") Class<T> modelClass = (Class<T>) serializable;
-        assert modelClass != null;
-        baseStepViewModel = ViewModelProviders.of(this).get(modelClass);
+        mViewModel = ViewModelProviders.of(this).get(modelClass);
     }
 
     @Override
@@ -65,8 +64,8 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_recipe_steps, container, false);
 
-        setText(root, R.id.step_text1, baseStepViewModel.getText1());
-        setText(root, R.id.step_text2, baseStepViewModel.getText2());
+        setText(root, R.id.step_text1, mViewModel.getText1());
+        setText(root, R.id.step_text2, mViewModel.getText2());
         createQuantityViews(inflater, root);
 
         return root;
@@ -85,7 +84,7 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
 
     private void createQuantityViews(@NonNull final LayoutInflater inflater, View root) {
         final GridLayout gridLayout = root.findViewById(R.id.gridLayout);
-        baseStepViewModel.getRecipeQuantityInfo().observe(this, new Observer<ArrayList<RecipeQuantityInfo>>() {
+        mViewModel.getRecipeQuantityInfo().observe(this, new Observer<ArrayList<RecipeQuantityInfo>>() {
             @Override
             public void onChanged(@Nullable ArrayList<RecipeQuantityInfo> recipeQuantityInfoList) {
                 assert recipeQuantityInfoList != null;

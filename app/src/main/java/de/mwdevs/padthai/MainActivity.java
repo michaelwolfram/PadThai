@@ -22,6 +22,9 @@ import android.widget.TextView;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
+import de.mwdevs.padthai.recipe_steps.ChiliPasteStepViewModel;
+import de.mwdevs.padthai.recipe_steps.PadThaiStepViewModel;
+import de.mwdevs.padthai.recipe_steps.PeanutSauceStepViewModel;
 import de.mwdevs.padthai.shopping_list.ShoppingListContent;
 
 import static java.lang.Math.max;
@@ -156,41 +159,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecipeStepsButtons() {
-        TextView textView1 = findViewById(R.id.first_component_row).findViewById(R.id.dish_component_name);
-        textView1.setClickable(true);
-        textView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int paste_quantity = getIntFromTextView(paste_quantity_text);
-                Intent intent = new Intent(MainActivity.this, PadThaiStepsActivity.class);
-                intent.putExtra(PAD_THAI_QUANTITY, paste_quantity); // TODO: 09.06.19 change string
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
-            }
-        });
+        setupRecipeStepsButton(R.id.first_component_row, paste_quantity_text, ChiliPasteStepViewModel.class);
+        setupRecipeStepsButton(R.id.second_component_row, sosse_quantity_text, PeanutSauceStepViewModel.class);
+        setupRecipeStepsButton(R.id.third_component_row, pad_thai_quantity_text, PadThaiStepViewModel.class);
+    }
 
-        TextView textView2 = findViewById(R.id.second_component_row).findViewById(R.id.dish_component_name);
-        textView2.setClickable(true);
-        textView2.setOnClickListener(new View.OnClickListener() {
+    private void setupRecipeStepsButton(int view_id, final TextView quantityTextView, final Class viewModelClass) {
+        TextView textView = findViewById(view_id).findViewById(R.id.dish_component_name);
+        textView.setClickable(true);
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int sosse_quantity = getIntFromTextView(sosse_quantity_text);
-                Intent intent = new Intent(MainActivity.this, PadThaiStepsActivity.class);
-                intent.putExtra(PAD_THAI_QUANTITY, sosse_quantity); // TODO: 09.06.19 change string
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+                int quantity = getIntFromTextView(quantityTextView);
+                if (quantity > 0)
+                    startRecipeStepsActivity(quantity, viewModelClass);
+                else
+                    Snackbar.make(v, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
             }
         });
+    }
 
-        TextView textView3 = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_name);
-        textView3.setClickable(true);
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pad_thai_quantity = getIntFromTextView(pad_thai_quantity_text);
-                Intent intent = new Intent(MainActivity.this, PadThaiStepsActivity.class);
-                intent.putExtra(PAD_THAI_QUANTITY, pad_thai_quantity);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
-            }
-        });
+    private void startRecipeStepsActivity(int quantity, Class viewModelClass) {
+        Intent intent = new Intent(MainActivity.this, RecipeStepsActivity.class);
+        intent.putExtra(RecipeStepsActivity.COMPONENT_QUANTITY, quantity);
+        intent.putExtra(RecipeStepsActivity.VIEW_MODEL_CLASS, viewModelClass);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
     }
 
     @Override

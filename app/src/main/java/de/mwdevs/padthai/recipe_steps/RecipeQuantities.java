@@ -1,6 +1,50 @@
 package de.mwdevs.padthai.recipe_steps;
 
 final class RecipeQuantities {
+    static final class ChiliPaste {
+        static final class Step1 {
+            static final int el_carrot = 3;
+            static final int el_onion = 3;
+            static final int el_garlic = 3;
+            static final int el_oil = 10;
+        }
+
+        static final class Step2 {
+            static final int el_chili_schoten = 3;
+        }
+
+        static final class Step3 {
+            static final int el_soy_sauce = 2;
+            static final int tl_sugar = 2;
+            static final int tl_lime_juice = 2;
+        }
+
+        static final class Step4 {
+        }
+    }
+
+    static final class PeanutSauce {
+        static final class Step1 {
+            static final int el_oil = 1;
+            static final float stk_tomato = 0.5f;
+        }
+
+        static final class Step2 {
+            static final int tl_chili_paste = 1;
+            static final int el_peanuts = 1;
+        }
+
+        static final class Step3 {
+            static final int el_coconut_milk = 6;
+        }
+
+        static final class Step4 {
+            static final int tl_sugar = 2;
+            static final int tl_lime_juice = 1;
+            static final float el_soy_sauce = 0.5f;
+        }
+    }
+
     static final class PadThai {
         static final class Step1 {
             static final int el_oil = 2;

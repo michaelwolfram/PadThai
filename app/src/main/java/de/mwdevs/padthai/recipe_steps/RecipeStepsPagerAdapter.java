@@ -17,23 +17,21 @@ import de.mwdevs.padthai.R;
 public class RecipeStepsPagerAdapter extends FragmentPagerAdapter {
     private static final ArrayList<ArrayList<Integer>> TAB_TITLES = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList(
-                    R.string.tab_text_0,
                     R.string.tab_text_1,
                     R.string.tab_text_2,
-                    R.string.tab_text_3n4,
-                    R.string.tab_text_5
+                    R.string.tab_text_3,
+                    R.string.tab_text_4
+            )),
+            new ArrayList<>(Arrays.asList(
+                    R.string.tab_text_1,
+                    R.string.tab_text_2,
+                    R.string.tab_text_3,
+                    R.string.tab_text_4
             )),
             new ArrayList<>(Arrays.asList(
                     R.string.tab_text_0,
                     R.string.tab_text_1,
-                    R.string.tab_text_2,
-                    R.string.tab_text_3n4,
-                    R.string.tab_text_5
-            )),
-            new ArrayList<>(Arrays.asList(
-                    R.string.tab_text_0,
-                    R.string.tab_text_1,
-                    R.string.tab_text_2,
+                    R.string.tab_text_2_opt,
                     R.string.tab_text_3n4,
                     R.string.tab_text_5
             ))
@@ -42,8 +40,8 @@ public class RecipeStepsPagerAdapter extends FragmentPagerAdapter {
     private static final Map<Class, Integer> VIEW_MODELS_MAP = new HashMap<>();
 
     static {
-//        VIEW_MODELS_MAP.put(PadThaiStepViewModel.class, 0);
-//        VIEW_MODELS_MAP.put(PadThaiStepViewModel.class, 1);
+        VIEW_MODELS_MAP.put(ChiliPasteStepViewModel.class, 0);
+        VIEW_MODELS_MAP.put(PeanutSauceStepViewModel.class, 1);
         VIEW_MODELS_MAP.put(PadThaiStepViewModel.class, 2);
     }
 
@@ -63,8 +61,11 @@ public class RecipeStepsPagerAdapter extends FragmentPagerAdapter {
 
     private static ArrayList<Integer> mapClassToTabTitles(Class viewModelClass) {
         Integer i = VIEW_MODELS_MAP.get(viewModelClass);
-        assert i != null;
-        return TAB_TITLES.get(i);
+        if (i != null) {
+            return TAB_TITLES.get(i);
+        } else {
+            throw new IllegalArgumentException("Missing ViewModel entry in map.");
+        }
     }
 
     @Override

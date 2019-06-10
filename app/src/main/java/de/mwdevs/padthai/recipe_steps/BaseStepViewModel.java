@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-abstract class BaseStepViewModel extends ViewModel {
+public abstract class BaseStepViewModel extends ViewModel {
     MutableLiveData<Integer> mIndex = new MutableLiveData<>();
     LiveData<Integer> mText1;
     LiveData<Integer> mText2;

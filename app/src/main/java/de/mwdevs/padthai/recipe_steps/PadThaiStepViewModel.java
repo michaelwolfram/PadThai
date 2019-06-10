@@ -16,15 +16,17 @@ public class PadThaiStepViewModel extends BaseStepViewModel {
             R.string.put_in_the_wok,
             R.string.add,
             R.string.add,
-            R.string.add_to_taste));
+            R.string.add_to_taste
+    ));
 
     @StringRes
     private static final ArrayList<Integer> TEXT_2 = new ArrayList<>(Arrays.asList(
             R.string.soak_and_fry,
-            R.string.heat_low,
+            R.string.low_heat,
             R.string.no_egg,
             R.string.mix_and_heat_up,
-            R.string.empty_string));
+            R.string.empty_string
+    ));
 
     private static final ArrayList<ArrayList<RecipeQuantityInfo>> RECIPE_QUANTITY_INFO_LIST = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList(

@@ -14,6 +14,7 @@ import android.transition.Slide;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
@@ -75,6 +76,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setupActivityTransition();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         consumeIndent();
         initRecyclerViewAdapter();
@@ -212,7 +214,6 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
 
     private void initRecyclerView() {
         recyclerView = findViewById(R.id.shopping_list);
-        recyclerView.setKeepScreenOn(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.addOnScrollListener(new RecyclerViewDismissSnackBarOnScroll());
     }

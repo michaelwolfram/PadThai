@@ -9,23 +9,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.transition.Explode;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 
-import de.mwdevs.padthai.recipe_steps.PadThaiStepViewModel;
+import java.io.Serializable;
+
+import de.mwdevs.padthai.recipe_steps.BaseStepViewModel;
 import de.mwdevs.padthai.recipe_steps.RecipeStepsPagerAdapter;
 
-public class PadThaiStepsActivity extends AppCompatActivity {
+public class RecipeStepsActivity<T extends BaseStepViewModel> extends AppCompatActivity {
+    public static final String COMPONENT_QUANTITY = "COMPONENT_QUANTITY";
+    public static final String VIEW_MODEL_CLASS = "MODEL_CLASS";
 
-    private int pad_thai_quantity = 0;
+    private int mComponentQuantity = 0;
+    private Class<T> mViewModelClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setupActivityTransition();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            pad_thai_quantity = savedInstanceState.getInt(MainActivity.PAD_THAI_QUANTITY);
-        } else {
-            consumeIndent();
-        }
+        setContentView(R.layout.activity_recipe_steps);
+
+        consumeIndent();
         setupViewPagerAndStuff();
     }
 
@@ -37,11 +43,10 @@ public class PadThaiStepsActivity extends AppCompatActivity {
     }
 
     private void setupViewPagerAndStuff() {
-        setContentView(R.layout.activity_recipe_steps);
-        final RecipeStepsPagerAdapter pTStepsPagerAdapter = new RecipeStepsPagerAdapter(getSupportFragmentManager(), this,
-                pad_thai_quantity, PadThaiStepViewModel.class);
+        final RecipeStepsPagerAdapter recipeStepsPagerAdapter = new RecipeStepsPagerAdapter(
+                getSupportFragmentManager(), this, mComponentQuantity, mViewModelClass);
         final ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(pTStepsPagerAdapter);
+        viewPager.setAdapter(recipeStepsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
@@ -50,7 +55,7 @@ public class PadThaiStepsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int currentItem = viewPager.getCurrentItem();
-                if (currentItem + 1 < pTStepsPagerAdapter.getCount())
+                if (currentItem + 1 < recipeStepsPagerAdapter.getCount())
                     viewPager.setCurrentItem(currentItem + 1);
             }
         });
@@ -74,8 +79,8 @@ public class PadThaiStepsActivity extends AppCompatActivity {
             public void onPageSelected(int i) {
                 fab2.setAlpha(i == 0 ? 0.0f : 1.0f);
                 fab2.setClickable(i != 0);
-                fab1.setAlpha(i + 1 == pTStepsPagerAdapter.getCount() ? 0.0f : 1.0f);
-                fab1.setClickable(i + 1 != pTStepsPagerAdapter.getCount());
+                fab1.setAlpha(i + 1 == recipeStepsPagerAdapter.getCount() ? 0.0f : 1.0f);
+                fab1.setClickable(i + 1 != recipeStepsPagerAdapter.getCount());
             }
 
             @Override
@@ -86,6 +91,16 @@ public class PadThaiStepsActivity extends AppCompatActivity {
 
     private void consumeIndent() {
         Intent intent = getIntent();
-        pad_thai_quantity = intent.getIntExtra(MainActivity.PAD_THAI_QUANTITY, 0);
+        mComponentQuantity = intent.getIntExtra(COMPONENT_QUANTITY, 0);
+        getViewModelFromSerializable(intent.getSerializableExtra(VIEW_MODEL_CLASS));
+    }
+
+    private void getViewModelFromSerializable(Serializable serializable) {
+        @SuppressWarnings("unchecked") Class<T> modelClass = (Class<T>) serializable;
+        if (modelClass != null) {
+            mViewModelClass = modelClass;
+        } else {
+            throw new IllegalArgumentException("Missing intent extra.");
+        }
     }
 }
