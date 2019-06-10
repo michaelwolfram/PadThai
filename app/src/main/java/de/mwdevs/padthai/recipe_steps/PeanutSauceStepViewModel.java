@@ -46,7 +46,7 @@ public class PeanutSauceStepViewModel extends BaseStepViewModel {
             ))
     ));
 
-    PeanutSauceStepViewModel() {
+    public PeanutSauceStepViewModel() {
         mText1 = Transformations.map(mIndex, new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer input) {

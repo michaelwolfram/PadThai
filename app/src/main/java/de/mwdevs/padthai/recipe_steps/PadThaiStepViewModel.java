@@ -60,7 +60,7 @@ public class PadThaiStepViewModel extends BaseStepViewModel {
             ))
     ));
 
-    PadThaiStepViewModel() {
+    public PadThaiStepViewModel() {
         mText1 = Transformations.map(mIndex, new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer input) {

@@ -45,7 +45,7 @@ public class ChiliPasteStepViewModel extends BaseStepViewModel {
             new ArrayList<RecipeQuantityInfo>()
     ));
 
-    ChiliPasteStepViewModel() {
+    public ChiliPasteStepViewModel() {
         mText1 = Transformations.map(mIndex, new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer input) {
