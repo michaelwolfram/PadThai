@@ -6,9 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.Explode;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 
 import java.io.Serializable;
@@ -25,7 +23,6 @@ public class RecipeStepsActivity<T extends BaseStepViewModel> extends AppCompatA
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setupActivityTransition();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         super.onCreate(savedInstanceState);
@@ -33,13 +30,6 @@ public class RecipeStepsActivity<T extends BaseStepViewModel> extends AppCompatA
 
         consumeIndent();
         setupViewPagerAndStuff();
-    }
-
-    private void setupActivityTransition() {
-        Window window = getWindow();
-        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        window.setEnterTransition(new Explode());
-        window.setAllowEnterTransitionOverlap(true);
     }
 
     private void setupViewPagerAndStuff() {

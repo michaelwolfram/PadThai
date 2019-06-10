@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupShowcaseViewAndImageViewOnClickListener() {
+        // TODO: 10.06.19 enhance showcase with new recipe steps buttons
         showcaseView = new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
                 .setStyle(R.style.PadThaiShowcaseView)
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(PASTE_QUANTITY, paste_quantity);
         intent.putExtra(SOSSE_QUANTITY, sosse_quantity);
         intent.putExtra(PAD_THAI_QUANTITY, pad_thai_quantity);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        startActivity(intent);
     }
 
     private int getIntFromTextView(@NonNull TextView textView) {
@@ -183,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, RecipeStepsActivity.class);
         intent.putExtra(RecipeStepsActivity.COMPONENT_QUANTITY, quantity);
         intent.putExtra(RecipeStepsActivity.VIEW_MODEL_CLASS, viewModelClass);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+        startActivity(intent);
     }
 
     @Override

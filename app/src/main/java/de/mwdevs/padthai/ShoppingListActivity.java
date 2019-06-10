@@ -10,10 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Slide;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
@@ -75,7 +73,6 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setupActivityTransition();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         consumeIndent();
@@ -89,13 +86,6 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
 
         initShowcaseViewBuilder();
         setupRecyclerView();
-    }
-
-    private void setupActivityTransition() {
-        Window window = getWindow();
-        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        window.setEnterTransition(new Slide());
-        window.setAllowEnterTransitionOverlap(true);
     }
 
     private void consumeIndent() {
