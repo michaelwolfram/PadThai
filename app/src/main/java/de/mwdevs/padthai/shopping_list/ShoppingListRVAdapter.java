@@ -186,8 +186,10 @@ public class ShoppingListRVAdapter extends RecyclerView.Adapter<ShoppingListRVAd
         }
 
         private void updateHeader() {
-            if (mHeader != null)
-                mHeader.setText(mContext.getString(R.string.placeholder_s, mItem.name));
+            if (mHeader != null) {
+                String name = mContext.getString(mItem.name_id);
+                mHeader.setText(mContext.getString(R.string.placeholder_s, name));
+            }
         }
 
         private void updateGram() {

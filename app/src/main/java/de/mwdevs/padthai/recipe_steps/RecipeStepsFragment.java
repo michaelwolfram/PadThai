@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,8 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
     private static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
     private T mViewModel;
     private int mQuantity;
+    private GridLayout gridLayout;
+    private Snackbar snackbar;
 
     public static <T extends BaseStepViewModel>
     RecipeStepsFragment newInstance(int index, int quantity, Class<T> modelClass) {
@@ -83,7 +86,7 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
     }
 
     private void createQuantityViews(@NonNull final LayoutInflater inflater, View root) {
-        final GridLayout gridLayout = root.findViewById(R.id.gridLayout);
+        gridLayout = root.findViewById(R.id.gridLayout);
         mViewModel.getRecipeQuantityInfo().observe(this, new Observer<ArrayList<RecipeQuantityInfo>>() {
             @Override
             public void onChanged(@Nullable ArrayList<RecipeQuantityInfo> recipeQuantityInfoList) {
@@ -99,7 +102,7 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
                                    RecipeQuantityInfo info) {
         View newQuantityView = addViewToParent(gridLayout, inflater);
         setValuesInQuantityView(newQuantityView, info);
-        createOnClickListener(newQuantityView);
+        createListeners(newQuantityView);
     }
 
     private View addViewToParent(GridLayout gridLayout, @NonNull LayoutInflater inflater) {
@@ -113,15 +116,33 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
         ((TextView) newQuantityView.findViewById(R.id.ingredient_g_value)).setText(el_string);
         ((TextView) newQuantityView.findViewById(R.id.ingredient_g)).setText(info.string_id);
         ((ImageView) newQuantityView.findViewById(R.id.ingredient_image)).setImageResource(info.image_id);
+        newQuantityView.setTag(info.name_id);
     }
 
-    private void createOnClickListener(View newQuantityView) {
+    private void createListeners(View newQuantityView) {
         newQuantityView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (snackbar != null && snackbar.isShown())
+                    snackbar.dismiss();
                 v.setAlpha((3.15f - v.getAlpha()) % 2);
             }
         });
+        newQuantityView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (snackbar == null) {
+                    initSnackBar();
+                }
+                snackbar.setText((int) v.getTag());
+                snackbar.show();
+                return true;
+            }
+        });
+    }
+
+    private void initSnackBar() {
+        snackbar = Snackbar.make(gridLayout, R.string._0, Snackbar.LENGTH_SHORT);
     }
 
     public String removeZero(float number) {

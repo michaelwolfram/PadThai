@@ -58,4 +58,7 @@
     <string name="put_everything_in_the_mixer">Alles in den Mixer geben</string>
     <string name="reduce_heat_then_add">Hitze etwas reduzieren,\ndann zugeben:</string>
     <string name="tab_text_5">5.</string>
+    <string name="chili_paste">Chilipaste</string>
+    <string name="chili_flakes">Chiliflocken</string>
+    <string name="water">Wasser</string>
 </resources>

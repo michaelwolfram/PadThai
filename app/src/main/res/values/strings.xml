@@ -64,9 +64,12 @@
     <string name="add_to_taste">Add to taste:</string>
     <string name="cook_until_brown">Cook until brown</string>
     <string name="put_everything_in_the_mixer">Put everything in the mixer</string>
-    <string name="medium_heat_and_crush_tomatoes">1. Medium heat 2. Crush tomatoes</string>
+    <string name="medium_heat_and_crush_tomatoes">1. Medium heat\n2. Crush tomatoes</string>
     <string name="reduce_heat_then_add">Reduce heat a little,\nthen add:</string>
     <string name="fry_and_water">1. Fry until fragrant\n(smash for smell)\n2. Add some water</string>
     <string name="medium_heat_dont_cook_too_long">1. Medium heat\n2. Add coconut milk if sauce gets too thick\n3. Don\'t cook too long until it separates</string>
     <string name="cook_until_thick">Cook until it gets thick</string>
+    <string name="chili_paste">Chili paste</string>
+    <string name="chili_flakes">Chili flakes</string>
+    <string name="water">Water</string>
 </resources>
