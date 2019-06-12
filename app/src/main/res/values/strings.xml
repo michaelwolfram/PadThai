@@ -44,14 +44,14 @@
     <string name="reisnudeln">Rice noodles</string>
     <string name="tofu">Tofu</string>
     <string name="title_activity_recipe_steps">Recipe Steps</string>
-    <string name="tab_text_0">Step 0</string>
-    <string name="tab_text_1">Step 1</string>
-    <string name="tab_text_2">Step 2</string>
-    <string name="tab_text_2_opt">Step 2 (opt.)</string>
-    <string name="tab_text_3">Step 3</string>
-    <string name="tab_text_4">Step 4</string>
-    <string name="tab_text_3n4">Step 3&#160;&amp;&#160;4</string>
-    <string name="tab_text_5">Step 5</string>
+    <string name="tab_text_0">0.</string>
+    <string name="tab_text_1">1.</string>
+    <string name="tab_text_2">2.</string>
+    <string name="tab_text_2_opt">2. (opt.)</string>
+    <string name="tab_text_3">3.</string>
+    <string name="tab_text_4">4.</string>
+    <string name="tab_text_3n4">3. &amp; 4.</string>
+    <string name="tab_text_5">5.</string>
     <string name="put_in_the_wok">Put in the wok:</string>
     <string name="el">EL</string>
     <string name="low_heat">Low heat</string>
@@ -64,9 +64,9 @@
     <string name="add_to_taste">Add to taste:</string>
     <string name="cook_until_brown">Cook until brown</string>
     <string name="put_everything_in_the_mixer">Put everything in the mixer</string>
-    <string name="medium_heat_and_crush_tomatoes">1. Medium heat\n2. Crush tomatoes</string>
-    <string name="reduce_heat_then_add">Reduce heat a little, then add:</string>
-    <string name="fry_and_water">1. Fry until fragrant (smash for smell)\n2. Add a little bit of water</string>
-    <string name="medium_heat_dont_cook_too_long">1. Medium heat\n2. Add more coconut milk if sauce becomes too thick\n3. Don\'t cook too long until it seperates</string>
-    <string name="cook_until_thick">Cook until it get\'s thick</string>
+    <string name="medium_heat_and_crush_tomatoes">1. Medium heat 2. Crush tomatoes</string>
+    <string name="reduce_heat_then_add">Reduce heat a little,\nthen add:</string>
+    <string name="fry_and_water">1. Fry until fragrant\n(smash for smell)\n2. Add some water</string>
+    <string name="medium_heat_dont_cook_too_long">1. Medium heat\n2. Add coconut milk if sauce gets too thick\n3. Don\'t cook too long until it separates</string>
+    <string name="cook_until_thick">Cook until it gets thick</string>
 </resources>
