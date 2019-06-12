@@ -254,7 +254,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
         if (snackbar == null) {
             initSnackBar();
         }
-        snackbar.setText(item.toString());
+        snackbar.setText(item.getNameId());
         snackbar.show();
     }
 

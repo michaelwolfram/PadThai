@@ -3,7 +3,6 @@ package de.mwdevs.padthai;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ShoppingListContent.initItemPropertyMap(this);
+        ShoppingListContent.initItemPropertyMap();
 
         setupToolbar();
         setupComponentRows();
