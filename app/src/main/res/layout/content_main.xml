@@ -70,21 +70,15 @@
             android:layout_height="wrap_content"
             layout="@layout/dish_component_row" />
 
-        <ImageView
-            android:id="@+id/padThaiImage"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/recipe_view_pager"
             android:layout_width="0dp"
             android:layout_height="160dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:contentDescription="@string/this_is_not_an_image_description"
-            android:cropToPadding="true"
-            android:focusable="true"
-            android:padding="10dp"
-            app:layout_constraintDimensionRatio="1"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/third_component_row"
-            app:srcCompat="@drawable/pad_thai_512" />
+            app:layout_constraintTop_toBottomOf="@+id/third_component_row" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

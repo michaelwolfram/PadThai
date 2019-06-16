@@ -35,7 +35,7 @@ public class ChiliPasteStepViewModel extends BaseStepViewModel {
                     new RecipeQuantityInfo(R.string.oel, RecipeQuantities.ChiliPaste.Step1.el_oil, R.string.el, R.mipmap.sojaoel_round)
             )),
             new ArrayList<>(Collections.singletonList(
-                    new RecipeQuantityInfo(R.string.chili, RecipeQuantities.ChiliPaste.Step2.el_chili_schoten, R.string.el, R.mipmap.chilischoten_round)
+                    new RecipeQuantityInfo(R.string.chili, RecipeQuantities.ChiliPaste.Step2.el_chili_peppers, R.string.el, R.mipmap.chilischoten_round)
             )),
             new ArrayList<>(Arrays.asList(
                     new RecipeQuantityInfo(R.string.soja_sosse, RecipeQuantities.ChiliPaste.Step3.el_soy_sauce, R.string.el, R.mipmap.sojasosse_round),

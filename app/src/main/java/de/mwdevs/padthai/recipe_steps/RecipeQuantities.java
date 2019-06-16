@@ -10,16 +10,13 @@ final class RecipeQuantities {
         }
 
         static final class Step2 {
-            static final int el_chili_schoten = 3;
+            static final int el_chili_peppers = 3;
         }
 
         static final class Step3 {
             static final int el_soy_sauce = 2;
             static final int tl_sugar = 2;
             static final int tl_lime_juice = 2;
-        }
-
-        static final class Step4 {
         }
     }
 

@@ -14,16 +14,15 @@ import java.util.ArrayList;
 class WorkbookFacade {
     private static final int EXCEL_SHEET_ROW_OFFSET = 7;
 
-    private final int mPaste_quantity;
-    private final int mSosse_quantity;
-    private final int mPad_thai_quantity;
+    private final int[] mComponentQuantities;
     private Workbook mWorkbook;
     private Sheet mSheet0;
 
-    WorkbookFacade(int mPaste_quantity, int mSosse_quantity, int mPad_thai_quantity) {
-        this.mPaste_quantity = mPaste_quantity;
-        this.mSosse_quantity = mSosse_quantity;
-        this.mPad_thai_quantity = mPad_thai_quantity;
+    WorkbookFacade(int[] component_quantities) {
+        if (component_quantities == null) {
+            throw new IllegalArgumentException("No component quantities provided.");
+        }
+        mComponentQuantities = component_quantities;
     }
 
     void setWorkbook(Workbook workbook) {
@@ -34,9 +33,9 @@ class WorkbookFacade {
     private void extractSheetAndUpdateComponentQuantities() {
         mSheet0 = mWorkbook.getSheetAt(0);
 
-        setCellValueInColumnB(mSheet0, 1, mPaste_quantity);
-        setCellValueInColumnB(mSheet0, 2, mSosse_quantity);
-        setCellValueInColumnB(mSheet0, 3, mPad_thai_quantity);
+        for (int i = 0; i < mComponentQuantities.length; i++) {
+            setCellValueInColumnB(mSheet0, i + 1, mComponentQuantities[i]);
+        }
 
         // TODO: 20.05.19 this is taking some time...if you think about refactoring,
         //  think about refactoring the excel sheet such that the content is extracted

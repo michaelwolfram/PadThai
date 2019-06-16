@@ -51,9 +51,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
      */
     private static final int MIN_ITEM_WIDTH_DP = 168;
     private int mColumnCount = 2;
-    private int paste_quantity = 0;
-    private int sosse_quantity = 0;
-    private int pad_thai_quantity = 0;
+    private int[] component_quantities = null;
     private RecyclerView recyclerView = null;
     private RecyclerView.LayoutManager layoutManager = null;
     private ShoppingListRVAdapter mAdapter = null;
@@ -90,14 +88,11 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
 
     private void consumeIndent() {
         Intent intent = getIntent();
-        paste_quantity = intent.getIntExtra(MainActivity.PASTE_QUANTITY, 0);
-        sosse_quantity = intent.getIntExtra(MainActivity.SOSSE_QUANTITY, 0);
-        pad_thai_quantity = intent.getIntExtra(MainActivity.PAD_THAI_QUANTITY, 0);
+        component_quantities = intent.getIntArrayExtra(MainActivity.COMPONENT_QUANTITIES);
     }
 
     public void initRecyclerViewAdapter() {
-        mAdapter = new ShoppingListRVAdapter(this, this,
-                paste_quantity, sosse_quantity, pad_thai_quantity, showListAsGrid);
+        mAdapter = new ShoppingListRVAdapter(this, this, component_quantities, showListAsGrid);
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {

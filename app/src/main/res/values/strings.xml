@@ -7,9 +7,15 @@
     <string name="dish_component_text">Component Name</string>
     <string name="_0" translatable="false">0</string>
     <string name="x" translatable="false">x</string>
-    <string name="paste">chili paste</string>
-    <string name="sosse">peanut sauce</string>
+    <string name="sosse">Peanut sauce</string>
     <string name="pad_thai" translatable="false">Pad Thai</string>
+    <string name="green_papaya_salad">Green Papaya Salad</string>
+    <string name="massaman_curry">Massaman Curry</string>
+    <string name="green_thai_curry">Green Thai Curry</string>
+    <string name="tom_yam_soup">Tom Yam Soup</string>
+    <string name="spring_roles">Spring Roles</string>
+    <string name="pumpkin_humus">Pumpkin Humus</string>
+    <string name="mango_sticky_rice">Mango with Sticky Rice</string>
     <string name="title_activity_settings">Settings</string>
     <string name="g" translatable="false">g</string>
     <string name="ml" translatable="false">ml</string>
@@ -72,4 +78,5 @@
     <string name="chili_paste">Chili paste</string>
     <string name="chili_flakes">Chili flakes</string>
     <string name="water">Water</string>
+    <string name="dish_not_available_yet">Dish not available yet.</string>
 </resources>

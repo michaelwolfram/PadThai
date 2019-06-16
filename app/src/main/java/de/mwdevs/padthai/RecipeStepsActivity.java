@@ -60,21 +60,13 @@ public class RecipeStepsActivity<T extends BaseStepViewModel> extends AppCompatA
             }
         });
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-            }
-
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int i) {
                 fab2.setAlpha(i == 0 ? 0.0f : 1.0f);
                 fab2.setClickable(i != 0);
                 fab1.setAlpha(i + 1 == recipeStepsPagerAdapter.getCount() ? 0.0f : 1.0f);
                 fab1.setClickable(i + 1 != recipeStepsPagerAdapter.getCount());
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
             }
         });
     }

@@ -33,12 +33,11 @@ public class ShoppingListRVAdapter extends RecyclerView.Adapter<ShoppingListRVAd
     private boolean mShowListAsGrid;
 
     public ShoppingListRVAdapter(Context context, OnListInteractionListener listener,
-                                 int paste_quantity, int sosse_quantity, int pad_thai_quantity,
-                                 boolean showListAsGrid) {
+                                 int[] component_quantities, boolean showListAsGrid) {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(mContext);
         mListener = listener;
-        mWorkbookFacade = new WorkbookFacade(paste_quantity, sosse_quantity, pad_thai_quantity);
+        mWorkbookFacade = new WorkbookFacade(component_quantities);
         mShowListAsGrid = showListAsGrid;
 
         setHasStableIds(true);

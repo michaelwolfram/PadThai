@@ -1,42 +1,38 @@
 package de.mwdevs.padthai;
 
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
-import de.mwdevs.padthai.recipe_steps.ChiliPasteStepViewModel;
-import de.mwdevs.padthai.recipe_steps.PadThaiStepViewModel;
-import de.mwdevs.padthai.recipe_steps.PeanutSauceStepViewModel;
+import java.util.ArrayList;
+
 import de.mwdevs.padthai.shopping_list.ShoppingListContent;
 
 import static java.lang.Math.max;
+import static java.lang.Math.min;
 
-public class MainActivity extends AppCompatActivity {
-    public static final String PASTE_QUANTITY = "PASTE_QUANTITY";
-    public static final String SOSSE_QUANTITY = "SOSSE_QUANTITY";
-    public static final String PAD_THAI_QUANTITY = "PAD_THAI_QUANTITY";
-    private TextView paste_quantity_text;
-    private TextView sosse_quantity_text;
-    private TextView pad_thai_quantity_text;
-    private ImageView padThaiImage;
+public class MainActivity extends AppCompatActivity implements OnRecipeInteractionListener {
+    public static final String DISH_INDEX = "DISH_INDEX";
+    public static final String COMPONENT_QUANTITIES = "COMPONENT_QUANTITIES";
+    private static final int MAXIMUM_COMPONENT_ROWS = 3;
+    private ArrayList<View> mComponentRowViews = new ArrayList<>(MAXIMUM_COMPONENT_ROWS);
+    private ComponentQuantityModel componentQuantityModel = new ComponentQuantityModel(MAXIMUM_COMPONENT_ROWS);
+    private ViewPager dishViewPager;
     private ShowcaseView showcaseView;
+    private boolean allowRecipeOnClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +42,9 @@ public class MainActivity extends AppCompatActivity {
         ShoppingListContent.initItemPropertyMap();
 
         setupToolbar();
-        setupComponentRows();
-        setupImageViewWithAnimation();
-        setupShowcaseViewAndImageViewOnClickListener();
-        setupRecipeStepsButtons();
+        setupShowcaseView();
+        setupRecipeViewPager();
+        initComponentRows();
     }
 
     private void setupToolbar() {
@@ -57,163 +52,204 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    private void setupComponentRows() {
-        paste_quantity_text = findViewById(R.id.first_component_row).findViewById(R.id.dish_component_quantity);
-        sosse_quantity_text = findViewById(R.id.second_component_row).findViewById(R.id.dish_component_quantity);
-        pad_thai_quantity_text = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_quantity);
-        setupComponentRow(R.id.first_component_row, R.string.paste, paste_quantity_text);
-        setupComponentRow(R.id.second_component_row, R.string.sosse, sosse_quantity_text);
-        setupComponentRow(R.id.third_component_row, R.string.pad_thai, pad_thai_quantity_text);
-    }
-
-    private void setupComponentRow(int componentRowId, int component_name, final TextView quantity_view) {
-        View componentRow = findViewById(componentRowId);
-        ((TextView) componentRow.findViewById(R.id.dish_component_name)).setText(component_name);
-        ImageButton button_decrease = componentRow.findViewById(R.id.dish_component_decrease);
-        ImageButton button_increase = componentRow.findViewById(R.id.dish_component_increase);
-        View.OnClickListener component_ocl = new View.OnClickListener() {
-            @Override
-            public void onClick(@NonNull View v) {
-                int current_quantity = Integer.parseInt(quantity_view.getText().toString());
-                int new_quantity = max(0, current_quantity + Integer.parseInt(v.getTag().toString()));
-                quantity_view.setText(getString(R.string.placeholder_d, new_quantity));
-            }
-        };
-        button_decrease.setOnClickListener(component_ocl);
-        button_increase.setOnClickListener(component_ocl);
-    }
-
-    private void setupImageViewWithAnimation() {
-        padThaiImage = findViewById(R.id.padThaiImage);
-
-        final ObjectAnimator scaleUp = ObjectAnimator.ofPropertyValuesHolder(
-                padThaiImage,
-                PropertyValuesHolder.ofFloat("scaleX", 1.08f),
-                PropertyValuesHolder.ofFloat("scaleY", 1.08f));
-        scaleUp.setDuration(400);
-
-        scaleUp.setInterpolator(new AccelerateInterpolator());
-        scaleUp.setRepeatMode(ValueAnimator.REVERSE);
-        scaleUp.setRepeatCount(1);
-        final Handler handler = new Handler();
-        Runnable animationLoop = new Runnable() {
-            @Override
-            public void run() {
-                scaleUp.start();
-                handler.postDelayed(this, 5000);
-            }
-        };
-        handler.postDelayed(animationLoop, 1000);
-    }
-
-    private void setupShowcaseViewAndImageViewOnClickListener() {
+    private void setupShowcaseView() {
         // TODO: 10.06.19 enhance showcase with new recipe steps buttons
         showcaseView = new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
                 .setStyle(R.style.PadThaiShowcaseView)
                 .singleShot(11)
-                .setTarget(new ViewTarget(padThaiImage))
+                .setTarget(new ViewTarget(dishViewPager))
                 .setContentTitle(R.string.click_me)
                 .setContentText(R.string.then_shopping_list_shows)
                 .setFadeInDurations(800)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setPadThaiImageOnClickListener(padThaiImage);
+                        allowRecipeOnClickListener = true;
                         showcaseView.hide();
                     }
                 })
                 .build();
 
         if (!showcaseView.isShowing())
-            setPadThaiImageOnClickListener(padThaiImage);
+            allowRecipeOnClickListener = true;
     }
 
-    private void setPadThaiImageOnClickListener(@NonNull ImageView padThaiImage) {
-        padThaiImage.setOnClickListener(new View.OnClickListener() {
+    private void setupRecipeViewPager() {
+        dishViewPager = findViewById(R.id.recipe_view_pager);
+        dishViewPager.setAdapter(new DishPagerAdapter(this, this));
+        dishViewPager.setPageTransformer(false, new RecipePageTransformer());
+        dishViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
-            public void onClick(View view) {
-                int paste_quantity = getIntFromTextView(paste_quantity_text);
-                int sosse_quantity = getIntFromTextView(sosse_quantity_text);
-                int pad_thai_quantity = getIntFromTextView(pad_thai_quantity_text);
-                if (paste_quantity > 0 || sosse_quantity > 0 || pad_thai_quantity > 0)
-                    openShoppingCart(paste_quantity, sosse_quantity, pad_thai_quantity);
-                else
-                    Snackbar.make(view, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
+            public void onPageSelected(int i) {
+                setupComponentRows(i);
             }
         });
     }
 
-    private void openShoppingCart(int paste_quantity, int sosse_quantity, int pad_thai_quantity) {
-        ShoppingListContent.resetItems();
-
-        Intent intent = new Intent(MainActivity.this, ShoppingListActivity.class);
-        intent.putExtra(PASTE_QUANTITY, paste_quantity);
-        intent.putExtra(SOSSE_QUANTITY, sosse_quantity);
-        intent.putExtra(PAD_THAI_QUANTITY, pad_thai_quantity);
-        startActivity(intent);
+    private void initComponentRows() {
+        mComponentRowViews.add(0, findViewById(R.id.first_component_row));
+        mComponentRowViews.add(1, findViewById(R.id.second_component_row));
+        mComponentRowViews.add(2, findViewById(R.id.third_component_row));
     }
 
-    private int getIntFromTextView(@NonNull TextView textView) {
-        return Integer.parseInt(textView.getText().toString());
+    private void setupComponentRows(int dish_id) {
+        DishInfo dishInfo = DishInfo.values()[dish_id];
+        ((TextView) findViewById(R.id.header)).setText(dishInfo.getTitleResId());
+
+        int first_invisible_row_idx = dishInfo.getNumDishComponents();
+        for (int i = 0; i < first_invisible_row_idx; i++) {
+            setupComponentRow(dishInfo, i);
+        }
+        for (int i = mComponentRowViews.size() - 1; i >= first_invisible_row_idx; i--) {
+            hideComponentRow(i);
+        }
     }
 
-    private void setupRecipeStepsButtons() {
-        setupRecipeStepsButton(R.id.first_component_row, paste_quantity_text, ChiliPasteStepViewModel.class);
-        setupRecipeStepsButton(R.id.second_component_row, sosse_quantity_text, PeanutSauceStepViewModel.class);
-        setupRecipeStepsButton(R.id.third_component_row, pad_thai_quantity_text, PadThaiStepViewModel.class);
+    private void hideComponentRow(int row) {
+        toggleComponentRow(row, false);
     }
 
-    private void setupRecipeStepsButton(int view_id, final TextView quantityTextView, final Class viewModelClass) {
-        TextView textView = findViewById(view_id).findViewById(R.id.dish_component_name);
+    private void setupComponentRow(final DishInfo dishInfo, final int row) {
+        toggleComponentRow(row, true);
+        setQuantityText(row, componentQuantityModel.getQuantity(dishInfo, row));
+        setupChangeButtons(dishInfo, row);
+        setupRecipeStepsButton(dishInfo, row);
+    }
+
+    private void setupChangeButtons(final DishInfo dishInfo, final int row) {
+        View componentRowView = mComponentRowViews.get(row);
+        ImageButton button_decrease = componentRowView.findViewById(R.id.dish_component_decrease);
+        ImageButton button_increase = componentRowView.findViewById(R.id.dish_component_increase);
+        View.OnClickListener component_ocl = new View.OnClickListener() {
+            @Override
+            public void onClick(@NonNull View v) {
+                final int min_value = 0;
+                final int max_value = 99;
+                int current_quantity = componentQuantityModel.getQuantity(dishInfo, row);
+                int view_int_tag = Integer.parseInt(v.getTag().toString());
+                int new_quantity = min(max_value, max(min_value, current_quantity + view_int_tag));
+
+                if (new_quantity != current_quantity) {
+                    componentQuantityModel.setQuantity(dishInfo, row, new_quantity);
+                    setQuantityText(row, new_quantity);
+                    v.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_scale));
+                }
+            }
+        };
+        button_decrease.setOnClickListener(component_ocl);
+        button_increase.setOnClickListener(component_ocl);
+    }
+
+    private void setQuantityText(int row, int componentQuantity) {
+        View componentRowView = mComponentRowViews.get(row);
+        TextView quantityTextView = componentRowView.findViewById(R.id.dish_component_quantity);
+        quantityTextView.setText(getString(R.string.placeholder_d, componentQuantity));
+    }
+
+    private void setupRecipeStepsButton(final DishInfo dishInfo, final int row) {
+        View componentRowView = mComponentRowViews.get(row);
+        final DishComponentInfo dishComponentInfo = dishInfo.getDishComponentInfo(row);
+        TextView textView = componentRowView.findViewById(R.id.dish_component_name);
+        textView.setText(dishComponentInfo.name_id);
         textView.setClickable(true);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantity = getIntFromTextView(quantityTextView);
-                if (quantity > 0)
-                    startRecipeStepsActivity(quantity, viewModelClass);
+                // TODO: 16.06.19 take care of this when more dishes are added
+                if (dishInfo.getTitleResId() != R.string.pad_thai) {
+                    Snackbar.make(dishViewPager, R.string.dish_not_available_yet, Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (componentQuantityModel.hasValue(dishInfo, row))
+                    startRecipeStepsActivity(componentQuantityModel.getQuantity(dishInfo, row),
+                            dishComponentInfo.viewModelClass);
                 else
                     Snackbar.make(v, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
             }
         });
     }
 
-    private void startRecipeStepsActivity(int quantity, Class viewModelClass) {
+    private void startRecipeStepsActivity(int component_quantity, Class viewModelClass) {
         Intent intent = new Intent(MainActivity.this, RecipeStepsActivity.class);
-        intent.putExtra(RecipeStepsActivity.COMPONENT_QUANTITY, quantity);
+        intent.putExtra(RecipeStepsActivity.COMPONENT_QUANTITY, component_quantity);
         intent.putExtra(RecipeStepsActivity.VIEW_MODEL_CLASS, viewModelClass);
         startActivity(intent);
+    }
+
+    private void toggleComponentRow(int row, boolean enable) {
+        View componentRowView = mComponentRowViews.get(row);
+        componentRowView.setAlpha(enable ? 1.0f : 0.0f);
+        componentRowView.findViewById(R.id.dish_component_name).setClickable(enable);
+        componentRowView.findViewById(R.id.dish_component_decrease).setClickable(enable);
+        componentRowView.findViewById(R.id.dish_component_increase).setClickable(enable);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadComponentQuantities();
+        loadFromPreferences();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        saveComponentQuantities();
+        saveToPreferences();
     }
 
-    private void loadComponentQuantities() {
+    private void loadFromPreferences() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int paste_quantity_value = preferences.getInt(PASTE_QUANTITY, 0);
-        int sosse_quantity_value = preferences.getInt(SOSSE_QUANTITY, 0);
-        int pad_thai_quantity_value = preferences.getInt(PAD_THAI_QUANTITY, 0);
-        paste_quantity_text.setText(getString(R.string.placeholder_d, paste_quantity_value));
-        sosse_quantity_text.setText(getString(R.string.placeholder_d, sosse_quantity_value));
-        pad_thai_quantity_text.setText(getString(R.string.placeholder_d, pad_thai_quantity_value));
+
+        String quantities = preferences.getString(COMPONENT_QUANTITIES, "[]");
+        componentQuantityModel.fromString(quantities); // TODO: 20.06.19 also set in gui!
+
+        int previous_item = preferences.getInt(DISH_INDEX, 0);
+        int current_item = dishViewPager.getCurrentItem();
+        dishViewPager.setCurrentItem(previous_item);
+        if (previous_item == current_item)
+            setupComponentRows(previous_item);
     }
 
-    private void saveComponentQuantities() {
+    private void saveToPreferences() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(PASTE_QUANTITY, getIntFromTextView(paste_quantity_text));
-        editor.putInt(SOSSE_QUANTITY, getIntFromTextView(sosse_quantity_text));
-        editor.putInt(PAD_THAI_QUANTITY, getIntFromTextView(pad_thai_quantity_text));
+
+        editor.putInt(DISH_INDEX, dishViewPager.getCurrentItem());
+        editor.putString(COMPONENT_QUANTITIES, componentQuantityModel.toString());
+
         editor.apply();
     }
+
+    @Override
+    public void onRecipeClick(DishInfo dishInfo) {
+        if (!allowRecipeOnClickListener)
+            return;
+
+        // TODO: 16.06.19 take care of this when more dishes are added
+        if (dishInfo.getTitleResId() != R.string.pad_thai) {
+            Snackbar.make(dishViewPager, R.string.dish_not_available_yet, Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+        if (componentQuantityModel.hasValues(dishInfo))
+            openShoppingCart(componentQuantityModel.getQuantities(dishInfo));
+        else
+            Snackbar.make(dishViewPager, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRecipeLongClick(DishInfo dishInfo) {
+
+    }
+
+    private void openShoppingCart(int[] quantities) {
+        ShoppingListContent.resetItems();
+
+        Intent intent = new Intent(MainActivity.this, ShoppingListActivity.class);
+        intent.putExtra(COMPONENT_QUANTITIES, quantities);
+        startActivity(intent);
+    }
+
+
 }
