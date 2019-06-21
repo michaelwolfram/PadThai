@@ -3,6 +3,7 @@ package de.mwdevs.padthai;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -72,9 +73,9 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                     @Override
                     public void onClick(View v) {
                         showcaseView.setContentText(getString(R.string.then_recipe_steps_show));
-                        View view2 = findViewById(R.id.showcase_focus_2);
-                        showcaseView.setShowcase(new ViewTarget(view2), true);
-                        showcaseView.forceTextPosition(ShowcaseView.BELOW_SHOWCASE);
+                        View showcase_focus_2 = findViewById(R.id.showcase_focus_2);
+                        showcaseView.setShowcase(new ViewTarget(showcase_focus_2), true);
+                        showcaseView.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
                         showcaseView.overrideButtonClick(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -83,6 +84,13 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                                 showcaseView.hide();
                             }
                         });
+                        final View padThaiText = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_name);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                padThaiText.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.change_button_scale_up));
+                            }
+                        }, 400);
                     }
                 })
                 .build();
@@ -149,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                 if (new_quantity != current_quantity) {
                     componentQuantityDataModel.setQuantity(dishInfo, row, new_quantity);
                     setQuantityText(row, new_quantity);
-                    v.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_scale));
+                    v.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.change_button_scale_up));
                 }
             }
         };

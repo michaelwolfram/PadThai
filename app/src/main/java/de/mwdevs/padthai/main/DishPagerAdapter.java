@@ -1,8 +1,7 @@
 package de.mwdevs.padthai.main;
 
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
-import android.animation.ValueAnimator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -10,7 +9,6 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ public class DishPagerAdapter extends PagerAdapter {
     private static final long PERIODIC_DELAY = 5000;
     private final OnDishInteractionListener mListener;
     private Context mContext;
-    private ArrayList<ObjectAnimator> mViewAnimations = new ArrayList<>(DishInfo.values().length);
+    private ArrayList<AnimatorSet> mViewAnimations = new ArrayList<>(DishInfo.values().length);
 
     public DishPagerAdapter(Context context, OnDishInteractionListener listener) {
         mContext = context;
@@ -39,8 +37,8 @@ public class DishPagerAdapter extends PagerAdapter {
         Runnable animationLoop = new Runnable() {
             @Override
             public void run() {
-                for (ObjectAnimator anim : mViewAnimations) {
-                    anim.start();
+                for (AnimatorSet animatorSet : mViewAnimations) {
+                    animatorSet.start();
                 }
                 handler.postDelayed(this, PERIODIC_DELAY);
             }
@@ -64,6 +62,12 @@ public class DishPagerAdapter extends PagerAdapter {
 
         collection.addView(root);
         return root;
+    }
+
+    private void setupViewAnimation(View view) {
+        AnimatorSet scaleUpSet = (AnimatorSet) AnimatorInflater.loadAnimator(mContext, R.animator.dish_button_scale_up);
+        scaleUpSet.setTarget(view);
+        mViewAnimations.add(scaleUpSet);
     }
 
     @Override
@@ -106,18 +110,4 @@ public class DishPagerAdapter extends PagerAdapter {
             }
         });
     }
-
-    private void setupViewAnimation(View view) {
-        final ObjectAnimator scaleUp = ObjectAnimator.ofPropertyValuesHolder(
-                view,
-                PropertyValuesHolder.ofFloat("scaleX", 1.08f),
-                PropertyValuesHolder.ofFloat("scaleY", 1.08f));
-        scaleUp.setDuration(400);
-
-        scaleUp.setInterpolator(new AccelerateInterpolator());
-        scaleUp.setRepeatMode(ValueAnimator.REVERSE);
-        scaleUp.setRepeatCount(1);
-        mViewAnimations.add(scaleUp);
-    }
 }
-
