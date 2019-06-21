@@ -19,7 +19,13 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import java.util.ArrayList;
 
-import de.mwdevs.padthai.shopping_list.ShoppingListContent;
+import de.mwdevs.padthai.main.data.ComponentQuantityDataModel;
+import de.mwdevs.padthai.main.DishPagerAdapter;
+import de.mwdevs.padthai.main.data.DishComponentInfo;
+import de.mwdevs.padthai.main.data.DishInfo;
+import de.mwdevs.padthai.main.ui.OnRecipeInteractionListener;
+import de.mwdevs.padthai.main.ui.RecipePageTransformer;
+import de.mwdevs.padthai.shopping_list.data.ShoppingListContent;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -29,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
     public static final String COMPONENT_QUANTITIES = "COMPONENT_QUANTITIES";
     private static final int MAXIMUM_COMPONENT_ROWS = 3;
     private ArrayList<View> mComponentRowViews = new ArrayList<>(MAXIMUM_COMPONENT_ROWS);
-    private ComponentQuantityModel componentQuantityModel = new ComponentQuantityModel(MAXIMUM_COMPONENT_ROWS);
+    private ComponentQuantityDataModel componentQuantityDataModel = new ComponentQuantityDataModel(MAXIMUM_COMPONENT_ROWS);
     private ViewPager dishViewPager;
     private ShowcaseView showcaseView;
     private boolean allowRecipeOnClickListener;
@@ -53,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
     }
 
     private void setupShowcaseView() {
-        // TODO: 10.06.19 enhance showcase with new recipe steps buttons
+        // TODO: 10.06.19 enhance showcase with new recipe steps buttons and dish pager
         showcaseView = new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
                 .setStyle(R.style.PadThaiShowcaseView)
@@ -112,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
 
     private void setupComponentRow(final DishInfo dishInfo, final int row) {
         toggleComponentRow(row, true);
-        setQuantityText(row, componentQuantityModel.getQuantity(dishInfo, row));
+        setQuantityText(row, componentQuantityDataModel.getQuantity(dishInfo, row));
         setupChangeButtons(dishInfo, row);
         setupRecipeStepsButton(dishInfo, row);
     }
@@ -126,12 +132,12 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
             public void onClick(@NonNull View v) {
                 final int min_value = 0;
                 final int max_value = 99;
-                int current_quantity = componentQuantityModel.getQuantity(dishInfo, row);
+                int current_quantity = componentQuantityDataModel.getQuantity(dishInfo, row);
                 int view_int_tag = Integer.parseInt(v.getTag().toString());
                 int new_quantity = min(max_value, max(min_value, current_quantity + view_int_tag));
 
                 if (new_quantity != current_quantity) {
-                    componentQuantityModel.setQuantity(dishInfo, row, new_quantity);
+                    componentQuantityDataModel.setQuantity(dishInfo, row, new_quantity);
                     setQuantityText(row, new_quantity);
                     v.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_scale));
                 }
@@ -162,8 +168,8 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
                     return;
                 }
 
-                if (componentQuantityModel.hasValue(dishInfo, row))
-                    startRecipeStepsActivity(componentQuantityModel.getQuantity(dishInfo, row),
+                if (componentQuantityDataModel.hasValue(dishInfo, row))
+                    startRecipeStepsActivity(componentQuantityDataModel.getQuantity(dishInfo, row),
                             dishComponentInfo.viewModelClass);
                 else
                     Snackbar.make(v, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
@@ -202,12 +208,14 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         String quantities = preferences.getString(COMPONENT_QUANTITIES, "[]");
-        componentQuantityModel.fromString(quantities); // TODO: 20.06.19 also set in gui!
+        componentQuantityDataModel.fromString(quantities);
 
         int previous_item = preferences.getInt(DISH_INDEX, 0);
         int current_item = dishViewPager.getCurrentItem();
         dishViewPager.setCurrentItem(previous_item);
+
         if (previous_item == current_item)
+            // this extra call is needed since the pager listener is not called in this case.
             setupComponentRows(previous_item);
     }
 
@@ -216,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putInt(DISH_INDEX, dishViewPager.getCurrentItem());
-        editor.putString(COMPONENT_QUANTITIES, componentQuantityModel.toString());
+        editor.putString(COMPONENT_QUANTITIES, componentQuantityDataModel.toString());
 
         editor.apply();
     }
@@ -232,8 +240,8 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
             return;
         }
 
-        if (componentQuantityModel.hasValues(dishInfo))
-            openShoppingCart(componentQuantityModel.getQuantities(dishInfo));
+        if (componentQuantityDataModel.hasValues(dishInfo))
+            openShoppingCart(componentQuantityDataModel.getQuantities(dishInfo));
         else
             Snackbar.make(dishViewPager, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
     }

@@ -1,4 +1,4 @@
-package de.mwdevs.padthai.recipe_steps;
+package de.mwdevs.padthai.recipe_steps.data;
 
 final class RecipeQuantities {
     static final class ChiliPaste {

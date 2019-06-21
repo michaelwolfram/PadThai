@@ -1,4 +1,4 @@
-package de.mwdevs.padthai.recipe_steps;
+package de.mwdevs.padthai.recipe_steps.data;
 
 import android.arch.core.util.Function;
 import android.arch.lifecycle.Transformations;

@@ -1,4 +1,4 @@
-package de.mwdevs.padthai.shopping_list;
+package de.mwdevs.padthai.shopping_list.data;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -11,21 +11,21 @@ import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 
 import java.util.ArrayList;
 
-class WorkbookFacade {
+public class WorkbookFacade {
     private static final int EXCEL_SHEET_ROW_OFFSET = 7;
 
     private final int[] mComponentQuantities;
     private Workbook mWorkbook;
     private Sheet mSheet0;
 
-    WorkbookFacade(int[] component_quantities) {
+    public WorkbookFacade(int[] component_quantities) {
         if (component_quantities == null) {
             throw new IllegalArgumentException("No component quantities provided.");
         }
         mComponentQuantities = component_quantities;
     }
 
-    void setWorkbook(Workbook workbook) {
+    public void setWorkbook(Workbook workbook) {
         mWorkbook = workbook;
         extractSheetAndUpdateComponentQuantities();
     }
@@ -43,7 +43,7 @@ class WorkbookFacade {
         XSSFFormulaEvaluator.evaluateAllFormulaCells(mWorkbook);
     }
 
-    ArrayList<ShoppingListContent.ShoppingItem> createShoppingItems() {
+    public ArrayList<ShoppingListContent.ShoppingItem> createShoppingItems() {
         ArrayList<ShoppingListContent.ShoppingItem> items = new ArrayList<>();
 
         for (int pos = 0; pos <= mSheet0.getPhysicalNumberOfRows() - EXCEL_SHEET_ROW_OFFSET; pos++) {

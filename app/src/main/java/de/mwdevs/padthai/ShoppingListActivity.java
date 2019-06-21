@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
 import de.mwdevs.padthai.shopping_list.OnListInteractionListener;
-import de.mwdevs.padthai.shopping_list.ShoppingListContent;
+import de.mwdevs.padthai.shopping_list.data.ShoppingListContent;
 import de.mwdevs.padthai.shopping_list.ShoppingListRVAdapter;
 
 import static java.lang.Math.max;

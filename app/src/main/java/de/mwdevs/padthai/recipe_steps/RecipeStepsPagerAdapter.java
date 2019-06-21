@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.mwdevs.padthai.R;
+import de.mwdevs.padthai.recipe_steps.data.ChiliPasteStepViewModel;
+import de.mwdevs.padthai.recipe_steps.data.PadThaiStepViewModel;
+import de.mwdevs.padthai.recipe_steps.data.PeanutSauceStepViewModel;
 
 public class RecipeStepsPagerAdapter extends FragmentPagerAdapter {
     private static final ArrayList<ArrayList<Integer>> TAB_TITLES = new ArrayList<>(Arrays.asList(

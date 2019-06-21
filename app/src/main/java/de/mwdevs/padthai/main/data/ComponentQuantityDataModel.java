@@ -1,27 +1,29 @@
-package de.mwdevs.padthai;
+package de.mwdevs.padthai.main.data;
 
 import android.support.annotation.NonNull;
 
 import org.json.JSONArray;
 
-class ComponentQuantityModel {
+import de.mwdevs.padthai.main.data.DishInfo;
+
+public class ComponentQuantityDataModel {
     private final int mMaximumComponentRows;
     private int[][] mComponentQuantities;
 
-    ComponentQuantityModel(int maximum_component_rows) {
+    public ComponentQuantityDataModel(int maximum_component_rows) {
         mMaximumComponentRows = maximum_component_rows;
         mComponentQuantities = new int[DishInfo.values().length][mMaximumComponentRows];
     }
 
-    int getQuantity(DishInfo dishInfo, int row) {
+    public int getQuantity(DishInfo dishInfo, int row) {
         return getQuantities(dishInfo)[row];
     }
 
-    int[] getQuantities(DishInfo dishInfo) {
+    public int[] getQuantities(DishInfo dishInfo) {
         return mComponentQuantities[dishInfo.getId()];
     }
 
-    void setQuantity(DishInfo dishInfo, int col, int value) {
+    public void setQuantity(DishInfo dishInfo, int col, int value) {
         setQuantity(dishInfo.getId(), col, value);
     }
 
@@ -29,7 +31,7 @@ class ComponentQuantityModel {
         mComponentQuantities[dishRow][col] = value;
     }
 
-    boolean hasValues(DishInfo dishInfo) {
+    public boolean hasValues(DishInfo dishInfo) {
         boolean result = false;
         for (int row = 0; row < mMaximumComponentRows; row++) {
             result = result || hasValue(dishInfo, row);
@@ -37,7 +39,7 @@ class ComponentQuantityModel {
         return result;
     }
 
-    boolean hasValue(DishInfo dishInfo, int row) {
+    public boolean hasValue(DishInfo dishInfo, int row) {
         return getQuantity(dishInfo, row) > 0;
     }
 
@@ -53,7 +55,7 @@ class ComponentQuantityModel {
         return jsonArray.toString();
     }
 
-    void fromString(String string) {
+    public void fromString(String string) {
         try {
             JSONArray jsonArray = new JSONArray(string);
             for (int i = 0; i < jsonArray.length(); i++) {

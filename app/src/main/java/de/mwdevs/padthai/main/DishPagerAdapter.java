@@ -1,4 +1,4 @@
-package de.mwdevs.padthai;
+package de.mwdevs.padthai.main;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -13,12 +13,17 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 
+import de.mwdevs.padthai.R;
+import de.mwdevs.padthai.main.data.DishInfo;
+import de.mwdevs.padthai.main.ui.OnRecipeInteractionListener;
+
 public class DishPagerAdapter extends PagerAdapter {
 
     private final OnRecipeInteractionListener mListener;
     private Context mContext;
+    private DelayProvider mDelayProvider = new DelayProvider();
 
-    DishPagerAdapter(Context context, OnRecipeInteractionListener listener) {
+    public DishPagerAdapter(Context context, OnRecipeInteractionListener listener) {
         mContext = context;
         mListener = listener;
     }
@@ -97,10 +102,10 @@ public class DishPagerAdapter extends PagerAdapter {
             @Override
             public void run() {
                 scaleUp.start();
-                handler.postDelayed(this, 5000); // TODO: 20.06.19 create class which handles querying the two delay time points
+                handler.postDelayed(this, mDelayProvider.getNextDelay());
             }
         };
-        handler.postDelayed(animationLoop, 1000);
+        handler.postDelayed(animationLoop, mDelayProvider.getNextDelay());
     }
 
 }

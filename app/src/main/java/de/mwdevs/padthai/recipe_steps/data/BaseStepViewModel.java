@@ -1,4 +1,4 @@
-package de.mwdevs.padthai.recipe_steps;
+package de.mwdevs.padthai.recipe_steps.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -12,19 +12,19 @@ public abstract class BaseStepViewModel extends ViewModel {
     LiveData<Integer> mText2;
     LiveData<ArrayList<RecipeQuantityInfo>> mRecipeQuantityInfo;
 
-    void setIndex(int index) {
+    public void setIndex(int index) {
         mIndex.setValue(index);
     }
 
-    LiveData<Integer> getText1() {
+    public LiveData<Integer> getText1() {
         return mText1;
     }
 
-    LiveData<Integer> getText2() {
+    public LiveData<Integer> getText2() {
         return mText2;
     }
 
-    LiveData<ArrayList<RecipeQuantityInfo>> getRecipeQuantityInfo() {
+    public LiveData<ArrayList<RecipeQuantityInfo>> getRecipeQuantityInfo() {
         return mRecipeQuantityInfo;
     }
 }

@@ -1,8 +1,8 @@
-package de.mwdevs.padthai;
+package de.mwdevs.padthai.main.data;
 
-class DishComponentInfo {
-    int name_id;
-    Class viewModelClass;
+public class DishComponentInfo {
+    public int name_id;
+    public Class viewModelClass;
 
     DishComponentInfo(int name_id, Class viewModelClass) {
         this.name_id = name_id;

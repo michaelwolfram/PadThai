@@ -20,6 +20,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import de.mwdevs.padthai.R;
+import de.mwdevs.padthai.recipe_steps.data.BaseStepViewModel;
+import de.mwdevs.padthai.recipe_steps.data.RecipeQuantityInfo;
 
 public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
     protected static final String ARG_QUANTITY = "ARG_QUANTITY";

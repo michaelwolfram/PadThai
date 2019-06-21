@@ -1,15 +1,15 @@
-package de.mwdevs.padthai;
+package de.mwdevs.padthai.main.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-import de.mwdevs.padthai.recipe_steps.ChiliPasteStepViewModel;
-import de.mwdevs.padthai.recipe_steps.PadThaiStepViewModel;
-import de.mwdevs.padthai.recipe_steps.PeanutSauceStepViewModel;
+import de.mwdevs.padthai.R;
+import de.mwdevs.padthai.recipe_steps.data.ChiliPasteStepViewModel;
+import de.mwdevs.padthai.recipe_steps.data.PadThaiStepViewModel;
+import de.mwdevs.padthai.recipe_steps.data.PeanutSauceStepViewModel;
 
 public enum DishInfo {
-    // TODO: 20.06.19 load this from yaml file!
 
     PAD_THAI(0, R.string.pad_thai, R.drawable.pad_thai_512, new ArrayList<>(Arrays.asList(
             new DishComponentInfo(R.string.chili_paste, ChiliPasteStepViewModel.class),

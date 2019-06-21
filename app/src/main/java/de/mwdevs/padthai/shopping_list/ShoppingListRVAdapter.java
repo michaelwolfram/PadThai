@@ -16,7 +16,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.util.ArrayList;
 
 import de.mwdevs.padthai.R;
-import de.mwdevs.padthai.shopping_list.ShoppingListContent.ShoppingItem;
+import de.mwdevs.padthai.shopping_list.data.ShoppingListContent.ShoppingItem;
+import de.mwdevs.padthai.shopping_list.data.WorkbookFacade;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ShoppingItem} and makes a call to the

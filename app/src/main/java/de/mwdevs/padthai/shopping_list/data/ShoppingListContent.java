@@ -1,4 +1,4 @@
-package de.mwdevs.padthai.shopping_list;
+package de.mwdevs.padthai.shopping_list.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -59,13 +59,13 @@ public class ShoppingListContent {
                 return new ShoppingItem[size];
             }
         };
-        final int id;
-        final int name_id;
-        final int image_id;
-        final int gram_ml_text;
-        final int stk_text;
-        double gram_ml;
-        double stk;
+        final public int id;
+        final public int name_id;
+        final public int image_id;
+        final public int gram_ml_text;
+        final public int stk_text;
+        public double gram_ml;
+        public double stk;
         private float alpha = 1.0f;
 
         ShoppingItem(int id, int name_id, int image_id, int gram_ml_text, int stk_text) {
@@ -92,15 +92,15 @@ public class ShoppingListContent {
             this.stk = stk;
         }
 
-        float getAlpha() {
+        public float getAlpha() {
             return alpha;
         }
 
-        void resetAlpha() {
+        public void resetAlpha() {
             alpha = 1.0f;
         }
 
-        void toggleAlpha() {
+        public void toggleAlpha() {
             if (alpha == 1.0f)
                 alpha = 0.15f;
             else

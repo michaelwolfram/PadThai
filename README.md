@@ -2,8 +2,6 @@
 Recipes for pad thai etc.
 
 
-- synced anims
-- data in yaml files
-- rezept schritte
-  -- mit sprachsteuerung
+- enhance showcase with new recipe steps buttons and dish pager
 - weitere rezepte
+- rezept schritte mit sprachsteuerung

@@ -11,7 +11,7 @@ import android.view.WindowManager;
 
 import java.io.Serializable;
 
-import de.mwdevs.padthai.recipe_steps.BaseStepViewModel;
+import de.mwdevs.padthai.recipe_steps.data.BaseStepViewModel;
 import de.mwdevs.padthai.recipe_steps.RecipeStepsPagerAdapter;
 
 public class RecipeStepsActivity<T extends BaseStepViewModel> extends AppCompatActivity {

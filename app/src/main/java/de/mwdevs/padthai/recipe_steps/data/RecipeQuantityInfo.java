@@ -1,10 +1,10 @@
-package de.mwdevs.padthai.recipe_steps;
+package de.mwdevs.padthai.recipe_steps.data;
 
-class RecipeQuantityInfo {
-    int name_id;
-    float el;
-    int string_id;
-    int image_id;
+public class RecipeQuantityInfo {
+    public int name_id;
+    public float el;
+    public int string_id;
+    public int image_id;
 
     RecipeQuantityInfo(int name_id, float el, int string_id, int image_id) {
         this.name_id = name_id;
