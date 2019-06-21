@@ -17,17 +17,17 @@ import java.util.ArrayList;
 
 import de.mwdevs.padthai.R;
 import de.mwdevs.padthai.main.data.DishInfo;
-import de.mwdevs.padthai.main.ui.OnRecipeInteractionListener;
+import de.mwdevs.padthai.main.ui.OnDishInteractionListener;
 
 public class DishPagerAdapter extends PagerAdapter {
 
     private static final long INITIAL_DELAY = 1000;
     private static final long PERIODIC_DELAY = 5000;
-    private final OnRecipeInteractionListener mListener;
+    private final OnDishInteractionListener mListener;
     private Context mContext;
     private ArrayList<ObjectAnimator> mViewAnimations = new ArrayList<>(DishInfo.values().length);
 
-    public DishPagerAdapter(Context context, OnRecipeInteractionListener listener) {
+    public DishPagerAdapter(Context context, OnDishInteractionListener listener) {
         mContext = context;
         mListener = listener;
 
@@ -92,7 +92,7 @@ public class DishPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    mListener.onRecipeClick((DishInfo) view.getTag());
+                    mListener.onDishClick((DishInfo) view.getTag());
                 }
             }
         });
@@ -100,7 +100,7 @@ public class DishPagerAdapter extends PagerAdapter {
             @Override
             public boolean onLongClick(View v) {
                 if (null != mListener) {
-                    mListener.onRecipeLongClick((DishInfo) view.getTag());
+                    mListener.onDishLongClick((DishInfo) view.getTag());
                 }
                 return true;
             }

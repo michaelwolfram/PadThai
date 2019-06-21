@@ -19,18 +19,18 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import java.util.ArrayList;
 
-import de.mwdevs.padthai.main.data.ComponentQuantityDataModel;
 import de.mwdevs.padthai.main.DishPagerAdapter;
+import de.mwdevs.padthai.main.data.ComponentQuantityDataModel;
 import de.mwdevs.padthai.main.data.DishComponentInfo;
 import de.mwdevs.padthai.main.data.DishInfo;
-import de.mwdevs.padthai.main.ui.OnRecipeInteractionListener;
-import de.mwdevs.padthai.main.ui.RecipePageTransformer;
+import de.mwdevs.padthai.main.ui.DishPageTransformer;
+import de.mwdevs.padthai.main.ui.OnDishInteractionListener;
 import de.mwdevs.padthai.shopping_list.data.ShoppingListContent;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class MainActivity extends AppCompatActivity implements OnRecipeInteractionListener {
+public class MainActivity extends AppCompatActivity implements OnDishInteractionListener {
     public static final String DISH_INDEX = "DISH_INDEX";
     public static final String COMPONENT_QUANTITIES = "COMPONENT_QUANTITIES";
     private static final int MAXIMUM_COMPONENT_ROWS = 3;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
     private ComponentQuantityDataModel componentQuantityDataModel = new ComponentQuantityDataModel(MAXIMUM_COMPONENT_ROWS);
     private ViewPager dishViewPager;
     private ShowcaseView showcaseView;
-    private boolean allowRecipeOnClickListener;
+    private boolean allowDishOnClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
 
         setupToolbar();
         setupShowcaseView();
-        setupRecipeViewPager();
+        setupDishViewPager();
         initComponentRows();
     }
 
@@ -59,36 +59,46 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
     }
 
     private void setupShowcaseView() {
-        // TODO: 10.06.19 enhance showcase with new recipe steps buttons and dish pager
+        View view_to_be_focused = findViewById(R.id.pager_image_view_position);
         showcaseView = new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
                 .setStyle(R.style.PadThaiShowcaseView)
-                .singleShot(11)
-                .setTarget(new ViewTarget(dishViewPager))
+//                .singleShot(11) // TODO: 21.06.19 remove comment here
+                .setTarget(new ViewTarget(view_to_be_focused))
                 .setContentTitle(R.string.click_me)
                 .setContentText(R.string.then_shopping_list_shows)
                 .setFadeInDurations(800)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        allowRecipeOnClickListener = true;
-                        showcaseView.hide();
+                        showcaseView.setContentText(getString(R.string.then_recipe_steps_show));
+                        View view2 = findViewById(R.id.showcase_focus_2);
+                        showcaseView.setShowcase(new ViewTarget(view2), true);
+                        showcaseView.forceTextPosition(ShowcaseView.BELOW_SHOWCASE);
+                        showcaseView.overrideButtonClick(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // TODO: 21.06.19 indicate with 3rd one the view pager
+                                allowDishOnClickListener = true;
+                                showcaseView.hide();
+                            }
+                        });
                     }
                 })
                 .build();
 
         if (!showcaseView.isShowing())
-            allowRecipeOnClickListener = true;
+            allowDishOnClickListener = true;
     }
 
-    private void setupRecipeViewPager() {
+    private void setupDishViewPager() {
         dishViewPager = findViewById(R.id.recipe_view_pager);
         dishViewPager.setAdapter(new DishPagerAdapter(this, this));
-        dishViewPager.setPageTransformer(false, new RecipePageTransformer());
+        dishViewPager.setPageTransformer(false, new DishPageTransformer());
         dishViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int i) {
-                setupComponentRows(i);
+                updateViews(i);
             }
         });
     }
@@ -99,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
         mComponentRowViews.add(2, findViewById(R.id.third_component_row));
     }
 
-    private void setupComponentRows(int dish_id) {
+    private void updateViews(int dish_id) {
         DishInfo dishInfo = DishInfo.values()[dish_id];
         ((TextView) findViewById(R.id.header)).setText(dishInfo.getTitleResId());
 
@@ -162,6 +172,9 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!allowDishOnClickListener)
+                    return;
+
                 // TODO: 16.06.19 take care of this when more dishes are added
                 if (dishInfo.getTitleResId() != R.string.pad_thai) {
                     Snackbar.make(dishViewPager, R.string.dish_not_available_yet, Snackbar.LENGTH_LONG).show();
@@ -216,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
 
         if (previous_item == current_item)
             // this extra call is needed since the pager listener is not called in this case.
-            setupComponentRows(previous_item);
+            updateViews(previous_item);
     }
 
     private void saveToPreferences() {
@@ -230,8 +243,8 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
     }
 
     @Override
-    public void onRecipeClick(DishInfo dishInfo) {
-        if (!allowRecipeOnClickListener)
+    public void onDishClick(DishInfo dishInfo) {
+        if (!allowDishOnClickListener)
             return;
 
         // TODO: 16.06.19 take care of this when more dishes are added
@@ -247,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements OnRecipeInteracti
     }
 
     @Override
-    public void onRecipeLongClick(DishInfo dishInfo) {
+    public void onDishLongClick(DishInfo dishInfo) {
 
     }
 

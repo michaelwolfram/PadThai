@@ -79,4 +79,5 @@
     <string name="chili_flakes">Chili flakes</string>
     <string name="water">Water</string>
     <string name="dish_not_available_yet">Dish not available yet.</string>
+    <string name="then_recipe_steps_show">\n…then the recipe steps open!</string>
 </resources>
