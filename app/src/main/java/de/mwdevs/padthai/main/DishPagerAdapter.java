@@ -13,19 +13,39 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 import de.mwdevs.padthai.R;
 import de.mwdevs.padthai.main.data.DishInfo;
 import de.mwdevs.padthai.main.ui.OnRecipeInteractionListener;
 
 public class DishPagerAdapter extends PagerAdapter {
 
+    private static final long INITIAL_DELAY = 1000;
+    private static final long PERIODIC_DELAY = 5000;
     private final OnRecipeInteractionListener mListener;
     private Context mContext;
-    private DelayProvider mDelayProvider = new DelayProvider();
+    private ArrayList<ObjectAnimator> mViewAnimations = new ArrayList<>(DishInfo.values().length);
 
     public DishPagerAdapter(Context context, OnRecipeInteractionListener listener) {
         mContext = context;
         mListener = listener;
+
+        setupAnimationHandler();
+    }
+
+    private void setupAnimationHandler() {
+        final Handler handler = new Handler();
+        Runnable animationLoop = new Runnable() {
+            @Override
+            public void run() {
+                for (ObjectAnimator anim : mViewAnimations) {
+                    anim.start();
+                }
+                handler.postDelayed(this, PERIODIC_DELAY);
+            }
+        };
+        handler.postDelayed(animationLoop, INITIAL_DELAY);
     }
 
     @NonNull
@@ -97,16 +117,7 @@ public class DishPagerAdapter extends PagerAdapter {
         scaleUp.setInterpolator(new AccelerateInterpolator());
         scaleUp.setRepeatMode(ValueAnimator.REVERSE);
         scaleUp.setRepeatCount(1);
-        final Handler handler = new Handler();
-        Runnable animationLoop = new Runnable() {
-            @Override
-            public void run() {
-                scaleUp.start();
-                handler.postDelayed(this, mDelayProvider.getNextDelay());
-            }
-        };
-        handler.postDelayed(animationLoop, mDelayProvider.getNextDelay());
+        mViewAnimations.add(scaleUp);
     }
-
 }
 
