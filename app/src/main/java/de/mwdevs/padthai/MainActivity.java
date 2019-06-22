@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
         showcaseView = new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
                 .setStyle(R.style.PadThaiShowcaseView)
-//                .singleShot(11) // TODO: 21.06.19 remove comment here
+                .singleShot(11)
                 .setTarget(new ViewTarget(view_to_be_focused))
                 .setContentTitle(R.string.shopping_list)
                 .setContentText(R.string.click_me_then_shopping_list_shows)
