@@ -81,7 +81,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
 
         hideProgressBarIfDataWasAlreadySet();
 
-        initShowcaseViewBuilder();
+        showcaseViewBuilder = Utils.getInitializedShowcaseViewBuilder(this, 10001);
         setupRecyclerView();
     }
 
@@ -159,35 +159,32 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
         recyclerView.addOnScrollListener(recyclerViewScrollDisabler);
 
         showcaseView = showcaseViewBuilder
-                .withMaterialShowcase()
-                .setStyle(R.style.PadThaiShowcaseView)
                 .setContentTitle(R.string.item_in_cart)
                 .setContentText(R.string.click_will_mark)
-                .setFadeInDurations(800)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showcaseView.setContentTitle(getString(R.string.what_that_ingredient));
-                        showcaseView.setContentText(getString(R.string.try_long_click));
-                        View view2 = getItemToFocusInShowcaseView(1);
-                        showcaseView.setShowcase(new ViewTarget(view2), true);
-                        showcaseView.overrideButtonClick(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                recyclerView.removeOnScrollListener(recyclerViewScrollDisabler);
-                                showcaseView.hide();
-                                mAdapter.resetData();
-                            }
-                        });
-                    }
-                })
                 .setTarget(new ViewTarget(view))
+                .setOnClickListener(getOnClickListenerForFirstShowcase())
                 .build();
     }
 
-    private void initShowcaseViewBuilder() {
-        showcaseViewBuilder = new ShowcaseView.Builder(this)
-                .singleShot(22);
+    @NonNull
+    private View.OnClickListener getOnClickListenerForFirstShowcase() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view2 = getItemToFocusInShowcaseView(1);
+                showcaseView.setContentTitle(getString(R.string.what_that_ingredient));
+                showcaseView.setContentText(getString(R.string.try_long_click));
+                showcaseView.setShowcase(new ViewTarget(view2), true);
+                showcaseView.overrideButtonClick(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.removeOnScrollListener(recyclerViewScrollDisabler);
+                        showcaseView.hide();
+                        mAdapter.resetData();
+                    }
+                });
+            }
+        };
     }
 
     private void setupRecyclerView() {

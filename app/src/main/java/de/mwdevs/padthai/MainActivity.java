@@ -51,9 +51,10 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
         ShoppingListContent.initItemPropertyMap();
 
         setupToolbar();
-        setupShowcaseView();
         setupDishViewPager();
         initComponentRows();
+
+        setupShowcaseView();
     }
 
     private void setupToolbar() {
@@ -62,57 +63,68 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
     }
 
     private void setupShowcaseView() {
-        final View view_to_be_focused = findViewById(R.id.pager_image_view_position);
-        showcaseView = new ShowcaseView.Builder(this)
-                .withMaterialShowcase()
-                .setStyle(R.style.PadThaiShowcaseView)
-                .singleShot(11)
-                .setTarget(new ViewTarget(view_to_be_focused))
+        showcaseView = Utils.getInitializedShowcaseViewBuilder(this, 1)
                 .setContentTitle(R.string.shopping_list)
                 .setContentText(R.string.click_me_then_shopping_list_shows)
-                .setFadeInDurations(800)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showcaseView.setContentTitle(getString(R.string.recipe_steps));
-                        showcaseView.setContentText(getString(R.string.click_me_then_recipe_steps_show));
-                        View showcase_focus_2 = findViewById(R.id.showcase_focus_2);
-                        showcaseView.setShowcase(new ViewTarget(showcase_focus_2), true);
-                        showcaseView.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
-                        showcaseView.overrideButtonClick(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showcaseView.setContentTitle(getString(R.string.several_dishes));
-                                showcaseView.setContentText(getString(R.string.swipe_through_dishes));
-                                showcaseView.setShowcase(new ViewTarget(view_to_be_focused), true);
-                                showcaseView.overrideButtonClick(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        allowDishOnClickListener = true;
-                                        dishViewPager.setPagingEnabled(true);
-                                        showcaseView.hide();
-                                    }
-                                });
-                            }
-                        });
-                        final View padThaiText = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_name);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                ObjectAnimator scaleUpSet =
-                                        (ObjectAnimator) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.showcase_scale_up);
-                                scaleUpSet.setTarget(padThaiText);
-                                scaleUpSet.start();
-                            }
-                        }, 666);
-                    }
-                })
+                .setTarget(new ViewTarget(findViewById(R.id.pager_image_view_position)))
+                .setOnClickListener(getOnClickListenerForFirstShowcase())
                 .build();
 
         if (!showcaseView.isShowing()) {
-            allowDishOnClickListener = true;
-            dishViewPager.setPagingEnabled(true);
+            activateGuiElements();
         }
+    }
+
+    @NonNull
+    private View.OnClickListener getOnClickListenerForFirstShowcase() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showcaseView.setContentTitle(getString(R.string.recipe_steps));
+                showcaseView.setContentText(getString(R.string.click_me_then_recipe_steps_show));
+                showcaseView.setShowcase(new ViewTarget(findViewById(R.id.showcase_focus_2)), true);
+                showcaseView.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
+                showcaseView.overrideButtonClick(getOnClickListenerForSecondShowcase());
+                animatePadThaiTextViewForTutorial();
+            }
+        };
+    }
+
+    @NonNull
+    private View.OnClickListener getOnClickListenerForSecondShowcase() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showcaseView.setContentTitle(getString(R.string.several_dishes));
+                showcaseView.setContentText(getString(R.string.swipe_through_dishes));
+                showcaseView.setShowcase(new ViewTarget(findViewById(R.id.pager_image_view_position)), true);
+                showcaseView.overrideButtonClick(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        activateGuiElements();
+                        showcaseView.hide();
+                    }
+                });
+            }
+        };
+    }
+
+    private void activateGuiElements() {
+        allowDishOnClickListener = true;
+        dishViewPager.setPagingEnabled(true);
+    }
+
+    private void animatePadThaiTextViewForTutorial() {
+        final View padThaiText = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_name);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ObjectAnimator padThaiScaleUpAnimator =
+                        (ObjectAnimator) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.showcase_scale_up);
+                padThaiScaleUpAnimator.setTarget(padThaiText);
+                padThaiScaleUpAnimator.start();
+            }
+        }, 666);
     }
 
     private void setupDishViewPager() {
