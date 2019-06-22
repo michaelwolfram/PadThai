@@ -26,6 +26,7 @@ import de.mwdevs.padthai.main.data.ComponentQuantityDataModel;
 import de.mwdevs.padthai.main.data.DishComponentInfo;
 import de.mwdevs.padthai.main.data.DishInfo;
 import de.mwdevs.padthai.main.ui.DishPageTransformer;
+import de.mwdevs.padthai.main.ui.LockableViewPager;
 import de.mwdevs.padthai.main.ui.OnDishInteractionListener;
 import de.mwdevs.padthai.shopping_list.data.ShoppingListContent;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
     private static final int MAXIMUM_COMPONENT_ROWS = 3;
     private ArrayList<View> mComponentRowViews = new ArrayList<>(MAXIMUM_COMPONENT_ROWS);
     private ComponentQuantityDataModel componentQuantityDataModel = new ComponentQuantityDataModel(MAXIMUM_COMPONENT_ROWS);
-    private ViewPager dishViewPager;
+    private LockableViewPager dishViewPager;
     private ShowcaseView showcaseView;
     private boolean allowDishOnClickListener;
 
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                                     @Override
                                     public void onClick(View v) {
                                         allowDishOnClickListener = true;
+                                        dishViewPager.setPagingEnabled(true);
                                         showcaseView.hide();
                                     }
                                 });
@@ -107,8 +109,10 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                 })
                 .build();
 
-        if (!showcaseView.isShowing())
+        if (!showcaseView.isShowing()) {
             allowDishOnClickListener = true;
+            dishViewPager.setPagingEnabled(true);
+        }
     }
 
     private void setupDishViewPager() {
