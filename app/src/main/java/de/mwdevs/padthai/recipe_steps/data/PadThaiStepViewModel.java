@@ -30,33 +30,33 @@ public class PadThaiStepViewModel extends BaseStepViewModel {
 
     private static final ArrayList<ArrayList<RecipeQuantityInfo>> RECIPE_QUANTITY_INFO_LIST = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList(
-                    new RecipeQuantityInfo(R.string.reisnudeln, RecipeQuantities.PadThai.Step3.g_noodles, R.string.g, R.mipmap.reisnudeln_round),
+                    new RecipeQuantityInfo(R.string.rice_noodles, RecipeQuantities.PadThai.Step3.g_noodles, R.string.g, R.mipmap.reisnudeln_round),
                     new RecipeQuantityInfo(R.string.tofu, RecipeQuantities.PadThai.Step1.el_tofu, R.string.el, R.mipmap.tofu_round)
             )),
             new ArrayList<>(Arrays.asList(
-                    new RecipeQuantityInfo(R.string.oel, RecipeQuantities.PadThai.Step1.el_oil, R.string.el, R.mipmap.sojaoel_round),
-                    new RecipeQuantityInfo(R.string.karotten, RecipeQuantities.PadThai.Step1.el_carrot, R.string.el, R.mipmap.karotten_round),
-                    new RecipeQuantityInfo(R.string.zwiebeln, RecipeQuantities.PadThai.Step1.el_onion, R.string.el, R.mipmap.zwiebeln_round),
-                    new RecipeQuantityInfo(R.string.tomaten, RecipeQuantities.PadThai.Step1.el_tomato, R.string.el, R.mipmap.tomaten_round),
+                    new RecipeQuantityInfo(R.string.oil, RecipeQuantities.PadThai.Step1.el_oil, R.string.el, R.mipmap.sojaoel_round),
+                    new RecipeQuantityInfo(R.string.carrots, RecipeQuantities.PadThai.Step1.el_carrot, R.string.el, R.mipmap.karotten_round),
+                    new RecipeQuantityInfo(R.string.onions, RecipeQuantities.PadThai.Step1.el_onion, R.string.el, R.mipmap.zwiebeln_round),
+                    new RecipeQuantityInfo(R.string.tomatoes, RecipeQuantities.PadThai.Step1.el_tomato, R.string.el, R.mipmap.tomaten_round),
                     new RecipeQuantityInfo(R.string.tofu, RecipeQuantities.PadThai.Step1.el_tofu, R.string.el, R.mipmap.tofu_round),
-                    new RecipeQuantityInfo(R.string.knoblauch, RecipeQuantities.PadThai.Step1.tl_garlic, R.string.tl, R.mipmap.knoblauch_round)
+                    new RecipeQuantityInfo(R.string.garlic, RecipeQuantities.PadThai.Step1.tl_garlic, R.string.tl, R.mipmap.knoblauch_round)
             )),
             new ArrayList<>(Arrays.asList(
-                    new RecipeQuantityInfo(R.string.soja_sosse, RecipeQuantities.PadThai.Step2.el_soy_sauce, R.string.el, R.mipmap.sojasosse_round),
+                    new RecipeQuantityInfo(R.string.soja_sauce, RecipeQuantities.PadThai.Step2.el_soy_sauce, R.string.el, R.mipmap.sojasosse_round),
                     new RecipeQuantityInfo(R.string.chili_paste, RecipeQuantities.PadThai.Step2.tl_chili_paste, R.string.tl, R.mipmap.chili_paste_round)
             )),
             new ArrayList<>(Arrays.asList(
                     new RecipeQuantityInfo(R.string.water, RecipeQuantities.PadThai.Step3.el_water, R.string.el, R.mipmap.water_round),
-                    new RecipeQuantityInfo(R.string.reisnudeln, RecipeQuantities.PadThai.Step3.g_noodles, R.string.g, R.mipmap.reisnudeln_round),
-                    new RecipeQuantityInfo(R.string.soja_sosse, RecipeQuantities.PadThai.Step4.el_soy_sauce, R.string.el, R.mipmap.sojasosse_round),
-                    new RecipeQuantityInfo(R.string.zucker, RecipeQuantities.PadThai.Step4.tl_sugar, R.string.tl, R.mipmap.braunerzucker_round),
-                    new RecipeQuantityInfo(R.string.sprossen, RecipeQuantities.PadThai.Step4.el_sprouts, R.string.el, R.mipmap.mungobohnensprossen_round),
-                    new RecipeQuantityInfo(R.string.zwiebeln, RecipeQuantities.PadThai.Step4.el_sprint_onions, R.string.el, R.mipmap.fruehlingszwiebeln_round),
-                    new RecipeQuantityInfo(R.string.erdnuesse, RecipeQuantities.PadThai.Step4.el_peanuts, R.string.el, R.mipmap.erdnuesse_round)
+                    new RecipeQuantityInfo(R.string.rice_noodles, RecipeQuantities.PadThai.Step3.g_noodles, R.string.g, R.mipmap.reisnudeln_round),
+                    new RecipeQuantityInfo(R.string.soja_sauce, RecipeQuantities.PadThai.Step4.el_soy_sauce, R.string.el, R.mipmap.sojasosse_round),
+                    new RecipeQuantityInfo(R.string.sugar, RecipeQuantities.PadThai.Step4.tl_sugar, R.string.tl, R.mipmap.braunerzucker_round),
+                    new RecipeQuantityInfo(R.string.sprouts, RecipeQuantities.PadThai.Step4.el_sprouts, R.string.el, R.mipmap.mungobohnensprossen_round),
+                    new RecipeQuantityInfo(R.string.onions, RecipeQuantities.PadThai.Step4.el_sprint_onions, R.string.el, R.mipmap.fruehlingszwiebeln_round),
+                    new RecipeQuantityInfo(R.string.peanuts, RecipeQuantities.PadThai.Step4.el_peanuts, R.string.el, R.mipmap.erdnuesse_round)
             )),
             new ArrayList<>(Arrays.asList(
                     new RecipeQuantityInfo(R.string.chili_flakes, RecipeQuantities.PadThai.Step5.tl_chili_flakes, R.string.tl, R.mipmap.chili_flakes_round),
-                    new RecipeQuantityInfo(R.string.limettensaft, RecipeQuantities.PadThai.Step5.stk_lime_juice, R.string.stk, R.mipmap.limetten_round)
+                    new RecipeQuantityInfo(R.string.lime_juice, RecipeQuantities.PadThai.Step5.stk_lime_juice, R.string.stk, R.mipmap.limetten_round)
             ))
     ));
 

@@ -1,13 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Pad Thai</string>
-    <string name="action_settings">Settings</string>
-    <string name="header" translatable="false">Pad Thai</string>
-    <string name="sub_header">Components</string>
-    <string name="this_is_not_an_image_description" translatable="false">this_is_not_an_image_description</string>
-    <string name="dish_component_text">Component Name</string>
+    <!-- App strings -->
+    <string name="app_name" translatable="false">@string/pad_thai</string>
+    <string name="title_activity_recipe_steps">Recipe Steps</string>
+
+    <!-- general strings -->
+    <string name="empty_image_description" translatable="false">empty_image_description</string>
     <string name="_0" translatable="false">0</string>
     <string name="x" translatable="false">x</string>
+    <string name="placeholder_s" translatable="false">%1$s</string>
+    <string name="placeholder_d" translatable="false">%1$d</string>
+    <string name="placeholder_dot1f" translatable="false">%1$.1f</string>
+    <string name="empty_string" translatable="false" />
+    <string name="tab_text_0" translatable="false">0.</string>
+    <string name="tab_text_1" translatable="false">1.</string>
+    <string name="tab_text_2" translatable="false">2.</string>
+    <string name="tab_text_2_opt" translatable="false">2. (opt.)</string>
+    <string name="tab_text_3" translatable="false">3.</string>
+    <string name="tab_text_4" translatable="false">4.</string>
+    <string name="tab_text_3n4" translatable="false">3. &amp; 4.</string>
+    <string name="tab_text_5" translatable="false">5.</string>
+
+    <!-- units of measurement -->
+    <string name="g" translatable="false">g</string>
+    <string name="ml" translatable="false">ml</string>
+    <string name="stk">pc.</string>
+    <string name="pkg">pkg.</string>
+    <string name="el" translatable="false">EL</string>
+    <string name="tl" translatable="false">TL</string>
+
+    <!-- Main activity -->
+    <string name="sub_header">Components</string>
+
+    <!-- Components-->
+    <string name="dish_component_text">Component Name</string>
+    <string name="chili_paste">Chili paste</string>
     <string name="sosse">Peanut sauce</string>
+
+    <!-- Dishes-->
     <string name="pad_thai" translatable="false">Pad Thai</string>
     <string name="green_papaya_salad">Green Papaya Salad</string>
     <string name="massaman_curry">Massaman Curry</string>
@@ -16,68 +46,65 @@
     <string name="spring_roles">Spring Roles</string>
     <string name="pumpkin_humus">Pumpkin Humus</string>
     <string name="mango_sticky_rice">Mango with Sticky Rice</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="g" translatable="false">g</string>
-    <string name="ml" translatable="false">ml</string>
-    <string name="stk">pc.</string>
-    <string name="pkg">pkg.</string>
+
+    <!-- Ingredients -->
+    <string name="carrots">Carrots</string>
+    <string name="onions">Onions</string>
+    <string name="garlic">Garlic</string>
+    <string name="chili_dry">Chili (dry)</string>
+    <string name="oil">Oil</string>
+    <string name="soja_sauce">Soja sauce</string>
+    <string name="sugar">br. sugar</string>
+    <string name="lime_juice">Lime juice</string>
+    <string name="tomatoes">Tomatoes</string>
+    <string name="peanuts">Peanuts</string>
+    <string name="coconut_milk">Coconut milk</string>
+    <string name="sprint_onions">Spring onions</string>
+    <string name="sprouts">Sprouts</string>
+    <string name="rice_noodles">Rice noodles</string>
+    <string name="tofu">Tofu</string>
+    <string name="water">Water</string>
+    <string name="chili_flakes">Chili flakes</string>
+
+    <!-- Snackbars -->
+    <string name="no_component_selected">Nothing selected. What do you want to cook?</string>
+    <string name="dish_not_available_yet">Dish not available yet.</string>
+
+    <!-- Showcase tutorial -->
     <string name="got_it">Got it</string>
-    <string name="toggle_view">Toggle View</string>
     <string name="item_in_cart">Item in shopping cart?</string>
     <string name="click_will_mark">\n…clicking will mark it!</string>
     <string name="what_that_ingredient">What\'s that ingredient?</string>
     <string name="try_long_click">\n…try long-clicking!</string>
-    <string name="click_me">Click me!</string>
-    <string name="then_shopping_list_shows">\n…then the shopping list opens!</string>
-    <string name="placeholder_s" translatable="false">%1$s</string>
-    <string name="placeholder_d" translatable="false">%1$d</string>
-    <string name="placeholder_dot1f" translatable="false">%1$.1f</string>
-    <string name="empty_string" translatable="false" />
-    <string name="no_component_selected">Nothing selected. What do you want to cook?</string>
-    <string name="karotten">Carrots</string>
-    <string name="zwiebeln">Onions</string>
-    <string name="knoblauch">Garlic</string>
-    <string name="chili">Chili (dry)</string>
-    <string name="oel">Oil</string>
-    <string name="soja_sosse">Soja sauce</string>
-    <string name="zucker">br. sugar</string>
-    <string name="limettensaft">Lime juice</string>
-    <string name="tomaten">Tomatoes</string>
-    <string name="erdnuesse">Peanuts</string>
-    <string name="kokosmilch">Coconut milk</string>
-    <string name="fruehlingszwiebeln">Spring onions</string>
-    <string name="sprossen">Sprouts</string>
-    <string name="reisnudeln">Rice noodles</string>
-    <string name="tofu">Tofu</string>
-    <string name="title_activity_recipe_steps">Recipe Steps</string>
-    <string name="tab_text_0">0.</string>
-    <string name="tab_text_1">1.</string>
-    <string name="tab_text_2">2.</string>
-    <string name="tab_text_2_opt">2. (opt.)</string>
-    <string name="tab_text_3">3.</string>
-    <string name="tab_text_4">4.</string>
-    <string name="tab_text_3n4">3. &amp; 4.</string>
-    <string name="tab_text_5">5.</string>
+    <string name="shopping_list">Shopping list</string>
+    <string name="click_me_then_shopping_list_shows">\nClick me…then it opens!</string>
+    <string name="recipe_steps">Recipe steps</string>
+    <string name="click_me_then_recipe_steps_show">\nClick me…then they open!</string>
+    <string name="several_dishes">Several dishes</string>
+    <string name="swipe_through_dishes">\nSwipe through them!</string>
+
+    <!-- Recipe steps -->
+
+    <!--     general -->
     <string name="put_in_the_wok">Put in the wok:</string>
-    <string name="el">EL</string>
-    <string name="low_heat">Low heat</string>
-    <string name="tl">TL</string>
-    <string name="prepare_ingredients">Prepare before cooking:</string>
-    <string name="soak_and_fry">1. Soak noodles in cold water\n2. Fry tofu</string>
-    <string name="no_egg">Vegan -> no egg! ;-)</string>
     <string name="add">Add:</string>
-    <string name="mix_and_heat_up">Mix well &amp; heat up</string>
-    <string name="add_to_taste">Add to taste:</string>
+
+    <!--     chili paste -->
     <string name="cook_until_brown">Cook until brown</string>
     <string name="put_everything_in_the_mixer">Put everything in the mixer</string>
+
+    <!--     peanut sauce -->
     <string name="medium_heat_and_crush_tomatoes">1. Medium heat\n2. Crush tomatoes</string>
     <string name="reduce_heat_then_add">Reduce heat a little,\nthen add:</string>
     <string name="fry_and_water">1. Fry until fragrant\n(smash for smell)\n2. Add some water</string>
-    <string name="medium_heat_dont_cook_too_long">1. Medium heat\n2. Add coconut milk if sauce gets too thick\n3. Don\'t cook too long until it separates</string>
+    <string name="medium_heat_don_t_cook_too_long">1. Medium heat\n2. Add coconut milk if sauce gets too thick\n3. Don\'t cook too long until it separates</string>
     <string name="cook_until_thick">Cook until it gets thick</string>
-    <string name="chili_paste">Chili paste</string>
-    <string name="chili_flakes">Chili flakes</string>
-    <string name="water">Water</string>
-    <string name="dish_not_available_yet">Dish not available yet.</string>
-    <string name="then_recipe_steps_show">\n…then the recipe steps open!</string>
+
+    <!--     pad thai -->
+    <string name="prepare_ingredients">Prepare before cooking:</string>
+    <string name="soak_and_fry">1. Soak noodles in cold water\n2. Fry tofu</string>
+    <string name="low_heat">Low heat</string>
+    <string name="no_egg">Vegan -> no egg! ;-)</string>
+    <string name="mix_and_heat_up">Mix well &amp; heat up</string>
+    <string name="add_to_taste">Add to taste:</string>
 </resources>

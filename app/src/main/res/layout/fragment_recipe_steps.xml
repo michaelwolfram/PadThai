@@ -43,7 +43,7 @@
         android:lineSpacingExtra="8sp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="@string/medium_heat_dont_cook_too_long"
+        android:text="@string/medium_heat_don_t_cook_too_long"
         android:textColor="@color/colorAccent"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

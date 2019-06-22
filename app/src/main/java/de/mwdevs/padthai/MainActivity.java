@@ -1,5 +1,7 @@
 package de.mwdevs.padthai;
 
+import android.animation.AnimatorInflater;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,7 +13,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -60,37 +61,48 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
     }
 
     private void setupShowcaseView() {
-        View view_to_be_focused = findViewById(R.id.pager_image_view_position);
+        final View view_to_be_focused = findViewById(R.id.pager_image_view_position);
         showcaseView = new ShowcaseView.Builder(this)
                 .withMaterialShowcase()
                 .setStyle(R.style.PadThaiShowcaseView)
 //                .singleShot(11) // TODO: 21.06.19 remove comment here
                 .setTarget(new ViewTarget(view_to_be_focused))
-                .setContentTitle(R.string.click_me)
-                .setContentText(R.string.then_shopping_list_shows)
+                .setContentTitle(R.string.shopping_list)
+                .setContentText(R.string.click_me_then_shopping_list_shows)
                 .setFadeInDurations(800)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showcaseView.setContentText(getString(R.string.then_recipe_steps_show));
+                        showcaseView.setContentTitle(getString(R.string.recipe_steps));
+                        showcaseView.setContentText(getString(R.string.click_me_then_recipe_steps_show));
                         View showcase_focus_2 = findViewById(R.id.showcase_focus_2);
                         showcaseView.setShowcase(new ViewTarget(showcase_focus_2), true);
                         showcaseView.forceTextPosition(ShowcaseView.ABOVE_SHOWCASE);
                         showcaseView.overrideButtonClick(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                // TODO: 21.06.19 indicate with 3rd one the view pager
-                                allowDishOnClickListener = true;
-                                showcaseView.hide();
+                                showcaseView.setContentTitle(getString(R.string.several_dishes));
+                                showcaseView.setContentText(getString(R.string.swipe_through_dishes));
+                                showcaseView.setShowcase(new ViewTarget(view_to_be_focused), true);
+                                showcaseView.overrideButtonClick(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        allowDishOnClickListener = true;
+                                        showcaseView.hide();
+                                    }
+                                });
                             }
                         });
                         final View padThaiText = findViewById(R.id.third_component_row).findViewById(R.id.dish_component_name);
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                padThaiText.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.change_button_scale_up));
+                                ObjectAnimator scaleUpSet =
+                                        (ObjectAnimator) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.showcase_scale_up);
+                                scaleUpSet.setTarget(padThaiText);
+                                scaleUpSet.start();
                             }
-                        }, 400);
+                        }, 666);
                     }
                 })
                 .build();
@@ -157,7 +169,10 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                 if (new_quantity != current_quantity) {
                     componentQuantityDataModel.setQuantity(dishInfo, row, new_quantity);
                     setQuantityText(row, new_quantity);
-                    v.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.change_button_scale_up));
+                    ObjectAnimator scaleUpSet =
+                            (ObjectAnimator) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.change_button_scale_up);
+                    scaleUpSet.setTarget(v);
+                    scaleUpSet.start();
                 }
             }
         };

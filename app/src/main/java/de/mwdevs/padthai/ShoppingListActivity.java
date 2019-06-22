@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
@@ -25,8 +24,8 @@ import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
 import de.mwdevs.padthai.shopping_list.OnListInteractionListener;
-import de.mwdevs.padthai.shopping_list.data.ShoppingListContent;
 import de.mwdevs.padthai.shopping_list.ShoppingListRVAdapter;
+import de.mwdevs.padthai.shopping_list.data.ShoppingListContent;
 
 import static java.lang.Math.max;
 
@@ -204,23 +203,11 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
     }
 
     private void updateLayoutManagerParameters() {
-        int availableDisplayWidthPx = getDisplayWidth();
-        int minItemWidthPx = convertDpToPixel(MIN_ITEM_WIDTH_DP);
+        int availableDisplayWidthPx = Utils.getDisplayWidth(getWindowManager());
+        int minItemWidthPx = Utils.convertDpToPixel(getResources(), MIN_ITEM_WIDTH_DP);
 
         showListAsGrid = availableDisplayWidthPx >= 2 * minItemWidthPx;
         mColumnCount = availableDisplayWidthPx / minItemWidthPx;
-    }
-
-    private int getDisplayWidth() {
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        return metrics.widthPixels;
-    }
-
-    public int convertDpToPixel(float dp) {
-        return Math.round(dp *
-                ((float) getResources().getDisplayMetrics().densityDpi
-                        / (float) DisplayMetrics.DENSITY_DEFAULT));
     }
 
     public void updateRecyclerView() {

@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_settings">Einstellungen</string>
+    <!-- App strings -->
+    <string name="title_activity_recipe_steps">Rezeptschritte</string>
+
+    <!-- general strings -->
+
+    <!-- units of measurement -->
+    <string name="stk">Stk.</string>
+    <string name="pkg">Pkg.</string>
+
+    <!-- Main activity -->
+    <string name="sub_header">Bestandteile</string>
+
+    <!-- Components-->
+    <string name="dish_component_text">Bestandteil Name</string>
+    <string name="chili_paste">Chilipaste</string>
+    <string name="sosse">Erdnusssoße</string>
+
+    <!-- Dishes-->
     <string name="green_papaya_salad">Grüner Papaya Salat</string>
     <string name="massaman_curry">Massaman Curry</string>
     <string name="green_thai_curry">Grünes Thai Curry</string>
@@ -8,65 +25,65 @@
     <string name="spring_roles">Frühlingsrollen</string>
     <string name="pumpkin_humus">Kürbis Hummus</string>
     <string name="mango_sticky_rice">Mango mit Sticky-Rice</string>
-    <string name="click_me">Klick mich!</string>
-    <string name="click_will_mark">\n…klicken wird es markieren!</string>
-    <string name="dish_component_text">Bestandteil Name</string>
+
+    <!-- Ingredients -->
+    <string name="carrots">Karotten</string>
+    <string name="onions">Zwiebeln</string>
+    <string name="garlic">Knoblauch</string>
+    <string name="chili_dry">Chili (trocken)</string>
+    <string name="oil">Öl</string>
+    <string name="soja_sauce">Soja Soße</string>
+    <string name="sugar">br. Zucker</string>
+    <string name="lime_juice">Limettensaft</string>
+    <string name="tomatoes">Tomaten</string>
+    <string name="peanuts">Erdnüsse</string>
+    <string name="coconut_milk">Kokosmilch</string>
+    <string name="sprint_onions">Frühl.zwiebel</string>
+    <string name="sprouts">Sprossen</string>
+    <string name="rice_noodles">Reisnudeln</string>
+    <string name="tofu">Tofu</string>
+    <string name="water">Wasser</string>
+    <string name="chili_flakes">Chiliflocken</string>
+
+    <!-- Snackbars -->
+    <string name="no_component_selected">Nichts ausgewählt. Was willst du kochen?</string>
+    <string name="dish_not_available_yet">Gericht noch nicht verfügbar.</string>
+
+    <!-- Showcase tutorial -->
     <string name="got_it">Alles klar</string>
     <string name="item_in_cart">Artikel im Einkaufswagen?</string>
-    <string name="karotten">Karotten</string>
-    <string name="zwiebeln">Zwiebeln</string>
-    <string name="knoblauch">Knoblauch</string>
-    <string name="chili">Chili (trocken)</string>
-    <string name="oel">Öl</string>
-    <string name="soja_sosse">Soja Soße</string>
-    <string name="zucker">br. Zucker</string>
-    <string name="limettensaft">Limettensaft</string>
-    <string name="tomaten">Tomaten</string>
-    <string name="erdnuesse">Erdnüsse</string>
-    <string name="kokosmilch">Kokosmilch</string>
-    <string name="fruehlingszwiebeln">Frühl.zwiebel</string>
-    <string name="sprossen">Sprossen</string>
-    <string name="reisnudeln">Reisnudeln</string>
-    <string name="tofu">Tofu</string>
-    <string name="no_component_selected">Nichts ausgewählt. Was willst du kochen?</string>
-    <string name="pkg">Pkg.</string>
-    <string name="sosse">Erdnusssoße</string>
-    <string name="stk">Stk.</string>
-    <string name="sub_header">Bestandteile</string>
-    <string name="then_shopping_list_shows">\n…dann öffnet sich die Einkaufsliste!</string>
-    <string name="title_activity_settings">Einstellungen</string>
-    <string name="toggle_view">Ansicht umschalten</string>
-    <string name="try_long_click">\n…bleib drauf!</string>
+    <string name="click_will_mark">\n…klicken wird es markieren!</string>
     <string name="what_that_ingredient">Was ist diese Zutat?</string>
-    <string name="title_activity_recipe_steps">Rezept Schritte</string>
-    <string name="tab_text_0">0.</string>
-    <string name="tab_text_1">1.</string>
-    <string name="tab_text_2_opt">2. (opt.)</string>
-    <string name="tab_text_3n4">3. &amp; 4.</string>
+    <string name="try_long_click">\n…bleib drauf!</string>
+    <string name="shopping_list">Einkaufsliste</string>
+    <string name="click_me_then_shopping_list_shows">\nKlick mich…dann öffnet sie sich!</string>
+    <string name="recipe_steps">Rezeptschritte</string>
+    <string name="click_me_then_recipe_steps_show">\nKlick mich…dann öffnen sie sich!</string>
+    <string name="several_dishes">Mehrere Rezepte</string>
+    <string name="swipe_through_dishes">\nBlättere sie durch!</string>
+
+    <!-- Recipe steps -->
+
+    <!--     general -->
     <string name="put_in_the_wok">In den Wok geben:</string>
-    <string name="el">EL</string>
-    <string name="low_heat">Niedrige Hitze</string>
-    <string name="tl">TL</string>
+    <string name="add">Zugeben:</string>
+
+    <!--     chili paste -->
+    <string name="cook_until_brown">Kochen, bis es braun wird</string>
+    <string name="put_everything_in_the_mixer">Alles in den Mixer geben</string>
+
+    <!--     peanut sauce -->
+    <string name="medium_heat_and_crush_tomatoes">1. Mittlere Hitze\n2. Tomaten zerstampfen</string>
+    <string name="reduce_heat_then_add">Hitze etwas reduzieren,\ndann zugeben:</string>
+    <string name="fry_and_water">1. Braten, bis es duftet\n(Stampfen für Geruch)\n2. Etwas Wasser zugeben</string>
+    <string name="medium_heat_don_t_cook_too_long">1. Mittlere Hitze\n2. Kokosmilch zugeben, falls die Soße zu sehr eindickt\n3. Nicht zu lange kochen bis es sich trennt</string>
+    <string name="cook_until_thick">Kochen, bis es dickflüssig wird</string>
+
+    <!--     pad thai -->
     <string name="prepare_ingredients">Vorm Kochen vorbereiten:</string>
     <string name="soak_and_fry">1. Nudeln in kaltem Wasser einweichen\n2. Tofu braten</string>
+    <string name="low_heat">Niedrige Hitze</string>
     <string name="no_egg">Vegan -> kein Ei! ;-)</string>
-    <string name="add">Zugeben:</string>
     <string name="mix_and_heat_up">Gut mischen &amp; aufheizen</string>
     <string name="add_to_taste">Nach Belieben würzen:</string>
-    <string name="tab_text_2">2.</string>
-    <string name="tab_text_3">3.</string>
-    <string name="tab_text_4">4.</string>
-    <string name="cook_until_brown">Kochen, bis es braun wird</string>
-    <string name="cook_until_thick">Kochen, bis es dickflüssig wird</string>
-    <string name="fry_and_water">1. Braten, bis es duftet\n(Stampfen für Geruch)\n2. Etwas Wasser zugeben</string>
-    <string name="medium_heat_and_crush_tomatoes">1. Mittlere Hitze\n2. Tomaten zerstampfen</string>
-    <string name="medium_heat_dont_cook_too_long">1. Mittlere Hitze\n2. Kokosmilch zugeben, falls die Soße zu sehr eindickt\n3. Nicht zu lange kochen bis es sich trennt</string>
-    <string name="put_everything_in_the_mixer">Alles in den Mixer geben</string>
-    <string name="reduce_heat_then_add">Hitze etwas reduzieren,\ndann zugeben:</string>
-    <string name="tab_text_5">5.</string>
-    <string name="chili_paste">Chilipaste</string>
-    <string name="chili_flakes">Chiliflocken</string>
-    <string name="water">Wasser</string>
-    <string name="dish_not_available_yet">Gericht noch nicht verfügbar.</string>
-    <string name="then_recipe_steps_show">\n…dann öffnen sich die Rezeptschritte!</string>
 </resources>

@@ -1,7 +1,7 @@
 package de.mwdevs.padthai.main;
 
 import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -23,7 +23,7 @@ public class DishPagerAdapter extends PagerAdapter {
     private static final long PERIODIC_DELAY = 5000;
     private final OnDishInteractionListener mListener;
     private Context mContext;
-    private ArrayList<AnimatorSet> mViewAnimations = new ArrayList<>(DishInfo.values().length);
+    private ArrayList<ObjectAnimator> mViewAnimations = new ArrayList<>(DishInfo.values().length);
 
     public DishPagerAdapter(Context context, OnDishInteractionListener listener) {
         mContext = context;
@@ -37,8 +37,8 @@ public class DishPagerAdapter extends PagerAdapter {
         Runnable animationLoop = new Runnable() {
             @Override
             public void run() {
-                for (AnimatorSet animatorSet : mViewAnimations) {
-                    animatorSet.start();
+                for (ObjectAnimator objectAnimator : mViewAnimations) {
+                    objectAnimator.start();
                 }
                 handler.postDelayed(this, PERIODIC_DELAY);
             }
@@ -65,7 +65,7 @@ public class DishPagerAdapter extends PagerAdapter {
     }
 
     private void setupViewAnimation(View view) {
-        AnimatorSet scaleUpSet = (AnimatorSet) AnimatorInflater.loadAnimator(mContext, R.animator.dish_button_scale_up);
+        ObjectAnimator scaleUpSet = (ObjectAnimator) AnimatorInflater.loadAnimator(mContext, R.animator.dish_button_scale_up);
         scaleUpSet.setTarget(view);
         mViewAnimations.add(scaleUpSet);
     }

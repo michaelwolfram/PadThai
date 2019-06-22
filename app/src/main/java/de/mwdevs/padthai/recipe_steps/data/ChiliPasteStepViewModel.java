@@ -29,18 +29,18 @@ public class ChiliPasteStepViewModel extends BaseStepViewModel {
 
     private static final ArrayList<ArrayList<RecipeQuantityInfo>> RECIPE_QUANTITY_INFO_LIST = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList(
-                    new RecipeQuantityInfo(R.string.karotten, RecipeQuantities.ChiliPaste.Step1.el_carrot, R.string.el, R.mipmap.karotten_round),
-                    new RecipeQuantityInfo(R.string.zwiebeln, RecipeQuantities.ChiliPaste.Step1.el_onion, R.string.el, R.mipmap.zwiebeln_round),
-                    new RecipeQuantityInfo(R.string.knoblauch, RecipeQuantities.ChiliPaste.Step1.el_garlic, R.string.el, R.mipmap.knoblauch_round),
-                    new RecipeQuantityInfo(R.string.oel, RecipeQuantities.ChiliPaste.Step1.el_oil, R.string.el, R.mipmap.sojaoel_round)
+                    new RecipeQuantityInfo(R.string.carrots, RecipeQuantities.ChiliPaste.Step1.el_carrot, R.string.el, R.mipmap.karotten_round),
+                    new RecipeQuantityInfo(R.string.onions, RecipeQuantities.ChiliPaste.Step1.el_onion, R.string.el, R.mipmap.zwiebeln_round),
+                    new RecipeQuantityInfo(R.string.garlic, RecipeQuantities.ChiliPaste.Step1.el_garlic, R.string.el, R.mipmap.knoblauch_round),
+                    new RecipeQuantityInfo(R.string.oil, RecipeQuantities.ChiliPaste.Step1.el_oil, R.string.el, R.mipmap.sojaoel_round)
             )),
             new ArrayList<>(Collections.singletonList(
-                    new RecipeQuantityInfo(R.string.chili, RecipeQuantities.ChiliPaste.Step2.el_chili_peppers, R.string.el, R.mipmap.chilischoten_round)
+                    new RecipeQuantityInfo(R.string.chili_dry, RecipeQuantities.ChiliPaste.Step2.el_chili_peppers, R.string.el, R.mipmap.chilischoten_round)
             )),
             new ArrayList<>(Arrays.asList(
-                    new RecipeQuantityInfo(R.string.soja_sosse, RecipeQuantities.ChiliPaste.Step3.el_soy_sauce, R.string.el, R.mipmap.sojasosse_round),
-                    new RecipeQuantityInfo(R.string.zucker, RecipeQuantities.ChiliPaste.Step3.tl_sugar, R.string.tl, R.mipmap.braunerzucker_round),
-                    new RecipeQuantityInfo(R.string.limettensaft, RecipeQuantities.ChiliPaste.Step3.tl_lime_juice, R.string.tl, R.mipmap.limetten_round)
+                    new RecipeQuantityInfo(R.string.soja_sauce, RecipeQuantities.ChiliPaste.Step3.el_soy_sauce, R.string.el, R.mipmap.sojasosse_round),
+                    new RecipeQuantityInfo(R.string.sugar, RecipeQuantities.ChiliPaste.Step3.tl_sugar, R.string.tl, R.mipmap.braunerzucker_round),
+                    new RecipeQuantityInfo(R.string.lime_juice, RecipeQuantities.ChiliPaste.Step3.tl_lime_juice, R.string.tl, R.mipmap.limetten_round)
             )),
             new ArrayList<RecipeQuantityInfo>()
     ));

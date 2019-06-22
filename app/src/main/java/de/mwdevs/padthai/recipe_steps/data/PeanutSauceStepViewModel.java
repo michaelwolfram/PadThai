@@ -23,26 +23,26 @@ public class PeanutSauceStepViewModel extends BaseStepViewModel {
     private static final ArrayList<Integer> TEXT_2 = new ArrayList<>(Arrays.asList(
             R.string.medium_heat_and_crush_tomatoes,
             R.string.fry_and_water,
-            R.string.medium_heat_dont_cook_too_long,
+            R.string.medium_heat_don_t_cook_too_long,
             R.string.cook_until_thick
     ));
 
     private static final ArrayList<ArrayList<RecipeQuantityInfo>> RECIPE_QUANTITY_INFO_LIST = new ArrayList<>(Arrays.asList(
             new ArrayList<>(Arrays.asList(
-                    new RecipeQuantityInfo(R.string.oel, RecipeQuantities.PeanutSauce.Step1.el_oil, R.string.el, R.mipmap.sojaoel_round),
-                    new RecipeQuantityInfo(R.string.tomaten, RecipeQuantities.PeanutSauce.Step1.stk_tomato, R.string.stk, R.mipmap.tomaten_round)
+                    new RecipeQuantityInfo(R.string.oil, RecipeQuantities.PeanutSauce.Step1.el_oil, R.string.el, R.mipmap.sojaoel_round),
+                    new RecipeQuantityInfo(R.string.tomatoes, RecipeQuantities.PeanutSauce.Step1.stk_tomato, R.string.stk, R.mipmap.tomaten_round)
             )),
             new ArrayList<>(Arrays.asList(
                     new RecipeQuantityInfo(R.string.chili_paste, RecipeQuantities.PeanutSauce.Step2.tl_chili_paste, R.string.tl, R.mipmap.chili_paste_round),
-                    new RecipeQuantityInfo(R.string.erdnuesse, RecipeQuantities.PeanutSauce.Step2.el_peanuts, R.string.el, R.mipmap.erdnuesse_round)
+                    new RecipeQuantityInfo(R.string.peanuts, RecipeQuantities.PeanutSauce.Step2.el_peanuts, R.string.el, R.mipmap.erdnuesse_round)
             )),
             new ArrayList<>(Collections.singletonList(
-                    new RecipeQuantityInfo(R.string.kokosmilch, RecipeQuantities.PeanutSauce.Step3.el_coconut_milk, R.string.el, R.mipmap.kokosmilch_round)
+                    new RecipeQuantityInfo(R.string.coconut_milk, RecipeQuantities.PeanutSauce.Step3.el_coconut_milk, R.string.el, R.mipmap.kokosmilch_round)
             )),
             new ArrayList<>(Arrays.asList(
-                    new RecipeQuantityInfo(R.string.zucker, RecipeQuantities.PeanutSauce.Step4.tl_sugar, R.string.tl, R.mipmap.braunerzucker_round),
-                    new RecipeQuantityInfo(R.string.limettensaft, RecipeQuantities.PeanutSauce.Step4.tl_lime_juice, R.string.tl, R.mipmap.limetten_round),
-                    new RecipeQuantityInfo(R.string.soja_sosse, RecipeQuantities.PeanutSauce.Step4.el_soy_sauce, R.string.el, R.mipmap.sojasosse_round)
+                    new RecipeQuantityInfo(R.string.sugar, RecipeQuantities.PeanutSauce.Step4.tl_sugar, R.string.tl, R.mipmap.braunerzucker_round),
+                    new RecipeQuantityInfo(R.string.lime_juice, RecipeQuantities.PeanutSauce.Step4.tl_lime_juice, R.string.tl, R.mipmap.limetten_round),
+                    new RecipeQuantityInfo(R.string.soja_sauce, RecipeQuantities.PeanutSauce.Step4.el_soy_sauce, R.string.el, R.mipmap.sojasosse_round)
             ))
     ));
 

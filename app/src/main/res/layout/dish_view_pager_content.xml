@@ -9,7 +9,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:clickable="true"
-        android:contentDescription="@string/this_is_not_an_image_description"
+        android:contentDescription="@string/empty_image_description"
         android:cropToPadding="true"
         android:focusable="true"
         android:padding="10dp"
