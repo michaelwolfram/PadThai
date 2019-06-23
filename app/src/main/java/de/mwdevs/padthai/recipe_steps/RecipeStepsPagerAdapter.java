@@ -8,72 +8,27 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
-import de.mwdevs.padthai.R;
-import de.mwdevs.padthai.recipe_steps.data.ChiliPasteStepViewModel;
-import de.mwdevs.padthai.recipe_steps.data.PadThaiStepViewModel;
-import de.mwdevs.padthai.recipe_steps.data.PeanutSauceStepViewModel;
+import de.mwdevs.padthai.Utils;
 
 public class RecipeStepsPagerAdapter extends FragmentPagerAdapter {
-    private static final ArrayList<ArrayList<Integer>> TAB_TITLES = new ArrayList<>(Arrays.asList(
-            new ArrayList<>(Arrays.asList(
-                    R.string.tab_text_1,
-                    R.string.tab_text_2,
-                    R.string.tab_text_3,
-                    R.string.tab_text_4
-            )),
-            new ArrayList<>(Arrays.asList(
-                    R.string.tab_text_1,
-                    R.string.tab_text_2,
-                    R.string.tab_text_3,
-                    R.string.tab_text_4
-            )),
-            new ArrayList<>(Arrays.asList(
-                    R.string.tab_text_0,
-                    R.string.tab_text_1,
-                    R.string.tab_text_2_opt,
-                    R.string.tab_text_3n4,
-                    R.string.tab_text_5
-            ))
-    ));
-
-    private static final Map<Class, Integer> VIEW_MODELS_MAP = new HashMap<>();
-
-    static {
-        VIEW_MODELS_MAP.put(ChiliPasteStepViewModel.class, 0);
-        VIEW_MODELS_MAP.put(PeanutSauceStepViewModel.class, 1);
-        VIEW_MODELS_MAP.put(PadThaiStepViewModel.class, 2);
-    }
-
     private final Context mContext;
     private final int mQuantity;
-    private final Class mViewModelClass;
+    private final String mRecipeFilename;
     @StringRes
     private final ArrayList<Integer> mTabTitles;
 
-    public RecipeStepsPagerAdapter(FragmentManager fm, Context context, int quantity, Class viewModelClass) {
+    public RecipeStepsPagerAdapter(FragmentManager fm, Context context, int quantity, String json_filename) {
         super(fm);
         mContext = context;
         mQuantity = quantity;
-        mViewModelClass = viewModelClass;
-        mTabTitles = mapClassToTabTitles(mViewModelClass);
-    }
-
-    private static ArrayList<Integer> mapClassToTabTitles(Class viewModelClass) {
-        Integer i = VIEW_MODELS_MAP.get(viewModelClass);
-        if (i != null) {
-            return TAB_TITLES.get(i);
-        } else {
-            throw new IllegalArgumentException("Missing ViewModel entry in map.");
-        }
+        mRecipeFilename = json_filename;
+        mTabTitles = Utils.readTabTitlesFromRecipe(mContext, mRecipeFilename);
     }
 
     @Override
     public Fragment getItem(int position) {
-        return RecipeStepsFragment.newInstance(position, mQuantity, mViewModelClass);
+        return RecipeStepsFragment.newInstance(position, mQuantity, mRecipeFilename);
     }
 
     @Nullable

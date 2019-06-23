@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.mwdevs.padthai.recipe_steps.data.Recipe;
 import de.mwdevs.padthai.recipe_steps.data.RecipeQuantityInfo;
@@ -47,18 +48,24 @@ public class Utils {
                 .setFadeInDurations(800);
     }
 
+    public static ArrayList<Integer> readTabTitlesFromRecipe(Context context, String file_name) {
+        Recipe recipe = Utils.loadRecipeFromJSON(context, file_name);
+        return Objects.requireNonNull(recipe).getTabTitles();
+    }
+
     public static Recipe loadRecipeFromJSON(Context context, String file_name) {
         try {
             JSONObject json_recipe = new JSONObject(loadJSONFromAsset(context, file_name));
 
             final int name_id = getRecipeName(context, json_recipe);
             final int step_count = getRecipeStepCount(json_recipe);
+            final ArrayList<Integer> tab_titles = getStringResourceArray(context, json_recipe, "tab_titles", step_count);
             final ArrayList<Integer> text_1 = getStringResourceArray(context, json_recipe, "text_1", step_count);
             final ArrayList<Integer> text_2 = getStringResourceArray(context, json_recipe, "text_2", step_count);
             final ArrayList<ArrayList<RecipeQuantityInfo>> steps =
                     getRecipeSteps(context, json_recipe, step_count);
 
-            return new Recipe(name_id, step_count, text_1, text_2, steps);
+            return new Recipe(name_id, step_count, tab_titles, text_1, text_2, steps);
         } catch (JSONException e) {
             e.printStackTrace();
         }

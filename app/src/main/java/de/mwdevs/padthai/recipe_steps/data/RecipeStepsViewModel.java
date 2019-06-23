@@ -15,15 +15,15 @@ import java.util.ArrayList;
 import de.mwdevs.padthai.Utils;
 
 public class RecipeStepsViewModel extends AndroidViewModel {
-    private Recipe mRecipe;
+    private final Recipe mRecipe;
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
     private LiveData<Integer> mText1;
     private LiveData<Integer> mText2;
     private LiveData<ArrayList<RecipeQuantityInfo>> mRecipeQuantityInfo;
 
-    RecipeStepsViewModel(@NonNull Application application, String recipe_file_name) {
+    RecipeStepsViewModel(@NonNull Application application, String recipe_filename) {
         super(application);
-        mRecipe = Utils.loadRecipeFromJSON(application.getBaseContext(), recipe_file_name);
+        mRecipe = Utils.loadRecipeFromJSON(application.getBaseContext(), recipe_filename);
         init();
     }
 
@@ -31,13 +31,13 @@ public class RecipeStepsViewModel extends AndroidViewModel {
         mText1 = Transformations.map(mIndex, new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer input) {
-                return mRecipe.getText_1().get(input);
+                return mRecipe.getText1().get(input);
             }
         });
         mText2 = Transformations.map(mIndex, new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer input) {
-                return mRecipe.getText_2().get(input);
+                return mRecipe.getText2().get(input);
             }
         });
         mRecipeQuantityInfo = Transformations.map(mIndex, new Function<Integer, ArrayList<RecipeQuantityInfo>>() {
@@ -66,19 +66,19 @@ public class RecipeStepsViewModel extends AndroidViewModel {
 
     public static class Factory implements ViewModelProvider.Factory {
         private Application mApplication;
-        private String mParam;
+        private String mRecipeFilename;
 
 
-        public Factory(Application application, String param) {
+        public Factory(Application application, String recipe_filename) {
             mApplication = application;
-            mParam = param;
+            mRecipeFilename = recipe_filename;
         }
-
 
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T) new RecipeStepsViewModel(mApplication, mParam);
+            @SuppressWarnings("unchecked") T viewModel = (T) new RecipeStepsViewModel(mApplication, mRecipeFilename);
+            return viewModel;
         }
     }
 }

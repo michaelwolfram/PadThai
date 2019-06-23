@@ -222,17 +222,17 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
 
                 if (componentQuantityDataModel.hasValue(dishInfo, row))
                     startRecipeStepsActivity(componentQuantityDataModel.getQuantity(dishInfo, row),
-                            dishComponentInfo.viewModelClass);
+                            dishComponentInfo.json_filename);
                 else
                     Snackbar.make(v, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
             }
         });
     }
 
-    private void startRecipeStepsActivity(int component_quantity, Class viewModelClass) {
+    private void startRecipeStepsActivity(int component_quantity, String json_filename) {
         Intent intent = new Intent(MainActivity.this, RecipeStepsActivity.class);
         intent.putExtra(RecipeStepsActivity.COMPONENT_QUANTITY, component_quantity);
-        intent.putExtra(RecipeStepsActivity.VIEW_MODEL_CLASS, viewModelClass);
+        intent.putExtra(RecipeStepsActivity.JSON_FILENAME, json_filename);
         startActivity(intent);
     }
 

@@ -9,17 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 
-import java.io.Serializable;
-
-import de.mwdevs.padthai.recipe_steps.data.RecipeStepsViewModel;
 import de.mwdevs.padthai.recipe_steps.RecipeStepsPagerAdapter;
 
-public class RecipeStepsActivity<T extends RecipeStepsViewModel> extends AppCompatActivity {
+public class RecipeStepsActivity extends AppCompatActivity {
     public static final String COMPONENT_QUANTITY = "COMPONENT_QUANTITY";
-    public static final String VIEW_MODEL_CLASS = "MODEL_CLASS";
+    public static final String JSON_FILENAME = "JSON_FILENAME";
 
     private int mComponentQuantity = 0;
-    private Class<T> mViewModelClass;
+    private String mJsonFilename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +31,7 @@ public class RecipeStepsActivity<T extends RecipeStepsViewModel> extends AppComp
 
     private void setupViewPagerAndStuff() {
         final RecipeStepsPagerAdapter recipeStepsPagerAdapter = new RecipeStepsPagerAdapter(
-                getSupportFragmentManager(), this, mComponentQuantity, mViewModelClass);
+                getSupportFragmentManager(), this, mComponentQuantity, mJsonFilename);
         final ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(recipeStepsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
@@ -74,15 +71,6 @@ public class RecipeStepsActivity<T extends RecipeStepsViewModel> extends AppComp
     private void consumeIndent() {
         Intent intent = getIntent();
         mComponentQuantity = intent.getIntExtra(COMPONENT_QUANTITY, 0);
-        getViewModelFromSerializable(intent.getSerializableExtra(VIEW_MODEL_CLASS));
-    }
-
-    private void getViewModelFromSerializable(Serializable serializable) {
-        @SuppressWarnings("unchecked") Class<T> modelClass = (Class<T>) serializable;
-        if (modelClass != null) {
-            mViewModelClass = modelClass;
-        } else {
-            throw new IllegalArgumentException("Missing intent extra.");
-        }
+        mJsonFilename = intent.getStringExtra(JSON_FILENAME);
     }
 }

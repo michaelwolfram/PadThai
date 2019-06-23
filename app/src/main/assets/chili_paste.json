@@ -1,6 +1,12 @@
 {
   "name_id": "chili_paste",
   "step_count": 4,
+  "tab_titles": [
+    "tab_text_1",
+    "tab_text_2",
+    "tab_text_3",
+    "tab_text_4"
+  ],
   "text_1": [
     "put_in_the_wok",
     "add",

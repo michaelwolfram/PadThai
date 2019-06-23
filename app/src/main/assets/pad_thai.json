@@ -1,6 +1,13 @@
 {
   "name_id": "pad_thai",
   "step_count": 5,
+  "tab_titles": [
+    "tab_text_0",
+    "tab_text_1",
+    "tab_text_2_opt",
+    "tab_text_3n4",
+    "tab_text_5"
+  ],
   "text_1": [
     "prepare_ingredients",
     "put_in_the_wok",

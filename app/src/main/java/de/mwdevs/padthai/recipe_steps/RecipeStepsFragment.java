@@ -15,30 +15,29 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.mwdevs.padthai.R;
-import de.mwdevs.padthai.recipe_steps.data.RecipeStepsViewModel;
 import de.mwdevs.padthai.recipe_steps.data.RecipeQuantityInfo;
+import de.mwdevs.padthai.recipe_steps.data.RecipeStepsViewModel;
 
-public class RecipeStepsFragment<T extends RecipeStepsViewModel> extends Fragment {
+public class RecipeStepsFragment extends Fragment {
     protected static final String ARG_QUANTITY = "ARG_QUANTITY";
-    protected static final String ARG_MODEL_CLASS = "ARG_MODEL_CLASS";
+    protected static final String ARG_RECIPE_ID = "ARG_RECIPE_ID";
     private static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
-    private T mViewModel;
+    private RecipeStepsViewModel mViewModel;
     private int mQuantity;
     private GridLayout gridLayout;
     private Snackbar snackbar;
 
-    public static <T extends RecipeStepsViewModel>
-    RecipeStepsFragment newInstance(int index, int quantity, Class<T> modelClass) {
+    public static RecipeStepsFragment newInstance(int index, int quantity, String recipeID) {
         RecipeStepsFragment fragment = new RecipeStepsFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         bundle.putInt(ARG_QUANTITY, quantity);
-        bundle.putSerializable(ARG_MODEL_CLASS, modelClass);
+        bundle.putSerializable(ARG_RECIPE_ID, recipeID);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -54,14 +53,14 @@ public class RecipeStepsFragment<T extends RecipeStepsViewModel> extends Fragmen
 
         int index = getArguments().getInt(ARG_SECTION_NUMBER);
         mQuantity = getArguments().getInt(ARG_QUANTITY);
-        getViewModelFromSerializable(getArguments().getSerializable(ARG_MODEL_CLASS));
+        getViewModel(getArguments().getString(ARG_RECIPE_ID));
 
         mViewModel.setIndex(index);
     }
 
-    private void getViewModelFromSerializable(Serializable serializable) {
-        @SuppressWarnings("unchecked") Class<T> modelClass = (Class<T>) serializable;
-        mViewModel = ViewModelProviders.of(this).get(modelClass);
+    private void getViewModel(String recipeID) {
+        mViewModel = ViewModelProviders.of(this, new RecipeStepsViewModel.Factory(
+                Objects.requireNonNull(this.getActivity()).getApplication(), recipeID)).get(RecipeStepsViewModel.class);
     }
 
     @Override
