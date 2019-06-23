@@ -16,20 +16,20 @@ public class ShoppingListContent {
         if (initialized)
             return;
 
-        addItem(new ShoppingItem(1, R.string.carrots, R.mipmap.karotten_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(2, R.string.onions, R.mipmap.zwiebeln_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(3, R.string.garlic, R.mipmap.knoblauch_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(4, R.string.chili_dry, R.mipmap.chilischoten_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(5, R.string.oil, R.mipmap.sojaoel_round, R.string.ml, R.string.pkg));
-        addItem(new ShoppingItem(6, R.string.soja_sauce, R.mipmap.sojasosse_round, R.string.ml, R.string.pkg));
-        addItem(new ShoppingItem(7, R.string.sugar, R.mipmap.braunerzucker_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(8, R.string.lime_juice, R.mipmap.limetten_round, R.string.ml, R.string.stk));
-        addItem(new ShoppingItem(9, R.string.tomatoes, R.mipmap.tomaten_round, R.string.g, R.string.stk));
-        addItem(new ShoppingItem(10, R.string.peanuts, R.mipmap.erdnuesse_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(11, R.string.coconut_milk, R.mipmap.kokosmilch_round, R.string.ml, R.string.pkg));
-        addItem(new ShoppingItem(12, R.string.sprint_onions, R.mipmap.fruehlingszwiebeln_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(13, R.string.sprouts, R.mipmap.mungobohnensprossen_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(14, R.string.rice_noodles, R.mipmap.reisnudeln_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(1, R.string.carrots, R.mipmap.carrots_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(2, R.string.onions, R.mipmap.onions_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(3, R.string.garlic, R.mipmap.garlic_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(4, R.string.chili_dry, R.mipmap.chili_dry_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(5, R.string.oil, R.mipmap.oil_round, R.string.ml, R.string.pkg));
+        addItem(new ShoppingItem(6, R.string.soja_sauce, R.mipmap.soja_sauce_round, R.string.ml, R.string.pkg));
+        addItem(new ShoppingItem(7, R.string.sugar, R.mipmap.sugar_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(8, R.string.lime_juice, R.mipmap.lime_juice_round, R.string.ml, R.string.stk));
+        addItem(new ShoppingItem(9, R.string.tomatoes, R.mipmap.tomatoes_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(10, R.string.peanuts, R.mipmap.peanuts_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(11, R.string.coconut_milk, R.mipmap.coconut_milk_round, R.string.ml, R.string.pkg));
+        addItem(new ShoppingItem(12, R.string.spring_onions, R.mipmap.spring_onions_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(13, R.string.sprouts, R.mipmap.sprouts_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(14, R.string.rice_noodles, R.mipmap.rice_noodles_round, R.string.g, R.string.pkg));
         addItem(new ShoppingItem(15, R.string.tofu, R.mipmap.tofu_round, R.string.g, R.string.pkg));
 
         initialized = true;

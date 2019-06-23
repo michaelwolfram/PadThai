@@ -8,6 +8,7 @@ import de.mwdevs.padthai.R;
 
 public enum DishInfo {
 
+    // TODO: 23.06.19 put these also in json file
     PAD_THAI(0, R.string.pad_thai, R.drawable.pad_thai_512, new ArrayList<>(Arrays.asList(
             new DishComponentInfo(R.string.chili_paste, "chili_paste.json"),
             new DishComponentInfo(R.string.peanut_sauce, "peanut_sauce.json"),
