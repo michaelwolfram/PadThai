@@ -25,13 +25,13 @@
         "name_id": "oil",
         "el": 1,
         "string_id": "el",
-        "image_id": "sojaoel_round"
+        "image_id": "oil_round"
       },
       {
         "name_id": "tomatoes",
         "el": 0.5,
         "string_id": "stk",
-        "image_id": "tomaten_round"
+        "image_id": "tomatoes_round"
       }
     ],
     [
@@ -45,7 +45,7 @@
         "name_id": "peanuts",
         "el": 1,
         "string_id": "el",
-        "image_id": "erdnuesse_round"
+        "image_id": "peanuts_round"
       }
     ],
     [
@@ -53,7 +53,7 @@
         "name_id": "coconut_milk",
         "el": 6,
         "string_id": "el",
-        "image_id": "kokosmilch_round"
+        "image_id": "coconut_milk_round"
       }
     ],
     [
@@ -61,19 +61,19 @@
         "name_id": "sugar",
         "el": 2,
         "string_id": "tl",
-        "image_id": "braunerzucker_round"
+        "image_id": "sugar_round"
       },
       {
         "name_id": "lime_juice",
         "el": 1,
         "string_id": "tl",
-        "image_id": "limetten_round"
+        "image_id": "lime_juice_round"
       },
       {
         "name_id": "soja_sauce",
         "el": 0.5,
         "string_id": "el",
-        "image_id": "sojasosse_round"
+        "image_id": "soja_sauce_round"
       }
     ]
   ]

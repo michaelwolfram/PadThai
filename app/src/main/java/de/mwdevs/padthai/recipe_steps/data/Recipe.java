@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class Recipe {
     private final int name_id;
-    private final int step_count;
+//    private final int step_count;
     private final ArrayList<Integer> tab_titles;
     private final ArrayList<Integer> text_1;
     private final ArrayList<Integer> text_2;
     private final ArrayList<ArrayList<RecipeQuantityInfo>> steps;
 
-    public Recipe(int name, int step_count, ArrayList<Integer> tab_titles,
+    public Recipe(int name, ArrayList<Integer> tab_titles,
                   ArrayList<Integer> text_1, ArrayList<Integer> text_2,
                   ArrayList<ArrayList<RecipeQuantityInfo>> steps) {
         this.name_id = name;
-        this.step_count = step_count;
+//        this.step_count = step_count;
         this.tab_titles = tab_titles;
         this.text_1 = text_1;
         this.text_2 = text_2;
@@ -23,11 +23,11 @@ public class Recipe {
 
     public int getName() {
         return name_id;
-    } // TODO: 23.06.19 use me ?! and the stuff below...
-
-    public int getStepCount() {
-        return step_count;
     }
+
+//    public int getStepCount() {
+//        return step_count;
+//    }
 
     public ArrayList<Integer> getTabTitles() {
         return tab_titles;

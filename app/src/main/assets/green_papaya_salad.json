@@ -1,5 +1,5 @@
 {
-  "name_id": "chili_paste",
+  "name_id": "green_papaya_salad",
   "step_count": 4,
   "tab_titles": [
     "tab_text_1",
@@ -9,15 +9,15 @@
   ],
   "text_1": [
     "put_in_the_wok",
-    "add",
-    "add",
-    "put_everything_in_the_mixer"
+    "put_in_the_wok",
+    "put_in_the_wok",
+    "put_in_the_wok"
   ],
   "text_2": [
     "cook_until_brown",
-    "empty_string",
-    "empty_string",
-    "empty_string"
+    "cook_until_brown",
+    "cook_until_brown",
+    "cook_until_brown"
   ],
   "steps": [
     [

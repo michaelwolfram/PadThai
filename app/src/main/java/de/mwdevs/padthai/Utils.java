@@ -65,7 +65,7 @@ public class Utils {
             final ArrayList<ArrayList<RecipeQuantityInfo>> steps =
                     getRecipeSteps(context, json_recipe, step_count);
 
-            return new Recipe(name_id, step_count, tab_titles, text_1, text_2, steps);
+            return new Recipe(name_id, tab_titles, text_1, text_2, steps);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -157,7 +157,10 @@ public class Utils {
     }
 
     private static int getResourceId(Context context, String name, String defType) {
-        return context.getResources().getIdentifier(name, defType, context.getPackageName());
+        int resId = context.getResources().getIdentifier(name, defType, context.getPackageName());
+        if (resId == 0)
+            throw new Resources.NotFoundException("Resource R." + defType + "." + name + " not found. Typo in json file?");
+        return resId;
     }
 //    static int getResourceId(Context context, String typedName) {
 //        return getResourceId(context, typedName, null);

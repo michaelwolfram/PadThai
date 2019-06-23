@@ -215,7 +215,8 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                     return;
 
                 // TODO: 16.06.19 take care of this when more dishes are added
-                if (dishInfo.getTitleResId() != R.string.pad_thai) {
+                if (dishInfo.getTitleResId() != R.string.pad_thai &&
+                        dishInfo.getTitleResId() != R.string.green_papaya_salad) {
                     Snackbar.make(dishViewPager, R.string.dish_not_available_yet, Snackbar.LENGTH_LONG).show();
                     return;
                 }
@@ -287,7 +288,8 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
             return;
 
         // TODO: 16.06.19 take care of this when more dishes are added
-        if (dishInfo.getTitleResId() != R.string.pad_thai) {
+        if (dishInfo.getTitleResId() != R.string.pad_thai &&
+                dishInfo.getTitleResId() != R.string.green_papaya_salad) {
             Snackbar.make(dishViewPager, R.string.dish_not_available_yet, Snackbar.LENGTH_LONG).show();
             return;
         }

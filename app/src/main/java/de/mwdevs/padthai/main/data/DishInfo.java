@@ -14,9 +14,8 @@ public enum DishInfo {
             new DishComponentInfo(R.string.peanut_sauce, "peanut_sauce.json"),
             new DishComponentInfo(R.string.pad_thai, "pad_thai.json")
     ))),
-    GREEN_PAPAYA_SALAD(1, R.string.green_papaya_salad, R.drawable.green_papaya_salad_512, new ArrayList<>(Arrays.asList(
-            new DishComponentInfo(R.string.chili_paste, "chili_paste.json"),
-            new DishComponentInfo(R.string.peanut_sauce, "peanut_sauce.json")
+    GREEN_PAPAYA_SALAD(1, R.string.green_papaya_salad, R.drawable.green_papaya_salad_512, new ArrayList<>(Collections.singletonList(
+            new DishComponentInfo(R.string.peanut_sauce, "green_papaya_salad.json")
     ))),
     MASSAMAN_CURRY(2, R.string.massaman_curry, R.drawable.massaman_curry_512, new ArrayList<>(Collections.singletonList(
             new DishComponentInfo(R.string.chili_paste, "chili_paste.json")

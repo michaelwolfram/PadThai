@@ -1,8 +1,10 @@
 # PadThai
 Recipes for pad thai etc.
 
-TODO:
+
+- json for dishinfo
 - weitere rezepte
+
 
 optional:
 - rezept schritte mit sprachsteuerung

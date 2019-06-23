@@ -53,12 +53,13 @@ public class RecipeStepsFragment extends Fragment {
 
         int index = getArguments().getInt(ARG_SECTION_NUMBER);
         mQuantity = getArguments().getInt(ARG_QUANTITY);
-        getViewModel(getArguments().getString(ARG_RECIPE_ID));
+        getViewModel(getArguments());
 
         mViewModel.setIndex(index);
     }
 
-    private void getViewModel(String recipeID) {
+    private void getViewModel(Bundle arguments) {
+        String recipeID = arguments.getString(ARG_RECIPE_ID);
         mViewModel = ViewModelProviders.of(this, new RecipeStepsViewModel.Factory(
                 Objects.requireNonNull(this.getActivity()).getApplication(), recipeID)).get(RecipeStepsViewModel.class);
     }
