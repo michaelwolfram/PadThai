@@ -1,0 +1,73 @@
+{
+  "name_id": "chili_paste",
+  "step_count": 4,
+  "text_1": [
+    "put_in_the_wok",
+    "add",
+    "add",
+    "put_everything_in_the_mixer"
+  ],
+  "text_2": [
+    "cook_until_brown",
+    "empty_string",
+    "empty_string",
+    "empty_string"
+  ],
+  "steps": [
+    [
+      {
+        "name_id": "carrots",
+        "el": 3,
+        "string_id": "el",
+        "image_id": "karotten_round"
+      },
+      {
+        "name_id": "onions",
+        "el": 3,
+        "string_id": "el",
+        "image_id": "zwiebeln_round"
+      },
+      {
+        "name_id": "garlic",
+        "el": 3,
+        "string_id": "el",
+        "image_id": "knoblauch_round"
+      },
+      {
+        "name_id": "oil",
+        "el": 10,
+        "string_id": "el",
+        "image_id": "sojaoel_round"
+      }
+    ],
+    [
+      {
+        "name_id": "chili_dry",
+        "el": 3,
+        "string_id": "el",
+        "image_id": "chilischoten_round"
+      }
+    ],
+    [
+      {
+        "name_id": "soja_sauce",
+        "el": 2,
+        "string_id": "el",
+        "image_id": "sojasosse_round"
+      },
+      {
+        "name_id": "sugar",
+        "el": 2,
+        "string_id": "tl",
+        "image_id": "braunerzucker_round"
+      },
+      {
+        "name_id": "lime_juice",
+        "el": 2,
+        "string_id": "tl",
+        "image_id": "limetten_round"
+      }
+    ],
+    []
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "name_id": "peanut_sauce",
+  "step_count": 4,
+  "text_1": [
+    "put_in_the_wok",
+    "reduce_heat_then_add",
+    "add",
+    "add"
+  ],
+  "text_2": [
+    "medium_heat_and_crush_tomatoes",
+    "fry_and_water",
+    "medium_heat_don_t_cook_too_long",
+    "cook_until_thick"
+  ],
+  "steps": [
+    [
+      {
+        "name_id": "oil",
+        "el": 1,
+        "string_id": "el",
+        "image_id": "sojaoel_round"
+      },
+      {
+        "name_id": "tomatoes",
+        "el": 0.5,
+        "string_id": "stk",
+        "image_id": "tomaten_round"
+      }
+    ],
+    [
+      {
+        "name_id": "chili_paste",
+        "el": 1,
+        "string_id": "tl",
+        "image_id": "chili_paste_round"
+      },
+      {
+        "name_id": "peanuts",
+        "el": 1,
+        "string_id": "el",
+        "image_id": "erdnuesse_round"
+      }
+    ],
+    [
+      {
+        "name_id": "coconut_milk",
+        "el": 6,
+        "string_id": "el",
+        "image_id": "kokosmilch_round"
+      }
+    ],
+    [
+      {
+        "name_id": "sugar",
+        "el": 2,
+        "string_id": "tl",
+        "image_id": "braunerzucker_round"
+      },
+      {
+        "name_id": "lime_juice",
+        "el": 1,
+        "string_id": "tl",
+        "image_id": "limetten_round"
+      },
+      {
+        "name_id": "soja_sauce",
+        "el": 0.5,
+        "string_id": "el",
+        "image_id": "sojasosse_round"
+      }
+    ]
+  ]
+}

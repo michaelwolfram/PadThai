@@ -35,7 +35,7 @@
     <!-- Components-->
     <string name="dish_component_text">Component Name</string>
     <string name="chili_paste">Chili paste</string>
-    <string name="sosse">Peanut sauce</string>
+    <string name="peanut_sauce">Peanut sauce</string>
 
     <!-- Dishes-->
     <string name="pad_thai" translatable="false">Pad Thai</string>

@@ -15,7 +15,7 @@
     <!-- Components-->
     <string name="dish_component_text">Bestandteil Name</string>
     <string name="chili_paste">Chilipaste</string>
-    <string name="sosse">Erdnusssoße</string>
+    <string name="peanut_sauce">Erdnusssoße</string>
 
     <!-- Dishes-->
     <string name="green_papaya_salad">Grüner Papaya Salat</string>
