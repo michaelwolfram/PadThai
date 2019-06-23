@@ -20,10 +20,10 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import de.mwdevs.padthai.R;
-import de.mwdevs.padthai.recipe_steps.data.BaseStepViewModel;
+import de.mwdevs.padthai.recipe_steps.data.RecipeStepsViewModel;
 import de.mwdevs.padthai.recipe_steps.data.RecipeQuantityInfo;
 
-public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
+public class RecipeStepsFragment<T extends RecipeStepsViewModel> extends Fragment {
     protected static final String ARG_QUANTITY = "ARG_QUANTITY";
     protected static final String ARG_MODEL_CLASS = "ARG_MODEL_CLASS";
     private static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
@@ -32,7 +32,7 @@ public class RecipeStepsFragment<T extends BaseStepViewModel> extends Fragment {
     private GridLayout gridLayout;
     private Snackbar snackbar;
 
-    public static <T extends BaseStepViewModel>
+    public static <T extends RecipeStepsViewModel>
     RecipeStepsFragment newInstance(int index, int quantity, Class<T> modelClass) {
         RecipeStepsFragment fragment = new RecipeStepsFragment();
         Bundle bundle = new Bundle();

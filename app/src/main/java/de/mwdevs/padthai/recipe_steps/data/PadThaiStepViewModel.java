@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import de.mwdevs.padthai.Utils;
 
-public class PadThaiStepViewModel extends BaseStepViewModel {
+public class PadThaiStepViewModel extends RecipeStepsViewModel {
 
     public PadThaiStepViewModel(@NonNull Application application) {
         super(application);

@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import de.mwdevs.padthai.Utils;
 
-public class ChiliPasteStepViewModel extends BaseStepViewModel {
+public class ChiliPasteStepViewModel extends RecipeStepsViewModel {
 
     public ChiliPasteStepViewModel(@NonNull Application application) {
         super(application);

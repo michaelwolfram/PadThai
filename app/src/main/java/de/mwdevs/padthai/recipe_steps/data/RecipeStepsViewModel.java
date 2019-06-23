@@ -6,24 +6,28 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 
-public abstract class BaseStepViewModel extends AndroidViewModel {
+import de.mwdevs.padthai.Utils;
+
+public class RecipeStepsViewModel extends AndroidViewModel {
     private Recipe mRecipe;
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
     private LiveData<Integer> mText1;
     private LiveData<Integer> mText2;
     private LiveData<ArrayList<RecipeQuantityInfo>> mRecipeQuantityInfo;
 
-    BaseStepViewModel(@NonNull Application application) {
+    RecipeStepsViewModel(@NonNull Application application, String recipe_file_name) {
         super(application);
+        mRecipe = Utils.loadRecipeFromJSON(application.getBaseContext(), recipe_file_name);
+        init();
     }
 
-    void init(Recipe recipe) {
-        mRecipe = recipe;
-
+    private void init() {
         mText1 = Transformations.map(mIndex, new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer input) {
@@ -58,5 +62,23 @@ public abstract class BaseStepViewModel extends AndroidViewModel {
 
     public LiveData<ArrayList<RecipeQuantityInfo>> getRecipeQuantityInfo() {
         return mRecipeQuantityInfo;
+    }
+
+    public static class Factory implements ViewModelProvider.Factory {
+        private Application mApplication;
+        private String mParam;
+
+
+        public Factory(Application application, String param) {
+            mApplication = application;
+            mParam = param;
+        }
+
+
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            return (T) new RecipeStepsViewModel(mApplication, mParam);
+        }
     }
 }

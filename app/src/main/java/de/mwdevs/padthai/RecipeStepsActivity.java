@@ -11,10 +11,10 @@ import android.view.WindowManager;
 
 import java.io.Serializable;
 
-import de.mwdevs.padthai.recipe_steps.data.BaseStepViewModel;
+import de.mwdevs.padthai.recipe_steps.data.RecipeStepsViewModel;
 import de.mwdevs.padthai.recipe_steps.RecipeStepsPagerAdapter;
 
-public class RecipeStepsActivity<T extends BaseStepViewModel> extends AppCompatActivity {
+public class RecipeStepsActivity<T extends RecipeStepsViewModel> extends AppCompatActivity {
     public static final String COMPONENT_QUANTITY = "COMPONENT_QUANTITY";
     public static final String VIEW_MODEL_CLASS = "MODEL_CLASS";
 

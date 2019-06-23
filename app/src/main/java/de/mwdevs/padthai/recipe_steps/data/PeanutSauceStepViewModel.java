@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import de.mwdevs.padthai.Utils;
 
-public class PeanutSauceStepViewModel extends BaseStepViewModel {
+public class PeanutSauceStepViewModel extends RecipeStepsViewModel {
 
     public PeanutSauceStepViewModel(@NonNull Application application) {
         super(application);
