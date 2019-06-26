@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -185,10 +186,7 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                 if (new_quantity != current_quantity) {
                     componentQuantityDataModel.setQuantity(dishInfo, row, new_quantity);
                     setQuantityText(row, new_quantity);
-                    ObjectAnimator scaleUpSet =
-                            (ObjectAnimator) AnimatorInflater.loadAnimator(MainActivity.this, R.animator.change_button_scale_up);
-                    scaleUpSet.setTarget(v);
-                    scaleUpSet.start();
+                    v.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.change_button_scale_up));
                 }
             }
         };
