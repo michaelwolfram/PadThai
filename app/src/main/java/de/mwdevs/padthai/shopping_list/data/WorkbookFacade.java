@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 public class WorkbookFacade {
     private static final int EXCEL_SHEET_ROW_OFFSET = 7;
+    private static final String COLUMN_ID = "D";
+    private static final String COLUMN_GRAM = "M";
+    private static final String COLUMN_STK = "Q";
 
     private final int[] mComponentQuantities;
     private Workbook mWorkbook;
@@ -64,15 +67,15 @@ public class WorkbookFacade {
     }
 
     private int getItemId(int position) {
-        return (int) getNumericCellValue(mSheet0, "A", EXCEL_SHEET_ROW_OFFSET + position);
+        return (int) getNumericCellValue(mSheet0, COLUMN_ID, EXCEL_SHEET_ROW_OFFSET + position);
     }
 
     private double getItemGram(int position) {
-        return getNumericCellValue(mSheet0, "J", EXCEL_SHEET_ROW_OFFSET + position);
+        return getNumericCellValue(mSheet0, COLUMN_GRAM, EXCEL_SHEET_ROW_OFFSET + position);
     }
 
     private double getItemStk(int position) {
-        return getNumericCellValue(mSheet0, "N", EXCEL_SHEET_ROW_OFFSET + position);
+        return getNumericCellValue(mSheet0, COLUMN_STK, EXCEL_SHEET_ROW_OFFSET + position);
     }
 
     private void setCellValueInColumnB(@NonNull Sheet sheet, int row, double value) {
