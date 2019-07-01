@@ -214,7 +214,8 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
 
                 // TODO: 16.06.19 take care of this when more dishes are added
                 if (dishInfo.getTitleResId() != R.string.pad_thai &&
-                        dishInfo.getTitleResId() != R.string.green_papaya_salad) {
+                        dishInfo.getTitleResId() != R.string.green_papaya_salad &&
+                        dishInfo.getTitleResId() != R.string.massaman_curry) {
                     Snackbar.make(dishViewPager, R.string.dish_not_available_yet, Snackbar.LENGTH_LONG).show();
                     return;
                 }
@@ -287,13 +288,14 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
 
         // TODO: 16.06.19 take care of this when more dishes are added
         if (dishInfo.getTitleResId() != R.string.pad_thai &&
-                dishInfo.getTitleResId() != R.string.green_papaya_salad) {
+                dishInfo.getTitleResId() != R.string.green_papaya_salad &&
+                dishInfo.getTitleResId() != R.string.massaman_curry) {
             Snackbar.make(dishViewPager, R.string.dish_not_available_yet, Snackbar.LENGTH_LONG).show();
             return;
         }
 
         if (componentQuantityDataModel.hasValues(dishInfo))
-            openShoppingCart(componentQuantityDataModel.getQuantities(dishInfo));
+            openShoppingCart(componentQuantityDataModel.getAllQuantities(dishInfo));
         else
             Snackbar.make(dishViewPager, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
     }

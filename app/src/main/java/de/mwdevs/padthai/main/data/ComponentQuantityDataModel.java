@@ -4,9 +4,8 @@ import android.support.annotation.NonNull;
 
 import org.json.JSONArray;
 
-import de.mwdevs.padthai.main.data.DishInfo;
-
 public class ComponentQuantityDataModel {
+    private static final int NUM_COMPONENTS = 10;
     private final int mMaximumComponentRows;
     private int[][] mComponentQuantities;
 
@@ -19,8 +18,17 @@ public class ComponentQuantityDataModel {
         return getQuantities(dishInfo)[row];
     }
 
-    public int[] getQuantities(DishInfo dishInfo) {
+    private int[] getQuantities(DishInfo dishInfo) {
         return mComponentQuantities[dishInfo.getId()];
+    }
+
+    public int[] getAllQuantities(DishInfo dishInfo) {
+        int[] allComponents = new int[NUM_COMPONENTS];
+        for (int row = 0; row < dishInfo.getNumDishComponents(); row++) {
+            int componentIndex = row + dishInfo.getDishComponentOffset();
+            allComponents[componentIndex] = getQuantity(dishInfo, row);
+        }
+        return allComponents;
     }
 
     public void setQuantity(DishInfo dishInfo, int col, int value) {
