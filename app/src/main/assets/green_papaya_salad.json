@@ -1,34 +1,31 @@
 {
   "name_id": "green_papaya_salad",
-  "step_count": 4,
+  "step_count": 3,
   "tab_titles": [
     "tab_text_1",
     "tab_text_2",
-    "tab_text_3",
-    "tab_text_4"
+    "tab_text_3"
   ],
   "text_1": [
-    "put_in_the_wok",
-    "put_in_the_wok",
-    "put_in_the_wok",
-    "put_in_the_wok"
+    "in_bowl_mix_together",
+    "add",
+    "add_finely_grated_vegetables"
   ],
   "text_2": [
-    "cook_until_brown",
-    "cook_until_brown",
-    "cook_until_brown",
-    "cook_until_brown"
+    "empty_string",
+    "empty_string",
+    "mix_well"
   ],
   "steps": [
     [
       {
-        "name_id": "carrots",
-        "el": 3,
-        "string_id": "el",
-        "image_id": "carrots_round"
+        "name_id": "red_and_green_chillies",
+        "el": 0.5,
+        "string_id": "tl",
+        "image_id": "red_and_green_chillies_round"
       },
       {
-        "name_id": "onions",
+        "name_id": "green bean",
         "el": 3,
         "string_id": "el",
         "image_id": "onions_round"
@@ -48,24 +45,28 @@
     ],
     [
       {
+        "name_id": "lime_juice",
+        "el": 2,
+        "string_id": "tl",
+        "image_id": "lime_juice_round"
+      },
+      {
         "name_id": "chili_dry",
         "el": 3,
         "string_id": "el",
         "image_id": "chili_dry_round"
-      }
-    ],
-    [
-      {
-        "name_id": "soja_sauce",
-        "el": 2,
-        "string_id": "el",
-        "image_id": "soja_sauce_round"
       },
       {
-        "name_id": "sugar",
+        "name_id": "lime_juice",
         "el": 2,
         "string_id": "tl",
-        "image_id": "sugar_round"
+        "image_id": "lime_juice_round"
+      },
+      {
+        "name_id": "lime_juice",
+        "el": 2,
+        "string_id": "tl",
+        "image_id": "lime_juice_round"
       },
       {
         "name_id": "lime_juice",
@@ -74,6 +75,13 @@
         "image_id": "lime_juice_round"
       }
     ],
-    []
+    [
+      {
+        "name_id": "soja_sauce",
+        "el": 2,
+        "string_id": "el",
+        "image_id": "soja_sauce_round"
+      }
+    ]
   ]
 }

@@ -1,0 +1,151 @@
+{
+  "name_id": "pad_thai",
+  "step_count": 5,
+  "tab_titles": [
+    "tab_text_0",
+    "tab_text_1",
+    "tab_text_2_opt",
+    "tab_text_3n4",
+    "tab_text_5"
+  ],
+  "text_1": [
+    "prepare_ingredients",
+    "put_in_the_wok",
+    "add",
+    "add",
+    "add_to_taste"
+  ],
+  "text_2": [
+    "soak_and_fry",
+    "low_heat",
+    "no_egg",
+    "mix_and_heat_up",
+    "empty_string"
+  ],
+  "steps": [
+    [
+      {
+        "name_id": "rice_noodles",
+        "el": 62.5,
+        "string_id": "g",
+        "image_id": "rice_noodles_round"
+      },
+      {
+        "name_id": "tofu",
+        "el": 1,
+        "string_id": "el",
+        "image_id": "tofu_round"
+      }
+    ],
+    [
+      {
+        "name_id": "oil",
+        "el": 2,
+        "string_id": "el",
+        "image_id": "oil_round"
+      },
+      {
+        "name_id": "carrots",
+        "el": 1,
+        "string_id": "el",
+        "image_id": "carrots_round"
+      },
+      {
+        "name_id": "onions",
+        "el": 1,
+        "string_id": "el",
+        "image_id": "onions_round"
+      },
+      {
+        "name_id": "tomatoes",
+        "el": 1,
+        "string_id": "el",
+        "image_id": "tomatoes_round"
+      },
+      {
+        "name_id": "tofu",
+        "el": 1,
+        "string_id": "el",
+        "image_id": "tofu_round"
+      },
+      {
+        "name_id": "garlic",
+        "el": 1,
+        "string_id": "tl",
+        "image_id": "garlic_round"
+      }
+    ],
+    [
+      {
+        "name_id": "soja_sauce",
+        "el": 2,
+        "string_id": "el",
+        "image_id": "soja_sauce_round"
+      },
+      {
+        "name_id": "chili_paste",
+        "el": 1,
+        "string_id": "tl",
+        "image_id": "chili_paste_round"
+      }
+    ],
+    [
+      {
+        "name_id": "water",
+        "el": 3,
+        "string_id": "el",
+        "image_id": "water_round"
+      },
+      {
+        "name_id": "rice_noodles",
+        "el": 62.5,
+        "string_id": "g",
+        "image_id": "rice_noodles_round"
+      },
+      {
+        "name_id": "soja_sauce",
+        "el": 1,
+        "string_id": "el",
+        "image_id": "soja_sauce_round"
+      },
+      {
+        "name_id": "sugar",
+        "el": 1,
+        "string_id": "tl",
+        "image_id": "sugar_round"
+      },
+      {
+        "name_id": "sprouts",
+        "el": 0.5,
+        "string_id": "el",
+        "image_id": "sprouts_round"
+      },
+      {
+        "name_id": "spring_onions",
+        "el": 0.5,
+        "string_id": "el",
+        "image_id": "spring_onions_round"
+      },
+      {
+        "name_id": "peanuts",
+        "el": 1,
+        "string_id": "el",
+        "image_id": "peanuts_round"
+      }
+    ],
+    [
+      {
+        "name_id": "chili_flakes",
+        "el": 1,
+        "string_id": "tl",
+        "image_id": "chili_flakes_round"
+      },
+      {
+        "name_id": "lime_juice",
+        "el": 0.25,
+        "string_id": "stk",
+        "image_id": "lime_juice_round"
+      }
+    ]
+  ]
+}
