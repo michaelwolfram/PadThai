@@ -77,6 +77,10 @@ public class WorkbookFacade {
 
     private void setCellValueInColumnB(@NonNull Sheet sheet, int row, double value) {
         Cell cell = sheet.getRow(row - 1).getCell(CellReference.convertColStringToIndex("B"));
+        if (cell == null) {
+            Log.e(WorkbookFacade.class.getName(), "cell was null. It was not updated! The cell was: B" + row);
+            return;
+        }
         cell.setCellValue(value);
     }
 
