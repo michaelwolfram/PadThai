@@ -26,6 +26,8 @@
     <string name="ml" translatable="false">ml</string>
     <string name="stk">pc.</string>
     <string name="pkg">pkg.</string>
+    <string name="handful">Handful</string>
+    <string name="c">c.</string>
     <string name="el" translatable="false">EL</string>
     <string name="tl" translatable="false">TL</string>
 
@@ -65,6 +67,9 @@
     <string name="tofu">Tofu</string>
     <string name="water">Water</string>
     <string name="chili_flakes">Chili flakes</string>
+    <string name="curry_powder">Curry powder</string>
+    <string name="mixed_vegetables">Mixed vegetables</string>
+    <string name="rice">Rice</string>
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nothing selected. What do you want to cook?</string>

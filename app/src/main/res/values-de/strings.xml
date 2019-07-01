@@ -8,6 +8,8 @@
     <!-- units of measurement -->
     <string name="stk">Stk.</string>
     <string name="pkg">Pkg.</string>
+    <string name="handful">Handvoll</string>
+    <string name="c">Ta.</string>
 
     <!-- Main activity -->
     <string name="sub_header">Bestandteile</string>
@@ -44,6 +46,9 @@
     <string name="tofu">Tofu</string>
     <string name="water">Wasser</string>
     <string name="chili_flakes">Chiliflocken</string>
+    <string name="curry_powder">Currypulver</string>
+    <string name="mixed_vegetables">Gemischtes Gemüse</string>
+    <string name="rice">Reis</string>
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nichts ausgewählt. Was willst du kochen?</string>
