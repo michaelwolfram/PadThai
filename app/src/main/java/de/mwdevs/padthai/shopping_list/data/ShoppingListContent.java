@@ -31,6 +31,9 @@ public class ShoppingListContent {
         addItem(new ShoppingItem(13, R.string.sprouts, R.mipmap.sprouts_round, R.string.g, R.string.pkg));
         addItem(new ShoppingItem(14, R.string.rice_noodles, R.mipmap.rice_noodles_round, R.string.g, R.string.pkg));
         addItem(new ShoppingItem(15, R.string.tofu, R.mipmap.tofu_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(16, R.string.curry_powder, R.mipmap.curry_powder_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(17, R.string.mixed_vegetables, R.mipmap.mixed_vegetables_round, R.string.g, R.string.handful));
+        addItem(new ShoppingItem(18, R.string.rice, R.mipmap.rice_round, R.string.g, R.string.c));
 
         initialized = true;
     }
