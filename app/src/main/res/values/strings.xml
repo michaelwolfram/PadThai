@@ -38,6 +38,7 @@
     <string name="dish_component_text">Component Name</string>
     <string name="chili_paste">Chili paste</string>
     <string name="peanut_sauce">Peanut sauce</string>
+    <string name="sticky_rice">Sticky Rice</string>
 
     <!-- Dishes-->
     <string name="pad_thai" translatable="false">Pad Thai</string>
@@ -47,7 +48,7 @@
     <string name="tom_yam_soup">Tom Yam Soup</string>
     <string name="spring_roles">Spring Roles</string>
     <string name="pumpkin_humus">Pumpkin Humus</string>
-    <string name="mango_sticky_rice">Mango with Sticky Rice</string>
+    <string name="mango_with_sticky_rice">Mango with Sticky Rice</string>
 
     <!-- Ingredients -->
     <string name="carrots">Carrots</string>

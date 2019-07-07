@@ -40,9 +40,9 @@ public class WorkbookFacade {
             setCellValueInColumnB(mSheet0, i + 1, mComponentQuantities[i]);
         }
 
-        // TODO: 20.05.19 this is taking some time...if you think about refactoring,
-        //  think about refactoring the excel sheet such that the content is extracted
-        //  rather than working on the excel sheet from code
+        // this is taking some time...if you think about refactoring,
+        // think about refactoring the excel sheet such that the content is extracted
+        // rather than working on the excel sheet from code
         XSSFFormulaEvaluator.evaluateAllFormulaCells(mWorkbook);
     }
 

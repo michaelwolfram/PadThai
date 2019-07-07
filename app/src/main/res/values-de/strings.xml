@@ -18,6 +18,7 @@
     <string name="dish_component_text">Bestandteil Name</string>
     <string name="chili_paste">Chilipaste</string>
     <string name="peanut_sauce">Erdnusssoße</string>
+    <string name="sticky_rice">Klebreis</string>
 
     <!-- Dishes-->
     <string name="green_papaya_salad">Grüner Papaya Salat</string>
@@ -26,7 +27,7 @@
     <string name="tom_yam_soup">Tom Yam Suppe</string>
     <string name="spring_roles">Frühlingsrollen</string>
     <string name="pumpkin_humus">Kürbis Hummus</string>
-    <string name="mango_sticky_rice">Mango mit Sticky-Rice</string>
+    <string name="mango_with_sticky_rice">Mango mit Klebreis</string>
 
     <!-- Ingredients -->
     <string name="carrots">Karotten</string>
