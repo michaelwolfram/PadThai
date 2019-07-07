@@ -2,6 +2,7 @@ package de.mwdevs.padthai;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -71,6 +72,26 @@ public class Utils {
         }
         return null;
     }
+
+    public static int getNumComponents(Context context) {
+        try {
+            AssetManager assetManager = context.getAssets();
+            String[] filelist = assetManager.list("");
+            int json_file_count = 0;
+            for (String file : Objects.requireNonNull(filelist)) {
+                if (file.matches(".*\\.json")) {
+                    json_file_count++;
+                }
+            }
+            return json_file_count;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+    // ################
+    // private section:
+    // ################
 
     private static int getRecipeName(Context context, JSONObject json_recipe) throws JSONException {
         String name_id_string = json_recipe.getString("name_id");
@@ -162,7 +183,4 @@ public class Utils {
             throw new Resources.NotFoundException("Resource R." + defType + "." + name + " not found. Typo in json file?");
         return resId;
     }
-//    static int getResourceId(Context context, String typedName) {
-//        return getResourceId(context, typedName, null);
-//    }
 }

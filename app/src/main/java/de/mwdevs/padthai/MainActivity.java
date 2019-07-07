@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
             return;
 
         if (componentQuantityDataModel.hasValues(dishInfo))
-            openShoppingCart(componentQuantityDataModel.getAllQuantities(dishInfo));
+            openShoppingCart(componentQuantityDataModel.getAllQuantities(this, dishInfo));
         else
             Snackbar.make(dishViewPager, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
     }

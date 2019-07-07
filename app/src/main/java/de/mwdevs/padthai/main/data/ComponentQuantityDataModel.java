@@ -1,11 +1,13 @@
 package de.mwdevs.padthai.main.data;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.json.JSONArray;
 
+import de.mwdevs.padthai.Utils;
+
 public class ComponentQuantityDataModel {
-    private static final int NUM_COMPONENTS = 10;
     private final int mMaximumComponentRows;
     private int[][] mComponentQuantities;
 
@@ -22,8 +24,8 @@ public class ComponentQuantityDataModel {
         return mComponentQuantities[dishInfo.getId()];
     }
 
-    public int[] getAllQuantities(DishInfo dishInfo) {
-        int[] allComponents = new int[NUM_COMPONENTS];
+    public int[] getAllQuantities(Context context, DishInfo dishInfo) {
+        int[] allComponents = new int[Utils.getNumComponents(context)];
         for (int row = 0; row < dishInfo.getNumDishComponents(); row++) {
             int componentIndex = row + dishInfo.getDishComponentOffset();
             allComponents[componentIndex] = getQuantity(dishInfo, row);
