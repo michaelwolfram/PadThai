@@ -7,5 +7,4 @@ Recipes for pad thai etc.
 
 
 optional:
-- json for dishinfo
 - rezept schritte mit sprachsteuerung
