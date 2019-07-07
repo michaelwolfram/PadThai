@@ -212,14 +212,6 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                 if (!allowDishOnClickListener)
                     return;
 
-                // TODO: 16.06.19 take care of this when more dishes are added
-                if (dishInfo.getTitleResId() != R.string.pad_thai &&
-                        dishInfo.getTitleResId() != R.string.green_papaya_salad &&
-                        dishInfo.getTitleResId() != R.string.massaman_curry) {
-                    Snackbar.make(dishViewPager, R.string.dish_not_available_yet, Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
                 if (componentQuantityDataModel.hasValue(dishInfo, row))
                     startRecipeStepsActivity(componentQuantityDataModel.getQuantity(dishInfo, row),
                             dishComponentInfo.json_filename);
@@ -285,14 +277,6 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
     public void onDishClick(DishInfo dishInfo) {
         if (!allowDishOnClickListener)
             return;
-
-        // TODO: 16.06.19 take care of this when more dishes are added
-        if (dishInfo.getTitleResId() != R.string.pad_thai &&
-                dishInfo.getTitleResId() != R.string.green_papaya_salad &&
-                dishInfo.getTitleResId() != R.string.massaman_curry) {
-            Snackbar.make(dishViewPager, R.string.dish_not_available_yet, Snackbar.LENGTH_LONG).show();
-            return;
-        }
 
         if (componentQuantityDataModel.hasValues(dishInfo))
             openShoppingCart(componentQuantityDataModel.getAllQuantities(dishInfo));
