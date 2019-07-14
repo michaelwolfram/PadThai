@@ -1,0 +1,52 @@
+{
+  "name_id": "spring_rolls",
+  "step_count": 2,
+  "tab_titles": [
+    "tab_text_1",
+    "tab_text_2"
+  ],
+  "text_1": [
+    "make_pile_on_spring_roll_wrapper",
+    "roll_up_and_peanut_sauce"
+  ],
+  "text_2": [
+    "empty_string",
+    "empty_string"
+  ],
+  "steps": [
+    [
+      {
+        "name_id": "mint_leaves",
+        "el": 1,
+        "string_id": "tl"
+      },
+      {
+        "name_id": "bean_sprouts",
+        "el": 1,
+        "string_id": "tl"
+      },
+      {
+        "name_id": "carrots",
+        "el": 1,
+        "string_id": "tl"
+      },
+      {
+        "name_id": "coconut_mango_avocado",
+        "el": 1,
+        "string_id": "tl"
+      },
+      {
+        "name_id": "sesame_seeds",
+        "el": 1,
+        "string_id": "tl"
+      },
+      {
+        "name_id": "peanut_sauce",
+        "el": 1,
+        "string_id": "tl"
+      }
+    ],
+    [
+    ]
+  ]
+}

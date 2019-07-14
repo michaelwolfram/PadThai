@@ -30,10 +30,10 @@ public enum DishInfo {
             new ArrayList<>(Collections.singletonList(
                     new DishComponentInfo(R.string.tom_yam_soup, "tom_yam_soup.json")
             ))),
-    SPRING_ROLLS(5, R.string.spring_roles, R.drawable.spring_roles_512, 7,
+    SPRING_ROLLS(5, R.string.spring_rolls, R.drawable.spring_rolls_512, 7,
             new ArrayList<>(Arrays.asList(
                     new DishComponentInfo(R.string.peanut_sauce, "peanut_sauce.json"),
-                    new DishComponentInfo(R.string.spring_roles, "spring_roles.json")
+                    new DishComponentInfo(R.string.spring_rolls, "spring_rolls.json")
             ))),
     PUMPKIN_HUMUS(6, R.string.pumpkin_humus, R.drawable.pumpkin_humus_512, 9,
             new ArrayList<>(Collections.singletonList(
