@@ -7,71 +7,46 @@
     "tab_text_3"
   ],
   "text_1": [
-    "in_bowl_mix_together",
     "add",
-    "add_finely_grated_vegetables"
+    "add",
+    "add_some_for_topping"
   ],
   "text_2": [
     "empty_string",
     "empty_string",
-    "mix_well"
+    "eat_with_veggies"
   ],
   "steps": [
     [
       {
-        "name_id": "red_and_green_chillies",
-        "el": 0.5,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "green bean",
-        "el": 3,
+        "name_id": "sesame_seeds",
+        "el": 1,
         "string_id": "el"
       },
       {
-        "name_id": "garlic",
-        "el": 3,
-        "string_id": "el"
-      },
-      {
-        "name_id": "oil",
-        "el": 10,
+        "name_id": "cashew_nuts",
+        "el": 2,
         "string_id": "el"
       }
     ],
     [
       {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "chili_dry",
-        "el": 3,
+        "name_id": "pumpkin",
+        "el": 3.5,
         "string_id": "el"
       },
       {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
+        "name_id": "coriander_leaves",
+        "el": 3,
+        "string_id": "leaf"
       },
       {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "lime_juice",
-        "el": 2,
+        "name_id": "soya_sauce",
+        "el": 1,
         "string_id": "tl"
       }
     ],
     [
-      {
-        "name_id": "soja_sauce",
-        "el": 2,
-        "string_id": "el"
-      }
     ]
   ]
 }
