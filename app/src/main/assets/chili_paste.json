@@ -24,54 +24,46 @@
       {
         "name_id": "carrots",
         "el": 3,
-        "string_id": "el",
-        "image_id": "carrots_round"
+        "string_id": "el"
       },
       {
         "name_id": "onions",
         "el": 3,
-        "string_id": "el",
-        "image_id": "onions_round"
+        "string_id": "el"
       },
       {
         "name_id": "garlic",
         "el": 3,
-        "string_id": "el",
-        "image_id": "garlic_round"
+        "string_id": "el"
       },
       {
         "name_id": "oil",
         "el": 10,
-        "string_id": "el",
-        "image_id": "oil_round"
+        "string_id": "el"
       }
     ],
     [
       {
         "name_id": "chili_dry",
         "el": 3,
-        "string_id": "el",
-        "image_id": "chili_dry_round"
+        "string_id": "el"
       }
     ],
     [
       {
         "name_id": "soja_sauce",
         "el": 2,
-        "string_id": "el",
-        "image_id": "soja_sauce_round"
+        "string_id": "el"
       },
       {
         "name_id": "sugar",
         "el": 2,
-        "string_id": "tl",
-        "image_id": "sugar_round"
+        "string_id": "tl"
       },
       {
         "name_id": "lime_juice",
         "el": 2,
-        "string_id": "tl",
-        "image_id": "lime_juice_round"
+        "string_id": "tl"
       }
     ],
     []

@@ -76,9 +76,9 @@ public class Utils {
     public static int getNumComponents(Context context) {
         try {
             AssetManager assetManager = context.getAssets();
-            String[] filelist = assetManager.list("");
+            String[] fileList = assetManager.list("");
             int json_file_count = 0;
-            for (String file : Objects.requireNonNull(filelist)) {
+            for (String file : Objects.requireNonNull(fileList)) {
                 if (file.matches(".*\\.json")) {
                     json_file_count++;
                 }
@@ -162,13 +162,13 @@ public class Utils {
         return createRecipeQuantityInfo(context,
                 step.getString("name_id"),
                 (float) step.getDouble("el"),
-                step.getString("string_id"),
-                step.getString("image_id"));
+                step.getString("string_id"));
     }
 
     private static RecipeQuantityInfo createRecipeQuantityInfo(Context context,
                                                                String nameIdName, float el,
-                                                               String elIdName, String imageIdName) {
+                                                               String elIdName) {
+        String imageIdName = nameIdName + "_round";
         return new RecipeQuantityInfo(
                 getResourceId(context, nameIdName, "string"),
                 el,
