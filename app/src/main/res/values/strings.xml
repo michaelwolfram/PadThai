@@ -14,6 +14,8 @@
     <string name="empty_string" translatable="false" />
     <string name="tab_text_0" translatable="false">0.</string>
     <string name="tab_text_1" translatable="false">1.</string>
+    <string name="tab_text_1_1" translatable="false">1.1.</string>
+    <string name="tab_text_1_2" translatable="false">1.2.</string>
     <string name="tab_text_2" translatable="false">2.</string>
     <string name="tab_text_2_opt" translatable="false">2. (opt.)</string>
     <string name="tab_text_3" translatable="false">3.</string>

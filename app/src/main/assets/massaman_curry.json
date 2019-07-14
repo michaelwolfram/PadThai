@@ -1,40 +1,28 @@
 {
-  "name_id": "pad_thai",
+  "name_id": "massaman_curry",
   "step_count": 5,
   "tab_titles": [
-    "tab_text_0",
-    "tab_text_1",
-    "tab_text_2_opt",
-    "tab_text_3n4",
-    "tab_text_5"
+    "tab_text_1_1",
+    "tab_text_1_2",
+    "tab_text_2",
+    "tab_text_3",
+    "tab_text_4"
   ],
   "text_1": [
-    "prepare_ingredients",
     "put_in_the_wok",
+    "then_add",
     "add",
     "add",
-    "add_to_taste"
+    "stir_until_thick_then_add"
   ],
   "text_2": [
-    "soak_and_fry",
-    "low_heat",
-    "no_egg",
-    "mix_and_heat_up",
-    "empty_string"
+    "medium_low_heat_until_nice_smell",
+    "low_heat_until_fragrant",
+    "cook_until_thick",
+    "mix_well",
+    "high_heat_before_serving_top"
   ],
   "steps": [
-    [
-      {
-        "name_id": "rice_noodles",
-        "el": 62.5,
-        "string_id": "g"
-      },
-      {
-        "name_id": "tofu",
-        "el": 1,
-        "string_id": "el"
-      }
-    ],
     [
       {
         "name_id": "oil",
@@ -55,26 +43,16 @@
         "name_id": "tomatoes",
         "el": 1,
         "string_id": "el"
-      },
-      {
-        "name_id": "tofu",
-        "el": 1,
-        "string_id": "el"
-      },
-      {
-        "name_id": "garlic",
-        "el": 1,
-        "string_id": "tl"
       }
     ],
     [
       {
-        "name_id": "soja_sauce",
-        "el": 2,
-        "string_id": "el"
+        "name_id": "chili_paste",
+        "el": 1,
+        "string_id": "tl"
       },
       {
-        "name_id": "chili_paste",
+        "name_id": "curry_powder",
         "el": 1,
         "string_id": "tl"
       }
@@ -86,46 +64,48 @@
         "string_id": "el"
       },
       {
-        "name_id": "rice_noodles",
-        "el": 62.5,
-        "string_id": "g"
-      },
+        "name_id": "coconut_milk",
+        "el": 8,
+        "string_id": "el"
+      }
+    ],
+    [
       {
-        "name_id": "soja_sauce",
+        "name_id": "soya_sauce",
         "el": 1,
         "string_id": "el"
       },
       {
         "name_id": "sugar",
-        "el": 1,
+        "el": 2,
         "string_id": "tl"
       },
       {
-        "name_id": "sprouts",
-        "el": 0.5,
-        "string_id": "el"
+        "name_id": "vegetables",
+        "el": 1,
+        "string_id": "handful"
       },
       {
-        "name_id": "spring_onions",
-        "el": 0.5,
-        "string_id": "el"
-      },
-      {
-        "name_id": "peanuts",
+        "name_id": "tofu",
         "el": 1,
         "string_id": "el"
       }
     ],
     [
       {
-        "name_id": "chili_flakes",
+        "name_id": "lime_juice",
         "el": 1,
         "string_id": "tl"
       },
       {
-        "name_id": "lime_juice",
-        "el": 0.25,
-        "string_id": "stk"
+        "name_id": "peanuts",
+        "el": 1,
+        "string_id": "el"
+      },
+      {
+        "name_id": "coconut_milk",
+        "el": 1,
+        "string_id": "el"
       }
     ]
   ]
