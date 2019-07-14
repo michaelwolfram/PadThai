@@ -20,6 +20,8 @@
     <string name="tab_text_4" translatable="false">4.</string>
     <string name="tab_text_3n4" translatable="false">3. &amp; 4.</string>
     <string name="tab_text_5" translatable="false">5.</string>
+    <string name="tab_text_6" translatable="false">6.</string>
+    <string name="tab_text_7" translatable="false">7.</string>
 
     <!-- units of measurement -->
     <string name="g" translatable="false">g</string>
@@ -27,7 +29,7 @@
     <string name="stk">pc.</string>
     <string name="pkg">pkg.</string>
     <string name="handful">Handful</string>
-    <string name="c">c.</string>
+    <string name="cups">c.</string>
     <string name="el" translatable="false">EL</string>
     <string name="tl" translatable="false">TL</string>
 

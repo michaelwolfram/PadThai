@@ -9,7 +9,7 @@
     <string name="stk">Stk.</string>
     <string name="pkg">Pkg.</string>
     <string name="handful">Handvoll</string>
-    <string name="c">Ta.</string>
+    <string name="cups">Ta.</string>
 
     <!-- Main activity -->
     <string name="sub_header">Bestandteile</string>

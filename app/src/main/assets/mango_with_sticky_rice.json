@@ -1,76 +1,76 @@
 {
-  "name_id": "green_papaya_salad",
-  "step_count": 3,
+  "name_id": "mango_with_sticky_rice",
+  "step_count": 7,
   "tab_titles": [
     "tab_text_1",
     "tab_text_2",
-    "tab_text_3"
+    "tab_text_3",
+    "tab_text_4",
+    "tab_text_5",
+    "tab_text_6",
+    "tab_text_7"
   ],
   "text_1": [
-    "in_bowl_mix_together",
-    "add",
-    "add_finely_grated_vegetables"
+    "in_wok_boil_coconut_milk",
+    "add_to_taste",
+    "once_hot_put_in_bowl",
+    "add_and_warm_up",
+    "place_on_plate",
+    "pour_warm_coconut_milk",
+    "add_cuts_of_fruits"
   ],
   "text_2": [
     "empty_string",
     "empty_string",
-    "mix_well"
+    "empty_string",
+    "empty_string",
+    "empty_string",
+    "empty_string",
+    "empty_string"
   ],
   "steps": [
     [
       {
-        "name_id": "red_and_green_chillies",
-        "el": 0.5,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "green bean",
-        "el": 3,
-        "string_id": "el"
-      },
-      {
-        "name_id": "garlic",
-        "el": 3,
-        "string_id": "el"
-      },
-      {
-        "name_id": "oil",
+        "name_id": "coconut_milk",
         "el": 10,
         "string_id": "el"
       }
     ],
     [
       {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "chili_dry",
-        "el": 3,
+        "name_id": "sugar",
+        "el": 1,
         "string_id": "el"
       },
       {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
+        "name_id": "salt",
+        "el": 1,
+        "string_id": "pinch"
       }
     ],
     [
+    ],
+    [
       {
-        "name_id": "soja_sauce",
-        "el": 2,
-        "string_id": "el"
+        "name_id": "sticky_rice",
+        "el": 25,
+        "string_id": "g"
+      }
+    ],
+    [
+    ],
+    [
+    ],
+    [
+      {
+        "name_id": "mango",
+        "el": 0.5,
+        "string_id": "stk"
+      },
+      {
+        "name_id": "banana",
+        "el": 1,
+        "string_id": "stk"
       }
     ]
   ]
