@@ -1,75 +1,110 @@
 {
-  "name_id": "green_papaya_salad",
+  "name_id": "tom_yam_soup",
   "step_count": 3,
   "tab_titles": [
     "tab_text_1",
     "tab_text_2",
-    "tab_text_3"
+    "tab_text_3",
+    "tab_text_4"
   ],
   "text_1": [
-    "in_bowl_mix_together",
+    "in_the_wok_boil_water",
     "add",
-    "add_finely_grated_vegetables"
+    "once_boiling_add",
+    "add"
   ],
   "text_2": [
     "empty_string",
     "empty_string",
-    "mix_well"
+    "turn_off_heat_once_tender",
+    "optional_add"
   ],
   "steps": [
     [
       {
-        "name_id": "red_and_green_chillies",
+        "name_id": "water",
+        "el": 300,
+        "string_id": "ml"
+      }
+    ],
+    [
+      {
+        "name_id": "kaffir_lime_leaves",
+        "el": 2,
+        "string_id": "leaf"
+      },
+      {
+        "name_id": "galangal",
+        "el": 2,
+        "string_id": "slices"
+      },
+      {
+        "name_id": "lemon_grass",
+        "el": 1,
+        "string_id": "stk"
+      },
+      {
+        "name_id": "carrots",
+        "el": 1,
+        "string_id": "el"
+      },
+      {
+        "name_id": "onions",
+        "el": 1,
+        "string_id": "el"
+      },
+      {
+        "name_id": "tomatoes",
+        "el": 1,
+        "string_id": "el"
+      },
+      {
+        "name_id": "tofu",
+        "el": 1,
+        "string_id": "el"
+      },
+      {
+        "name_id": "mixed_vegetables",
+        "el": 1,
+        "string_id": "handful"
+      }
+    ],
+    [
+      {
+        "name_id": "soya_sauce",
+        "el": 2,
+        "string_id": "el"
+      },
+      {
+        "name_id": "sugar",
+        "el": 1,
+        "string_id": "tl"
+      }
+    ],
+    [
+      {
+        "name_id": "spring_onions",
         "el": 0.5,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "green bean",
-        "el": 3,
         "string_id": "el"
       },
       {
-        "name_id": "garlic",
-        "el": 3,
-        "string_id": "el"
-      },
-      {
-        "name_id": "oil",
-        "el": 10,
-        "string_id": "el"
-      }
-    ],
-    [
-      {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "chili_dry",
-        "el": 3,
+        "name_id": "coriander_leaves",
+        "el": 0.5,
         "string_id": "el"
       },
       {
         "name_id": "lime_juice",
-        "el": 2,
+        "el": 1,
         "string_id": "tl"
       },
       {
-        "name_id": "lime_juice",
-        "el": 2,
+        "name_id": "chili_paste",
+        "el": 1.5,
         "string_id": "tl"
       },
       {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
-      }
-    ],
-    [
-      {
-        "name_id": "soja_sauce",
-        "el": 2,
+        "name_id": "coconut_milk",
+        "el": 1,
         "string_id": "el"
       }
     ]
