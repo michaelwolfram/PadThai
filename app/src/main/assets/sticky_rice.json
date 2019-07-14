@@ -1,77 +1,37 @@
 {
   "name_id": "green_papaya_salad",
-  "step_count": 3,
+  "step_count": 2,
   "tab_titles": [
     "tab_text_1",
-    "tab_text_2",
-    "tab_text_3"
+    "tab_text_2"
   ],
   "text_1": [
-    "in_bowl_mix_together",
-    "add",
-    "add_finely_grated_vegetables"
+    "soak_rice_overnight",
+    "steam_rice_in_steamer"
   ],
   "text_2": [
     "empty_string",
-    "empty_string",
-    "mix_well"
+    "empty_string"
   ],
   "steps": [
     [
       {
-        "name_id": "red_and_green_chillies",
-        "el": 0.5,
-        "string_id": "tl"
+        "name_id": "rice",
+        "el": 1,
+        "string_id": "cups"
       },
       {
-        "name_id": "green bean",
-        "el": 3,
-        "string_id": "el"
-      },
-      {
-        "name_id": "garlic",
-        "el": 3,
-        "string_id": "el"
-      },
-      {
-        "name_id": "oil",
-        "el": 10,
-        "string_id": "el"
-      }
-    ],
-    [
-      {
-        "name_id": "lime_juice",
+        "name_id": "water",
         "el": 2,
-        "string_id": "tl"
+        "string_id": "cups"
       },
       {
-        "name_id": "chili_dry",
-        "el": 3,
-        "string_id": "el"
-      },
-      {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl"
-      },
-      {
-        "name_id": "lime_juice",
-        "el": 2,
+        "name_id": "butterfly_pea_tea",
+        "el": 1,
         "string_id": "tl"
       }
     ],
     [
-      {
-        "name_id": "soja_sauce",
-        "el": 2,
-        "string_id": "el"
-      }
     ]
   ]
 }
