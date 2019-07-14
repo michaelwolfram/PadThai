@@ -1,86 +1,96 @@
 {
-  "name_id": "green_papaya_salad",
-  "step_count": 3,
+  "name_id": "green_thai_curry",
+  "step_count": 4,
   "tab_titles": [
     "tab_text_1",
     "tab_text_2",
-    "tab_text_3"
+    "tab_text_3",
+    "tab_text_4"
   ],
   "text_1": [
-    "in_bowl_mix_together",
+    "put_in_the_wok",
     "add",
-    "add_finely_grated_vegetables"
+    "add",
+    "add"
   ],
   "text_2": [
-    "empty_string",
-    "empty_string",
-    "mix_well"
+    "fry_till_smell_medium_heat",
+    "cook_until_texture_thick_vegetables_soft",
+    "cook_for_3_min",
+    "before_serving_coconut_milk"
   ],
   "steps": [
     [
       {
-        "name_id": "red_and_green_chillies",
-        "el": 0.5,
-        "string_id": "tl",
-        "image_id": "red_and_green_chillies_round"
-      },
-      {
-        "name_id": "green bean",
-        "el": 3,
-        "string_id": "el",
-        "image_id": "onions_round"
-      },
-      {
-        "name_id": "garlic",
-        "el": 3,
-        "string_id": "el",
-        "image_id": "garlic_round"
-      },
-      {
         "name_id": "oil",
-        "el": 10,
-        "string_id": "el",
-        "image_id": "oil_round"
+        "el": 2,
+        "string_id": "tl"
+      },
+      {
+        "name_id": "green_chili_paste",
+        "el": 0.5,
+        "string_id": "el"
       }
     ],
     [
       {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl",
-        "image_id": "lime_juice_round"
+        "name_id": "kaffir_lime_leaf",
+        "el": 1,
+        "string_id": "leaf"
       },
       {
-        "name_id": "chili_dry",
+        "name_id": "galangal",
+        "el": 1,
+        "string_id": "sl"
+      },
+      {
+        "name_id": "lemon_grass",
+        "el": 1,
+        "string_id": "stk"
+      },
+      {
+        "name_id": "coconut_milk",
+        "el": 1,
+        "string_id": "el"
+      },
+      {
+        "name_id": "vegetables_green_thai_curry",
+        "el": 1,
+        "string_id": "handful"
+      },
+      {
+        "name_id": "coconut_milk",
         "el": 3,
-        "string_id": "el",
-        "image_id": "chili_dry_round"
-      },
-      {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl",
-        "image_id": "lime_juice_round"
-      },
-      {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl",
-        "image_id": "lime_juice_round"
-      },
-      {
-        "name_id": "lime_juice",
-        "el": 2,
-        "string_id": "tl",
-        "image_id": "lime_juice_round"
+        "string_id": "el"
       }
     ],
     [
       {
-        "name_id": "soja_sauce",
-        "el": 2,
-        "string_id": "el",
-        "image_id": "soja_sauce_round"
+        "name_id": "water",
+        "el": 6,
+        "string_id": "el"
+      },
+      {
+        "name_id": "soya_sauce",
+        "el": 1,
+        "string_id": "el"
+      },
+      {
+        "name_id": "sugar",
+        "el": 1,
+        "string_id": "tl"
+      }
+    ],
+    [
+      {
+        "name_id": "coconut_milk",
+        "el": 3,
+        "string_id": "el"
+      },
+      {
+        "name_id": "thai_basel_or_mint",
+        "el": 3,
+        "string_id": "leaf"
       }
     ]
   ]
