@@ -33,7 +33,7 @@ public class ShoppingListContent {
         addItem(new ShoppingItem(15, R.string.tofu, R.mipmap.tofu_round, R.string.g, R.string.pkg));
         addItem(new ShoppingItem(16, R.string.curry_powder, R.mipmap.curry_powder_round, R.string.g, R.string.pkg));
         addItem(new ShoppingItem(17, R.string.mixed_vegetables, R.mipmap.mixed_vegetables_round, R.string.g, R.string.handful));
-        addItem(new ShoppingItem(18, R.string.rice, R.mipmap.rice_round, R.string.g, R.string.c));
+        addItem(new ShoppingItem(18, R.string.rice, R.mipmap.rice_round, R.string.g, R.string.cups));
 
         initialized = true;
     }
