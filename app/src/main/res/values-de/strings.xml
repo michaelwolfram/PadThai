@@ -154,5 +154,8 @@
     <string name="make_pile_on_spring_roll_wrapper">Auf einer Seite eines Frühlingsrollenblattes einen kleinen Haufen formen:</string>
     <string name="roll_up_and_peanut_sauce">Aufrollen und einen Löffel Erdnusssoße auf die Frühlingsrolle geben</string>
 
+    <!-- sticky rice -->
+    <string name="soak_rice_overnight">Reis und Wasser über Nacht einweichen (mindestens 8 Stunden)</string>
+    <string name="steam_rice_in_steamer">Reis 20–30 Min. im Bambuskorb oder im Reisdämpfer dünsten</string>
 
 </resources>

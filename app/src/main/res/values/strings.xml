@@ -179,5 +179,9 @@
     <string name="make_pile_on_spring_roll_wrapper">On one side of a spring roll wrapper make a small pile of:</string>
     <string name="roll_up_and_peanut_sauce">Roll up and place a spoonful of peanut sauce on top of the spring roll</string>
 
+    <!-- sticky rice -->
+    <string name="soak_rice_overnight">Soak rice and water overnight (at least 8h)</string>
+    <string name="steam_rice_in_steamer">Steam rice in bamboo basket or rice steamer for 20–30min</string>
+
 
 </resources>
