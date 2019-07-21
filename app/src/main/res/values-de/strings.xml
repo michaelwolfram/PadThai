@@ -14,13 +14,13 @@
     <!-- Main activity -->
     <string name="sub_header">Bestandteile</string>
 
-    <!-- Components-->
+    <!-- Components -->
     <string name="dish_component_text">Bestandteil Name</string>
     <string name="chili_paste">Chilipaste</string>
     <string name="peanut_sauce">Erdnusssoße</string>
     <string name="sticky_rice">Klebreis</string>
 
-    <!-- Dishes-->
+    <!-- Dishes -->
     <string name="green_papaya_salad">Grüner Papaya Salat</string>
     <string name="massaman_curry">Massaman Curry</string>
     <string name="green_thai_curry">Grünes Thai Curry</string>
@@ -70,22 +70,22 @@
 
     <!-- Recipe steps -->
 
-    <!--     general -->
+    <!-- general -->
     <string name="put_in_the_wok">In den Wok geben:</string>
     <string name="add">Zugeben:</string>
 
-    <!--     chili paste -->
+    <!-- chili paste -->
     <string name="cook_until_brown">Kochen, bis es braun wird</string>
     <string name="put_everything_in_the_mixer">Alles in den Mixer geben</string>
 
-    <!--     peanut sauce -->
+    <!-- peanut sauce -->
     <string name="medium_heat_and_crush_tomatoes">1. Mittlere Hitze\n2. Tomaten zerstampfen</string>
     <string name="reduce_heat_then_add">Hitze etwas reduzieren,\ndann zugeben:</string>
     <string name="fry_and_water">1. Braten, bis es duftet\n(Stampfen für Geruch)\n2. Etwas Wasser zugeben</string>
     <string name="medium_heat_don_t_cook_too_long">1. Mittlere Hitze\n2. Kokosmilch zugeben, falls die Soße zu sehr eindickt\n3. Nicht zu lange kochen bis es sich trennt</string>
     <string name="cook_until_thick">Kochen, bis es dickflüssig wird</string>
 
-    <!--     pad thai -->
+    <!-- pad thai -->
     <string name="prepare_ingredients">Vorm Kochen vorbereiten:</string>
     <string name="soak_and_fry">1. Nudeln in kaltem Wasser einweichen\n2. Tofu braten</string>
     <string name="low_heat">Niedrige Hitze</string>

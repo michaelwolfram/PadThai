@@ -38,13 +38,13 @@
     <!-- Main activity -->
     <string name="sub_header">Components</string>
 
-    <!-- Components-->
+    <!-- Components -->
     <string name="dish_component_text">Component Name</string>
     <string name="chili_paste">Chili paste</string>
     <string name="peanut_sauce">Peanut sauce</string>
     <string name="sticky_rice">Sticky Rice</string>
 
-    <!-- Dishes-->
+    <!-- Dishes -->
     <string name="pad_thai" translatable="false">Pad Thai</string>
     <string name="green_papaya_salad">Green Papaya Salad</string>
     <string name="massaman_curry">Massaman Curry</string>
@@ -95,22 +95,22 @@
 
     <!-- Recipe steps -->
 
-    <!--     general -->
+    <!-- general -->
     <string name="put_in_the_wok">Put in the wok:</string>
     <string name="add">Add:</string>
 
-    <!--     chili paste -->
+    <!-- chili paste -->
     <string name="cook_until_brown">Cook until brown</string>
     <string name="put_everything_in_the_mixer">Put everything in the mixer</string>
 
-    <!--     peanut sauce -->
+    <!-- peanut sauce -->
     <string name="medium_heat_and_crush_tomatoes">1. Medium heat\n2. Crush tomatoes</string>
     <string name="reduce_heat_then_add">Reduce heat a little,\nthen add:</string>
     <string name="fry_and_water">1. Fry until fragrant\n(smash for smell)\n2. Add some water</string>
     <string name="medium_heat_don_t_cook_too_long">1. Medium heat\n2. Add coconut milk if sauce gets too thick\n3. Don\'t cook too long until it separates</string>
     <string name="cook_until_thick">Cook until it gets thick</string>
 
-    <!--     pad thai -->
+    <!-- pad thai -->
     <string name="prepare_ingredients">Prepare before cooking:</string>
     <string name="soak_and_fry">1. Soak noodles in cold water\n2. Fry tofu</string>
     <string name="low_heat">Low heat</string>
