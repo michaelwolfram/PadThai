@@ -146,5 +146,8 @@
     <string name="cook_until_mixture_thick">Kochen, bis die Mischung dick ist</string>
     <string name="high_heat_before_serving_top">Hohe Hitze am Ende\nVor dem Servieren mit gerösteten Erdnüssen und 1 EL Kokosmilch bestreuen</string>
 
+    <!-- pumpkin humus -->
+    <string name="add_some_for_topping">Einige Sesamsamen hinzufügen</string>
+    <string name="eat_with_veggies">Mit geschnittenem Gemüse oder Klebreis essen</string>
 
 </resources>

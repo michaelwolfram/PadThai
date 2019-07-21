@@ -171,4 +171,9 @@
     <string name="cook_until_mixture_thick">Cook until mixture is thick</string>
     <string name="high_heat_before_serving_top">High heat in the end\nBefore serving, top with full roasted peanuts and 1 tbsp. coconut milk</string>
 
+    <!-- pumpkin humus -->
+    <string name="add_some_for_topping">Add some sesame seeds on top</string>
+    <string name="eat_with_veggies">Eat with cut veggies or sticky rice</string>
+
+
 </resources>
