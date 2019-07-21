@@ -75,6 +75,7 @@
     <string name="mango">Mango</string>
     <string name="banana">Banane</string>
     <string name="vegetables_green_thai_curry">Gemüse</string>
+    <string name="vegetables">Gemüse</string>
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nichts ausgewählt. Was willst du kochen?</string>

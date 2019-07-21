@@ -100,6 +100,7 @@
     <string name="mango">Mango</string>
     <string name="banana">Banana</string>
     <string name="vegetables_green_thai_curry">Vegetables</string>
+    <string name="vegetables">Vegetables</string>
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nothing selected. What do you want to cook?</string>
