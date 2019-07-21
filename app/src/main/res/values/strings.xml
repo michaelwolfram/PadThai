@@ -32,6 +32,9 @@
     <string name="pkg">pkg.</string>
     <string name="handful">Handful</string>
     <string name="cups">c.</string>
+    <string name="leaves">lv.</string>
+    <string name="slices">sl.</string>
+    <string name="pinches">pn.</string>
     <string name="el" translatable="false">EL</string>
     <string name="tl" translatable="false">TL</string>
 
