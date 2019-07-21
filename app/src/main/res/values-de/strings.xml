@@ -158,4 +158,10 @@
     <string name="soak_rice_overnight">Reis und Wasser über Nacht einweichen (mindestens 8 Stunden)</string>
     <string name="steam_rice_in_steamer">Reis 20–30 Min. im Bambuskorb oder im Reisdämpfer dünsten</string>
 
+    <!-- tom yam soup -->
+    <string name="in_the_wok_boil_water">Im Wok Wasser kochen:</string>
+    <string name="once_boiling_add">Nach dem Kochen (bis das Wasser wie Gemüsebrühe aussieht) zugeben:</string>
+    <string name="turn_off_heat_once_tender">Hitze ausschalten, sobald das Gemüse weich ist, aber bevor alles Wasser weg ist</string>
+    <string name="optional_add">Optional 1 TL frisches Chili und 1 TL frischen Knoblauch zugeben, um ein kräftigeres und würzigeres Aroma zu erhalten</string>
+
 </resources>

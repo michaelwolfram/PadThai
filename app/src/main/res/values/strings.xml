@@ -183,5 +183,10 @@
     <string name="soak_rice_overnight">Soak rice and water overnight (at least 8h)</string>
     <string name="steam_rice_in_steamer">Steam rice in bamboo basket or rice steamer for 20–30min</string>
 
+    <!-- tom yam soup -->
+    <string name="in_the_wok_boil_water">In the wok, boil water:</string>
+    <string name="once_boiling_add">Once boiling (until water looks like vegetable stock), add:</string>
+    <string name="turn_off_heat_once_tender">Turn off heat once vegetables are tender but before water is all gone</string>
+    <string name="optional_add">Optionally, add 1 tsp. of fresh chili and 1 tsp. of fresh garlic for a stronger and spicier flavor</string>
 
 </resources>
