@@ -36,7 +36,7 @@
       {
         "name_id": "kaffir_lime_leaves",
         "el": 1,
-        "string_id": "leaf"
+        "string_id": "leaves"
       },
       {
         "name_id": "galangal",
@@ -90,7 +90,7 @@
       {
         "name_id": "thai_basel_or_mint",
         "el": 3,
-        "string_id": "leaf"
+        "string_id": "leaves"
       }
     ]
   ]
