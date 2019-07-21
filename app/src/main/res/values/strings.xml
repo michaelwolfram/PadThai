@@ -175,5 +175,9 @@
     <string name="add_some_for_topping">Add some sesame seeds on top</string>
     <string name="eat_with_veggies">Eat with cut veggies or sticky rice</string>
 
+    <!-- spring roll -->
+    <string name="make_pile_on_spring_roll_wrapper">On one side of a spring roll wrapper make a small pile of:</string>
+    <string name="roll_up_and_peanut_sauce">Roll up and place a spoonful of peanut sauce on top of the spring roll</string>
+
 
 </resources>

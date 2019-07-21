@@ -150,4 +150,9 @@
     <string name="add_some_for_topping">Einige Sesamsamen hinzufügen</string>
     <string name="eat_with_veggies">Mit geschnittenem Gemüse oder Klebreis essen</string>
 
+    <!-- spring roll -->
+    <string name="make_pile_on_spring_roll_wrapper">Auf einer Seite eines Frühlingsrollenblattes einen kleinen Haufen formen:</string>
+    <string name="roll_up_and_peanut_sauce">Aufrollen und einen Löffel Erdnusssoße auf die Frühlingsrolle geben</string>
+
+
 </resources>
