@@ -127,7 +127,7 @@
     <string name="fry_till_smell_medium_heat">Braten, bis es gut duftet &amp; mittlere Hitze</string>
     <string name="cook_until_texture_thick_vegetables_soft">Kochen, bis die Textur dick ist &amp; Gemüse weich ist\nMittlere Hitze</string>
     <string name="cook_for_3_min">Ca. 3 Minuten kochen lassen</string>
-    <string name="before_serving_coconut_milk">Vor dem Servieren 1 Esslöffel Kokosmilch zugeben</string>
+    <string name="before_serving_coconut_milk">Vor dem Servieren 1 EL Kokosmilch zugeben</string>
 
     <!-- mango with sticky rice -->
     <string name="in_wok_boil_coconut_milk">In einem Wok Kokosmilch kochen</string>
@@ -137,5 +137,14 @@
     <string name="place_on_plate">Auf den Teller geben</string>
     <string name="pour_warm_coconut_milk">Warme Kokosmilch um den Reis gießen</string>
     <string name="add_cuts_of_fruits">Schräg geschnittene Mango- und Bananenstücke sowie Kokosraspeln zugeben</string>
+
+    <!-- massaman curry -->
+    <string name="then_add">Danach zugeben:</string>
+    <string name="stir_until_thick_then_add">Rühren bis die Textur dick ist, dann zugeben:</string>
+    <string name="medium_low_heat_until_nice_smell">Bei mittlerer/geringer Hitze braten, bis ein angenehmer Geruch entsteht</string>
+    <string name="low_heat_until_fragrant">Niedrige Hitze\nBraten, bis es duftet. Ggf. etwas Wasser zugeben, damit die Paste nicht anbrennt</string>
+    <string name="cook_until_mixture_thick">Kochen, bis die Mischung dick ist</string>
+    <string name="high_heat_before_serving_top">Hohe Hitze am Ende\nVor dem Servieren mit gerösteten Erdnüssen und 1 EL Kokosmilch bestreuen</string>
+
 
 </resources>
