@@ -154,4 +154,13 @@
     <string name="cook_for_3_min">Cook for roughly 3 minutes</string>
     <string name="before_serving_coconut_milk">Before serving, add 1 tablespoon of coconut milk</string>
 
+    <!-- mango with sticky rice -->
+    <string name="in_wok_boil_coconut_milk">In a wok boil coconut milk</string>
+    <string name="add_to_taste">Add sugar to taste and a little salt</string>
+    <string name="once_hot_put_in_bowl">Once hot put half the liquid in a bowl</string>
+    <string name="add_and_warm_up">Add sticky rice in the wok and warm up (balance rice &amp; coconut milk)\nFlip every 20s</string>
+    <string name="place_on_plate">Place in plate</string>
+    <string name="pour_warm_coconut_milk">Pour warm coconut milk around rice</string>
+    <string name="add_cuts_of_fruits">Add slanted cuts of mango and banana, and coconut shavings</string>
+
 </resources>

@@ -129,4 +129,13 @@
     <string name="cook_for_3_min">Ca. 3 Minuten kochen lassen</string>
     <string name="before_serving_coconut_milk">Vor dem Servieren 1 Esslöffel Kokosmilch zugeben</string>
 
+    <!-- mango with sticky rice -->
+    <string name="in_wok_boil_coconut_milk">In einem Wok Kokosmilch kochen</string>
+    <string name="add_to_taste">Nach Belieben Zucker und etwas Salz zugeben</string>
+    <string name="once_hot_put_in_bowl">Nach dem Erhitzen die Hälfte der Flüssigkeit in eine Schüssel geben</string>
+    <string name="add_and_warm_up">Klebreis in den Wok geben und aufwärmen (Reis &amp; Kokosmilch ausgleichen)\nAlle 20s umdrehen</string>
+    <string name="place_on_plate">Auf den Teller geben</string>
+    <string name="pour_warm_coconut_milk">Warme Kokosmilch um den Reis gießen</string>
+    <string name="add_cuts_of_fruits">Schräg geschnittene Mango- und Bananenstücke sowie Kokosraspeln zugeben</string>
+
 </resources>
