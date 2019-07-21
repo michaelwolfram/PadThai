@@ -50,6 +50,27 @@
     <string name="curry_powder">Currypulver</string>
     <string name="mixed_vegetables">Gemischtes Gemüse</string>
     <string name="rice">Reis</string>
+    <string name="red_and_green_chilies">Rote und grüne Chilies</string>
+    <string name="green_beans">Grüne Bohnen</string>
+    <string name="sugar_water">Zuckerwasser</string>
+    <string name="root_vegetables">Knollengemüse</string>
+    <string name="green_chili_paste">Grüne Chilipaste</string>
+    <string name="kaffir_lime_leaves">Kaffir-Limetten-Blätter</string>
+    <string name="galangal">Thai-Ingwer (Galgant)</string>
+    <string name="lemon_grass">Zitronengras</string>
+    <string name="thai_basil_v_mint">Thai-Basilikum oder Minze</string>
+    <string name="coriander_leaves">Korianderblätter</string>
+    <string name="spring_roll_wrapper">Frühlingsrollenblätter</string>
+    <string name="mint_leaves">Minzblätter</string>
+    <string name="bean_sprouts">Bohnensprossen</string>
+    <string name="coconut_mango_avocado">Kokosnuss, Mango oder Avocado</string>
+    <string name="sesame_seeds">Sesamsamen</string>
+    <string name="cashew_nuts">Cashewnüsse</string>
+    <string name="pumpkin">Kürbis</string>
+    <string name="butterfly_pea_tea">Blaue Klitorie Tee</string>
+    <string name="salt">Salz</string>
+    <string name="mango">Mango</string>
+    <string name="banana">Banane</string>
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nichts ausgewählt. Was willst du kochen?</string>

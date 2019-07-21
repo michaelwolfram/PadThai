@@ -75,6 +75,28 @@
     <string name="curry_powder">Curry powder</string>
     <string name="mixed_vegetables">Mixed vegetables</string>
     <string name="rice">Rice</string>
+    <string name="red_and_green_chilies">Red and green chilies</string>
+    <string name="green_beans">Green beans</string>
+    <string name="sugar_water">Sugar water</string>
+    <string name="root_vegetables">Root vegetables</string>
+    <string name="green_chili_paste">Green chili paste</string>
+    <string name="kaffir_lime_leaves">Kaffir lime leaves</string>
+    <string name="galangal">Galangal</string>
+    <string name="lemon_grass">Lemon grass</string>
+    <string name="thai_basil_v_mint">Thai basil or mint</string>
+    <string name="coriander_leaves">Coriander leaves</string>
+    <string name="spring_roll_wrapper">Spring roll wrapper</string>
+    <string name="mint_leaves">Mint leaves</string>
+    <string name="bean_sprouts">Bean sprouts</string>
+    <string name="coconut_mango_avocado">Coconut, mango or avocado</string>
+    <string name="sesame_seeds">Sesame seeds</string>
+    <string name="cashew_nuts">Cashew nuts</string>
+    <string name="pumpkin">Pumpkin</string>
+    <string name="butterfly_pea_tea">Butterfly pea tea</string>
+    <string name="salt">Salt</string>
+    <string name="mango">Mango</string>
+    <string name="banana">Banana</string>
+
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nothing selected. What do you want to cook?</string>
