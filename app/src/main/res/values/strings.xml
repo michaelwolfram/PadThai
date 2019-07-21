@@ -99,7 +99,7 @@
     <string name="salt">Salt</string>
     <string name="mango">Mango</string>
     <string name="banana">Banana</string>
-
+    <string name="vegetables_green_thai_curry">Vegetables</string>
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nothing selected. What do you want to cook?</string>
@@ -148,5 +148,10 @@
     <string name="add_finely_grated_root_vegetables">Add finely grated root vegetables.\n(green papaya &amp; carrot; cucumber, beetroot or green mango also possible)</string>
     <string name="mix_well">Mix well</string>
 
+    <!-- green thai curry -->
+    <string name="fry_till_smell_medium_heat">Fry till nice smell &amp; medium heat</string>
+    <string name="cook_until_texture_thick_vegetables_soft">Cook until texture is thick &amp; vegetables are soft\nMedium heat</string>
+    <string name="cook_for_3_min">Cook for roughly 3 minutes</string>
+    <string name="before_serving_coconut_milk">Before serving, add 1 tablespoon of coconut milk</string>
 
 </resources>

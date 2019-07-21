@@ -74,6 +74,7 @@
     <string name="salt">Salz</string>
     <string name="mango">Mango</string>
     <string name="banana">Banane</string>
+    <string name="vegetables_green_thai_curry">Gemüse</string>
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nichts ausgewählt. Was willst du kochen?</string>
@@ -121,4 +122,11 @@
     <string name="in_bowl_mix_together">In der Schüssel mischen:</string>
     <string name="add_finely_grated_root_vegetables">Klein geriebenes Wurzelgemüse zugeben.\n(Grüne Papaya &amp; Karotten; wahlweise auch Gurke, Rote Beete oder grüne Mango)</string>
     <string name="mix_well">Gut mischen</string>
+
+    <!-- green thai curry -->
+    <string name="fry_till_smell_medium_heat">Braten, bis es gut duftet &amp; mittlere Hitze</string>
+    <string name="cook_until_texture_thick_vegetables_soft">Kochen, bis die Textur dick ist &amp; Gemüse weich ist\nMittlere Hitze</string>
+    <string name="cook_for_3_min">Ca. 3 Minuten kochen lassen</string>
+    <string name="before_serving_coconut_milk">Vor dem Servieren 1 Esslöffel Kokosmilch zugeben</string>
+
 </resources>
