@@ -131,7 +131,7 @@
 
     <!-- mango with sticky rice -->
     <string name="in_wok_boil_coconut_milk">In einem Wok Kokosmilch kochen</string>
-    <string name="add_to_taste">Nach Belieben Zucker und etwas Salz zugeben</string>
+    <string name="add_sugar_to_taste_and_salt">Nach Belieben Zucker und etwas Salz zugeben</string>
     <string name="once_hot_put_in_bowl">Nach dem Erhitzen die Hälfte der Flüssigkeit in eine Schüssel geben</string>
     <string name="add_and_warm_up">Klebreis in den Wok geben und aufwärmen (Reis &amp; Kokosmilch ausgleichen)\nAlle 20s umdrehen</string>
     <string name="place_on_plate">Auf den Teller geben</string>

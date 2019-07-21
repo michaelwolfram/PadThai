@@ -156,7 +156,7 @@
 
     <!-- mango with sticky rice -->
     <string name="in_wok_boil_coconut_milk">In a wok boil coconut milk</string>
-    <string name="add_to_taste">Add sugar to taste and a little salt</string>
+    <string name="add_sugar_to_taste_and_salt">Add sugar to taste and a little salt</string>
     <string name="once_hot_put_in_bowl">Once hot put half the liquid in a bowl</string>
     <string name="add_and_warm_up">Add sticky rice in the wok and warm up (balance rice &amp; coconut milk)\nFlip every 20s</string>
     <string name="place_on_plate">Place in plate</string>
