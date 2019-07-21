@@ -142,4 +142,11 @@
     <string name="no_egg">Vegan -> no egg! ;-)</string>
     <string name="mix_and_heat_up">Mix well &amp; heat up</string>
     <string name="add_to_taste">Add to taste:</string>
+
+    <!-- green papaya salat -->
+    <string name="in_bowl_mix_together">In the bowl, mix together:</string>
+    <string name="add_finely_grated_root_vegetables">Add finely grated root vegetables.\n(green papaya &amp; carrot; cucumber, beetroot or green mango also possible)</string>
+    <string name="mix_well">Mix well</string>
+
+
 </resources>
