@@ -41,7 +41,7 @@
       {
         "name_id": "galangal",
         "el": 1,
-        "string_id": "sl"
+        "string_id": "slices"
       },
       {
         "name_id": "lemon_grass",
@@ -88,7 +88,7 @@
         "string_id": "el"
       },
       {
-        "name_id": "thai_basel_or_mint",
+        "name_id": "thai_basil_v_mint",
         "el": 3,
         "string_id": "leaves"
       }
