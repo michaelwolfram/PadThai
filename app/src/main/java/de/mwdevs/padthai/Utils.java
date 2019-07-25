@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
@@ -69,6 +70,7 @@ public class Utils {
             return new Recipe(name_id, tab_titles, text_1, text_2, steps);
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.e("Utils.java", "Is json filename correct?!");
         }
         return null;
     }

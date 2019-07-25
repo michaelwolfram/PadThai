@@ -42,7 +42,7 @@ public enum DishInfo {
     MANGO_WITH_STICKY_RICE(7, R.string.mango_with_sticky_rice, R.drawable.mango_with_sticky_rice_512, 10,
             new ArrayList<>(Arrays.asList(
                     new DishComponentInfo(R.string.sticky_rice, "sticky_rice.json"),
-                    new DishComponentInfo(R.string.mango_with_sticky_rice, "mango_sticky_rice.json")
+                    new DishComponentInfo(R.string.mango_with_sticky_rice, "mango_with_sticky_rice.json")
             )));
 
     private int mId;
