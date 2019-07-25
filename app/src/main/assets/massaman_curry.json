@@ -1,7 +1,8 @@
 {
   "name_id": "massaman_curry",
-  "step_count": 5,
+  "step_count": 6,
   "tab_titles": [
+    "tab_text_0",
     "tab_text_1_1",
     "tab_text_1_2",
     "tab_text_2",
@@ -9,6 +10,7 @@
     "tab_text_4"
   ],
   "text_1": [
+    "prepare_ingredients",
     "put_in_the_wok",
     "then_add",
     "add",
@@ -16,6 +18,7 @@
     "stir_until_thick_then_add"
   ],
   "text_2": [
+    "fry_tofu",
     "medium_low_heat_until_nice_smell",
     "low_heat_until_fragrant",
     "cook_until_mixture_thick",
@@ -23,6 +26,13 @@
     "high_heat_before_serving_top"
   ],
   "steps": [
+    [
+      {
+        "name_id": "tofu",
+        "el": 1,
+        "string_id": "el"
+      }
+    ],
     [
       {
         "name_id": "oil",

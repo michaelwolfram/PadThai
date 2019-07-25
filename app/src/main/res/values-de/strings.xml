@@ -121,31 +121,33 @@
 
     <!-- green papaya salad -->
     <string name="in_bowl_mix_together">In der Schüssel mischen:</string>
-    <string name="add_finely_grated_root_vegetables">Klein geriebenes Wurzelgemüse zugeben.\n(Grüne Papaya &amp; Karotten; wahlweise auch Gurke, Rote Beete oder grüne Mango)</string>
+    <string name="add_finely_grated_root_vegetables">Klein geriebenes Wurzelgemüse zugeben\n(Grüne Papaya &amp; Karotten; wahlweise auch Gurke, Rote Beete oder grüne Mango):</string>
     <string name="mix_well">Gut mischen</string>
 
     <!-- green thai curry -->
-    <string name="fry_till_smell_medium_heat">Braten, bis es gut duftet &amp; mittlere Hitze</string>
-    <string name="cook_until_texture_thick_vegetables_soft">Kochen, bis die Textur dick ist &amp; Gemüse weich ist\nMittlere Hitze</string>
+    <string name="fry_till_smell_medium_heat">1. Mittlere Hitze\n2. Braten, bis es gut duftet</string>
+    <string name="cook_until_texture_thick_vegetables_soft">1. Mittlere Hitze\n2. Kochen, bis die Textur dick\n&amp; Gemüse weich ist</string>
     <string name="cook_for_3_min">Ca. 3 Minuten kochen lassen</string>
     <string name="before_serving_coconut_milk">Vor dem Servieren 1 EL Kokosmilch zugeben</string>
 
     <!-- mango with sticky rice -->
-    <string name="in_wok_boil_coconut_milk">In einem Wok Kokosmilch kochen</string>
-    <string name="add_sugar_to_taste_and_salt">Nach Belieben Zucker und etwas Salz zugeben</string>
+    <string name="in_wok_boil_coconut_milk">In einem Wok Kokosmilch kochen:</string>
+    <string name="add_sugar_to_taste_and_salt">Nach Belieben Zucker und etwas Salz zugeben:</string>
     <string name="once_hot_put_in_bowl">Nach dem Erhitzen die Hälfte der Flüssigkeit in eine Schüssel geben</string>
-    <string name="add_and_warm_up">Klebreis in den Wok geben und aufwärmen (Reis &amp; Kokosmilch ausgleichen)\nAlle 20s umdrehen</string>
+    <string name="add_and_warm_up">Klebreis in den Wok geben und aufwärmen (Reis &amp; Kokosmilch ausgleichen):</string>
+    <string name="flip_every_seconds">Alle 20s wenden</string>
     <string name="place_on_plate">Auf den Teller geben</string>
     <string name="pour_warm_coconut_milk">Warme Kokosmilch um den Reis gießen</string>
-    <string name="add_cuts_of_fruits">Schräg geschnittene Mango- und Bananenstücke sowie Kokosraspeln zugeben</string>
+    <string name="add_cuts_of_fruits">Schräg geschnittene Mango- und Bananenstücke sowie Kokosraspeln zugeben:</string>
 
     <!-- massaman curry -->
+    <string name="fry_tofu">Tofu braten</string>
     <string name="then_add">Danach zugeben:</string>
     <string name="stir_until_thick_then_add">Rühren bis die Textur dick ist, dann zugeben:</string>
-    <string name="medium_low_heat_until_nice_smell">Bei mittlerer/geringer Hitze braten, bis ein angenehmer Geruch entsteht</string>
-    <string name="low_heat_until_fragrant">Niedrige Hitze\nBraten, bis es duftet. Ggf. etwas Wasser zugeben, damit die Paste nicht anbrennt</string>
+    <string name="medium_low_heat_until_nice_smell">1. Mittlere/Geringe Hitze\n2. Braten bis ein angenehmer Geruch entsteht</string>
+    <string name="low_heat_until_fragrant">1. Niedrige Hitze\n2. Braten, bis es duftet. Ggf. etwas Wasser zugeben, damit die Paste nicht anbrennt</string>
     <string name="cook_until_mixture_thick">Kochen, bis die Mischung dick ist</string>
-    <string name="high_heat_before_serving_top">Hohe Hitze am Ende\nVor dem Servieren mit gerösteten Erdnüssen und 1 EL Kokosmilch bestreuen</string>
+    <string name="high_heat_before_serving_top">1. Hohe Hitze am Ende\n2. Vor dem Servieren mit gerösteten Erdnüssen und 1 EL Kokosmilch bestreuen</string>
 
     <!-- pumpkin humus -->
     <string name="add_some_for_topping">Einige Sesamsamen hinzufügen</string>
@@ -156,7 +158,7 @@
     <string name="roll_up_and_peanut_sauce">Aufrollen und einen Löffel Erdnusssoße auf die Frühlingsrolle geben</string>
 
     <!-- sticky rice -->
-    <string name="soak_rice_overnight">Reis und Wasser über Nacht einweichen (mindestens 8 Stunden)</string>
+    <string name="soak_rice_overnight">Reis und Wasser über Nacht einweichen\n(mindestens 8 Stunden)</string>
     <string name="steam_rice_in_steamer">Reis 20–30 Min. im Bambuskorb oder im Reisdämpfer dünsten</string>
 
     <!-- tom yam soup -->

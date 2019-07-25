@@ -1,25 +1,35 @@
 {
   "name_id": "tom_yam_soup",
-  "step_count": 3,
+  "step_count": 5,
   "tab_titles": [
+    "tab_text_0",
     "tab_text_1",
     "tab_text_2",
     "tab_text_3",
     "tab_text_4"
   ],
   "text_1": [
+    "prepare_ingredients",
     "in_the_wok_boil_water",
     "add",
     "once_boiling_add",
     "add"
   ],
   "text_2": [
+    "fry_tofu",
     "empty_string",
     "empty_string",
     "turn_off_heat_once_tender",
     "optional_add"
   ],
   "steps": [
+    [
+      {
+        "name_id": "tofu",
+        "el": 1,
+        "string_id": "el"
+      }
+    ],
     [
       {
         "name_id": "water",
