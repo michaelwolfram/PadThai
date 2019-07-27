@@ -145,6 +145,7 @@ public class RecipeStepsFragment extends Fragment {
 
     private void initSnackBar() {
         snackbar = Snackbar.make(gridLayout, R.string._0, Snackbar.LENGTH_SHORT);
+        ((TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text)).setMaxLines(3);
     }
 
     public String removeZero(float number) {

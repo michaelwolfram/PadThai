@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
@@ -239,6 +240,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
 
     private void initSnackBar() {
         snackbar = Snackbar.make(recyclerView, R.string._0, Snackbar.LENGTH_SHORT);
+        ((TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text)).setMaxLines(3);
     }
 
     private void updateAdapter(Workbook workbook) {
