@@ -51,7 +51,7 @@
     <string name="water">Wasser</string>
     <string name="chili_flakes">Chiliflocken</string>
     <string name="curry_powder">Currypulver</string>
-    <string name="mixed_vegetables">Gemischtes Gemüse</string>
+    <string name="mixed_vegetables_tom_yam_soup">Gemischtes Gemüse\n(Pilze, Babymais, Brokkoli, Kohl)</string>
     <string name="rice">Reis</string>
     <string name="red_and_green_chilies">Rote und grüne Chilies</string>
     <string name="green_beans">Grüne Bohnen</string>
@@ -59,7 +59,7 @@
     <string name="root_vegetables">Wurzelgemüse</string>
     <string name="green_chili_paste">Grüne Chilipaste</string>
     <string name="kaffir_lime_leaves">Kaffir-Limetten-Blätter</string>
-    <string name="galangal">Thai-Ingwer (Galgant)</string>
+    <string name="galangal">Thai-Ingwer (Galgant)\n(nicht schälen, da die Schale zusätzlichen Geschmack verleiht)</string>
     <string name="lemon_grass">Zitronengras</string>
     <string name="thai_basil_v_mint">Thai-Basilikum oder Minze</string>
     <string name="coriander_leaves">Korianderblätter</string>
@@ -74,8 +74,8 @@
     <string name="salt">Salz</string>
     <string name="mango">Mango</string>
     <string name="banana">Banane</string>
-    <string name="vegetables_green_thai_curry">Gemüse</string>
-    <string name="vegetables">Gemüse</string>
+    <string name="vegetables_green_thai_curry">Gemüse\n(Auberginen, grüne Bohnen, gedämpfter Kürbis, Karotten, Zwiebeln)</string>
+    <string name="vegetables_massaman_curry">Gemüse\n(Pilze, Mais, Brokkoli, Kohl, Grünkohl, gedämpfte Süßkartoffeln oder Kürbis)</string>
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nichts ausgewählt. Was willst du kochen?</string>

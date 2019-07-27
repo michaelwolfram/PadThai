@@ -76,7 +76,7 @@
     <string name="water">Water</string>
     <string name="chili_flakes">Chili flakes</string>
     <string name="curry_powder">Curry powder</string>
-    <string name="mixed_vegetables">Mixed vegetables</string>
+    <string name="mixed_vegetables_tom_yam_soup">Mixed vegetables\n(mushrooms, baby corn, broccoli, cabbage)</string>
     <string name="rice">Rice</string>
     <string name="red_and_green_chilies">Red and green chilies</string>
     <string name="green_beans">Green beans</string>
@@ -84,7 +84,7 @@
     <string name="root_vegetables">Root vegetables</string>
     <string name="green_chili_paste">Green chili paste</string>
     <string name="kaffir_lime_leaves">Kaffir lime leaves</string>
-    <string name="galangal">Galangal</string>
+    <string name="galangal">Galangal\n(do not peal, as the skin provides extra flavor)</string>
     <string name="lemon_grass">Lemon grass</string>
     <string name="thai_basil_v_mint">Thai basil or mint</string>
     <string name="coriander_leaves">Coriander leaves</string>
@@ -99,8 +99,8 @@
     <string name="salt">Salt</string>
     <string name="mango">Mango</string>
     <string name="banana">Banana</string>
-    <string name="vegetables_green_thai_curry">Vegetables</string>
-    <string name="vegetables">Vegetables</string>
+    <string name="vegetables_green_thai_curry">Vegetables\n(eggplant, green beans, steamed squash, carrots, onions)</string>
+    <string name="vegetables_massaman_curry">Vegetables\n(mushrooms, corn, broccoli, cabbage, kale, steamed sweet potato or pumpkin)</string>
 
     <!-- Snackbars -->
     <string name="no_component_selected">Nothing selected. What do you want to cook?</string>
