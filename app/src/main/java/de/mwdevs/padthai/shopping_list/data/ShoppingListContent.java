@@ -8,7 +8,7 @@ import de.mwdevs.padthai.R;
 
 public class ShoppingListContent {
 
-    static final SparseArray<ShoppingItem> ITEM_PROPERTY_MAP = new SparseArray<>(15);
+    static final SparseArray<ShoppingItem> ITEM_PROPERTY_MAP = new SparseArray<>(41);
 
     private static boolean initialized = false;
 
@@ -32,8 +32,31 @@ public class ShoppingListContent {
         addItem(new ShoppingItem(14, R.string.rice_noodles, R.mipmap.rice_noodles_round, R.string.g, R.string.pkg));
         addItem(new ShoppingItem(15, R.string.tofu, R.mipmap.tofu_round, R.string.g, R.string.pkg));
         addItem(new ShoppingItem(16, R.string.curry_powder, R.mipmap.curry_powder_round, R.string.g, R.string.pkg));
-        addItem(new ShoppingItem(17, R.string.mixed_vegetables, R.mipmap.mixed_vegetables_round, R.string.g, R.string.handful));
+        addItem(new ShoppingItem(17, R.string.mixed_vegetables_tom_yam_soup, R.mipmap.mixed_vegetables_tom_yam_soup_round, R.string.g, R.string.handful));
         addItem(new ShoppingItem(18, R.string.rice, R.mipmap.rice_round, R.string.g, R.string.cups));
+        addItem(new ShoppingItem(19, R.string.red_and_green_chilies, R.mipmap.red_and_green_chilies_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(20, R.string.green_beans, R.mipmap.green_beans_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(21, R.string.sugar_water, R.mipmap.sugar_water_round, R.string.ml, R.string.cups));
+        addItem(new ShoppingItem(22, R.string.root_vegetables, R.mipmap.root_vegetables_round, R.string.g, R.string.handful));
+        addItem(new ShoppingItem(23, R.string.green_chili_paste, R.mipmap.green_chili_paste_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(24, R.string.kaffir_lime_leaves, R.mipmap.kaffir_lime_leaves_round, R.string.g, R.string.leaves));
+        addItem(new ShoppingItem(25, R.string.galangal, R.mipmap.galangal_round, R.string.g, R.string.slices));
+        addItem(new ShoppingItem(26, R.string.lemon_grass, R.mipmap.lemon_grass_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(27, R.string.thai_basil_v_mint, R.mipmap.thai_basil_v_mint_round, R.string.g, R.string.leaves));
+        addItem(new ShoppingItem(28, R.string.coriander_leaves, R.mipmap.coriander_leaves_round, R.string.g, R.string.leaves));
+        addItem(new ShoppingItem(29, R.string.spring_roll_wrapper, R.mipmap.spring_roll_wrapper_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(30, R.string.mint_leaves, R.mipmap.mint_leaves_round, R.string.g, R.string.leaves));
+        addItem(new ShoppingItem(31, R.string.bean_sprouts, R.mipmap.bean_sprouts_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(32, R.string.coconut_mango_avocado, R.mipmap.coconut_mango_avocado_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(33, R.string.sesame_seeds, R.mipmap.sesame_seeds_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(34, R.string.cashew_nuts, R.mipmap.cashew_nuts_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(35, R.string.pumpkin, R.mipmap.pumpkin_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(36, R.string.butterfly_pea_tea, R.mipmap.butterfly_pea_tea_round, R.string.g, R.string.pkg));
+        addItem(new ShoppingItem(37, R.string.salt, R.mipmap.salt_round, R.string.g, R.string.pinches));
+        addItem(new ShoppingItem(38, R.string.mango, R.mipmap.mango_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(39, R.string.banana, R.mipmap.banana_round, R.string.g, R.string.stk));
+        addItem(new ShoppingItem(40, R.string.vegetables_massaman_curry, R.mipmap.vegetables_massaman_curry_round, R.string.g, R.string.handful));
+        addItem(new ShoppingItem(41, R.string.vegetables_green_thai_curry, R.mipmap.vegetables_green_thai_curry_round, R.string.g, R.string.handful));
 
         initialized = true;
     }
