@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
     tools:showIn="@layout/content_main">
@@ -12,38 +11,48 @@
     <TextView
         android:id="@+id/dish_component_quantity"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:ems="1"
         android:gravity="center_vertical|end"
         android:singleLine="true"
         android:text="@string/_0"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:gravity="center_vertical"
         android:paddingStart="2dp"
         android:paddingEnd="5dp"
         android:text="@string/x"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dish_component_quantity"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/dish_component_name"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ellipsize="marquee"
         android:gravity="center_vertical"
+        android:marqueeRepeatLimit="marquee_forever"
         android:padding="5dp"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
         android:text="@string/dish_component_text"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp" />
-
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dish_component_decrease"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/dish_component_decrease"
@@ -56,7 +65,10 @@
         android:scaleY="1.5"
         android:src="@drawable/baseline_remove_circle_outline_24"
         android:tag="-1"
-        android:tint="@color/colorPrimary" />
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dish_component_increase"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/dish_component_increase"
@@ -68,5 +80,8 @@
         android:scaleY="1.5"
         android:src="@drawable/baseline_add_circle_outline_24"
         android:tag="+1"
-        android:tint="@color/colorPrimary" />
-</LinearLayout>
+        android:tint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

@@ -206,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
         TextView textView = componentRowView.findViewById(R.id.dish_component_name);
         textView.setText(dishComponentInfo.name_id);
         textView.setClickable(true);
+        textView.setSelected(true);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
