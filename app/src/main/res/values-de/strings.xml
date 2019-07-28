@@ -56,7 +56,7 @@
     <string name="red_and_green_chilies">Rote und grüne Chilies</string>
     <string name="green_beans">Grüne Bohnen</string>
     <string name="sugar_water">Zuckerwasser</string>
-    <string name="root_vegetables">Wurzelgemüse</string>
+    <string name="root_vegetables">Wurzelgemüse\n(Grüne Papaya &amp; Karotten; wahlweise auch Gurke, Rote Beete oder grüne Mango)</string>
     <string name="green_chili_paste">Grüne Chilipaste</string>
     <string name="kaffir_lime_leaves">Kaffir-Limetten-Blätter</string>
     <string name="galangal">Thai-Ingwer (Galgant)\n(nicht schälen, da die Schale zusätzlichen Geschmack verleiht)</string>
@@ -121,7 +121,7 @@
 
     <!-- green papaya salad -->
     <string name="in_bowl_mix_together">In der Schüssel mischen:</string>
-    <string name="add_finely_grated_root_vegetables">Klein geriebenes Wurzelgemüse zugeben\n(Grüne Papaya &amp; Karotten; wahlweise auch Gurke, Rote Beete oder grüne Mango):</string>
+    <string name="add_finely_grated_root_vegetables">Klein geriebenes Wurzelgemüse zugeben:</string>
     <string name="mix_well">Gut mischen</string>
 
     <!-- green thai curry -->

@@ -81,7 +81,7 @@
     <string name="red_and_green_chilies">Red and green chilies</string>
     <string name="green_beans">Green beans</string>
     <string name="sugar_water">Sugar water</string>
-    <string name="root_vegetables">Root vegetables</string>
+    <string name="root_vegetables">Root vegetables\n(green papaya &amp; carrot; cucumber, beetroot, green mango also possible)</string>
     <string name="green_chili_paste">Green chili paste</string>
     <string name="kaffir_lime_leaves">Kaffir lime leaves</string>
     <string name="galangal">Galangal\n(do not peal, as the skin provides extra flavor)</string>
@@ -146,7 +146,7 @@
 
     <!-- green papaya salad -->
     <string name="in_bowl_mix_together">In the bowl, mix together:</string>
-    <string name="add_finely_grated_root_vegetables">Add finely grated root vegetables\n(green papaya &amp; carrot; cucumber, beetroot or green mango also possible):</string>
+    <string name="add_finely_grated_root_vegetables">Add finely grated root vegetables:</string>
     <string name="mix_well">Mix well</string>
 
     <!-- green thai curry -->
