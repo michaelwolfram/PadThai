@@ -8,10 +8,10 @@
     <!-- units of measurement -->
     <string name="stk">Stk.</string>
     <string name="pkg">Pkg.</string>
-    <string name="handful">Handvoll</string>
+    <string name="handful">Hdvl.</string>
     <string name="cups">Ta.</string>
     <string name="leaves">Bl.</string>
-    <string name="slices">Schbn.</string>
+    <string name="slices">Sbn.</string>
     <string name="pinches">Pr.</string>
 
     <!-- Main activity -->
