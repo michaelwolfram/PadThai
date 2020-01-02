@@ -29,6 +29,7 @@ public class RecipeStepsFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
     private RecipeStepsViewModel mViewModel;
     private int mQuantity;
+    private String mRecipeId;
     private GridLayout gridLayout;
     private Snackbar snackbar;
 
@@ -37,7 +38,7 @@ public class RecipeStepsFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         bundle.putInt(ARG_QUANTITY, quantity);
-        bundle.putSerializable(ARG_RECIPE_ID, recipeID);
+        bundle.putString(ARG_RECIPE_ID, recipeID);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -53,15 +54,15 @@ public class RecipeStepsFragment extends Fragment {
 
         int index = getArguments().getInt(ARG_SECTION_NUMBER);
         mQuantity = getArguments().getInt(ARG_QUANTITY);
-        getViewModel(getArguments());
+        mRecipeId = getArguments().getString(ARG_RECIPE_ID);
 
+        getViewModel();
         mViewModel.setIndex(index);
     }
 
-    private void getViewModel(Bundle arguments) {
-        String recipeID = arguments.getString(ARG_RECIPE_ID);
+    private void getViewModel() {
         mViewModel = ViewModelProviders.of(this, new RecipeStepsViewModel.Factory(
-                Objects.requireNonNull(this.getActivity()).getApplication(), recipeID)).get(RecipeStepsViewModel.class);
+                Objects.requireNonNull(this.getActivity()).getApplication(), mRecipeId)).get(RecipeStepsViewModel.class);
     }
 
     @Override
@@ -153,5 +154,11 @@ public class RecipeStepsFragment extends Fragment {
         return format.format(number);
     }
 
+    public int getQuantity() {
+        return mQuantity;
+    }
 
+    public String getRecipeId() {
+        return mRecipeId;
+    }
 }
