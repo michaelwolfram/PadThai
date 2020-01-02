@@ -214,18 +214,19 @@ public class MainActivity extends AppCompatActivity implements OnDishInteraction
                     return;
 
                 if (componentQuantityDataModel.hasValue(dishInfo, row))
-                    startRecipeStepsActivity(componentQuantityDataModel.getQuantity(dishInfo, row),
-                            dishComponentInfo.json_filename);
+                    startRecipeStepsActivity(componentQuantityDataModel.getDishQuantities(dishInfo),
+                            dishInfo.getDishComponentJsonFilenames(), row);
                 else
                     Snackbar.make(v, R.string.no_component_selected, Snackbar.LENGTH_LONG).show();
             }
         });
     }
 
-    private void startRecipeStepsActivity(int component_quantity, String json_filename) {
+    private void startRecipeStepsActivity(int[] dish_component_quantities, String[] json_filenames, int row) {
         Intent intent = new Intent(MainActivity.this, RecipeStepsActivity.class);
-        intent.putExtra(RecipeStepsActivity.COMPONENT_QUANTITY, component_quantity);
-        intent.putExtra(RecipeStepsActivity.JSON_FILENAME, json_filename);
+        intent.putExtra(RecipeStepsActivity.DISH_COMPONENT_QUANTITIES, dish_component_quantities);
+        intent.putExtra(RecipeStepsActivity.JSON_FILENAMES, json_filenames);
+        intent.putExtra(RecipeStepsActivity.INITIAL_COMPONENT, row);
         startActivity(intent);
     }
 

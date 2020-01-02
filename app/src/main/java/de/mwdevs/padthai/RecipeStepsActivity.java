@@ -12,11 +12,18 @@ import android.view.WindowManager;
 import de.mwdevs.padthai.recipe_steps.RecipeStepsPagerAdapter;
 
 public class RecipeStepsActivity extends AppCompatActivity {
-    public static final String COMPONENT_QUANTITY = "COMPONENT_QUANTITY";
-    public static final String JSON_FILENAME = "JSON_FILENAME";
 
-    private int mComponentQuantity = 0;
-    private String mJsonFilename;
+    public static final String DISH_COMPONENT_QUANTITIES = "DISH_COMPONENT_QUANTITIES";
+    public static final String JSON_FILENAMES = "JSON_FILENAMES";
+    public static final String INITIAL_COMPONENT = "INITIAL_COMPONENT";
+
+    private RecipeStepsPagerAdapter recipeStepsPagerAdapter;
+
+    private int current_component = 0;
+    private int num_components;
+    private int[] mComponentQuantityArray;
+    private String[] mJsonFilenameArray;
+    private int[] mLastActiveItemArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +37,9 @@ public class RecipeStepsActivity extends AppCompatActivity {
     }
 
     private void setupViewPagerAndStuff() {
-        final RecipeStepsPagerAdapter recipeStepsPagerAdapter = new RecipeStepsPagerAdapter(
-                getSupportFragmentManager(), this, mComponentQuantity, mJsonFilename);
+        recipeStepsPagerAdapter = new RecipeStepsPagerAdapter(
+                getSupportFragmentManager(), this,
+                mComponentQuantityArray[current_component], mJsonFilenameArray[current_component]);
         final ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(recipeStepsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
@@ -70,7 +78,10 @@ public class RecipeStepsActivity extends AppCompatActivity {
 
     private void consumeIndent() {
         Intent intent = getIntent();
-        mComponentQuantity = intent.getIntExtra(COMPONENT_QUANTITY, 0);
-        mJsonFilename = intent.getStringExtra(JSON_FILENAME);
+        mComponentQuantityArray = intent.getIntArrayExtra(DISH_COMPONENT_QUANTITIES);
+        mJsonFilenameArray = intent.getStringArrayExtra(JSON_FILENAMES);
+        current_component = intent.getIntExtra(INITIAL_COMPONENT, 0);
+        num_components = mComponentQuantityArray.length;
+        mLastActiveItemArray = new int[num_components];
     }
 }
