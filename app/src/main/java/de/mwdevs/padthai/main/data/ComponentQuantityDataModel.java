@@ -17,10 +17,10 @@ public class ComponentQuantityDataModel {
     }
 
     public int getQuantity(DishInfo dishInfo, int row) {
-        return getQuantities(dishInfo)[row];
+        return getDishQuantities(dishInfo)[row];
     }
 
-    private int[] getQuantities(DishInfo dishInfo) {
+    public int[] getDishQuantities(DishInfo dishInfo) {
         return mComponentQuantities[dishInfo.getId()];
     }
 
