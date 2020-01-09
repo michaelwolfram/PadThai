@@ -87,6 +87,14 @@ public enum DishInfo {
         return json_filenames;
     }
 
+    public int[] getDishComponentNameIds() {
+        int[] name_ids = new int[getNumDishComponents()];
+        for (int i = 0; i < getNumDishComponents(); i++) {
+            name_ids[i] = mDishComponentInfos.get(i).name_id;
+        }
+        return name_ids;
+    }
+
     public int getNumDishComponents() {
         return mDishComponentInfos.size();
     }

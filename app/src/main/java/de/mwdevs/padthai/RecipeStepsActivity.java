@@ -11,6 +11,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import de.mwdevs.padthai.recipe_steps.RecipeStepsPagerAdapter;
 
@@ -24,6 +25,7 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
     public static final String DISH_COMPONENT_QUANTITIES = "DISH_COMPONENT_QUANTITIES";
     public static final String JSON_FILENAMES = "JSON_FILENAMES";
     public static final String INITIAL_COMPONENT = "INITIAL_COMPONENT";
+    public static final String NAME_IDS = "NAME_IDS";
 
     private RecipeStepsPagerAdapter recipeStepsPagerAdapter;
 
@@ -31,6 +33,7 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
     private int num_components;
     private int[] mComponentQuantityArray;
     private String[] mJsonFilenameArray;
+    private int[] mNameIdArray;
     private int[] mLastActiveItemArray;
 
     private GestureDetectorCompat mDetector;
@@ -86,14 +89,22 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
                 fab1.setClickable(i + 1 != recipeStepsPagerAdapter.getCount());
             }
         });
+
+        setRecipeComponentNameTextView();
+    }
+
+    private void setRecipeComponentNameTextView() {
+        TextView textView = findViewById(R.id.recipe_component_name);
+        textView.setText(mNameIdArray[current_component]);
     }
 
     private void consumeIndent() {
         Intent intent = getIntent();
         mComponentQuantityArray = intent.getIntArrayExtra(DISH_COMPONENT_QUANTITIES);
         mJsonFilenameArray = intent.getStringArrayExtra(JSON_FILENAMES);
+        mNameIdArray = intent.getIntArrayExtra(NAME_IDS);
         current_component = intent.getIntExtra(INITIAL_COMPONENT, 0);
-        num_components = mComponentQuantityArray.length;
+        num_components = mNameIdArray.length;
         mLastActiveItemArray = new int[num_components];
     }
 
@@ -130,6 +141,8 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
                 mComponentQuantityArray[current_component], mJsonFilenameArray[current_component]);
 
         viewPager.setCurrentItem(mLastActiveItemArray[current_component]);
+
+        setRecipeComponentNameTextView();
     }
 
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
