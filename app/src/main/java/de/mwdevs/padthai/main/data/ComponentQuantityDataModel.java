@@ -25,12 +25,12 @@ public class ComponentQuantityDataModel {
     }
 
     public int[] getAllQuantities(Context context, DishInfo dishInfo) {
-        int[] allComponents = new int[Utils.getNumComponents(context)];
+        int[] allQuantities = new int[Utils.getNumComponents(context)];
         for (int row = 0; row < dishInfo.getNumDishComponents(); row++) {
             int componentIndex = row + dishInfo.getDishComponentOffset();
-            allComponents[componentIndex] = getQuantity(dishInfo, row);
+            allQuantities[componentIndex] = getQuantity(dishInfo, row);
         }
-        return allComponents;
+        return allQuantities;
     }
 
     public void setQuantity(DishInfo dishInfo, int col, int value) {
