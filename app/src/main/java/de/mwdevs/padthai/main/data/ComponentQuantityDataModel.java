@@ -21,7 +21,10 @@ public class ComponentQuantityDataModel {
     }
 
     public int[] getDishQuantities(DishInfo dishInfo) {
-        return mComponentQuantities[dishInfo.getId()];
+        int num_components = dishInfo.getNumDishComponents();
+        int[] dishQuantities = new int[num_components];
+        System.arraycopy(mComponentQuantities[dishInfo.getId()], 0, dishQuantities, 0, num_components);
+        return dishQuantities;
     }
 
     public int[] getAllQuantities(Context context, DishInfo dishInfo) {
