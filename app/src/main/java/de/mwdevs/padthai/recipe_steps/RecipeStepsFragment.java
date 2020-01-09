@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import de.mwdevs.padthai.R;
+import de.mwdevs.padthai.RecipeStepsActivity;
 import de.mwdevs.padthai.recipe_steps.data.RecipeQuantityInfo;
 import de.mwdevs.padthai.recipe_steps.data.RecipeStepsViewModel;
 
@@ -28,6 +29,7 @@ public class RecipeStepsFragment extends Fragment {
     protected static final String ARG_RECIPE_ID = "ARG_RECIPE_ID";
     private static final String ARG_SECTION_NUMBER = "ARG_SECTION_NUMBER";
     private RecipeStepsViewModel mViewModel;
+    private int mSectionNumber;
     private int mQuantity;
     private String mRecipeId;
     private GridLayout gridLayout;
@@ -52,12 +54,12 @@ public class RecipeStepsFragment extends Fragment {
     private void digestArguments() {
         assert getArguments() != null;
 
-        int index = getArguments().getInt(ARG_SECTION_NUMBER);
+        mSectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
         mQuantity = getArguments().getInt(ARG_QUANTITY);
         mRecipeId = getArguments().getString(ARG_RECIPE_ID);
 
         getViewModel();
-        mViewModel.setIndex(index);
+        mViewModel.setIndex(mSectionNumber);
     }
 
     private void getViewModel() {
@@ -94,32 +96,41 @@ public class RecipeStepsFragment extends Fragment {
             @Override
             public void onChanged(@Nullable ArrayList<RecipeQuantityInfo> recipeQuantityInfoList) {
                 assert recipeQuantityInfoList != null;
+                int index = 0;
                 for (RecipeQuantityInfo info : recipeQuantityInfoList) {
-                    addQuantityView(gridLayout, inflater, info);
+                    addQuantityView(inflater, info, index++);
                 }
             }
         });
     }
 
-    protected void addQuantityView(GridLayout gridLayout, @NonNull LayoutInflater inflater,
-                                   RecipeQuantityInfo info) {
-        View newQuantityView = addViewToParent(gridLayout, inflater);
-        setValuesInQuantityView(newQuantityView, info);
+    protected void addQuantityView(@NonNull LayoutInflater inflater,
+                                   RecipeQuantityInfo info, int quantityViewIndex) {
+        View newQuantityView = addViewToParent(inflater);
+        setValuesInQuantityView(newQuantityView, info, quantityViewIndex);
         createListeners(newQuantityView);
     }
 
-    private View addViewToParent(GridLayout gridLayout, @NonNull LayoutInflater inflater) {
+    private View addViewToParent(@NonNull LayoutInflater inflater) {
         View newQuantityView = inflater.inflate(R.layout.recipe_steps_item, gridLayout, false);
         gridLayout.addView(newQuantityView);
         return newQuantityView;
     }
 
-    private void setValuesInQuantityView(View newQuantityView, RecipeQuantityInfo info) {
+    private void setValuesInQuantityView(View newQuantityView, RecipeQuantityInfo info, int quantityViewIndex) {
         String el_string = removeZero(info.el * mQuantity);
         ((TextView) newQuantityView.findViewById(R.id.ingredient_g_value)).setText(el_string);
         ((TextView) newQuantityView.findViewById(R.id.ingredient_g)).setText(info.string_id);
         ((ImageView) newQuantityView.findViewById(R.id.ingredient_image)).setImageResource(info.image_id);
-        newQuantityView.setTag(info.name_id);
+        newQuantityView.setTag(R.id.QUANTITY_NAME, info.name_id);
+        newQuantityView.setTag(R.id.QUANTITY_INDEX, quantityViewIndex);
+        setAlpha(newQuantityView, quantityViewIndex);
+    }
+
+    private void setAlpha(View newQuantityView, int quantityViewIndex) {
+        RecipeStepsActivity activity = (RecipeStepsActivity) getActivity();
+        boolean is_clicked = Objects.requireNonNull(activity).getQuantityPressedState(mSectionNumber, quantityViewIndex);
+        newQuantityView.setAlpha(is_clicked ? 0.15f : 1.0f);
     }
 
     private void createListeners(View newQuantityView) {
@@ -128,6 +139,12 @@ public class RecipeStepsFragment extends Fragment {
             public void onClick(View v) {
                 if (snackbar != null && snackbar.isShown())
                     snackbar.dismiss();
+                toggleAlpha(v);
+                Objects.requireNonNull((RecipeStepsActivity) getActivity())
+                        .toggleQuantityPressedState(mSectionNumber, (int) v.getTag(R.id.QUANTITY_INDEX));
+            }
+
+            void toggleAlpha(View v) {
                 v.setAlpha((3.15f - v.getAlpha()) % 2);
             }
         });
@@ -137,7 +154,7 @@ public class RecipeStepsFragment extends Fragment {
                 if (snackbar == null) {
                     initSnackBar();
                 }
-                snackbar.setText((int) v.getTag());
+                snackbar.setText((int) v.getTag(R.id.QUANTITY_NAME));
                 snackbar.show();
                 return true;
             }

@@ -27,15 +27,15 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
     public static final String INITIAL_COMPONENT = "INITIAL_COMPONENT";
     public static final String NAME_IDS = "NAME_IDS";
 
+    private ViewPager mViewPager;
     private RecipeStepsPagerAdapter recipeStepsPagerAdapter;
-
     private int current_component = 0;
     private int num_components;
     private int[] mComponentQuantityArray;
     private String[] mJsonFilenameArray;
     private int[] mNameIdArray;
     private int[] mLastActiveItemArray;
-
+    private boolean[][][] mQuantityPressedStatesMatrix = new boolean[3][10][10];
     private GestureDetectorCompat mDetector;
 
     @Override
@@ -51,22 +51,30 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
         mDetector = new GestureDetectorCompat(this, new MyGestureListener(this));
     }
 
+    public boolean getQuantityPressedState(int component_step, int quantity_view) {
+        return mQuantityPressedStatesMatrix[current_component][component_step][quantity_view];
+    }
+
+    public void toggleQuantityPressedState(int component_step, int quantity_view) {
+        mQuantityPressedStatesMatrix[current_component][component_step][quantity_view] ^= true;
+    }
+
     private void setupViewPagerAndStuff() {
         recipeStepsPagerAdapter = new RecipeStepsPagerAdapter(
                 getSupportFragmentManager(), this,
                 mComponentQuantityArray[current_component], mJsonFilenameArray[current_component]);
-        final ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(recipeStepsPagerAdapter);
+        mViewPager = findViewById(R.id.view_pager);
+        mViewPager.setAdapter(recipeStepsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+        tabs.setupWithViewPager(mViewPager);
 
         final FloatingActionButton fab1 = findViewById(R.id.fab);
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentItem = viewPager.getCurrentItem();
+                int currentItem = mViewPager.getCurrentItem();
                 if (currentItem + 1 < recipeStepsPagerAdapter.getCount())
-                    viewPager.setCurrentItem(currentItem + 1);
+                    mViewPager.setCurrentItem(currentItem + 1);
             }
         });
 
@@ -74,13 +82,13 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentItem = viewPager.getCurrentItem();
+                int currentItem = mViewPager.getCurrentItem();
                 if (currentItem - 1 >= 0)
-                    viewPager.setCurrentItem(currentItem - 1);
+                    mViewPager.setCurrentItem(currentItem - 1);
             }
         });
 
-        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int i) {
                 fab2.setAlpha(i == 0 ? 0.0f : 1.0f);
@@ -128,19 +136,18 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
         if (current_component == reference_index)
             return;
 
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        mLastActiveItemArray[current_component] = viewPager.getCurrentItem();
+        mLastActiveItemArray[current_component] = mViewPager.getCurrentItem();
 
         current_component += component_delta;
 
-        changeDishComponent(viewPager);
+        changeDishComponent();
     }
 
-    private void changeDishComponent(ViewPager viewPager) {
+    private void changeDishComponent() {
         recipeStepsPagerAdapter.updateData(
                 mComponentQuantityArray[current_component], mJsonFilenameArray[current_component]);
 
-        viewPager.setCurrentItem(mLastActiveItemArray[current_component]);
+        mViewPager.setCurrentItem(mLastActiveItemArray[current_component]);
 
         setRecipeComponentNameTextView();
     }

@@ -21,7 +21,7 @@ public class RecipeStepsViewModel extends AndroidViewModel {
     private LiveData<Integer> mText2;
     private LiveData<ArrayList<RecipeQuantityInfo>> mRecipeQuantityInfo;
 
-    RecipeStepsViewModel(@NonNull Application application, String recipe_filename) {
+    private RecipeStepsViewModel(@NonNull Application application, String recipe_filename) {
         super(application);
         mRecipe = Utils.loadRecipeFromJSON(application.getBaseContext(), recipe_filename);
         init();
