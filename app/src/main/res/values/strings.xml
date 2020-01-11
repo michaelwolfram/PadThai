@@ -40,6 +40,7 @@
 
     <!-- Main activity -->
     <string name="sub_header">Components</string>
+    <string name="dishes">Dishes</string>
 
     <!-- Components -->
     <string name="dish_component_text">Component Name</string>

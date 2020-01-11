@@ -16,6 +16,7 @@
 
     <!-- Main activity -->
     <string name="sub_header">Bestandteile</string>
+    <string name="dishes">Gerichte</string>
 
     <!-- Components -->
     <string name="dish_component_text">Bestandteil Name</string>
@@ -91,7 +92,7 @@
     <string name="click_me_then_shopping_list_shows">\nKlick mich…dann öffnet sie sich!</string>
     <string name="recipe_steps">Rezeptschritte</string>
     <string name="click_me_then_recipe_steps_show">\nKlick mich…dann öffnen sie sich!</string>
-    <string name="several_dishes">Mehrere Rezepte</string>
+    <string name="several_dishes">Mehrere Gerichte</string>
     <string name="swipe_through_dishes">\nBlättere sie durch!</string>
 
     <!-- Recipe steps -->
