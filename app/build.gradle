@@ -6,8 +6,8 @@ android {
         applicationId "de.mwdevs.padthai"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 18
-        versionName '1.7.1'
+        versionCode 19
+        versionName '1.8'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
