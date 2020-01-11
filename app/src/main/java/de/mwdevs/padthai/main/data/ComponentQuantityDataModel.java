@@ -46,7 +46,7 @@ public class ComponentQuantityDataModel {
 
     public boolean hasValues(DishInfo dishInfo) {
         boolean result = false;
-        for (int row = 0; row < mMaximumComponentRows; row++) {
+        for (int row = 0; row < dishInfo.getNumDishComponents(); row++) {
             result = result || hasValue(dishInfo, row);
         }
         return result;
