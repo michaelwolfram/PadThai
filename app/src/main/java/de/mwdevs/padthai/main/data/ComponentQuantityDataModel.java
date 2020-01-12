@@ -30,7 +30,7 @@ public class ComponentQuantityDataModel {
     public int[] getAllQuantities(Context context, DishInfo dishInfo) {
         int[] allQuantities = new int[Utils.getNumComponents(context)];
         for (int row = 0; row < dishInfo.getNumDishComponents(); row++) {
-            int componentIndex = row + dishInfo.getDishComponentOffset();
+            int componentIndex = dishInfo.getDishComponentInfo(row).component_index;
             allQuantities[componentIndex] = getQuantity(dishInfo, row);
         }
         return allQuantities;
