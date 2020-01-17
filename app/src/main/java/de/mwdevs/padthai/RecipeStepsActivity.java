@@ -2,16 +2,20 @@ package de.mwdevs.padthai;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
-import androidx.core.view.GestureDetectorCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextSwitcher;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 import de.mwdevs.padthai.recipe_steps.RecipeStepsPagerAdapter;
 
@@ -37,6 +41,11 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
     private int[] mLastActiveItemArray;
     private boolean[][][] mQuantityPressedStatesMatrix = new boolean[3][10][10];
     private GestureDetectorCompat mDetector;
+    private TextSwitcher textSwitcher;
+    private Animation anim_slide_down_in;
+    private Animation anim_slide_down_out;
+    private Animation anim_slide_up_in;
+    private Animation anim_slide_up_out;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +55,33 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
         setContentView(R.layout.activity_recipe_steps);
 
         consumeIndent();
+
+        setupTextSwitcher();
         setupViewPagerAndStuff();
 
         mDetector = new GestureDetectorCompat(this, new MyGestureListener(this));
+    }
+
+    private void setupTextSwitcher() {
+        textSwitcher = findViewById(R.id.recipe_component_name);
+        anim_slide_down_in = AnimationUtils.
+                loadAnimation(this, R.anim.slide_down_in);
+        anim_slide_down_out = AnimationUtils.
+                loadAnimation(this, R.anim.slide_down_out);
+        anim_slide_up_in = AnimationUtils.
+                loadAnimation(this, R.anim.slide_up_in);
+        anim_slide_up_out = AnimationUtils.
+                loadAnimation(this, R.anim.slide_up_out);
+    }
+
+    private void setUpAnimations() {
+        textSwitcher.setInAnimation(anim_slide_up_in);
+        textSwitcher.setOutAnimation(anim_slide_up_out);
+    }
+
+    private void setDownAnimations() {
+        textSwitcher.setInAnimation(anim_slide_down_in);
+        textSwitcher.setOutAnimation(anim_slide_down_out);
     }
 
     public boolean getQuantityPressedState(int component_step, int quantity_view) {
@@ -98,12 +131,11 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
             }
         });
 
-        setRecipeComponentNameTextView();
+        setRecipeComponentNameText();
     }
 
-    private void setRecipeComponentNameTextView() {
-        TextView textView = findViewById(R.id.recipe_component_name);
-        textView.setText(mNameIdArray[visible_component]);
+    private void setRecipeComponentNameText() {
+        textSwitcher.setText(getString(mNameIdArray[visible_component]));
     }
 
     private void consumeIndent() {
@@ -124,11 +156,13 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
 
     @Override
     public void onFlingUp() {
+        setUpAnimations();
         onFlingUpOrDown(visible_component, num_components - 1, 1);
     }
 
     @Override
     public void onFlingDown() {
+        setDownAnimations();
         onFlingUpOrDown(visible_component, 0, -1);
     }
 
@@ -140,8 +174,7 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
 
         if (mComponentQuantityArray[new_component] != 0) {
             changeDishComponent(new_component);
-        }
-        else {
+        } else {
             onFlingUpOrDown(new_component, reference_index, component_delta);
         }
     }
@@ -155,7 +188,7 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
 
         mViewPager.setCurrentItem(mLastActiveItemArray[visible_component]);
 
-        setRecipeComponentNameTextView();
+        setRecipeComponentNameText();
     }
 
     static class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
