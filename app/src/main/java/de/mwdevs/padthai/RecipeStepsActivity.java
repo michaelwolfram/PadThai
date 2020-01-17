@@ -29,7 +29,7 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
 
     private ViewPager mViewPager;
     private RecipeStepsPagerAdapter recipeStepsPagerAdapter;
-    private int current_component = 0;
+    private int visible_component = 0;
     private int num_components;
     private int[] mComponentQuantityArray;
     private String[] mJsonFilenameArray;
@@ -52,17 +52,17 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
     }
 
     public boolean getQuantityPressedState(int component_step, int quantity_view) {
-        return mQuantityPressedStatesMatrix[current_component][component_step][quantity_view];
+        return mQuantityPressedStatesMatrix[visible_component][component_step][quantity_view];
     }
 
     public void toggleQuantityPressedState(int component_step, int quantity_view) {
-        mQuantityPressedStatesMatrix[current_component][component_step][quantity_view] ^= true;
+        mQuantityPressedStatesMatrix[visible_component][component_step][quantity_view] ^= true;
     }
 
     private void setupViewPagerAndStuff() {
         recipeStepsPagerAdapter = new RecipeStepsPagerAdapter(
                 getSupportFragmentManager(), this,
-                mComponentQuantityArray[current_component], mJsonFilenameArray[current_component]);
+                mComponentQuantityArray[visible_component], mJsonFilenameArray[visible_component]);
         mViewPager = findViewById(R.id.view_pager);
         mViewPager.setAdapter(recipeStepsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
@@ -103,7 +103,7 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
 
     private void setRecipeComponentNameTextView() {
         TextView textView = findViewById(R.id.recipe_component_name);
-        textView.setText(mNameIdArray[current_component]);
+        textView.setText(mNameIdArray[visible_component]);
     }
 
     private void consumeIndent() {
@@ -111,7 +111,7 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
         mComponentQuantityArray = intent.getIntArrayExtra(DISH_COMPONENT_QUANTITIES);
         mJsonFilenameArray = intent.getStringArrayExtra(JSON_FILENAMES);
         mNameIdArray = intent.getIntArrayExtra(NAME_IDS);
-        current_component = intent.getIntExtra(INITIAL_COMPONENT, 0);
+        visible_component = intent.getIntExtra(INITIAL_COMPONENT, 0);
         num_components = mNameIdArray.length;
         mLastActiveItemArray = new int[num_components];
     }
@@ -145,9 +145,9 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
 
     private void changeDishComponent() {
         recipeStepsPagerAdapter.updateData(
-                mComponentQuantityArray[current_component], mJsonFilenameArray[current_component]);
+                mComponentQuantityArray[visible_component], mJsonFilenameArray[visible_component]);
 
-        mViewPager.setCurrentItem(mLastActiveItemArray[current_component]);
+        mViewPager.setCurrentItem(mLastActiveItemArray[visible_component]);
 
         setRecipeComponentNameTextView();
     }
