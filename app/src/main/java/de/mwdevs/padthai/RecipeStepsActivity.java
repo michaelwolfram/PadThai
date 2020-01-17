@@ -124,26 +124,32 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
 
     @Override
     public void onFlingUp() {
-        onFlingUpOrDown(num_components - 1, 1);
+        onFlingUpOrDown(visible_component, num_components - 1, 1);
     }
 
     @Override
     public void onFlingDown() {
-        onFlingUpOrDown(0, -1);
+        onFlingUpOrDown(visible_component, 0, -1);
     }
 
-    private void onFlingUpOrDown(int reference_index, int component_delta) {
-        if (current_component == reference_index)
+    private void onFlingUpOrDown(int curr_component, int reference_index, int component_delta) {
+        if (curr_component == reference_index)
             return;
 
-        mLastActiveItemArray[current_component] = mViewPager.getCurrentItem();
+        int new_component = curr_component + component_delta;
 
-        current_component += component_delta;
-
-        changeDishComponent();
+        if (mComponentQuantityArray[new_component] != 0) {
+            changeDishComponent(new_component);
+        }
+        else {
+            onFlingUpOrDown(new_component, reference_index, component_delta);
+        }
     }
 
-    private void changeDishComponent() {
+    private void changeDishComponent(int new_component) {
+        mLastActiveItemArray[visible_component] = mViewPager.getCurrentItem();
+        visible_component = new_component;
+
         recipeStepsPagerAdapter.updateData(
                 mComponentQuantityArray[visible_component], mJsonFilenameArray[visible_component]);
 
