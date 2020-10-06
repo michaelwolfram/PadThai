@@ -3,20 +3,21 @@ package de.mwdevs.padthai;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -63,7 +64,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
     private boolean gotAdapterDataFromSavedInstanceState;
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         if (mAdapter.hasData())
             outState.putParcelableArrayList(CACHED_SHOPPING_LIST, mAdapter.getData());
         super.onSaveInstanceState(outState);
@@ -240,7 +241,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
 
     private void initSnackBar() {
         snackbar = Snackbar.make(recyclerView, R.string._0, Snackbar.LENGTH_SHORT);
-        ((TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text)).setMaxLines(3);
+        ((TextView) snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text)).setMaxLines(3);
     }
 
     private void updateAdapter(Workbook workbook) {
@@ -283,7 +284,7 @@ public class ShoppingListActivity extends AppCompatActivity implements OnListInt
         }
     }
 
-    private class RecyclerViewScrollDisabler extends RecyclerView.OnScrollListener {
+    private static class RecyclerViewScrollDisabler extends RecyclerView.OnScrollListener {
         @Override
         public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);

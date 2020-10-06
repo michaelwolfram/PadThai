@@ -2,11 +2,11 @@ package de.mwdevs.padthai;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -158,7 +158,7 @@ public class RecipeStepsActivity extends AppCompatActivity implements OnVertical
         setRecipeComponentNameTextView();
     }
 
-    class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
+    static class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
         OnVerticalFlingListener onVerticalFlingListener_;
 
         MyGestureListener(OnVerticalFlingListener onVerticalFlingListener) {

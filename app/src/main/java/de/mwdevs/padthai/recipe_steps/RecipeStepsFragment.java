@@ -1,19 +1,21 @@
 package de.mwdevs.padthai.recipe_steps;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -63,8 +65,8 @@ public class RecipeStepsFragment extends Fragment {
     }
 
     private void getViewModel() {
-        mViewModel = ViewModelProviders.of(this, new RecipeStepsViewModel.Factory(
-                Objects.requireNonNull(this.getActivity()).getApplication(), mRecipeId)).get(RecipeStepsViewModel.class);
+        mViewModel = new ViewModelProvider(this, new RecipeStepsViewModel.Factory(
+                this.requireActivity().getApplication(), mRecipeId)).get(RecipeStepsViewModel.class);
     }
 
     @Override
@@ -81,7 +83,7 @@ public class RecipeStepsFragment extends Fragment {
 
     private void setText(View root, int textId, LiveData<Integer> textLiveData) {
         final TextView textView = root.findViewById(textId);
-        textLiveData.observe(this, new Observer<Integer>() {
+        textLiveData.observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer id) {
                 assert id != null;
@@ -92,7 +94,7 @@ public class RecipeStepsFragment extends Fragment {
 
     private void createQuantityViews(@NonNull final LayoutInflater inflater, View root) {
         gridLayout = root.findViewById(R.id.gridLayout);
-        mViewModel.getRecipeQuantityInfo().observe(this, new Observer<ArrayList<RecipeQuantityInfo>>() {
+        mViewModel.getRecipeQuantityInfo().observe(getViewLifecycleOwner(), new Observer<ArrayList<RecipeQuantityInfo>>() {
             @Override
             public void onChanged(@Nullable ArrayList<RecipeQuantityInfo> recipeQuantityInfoList) {
                 assert recipeQuantityInfoList != null;
@@ -163,7 +165,7 @@ public class RecipeStepsFragment extends Fragment {
 
     private void initSnackBar() {
         snackbar = Snackbar.make(gridLayout, R.string._0, Snackbar.LENGTH_SHORT);
-        ((TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text)).setMaxLines(3);
+        ((TextView) snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text)).setMaxLines(3);
     }
 
     public String removeZero(float number) {

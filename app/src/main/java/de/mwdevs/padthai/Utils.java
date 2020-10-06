@@ -57,7 +57,7 @@ public class Utils {
 
     public static Recipe loadRecipeFromJSON(Context context, String file_name) {
         try {
-            JSONObject json_recipe = new JSONObject(loadJSONFromAsset(context, file_name));
+            JSONObject json_recipe = new JSONObject(Objects.requireNonNull(loadJSONFromAsset(context, file_name)));
 
             final int name_id = getRecipeName(context, json_recipe);
             final int step_count = getRecipeStepCount(json_recipe);

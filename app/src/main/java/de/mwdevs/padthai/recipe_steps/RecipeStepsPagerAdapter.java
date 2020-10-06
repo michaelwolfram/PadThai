@@ -1,12 +1,14 @@
 package de.mwdevs.padthai.recipe_steps;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 
@@ -19,8 +21,9 @@ public class RecipeStepsPagerAdapter extends FragmentStatePagerAdapter {
     @StringRes
     private ArrayList<Integer> mTabTitles;
 
+    @SuppressLint("WrongConstant")
     public RecipeStepsPagerAdapter(FragmentManager fragmentManager, Context context, int quantity, String json_filename) {
-        super(fragmentManager);
+        super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mContext = context;
         mQuantity = quantity;
         mRecipeFilename = json_filename;
@@ -35,6 +38,7 @@ public class RecipeStepsPagerAdapter extends FragmentStatePagerAdapter {
         notifyDataSetChanged();
     }
 
+    @NonNull
     @Override
     public Fragment getItem(int position) {
         return RecipeStepsFragment.newInstance(position, mQuantity, mRecipeFilename);

@@ -25,7 +25,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 import android.text.Layout;
 import android.text.TextPaint;
 import android.text.TextUtils;
